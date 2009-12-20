@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: sans-serif, verdana, arial;
+	font-size: 13px;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+a {
+	color: 0000FF;
+}
+
+table {
+	margin: auto; 
+	background-color: #EEEEEE;
+	font-size: 13px;
+}
