@@ -22,7 +22,7 @@ class Publicacion_Model extends ORM {
 	 * @return string retorna el combobox
 	 */
 	public static function combobox_sexo($selected = NULL){
-		return form::dropdown('tipoinmueble', Publicacion_Model::$sexo_lista, $selected);
+		return form::dropdown('sexo', Publicacion_Model::$sexo_lista, $selected);
 	}
 }
 ?>

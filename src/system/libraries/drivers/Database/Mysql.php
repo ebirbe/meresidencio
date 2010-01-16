@@ -230,7 +230,8 @@ class Database_Mysql_Driver extends Database_Driver {
 		{
 			foreach($database['join'] AS $join)
 			{
-				$sql .= "\n".$join['type'].'JOIN '.implode(', ', $join['tables']).' ON '.$join['conditions'];
+				//TODO CAMBIOS AL FRAMEWORK
+				$sql .= "\n".$join['type'].'JOIN ('.implode(', ', $join['tables']).') ON '.$join['conditions'];
 			}
 		}
 

@@ -179,42 +179,114 @@ class Publicacion_Controller extends Template_Controller {
 				echo "<br>";
 			}
 		}
-	
+
 	}
-	
+
 	public function lista($pag_num = 1){
 		$this->template->titulo = "Lista de Publicaciones";
 		$vista = new View('publicacion/buscar');
+
+		/**
+		 * La busqueda no la puedo separar por ahora porque la
+		 * paginacion requiere el uso de las funciones 'limit'
+		 * y 'offset' las cuales no funcionan si antes de ellas
+		 * llamo a un 'where'
+		 */
+		//CONDICION DE BUSQUEDA
+		$datos = $this->_limpiar_datos_busqueda($_POST);
+		$filtrar = FALSE;
+		$where_cond = NULL;
+
+		foreach ($datos as $clave => $valor){
+			if($valor != NULL){
+
+				$filtrar = true;
+
+				switch ($clave){
+					case "estado":
+					case "ciudad":
+					case "zona":
+					case "tipoinmueble":
+						//en todos estos casos concatenamos '_id' para coincidir con la BD
+						$where_cond[$clave."_id"] = $valor;
+						break;
+						
+					case "sexo":
+						//Este nombre queda igual
+						$where_cond[$clave] = $valor;
+						break;
+				}
+			}
+		}
+		//FIN CONDICION DE BUSQUEDA
+
+		$publicaciones = ORM::factory('publicacion');
+		$join_tbl = array(
+			'zonas',
+			'ciudades',
+			'estados',
+		);
+		$join_cond = array(
+			'publicaciones.zona_id' => 'zonas.id',
+			'zonas.ciudad_id' => 'ciudades.id',
+			'ciudades.estado_id' => 'estados.id',
+		);
 		
-		//$publicaciones = new Publicacion_Model();
-		$publicaciones = $this->_buscar($_POST);
+		/**
+		 * Estas sentencias las coloco aca y las repito mas adelante
+		 * RAZON: La paginacion requiere saber el numero total
+		 * de filas generadas por una sentencia para definir cual
+		 * sera la ultima pagina. La repito mas adelante porque la
+		 * paginacion es la que devuelve el OFFSET que nos es mas que
+		 * el primer item de la pagina que se va a mostrar (desde donde
+		 * comienza a mostrarse la lista).
+		 */
 		
+		if($filtrar){
+			$publicaciones
+			->select('*')
+			->join($join_tbl, $join_cond)
+			->where($where_cond);
+		}else{
+			$publicaciones;
+		}
+
+		//Comienza a prepararse la Paginacion
 		$paginacion = new Pagination(
-			array(
+		array(
 				'uri_segment' => 'pagina',
 				'total_items' => $publicaciones->count_all(),
 				'items_per_page' => ITEMS_POR_PAGINA,
 				'style' => 'classic',
-			)
+		)
 		);
-		
-		$vista->publicacion = $publicaciones->limit(ITEMS_POR_PAGINA)->offset($paginacion->sql_offset)->find_all();
-		$vista->paginacion = $paginacion; 
+
+		$limit = ITEMS_POR_PAGINA;
+		$offset = $paginacion->sql_offset;
+
+	if($filtrar){
+			$publicaciones = $publicaciones
+			->select('publicaciones.*, zonas.ciudad_id, ciudades.estado_id')//Necesario porque sino selecciona solo 'publicaciones.*' y no los demas campos
+			->join($join_tbl, $join_cond)
+			->where($where_cond)
+			->limit($limit)
+			->offset($offset)
+			->find_all();
+		}else{
+			$publicaciones = $publicaciones
+			->limit($limit)
+			->offset($offset)
+			->find_all();
+		}
+
+		$vista->publicacion = $publicaciones;
+		$vista->paginacion = $paginacion;
 		$this->template->contenido = $vista;
+
+		//echo Kohana::debug($publicaciones);
+
 	}
-	
-	public function _buscar($post){
-		$datos = $this->_limpiar_datos_busqueda($post);
-		$condicion = array(
-			'estado.id' => $datos['estado'],
-			'ciudad.id' => $datos['ciudad'],
-			'zona' => $datos['zona'],
-			'tipoinmueble_id' => $datos['tipoinmueble'],
-			'sexo' => $datos['sexo'],
-		);
-		return ORM::factory('publicacion');
-	}
-	
+
 	public function _limpiar_datos_busqueda($post){
 		$array = array(
 			'estado' => '',
@@ -229,6 +301,14 @@ class Publicacion_Controller extends Template_Controller {
 			};
 		}
 		return $array;
+	}
+	
+	public function detalles($id = NULL){
+		$this->template->titulo = "Lista de Publicaciones";
+		$vista = new View('publicacion/detalles');
+		
+		$vista->publicacion = ORM::factory("publicacion", $id);
+		$this->template->contenido = $vista;
 	}
 }
 ?>
