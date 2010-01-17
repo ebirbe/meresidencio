@@ -80,11 +80,6 @@ class Publicacion_Controller extends Template_Controller {
 		$datos = $_POST;
 		$publicacion = new Publicacion_Model();
 
-		//echo Kohana::debug($_FILES);
-		//echo Kohana::debug($_POST);
-		//$image = Image::factory($_FILES['imagenes']['tmp_name'][0]);
-		//echo $image->__get("type");
-
 		if($this->_validar()){
 
 			$publicacion->usuario_id = $datos['usuario'];
@@ -112,6 +107,7 @@ class Publicacion_Controller extends Template_Controller {
 
 		return $exito;
 	}
+	
 
 	/**
 	 * Validacion de los datos obtenidos a traves del metodo post
@@ -166,22 +162,6 @@ class Publicacion_Controller extends Template_Controller {
 		}
 	}
 
-	public function imagenes($id = NULL){
-		$this->template->contenido = NULL;
-		if($id){
-			$this->template->auto_render = FALSE;
-			$this->auto_render = FALSE;
-			Imagen_Model::generar_imagen($id, TRUE);
-		}else{
-			$imagenes = ORM::factory('imagen')->find_all();
-			foreach($imagenes as $imagen){
-				echo html_Core::anchor("publicacion/imagenes/$imagen->id", "Imagen $imagen->id");
-				echo "<br>";
-			}
-		}
-
-	}
-
 	public function lista($pag_num = 1){
 		$this->template->titulo = "Lista de Publicaciones";
 		$vista = new View('publicacion/buscar');
@@ -210,7 +190,7 @@ class Publicacion_Controller extends Template_Controller {
 						//en todos estos casos concatenamos '_id' para coincidir con la BD
 						$where_cond[$clave."_id"] = $valor;
 						break;
-						
+
 					case "sexo":
 						//Este nombre queda igual
 						$where_cond[$clave] = $valor;
@@ -231,7 +211,7 @@ class Publicacion_Controller extends Template_Controller {
 			'zonas.ciudad_id' => 'ciudades.id',
 			'ciudades.estado_id' => 'estados.id',
 		);
-		
+
 		/**
 		 * Estas sentencias las coloco aca y las repito mas adelante
 		 * RAZON: La paginacion requiere saber el numero total
@@ -241,7 +221,7 @@ class Publicacion_Controller extends Template_Controller {
 		 * el primer item de la pagina que se va a mostrar (desde donde
 		 * comienza a mostrarse la lista).
 		 */
-		
+
 		if($filtrar){
 			$publicaciones
 			->select('*')
@@ -254,17 +234,17 @@ class Publicacion_Controller extends Template_Controller {
 		//Comienza a prepararse la Paginacion
 		$paginacion = new Pagination(
 		array(
-				'uri_segment' => 'pagina',
-				'total_items' => $publicaciones->count_all(),
-				'items_per_page' => ITEMS_POR_PAGINA,
-				'style' => 'classic',
+					'uri_segment' => 'pagina',
+					'total_items' => $publicaciones->count_all(),
+					'items_per_page' => ITEMS_POR_PAGINA,
+					'style' => 'classic',
 		)
 		);
 
 		$limit = ITEMS_POR_PAGINA;
 		$offset = $paginacion->sql_offset;
 
-	if($filtrar){
+		if($filtrar){
 			$publicaciones = $publicaciones
 			->select('publicaciones.*, zonas.ciudad_id, ciudades.estado_id')//Necesario porque sino selecciona solo 'publicaciones.*' y no los demas campos
 			->join($join_tbl, $join_cond)
@@ -302,11 +282,11 @@ class Publicacion_Controller extends Template_Controller {
 		}
 		return $array;
 	}
-	
+
 	public function detalles($id = NULL){
 		$this->template->titulo = "Lista de Publicaciones";
 		$vista = new View('publicacion/detalles');
-		
+
 		$vista->publicacion = ORM::factory("publicacion", $id);
 		$this->template->contenido = $vista;
 	}

@@ -9,12 +9,14 @@ class Usuario_Controller extends Template_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->session = Session::instance();
+
 		$this->template->titulo = html::specialchars("Administracion de Usuario");
 		$this->limpiar_formulario();
 		$this->errores = $this->formulario;
 		$this->mensaje = '';
 	}
-	
+
 	/**
 	 * Pone todos los campos en blanco, listo para ser utilizado
 	 */
@@ -206,7 +208,7 @@ class Usuario_Controller extends Template_Controller {
 			//la validacion no de problemas de 'required'
 			$usuario->login = $usuario->login;
 			$usuario->correo = $usuario->correo;
-			
+				
 			$usuario->activo = (boolean)$datos['activo'];
 			$usuario->nombre = $datos['nombre'];
 			$usuario->apellido = $datos['apellido'];
@@ -231,20 +233,20 @@ class Usuario_Controller extends Template_Controller {
 		}
 		return $exito;
 	}
-	
+
 	public function buscar(){
 		$this->template->titulo = "Buscar Usuarios";
-		
+
 		$vista = new View('usuario/buscar');
 		if(isset($_POST['buscar'])){
 			$vista->usuario = $this->_buscar($_POST['buscar']);
 		}else{
 			$vista->usuario = ORM::factory('usuario')->find_all();
 		}
-		
+
 		$this->template->contenido = $vista;
 	}
-	
+
 	public function _buscar($string){
 		$condicion = array(
 			'nombre' => $string,
@@ -254,6 +256,42 @@ class Usuario_Controller extends Template_Controller {
 		);
 		$usuario = ORM::factory('usuario')->orlike($condicion)->find_all();
 		return $usuario;
+	}
+
+	public function iniciar_sesion(){
+		$this->template->titulo = "Buscar Usuarios";
+
+		$vista = new View('usuario/iniciar_sesion');
+		$vista->mensaje='';
+		$post = $_POST;
+		if($post){
+			if(!$this->_usuario_valido($post)){
+				$vista->mensaje = "Usuario o Contrase&ntilde;a inv&aacute;lido.";
+			}else{
+				$cond = array(
+					'login' => $post['login'],
+					'clave' => $post['clave'],
+				);
+				$this->session->set('usuario',ORM::factory('usuario')->where($cond)->find());
+				//echo Kohana::debug($_SESSION);
+				$usuario = $this->session->get('usuario');
+				$vista->mensaje = 'BIENVENIDO ' . $usuario->nombre;
+			}
+		}
+		$this->template->contenido = $vista;
+	}
+
+	public function _usuario_valido($post){
+		$valido = FALSE;
+		$cond = array(
+			'login' => $post['login'],
+			'clave' => $post['clave'],
+		);
+		$usuario = ORM::factory('usuario')->where($cond)->find();
+
+		if($usuario->id > 0) $valido = true;
+
+		return $valido;
 	}
 }
 ?>

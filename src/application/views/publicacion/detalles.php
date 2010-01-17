@@ -5,8 +5,11 @@
 	</tr>
 	<tr>
 		<td>
-		<?php foreach($publicacion->imagenes as $imagen){?>
-			<a href='<?php echo url::site('publicacion/imagenes').'/'.$imagen ?>' target='_blank'><img width="72" height="72" src='<?php echo url::site('publicacion/imagenes').'/'.$imagen ?>' /></a>
+		<?php
+		$i = 1;
+		foreach($publicacion->imagenes as $imagen){
+		?>
+			<a href='<?php echo url::site('imagen/album').'/'.$publicacion->id.'/pagina/'.$i++ ?>' target='_blank'><img width="72" height="72" src='<?php echo url::site('imagen/mostrar').'/'.$imagen ?>' /></a>
 		<?php } ?>
 		</td>
 	</tr>

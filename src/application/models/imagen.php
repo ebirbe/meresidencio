@@ -47,7 +47,7 @@ class Imagen_Model extends ORM {
 		}
 
 	}
-
+	
 	public static function generar_imagen($id, $imprimir = TRUE){
 		$link = mysql_connect('localhost', 'root', 'acer');
 		if (!$link) die('Error al conectarse con MySQL: ' . mysql_error().' <br>Número del error: '.mysql_errno());
