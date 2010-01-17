@@ -208,7 +208,7 @@ class Usuario_Controller extends Template_Controller {
 			//la validacion no de problemas de 'required'
 			$usuario->login = $usuario->login;
 			$usuario->correo = $usuario->correo;
-				
+
 			$usuario->activo = (boolean)$datos['activo'];
 			$usuario->nombre = $datos['nombre'];
 			$usuario->apellido = $datos['apellido'];
@@ -292,6 +292,41 @@ class Usuario_Controller extends Template_Controller {
 		if($usuario->id > 0) $valido = true;
 
 		return $valido;
+	}
+
+	public function mis_publicaciones($id_usuario){
+		$this->template->titulo = "Mis Publicaciones";
+		$vista = new View('publicacion/buscar');
+
+		$publicaciones = ORM::factory('publicacion');
+
+		$publicaciones->where('usuario_id', $id_usuario);
+
+		//Comienza a prepararse la Paginacion
+		$paginacion = new Pagination(
+		array(
+					'uri_segment' => 'pagina',
+					'total_items' => $publicaciones->count_all(),
+					'items_per_page' => ITEMS_POR_PAGINA,
+					'style' => 'classic',
+		)
+		);
+
+		$limit = ITEMS_POR_PAGINA;
+		$offset = $paginacion->sql_offset;
+
+		$publicaciones = $publicaciones
+		->where('usuario_id', $id_usuario)
+		->limit($limit)
+		->offset($offset)
+		->find_all();
+
+		$vista->publicacion = $publicaciones;
+		$vista->paginacion = $paginacion;
+		$this->template->contenido = $vista;
+
+		//echo Kohana::debug($publicaciones);
+
 	}
 }
 ?>

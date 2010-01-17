@@ -107,7 +107,7 @@ class Publicacion_Controller extends Template_Controller {
 
 		return $exito;
 	}
-	
+
 
 	/**
 	 * Validacion de los datos obtenidos a traves del metodo post
@@ -162,7 +162,7 @@ class Publicacion_Controller extends Template_Controller {
 		}
 	}
 
-	public function lista($pag_num = 1){
+	public function lista(){
 		$this->template->titulo = "Lista de Publicaciones";
 		$vista = new View('publicacion/buscar');
 
