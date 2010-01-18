@@ -1,0 +1,15 @@
+- Mostrar Publicaciones hechas por mi
+- Iniciar sesion debe verificar que el usuario esté habilitado y no deshabilitado
+- Cambiar contraseña
+- Editar Publicación.
+- Eliminar Publicación.
+- Al buscar y usar la paginación, se pierden los parámetros de la búsqueda.
+- Ofertar Publicación
+- Calificar Publicación
+- Ver calificaciones
+- Mostrar la Dirección de las publicaciones solo al ofertar junto con los datos del dueño
+- Pedir confirmación de contraseña al suscribir (usar matches de valiadation)
+- Al agregar zonas y (supongo que ciudades tambien) no permite agregarlas si otra ciudad (o estado) tienen una zona (y ciudad tambien) con el mismo nombre
+- Resaltar los Textos: "Se guardó con éxito"
+- En la opción de Habilitar y Deshabilitar usuario (en usuario/editar) al deshabilitar notificar las consecuensias y pedir confirmación
+- Tener siempre el cuaderno de notas cerca!!!

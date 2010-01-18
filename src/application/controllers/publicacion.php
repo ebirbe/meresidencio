@@ -32,9 +32,6 @@ class Publicacion_Controller extends Template_Controller {
 			'precio' => '',
 			'deposito' => '',
 			'descripcion' => '',
-			'imagen1' => '',
-			'imagen2' => '',
-			'imagen3' => '',
 		);
 	}
 
@@ -60,7 +57,7 @@ class Publicacion_Controller extends Template_Controller {
 		$vista = new View("publicacion/agregar");
 		if($_POST){
 			if($this->_agregar($_POST)){
-				$this->mensaje = "Se guardo con &eacute;xito.";
+				$this->mensaje = "Se guard&oacute; con &eacute;xito.";
 				$this->limpiar_formulario();
 			}
 		}
@@ -84,9 +81,9 @@ class Publicacion_Controller extends Template_Controller {
 		$publicacion = new Publicacion_Model();
 
 		if($this->_validar()){
-
 			$publicacion->usuario_id = $datos['usuario'];
 			$publicacion->tipoinmueble_id = $datos['tipoinmueble'];
+			$publicacion->sexo = $datos['sexo'];
 			$publicacion->zona_id = $datos['zona'];
 			$publicacion->direccion = $datos['direccion'];
 			$publicacion->mts = $datos['mts'];
@@ -100,10 +97,6 @@ class Publicacion_Controller extends Template_Controller {
 
 			//Guarda la publicacion
 			$publicacion->save();
-
-			Imagen_Model::guardar_imagen($_FILES['imagen1'], $publicacion->id);
-			Imagen_Model::guardar_imagen($_FILES['imagen2'], $publicacion->id);
-			Imagen_Model::guardar_imagen($_FILES['imagen3'], $publicacion->id);
 
 			$exito = TRUE;
 		}
@@ -133,9 +126,6 @@ class Publicacion_Controller extends Template_Controller {
 		$post->add_callbacks('estado', array($this, '_no_cero'));
 		$post->add_callbacks('ciudad', array($this, '_no_cero'));
 		$post->add_callbacks('zona', array($this, '_no_cero'));
-		$post->add_callbacks('imagen1', array($this, '_mime_valido'));
-		$post->add_callbacks('imagen2', array($this, '_mime_valido'));
-		$post->add_callbacks('imagen3', array($this, '_mime_valido'));
 
 		$exito = $post->validate();
 
@@ -149,19 +139,6 @@ class Publicacion_Controller extends Template_Controller {
 	public function _no_cero(Validation_Core  $array, $campo){
 		if($array[$campo] == 0){
 			$array->add_error($campo, 'required');
-		}
-	}
-
-	public function _mime_valido(Validation_Core  $array, $campo){
-		$nombre = $_FILES[$campo]['name'];
-		if(strlen($nombre) > 0){
-			$ext = strtolower(substr($nombre, -4, 4));
-			if($ext != ".jpg" && $ext != ".png" && $ext != ".gif"){
-				$ext = strtolower(substr($nombre, -5, 5));
-				if($ext != ".jpeg"){
-					$array->add_error($campo, 'extension');
-				}
-			}
 		}
 	}
 
@@ -287,21 +264,21 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function detalles($id = NULL){
-		
+
 		$this->template->titulo = "Lista de Publicaciones";
 		$vista = new View('publicacion/detalles');
-		
+
 		$usuario = $this->session->get('usuario');
 		if($usuario){
-			$vista->usuario_sesion = $usuario;	
+			$vista->usuario_sesion = $usuario;
 		}
 		$vista->publicacion = ORM::factory("publicacion", $id);
 		$this->template->contenido = $vista;
-		
+
 	}
 
 	public function mis_publicaciones($id_usuario){
-		
+
 		$this->template->titulo = "Mis Publicaciones";
 		$vista = new View('publicacion/buscar');
 
@@ -311,12 +288,12 @@ class Publicacion_Controller extends Template_Controller {
 
 		//Comienza a prepararse la Paginacion
 		$paginacion = new Pagination(
-			array(
+		array(
 						'uri_segment' => 'pagina',
 						'total_items' => $publicaciones->count_all(),
 						'items_per_page' => ITEMS_POR_PAGINA,
 						'style' => 'classic',
-			)
+		)
 		);
 
 		$limit = ITEMS_POR_PAGINA;
@@ -327,7 +304,7 @@ class Publicacion_Controller extends Template_Controller {
 		->limit($limit)
 		->offset($offset)
 		->find_all();
-		
+
 		$vista->publicacion = $publicaciones;
 		$vista->paginacion = $paginacion;
 		$this->template->contenido = $vista;

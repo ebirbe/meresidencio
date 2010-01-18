@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script');?>
 <?php echo html_Core::script('media/js/scw.js', FALSE); ?>
 <?php echo new View('js/combo_regiones'); ?>
-<?php echo form::open_multipart() ?>
+<?php echo form::open() ?>
 <?php echo form::hidden('usuario',$usuario_id) ?>
 <table>
 	<tr>
@@ -85,33 +85,6 @@
 		<td><?php echo form::label('descripcion','Descripcion:') ?></td>
 		<td><?php echo form::textarea(array('name'=>'descripcion', 'name'=>'descripcion', 'cols'=>'50', 'rows'=>'5'), $formulario['descripcion']) ?></td>
 		<td><?php echo $errores['descripcion'] ?></td>
-	</tr>
-	<tr>
-		<td colspan="3">Im&aacute;genes</td>
-	</tr>
-	<?php 
-	
-	$atributos = array('name'=>'imagen1','accept'=>'image/png,image/jpeg,image/gif')
-	
-	?>	
-
-	<tr>
-		<td>&nbsp;</td>
-		<td><?php echo form::upload(array('name'=>'imagen1','accept'=>'image/png,image/jpeg,image/gif'), $formulario['imagen1']) ?><br>
-		</td>
-		<td><?php echo $errores['imagen1']; ?></td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td><?php echo form::upload(array('name'=>'imagen2','accept'=>'image/png,image/jpeg,image/gif'), $formulario['imagen2']) ?><br>
-		</td>
-		<td><?php echo $errores['imagen2']; ?></td>
-	</tr>
-	<tr>
-		<td>&nbsp;</td>
-		<td><?php echo form::upload(array('name'=>'imagen3','accept'=>'image/png,image/jpeg,image/gif'), $formulario['imagen3']) ?><br>
-		</td>
-		<td><?php echo $errores['imagen3']; ?></td>
 	</tr>
 	<tr>
 		<td colspan="3"><?php echo form::submit(NULL, 'Guardar') ?></td>

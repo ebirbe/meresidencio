@@ -16,4 +16,10 @@ define('NOMBRE_SITIO', 'MeResidencio.Com');
  */
 define('ITEMS_POR_PAGINA', 2);
 
+/**
+ * La cantidad de imagenes maxima permitida para
+ * las publicaciones
+ */
+define('MAXIMO_IMAGENES', 6);
+
 ?>

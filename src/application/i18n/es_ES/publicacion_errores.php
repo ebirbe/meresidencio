@@ -40,17 +40,5 @@ $lang = array
 	(
 		'numeric' => 'Solo puede escribir numeros.',
 	),
-	'imagen1' => array
-	(
-		'extension' => 'Solo se permiten imagenes .jpg/.gif/.png',
-	),
-	'imagen2' => array
-	(
-		'extension' => 'Solo se permiten imagenes .jpg/.gif/.png',
-	),
-	'imagen3' => array
-	(
-		'extension' => 'Solo se permiten imagenes .jpg/.gif/.png',
-	),
 );
 ?>
