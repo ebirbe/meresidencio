@@ -35,9 +35,15 @@
 		<td colspan="2"><?php echo $paginacion ?></td>
 	</tr>
 	<?php foreach ($publicacion as $fila) { ?>
-	<tr>
-		<td rowspan="5"><img width="72" height="72" src='<?php echo url::site('imagen/mostrar').'/'.$fila->imagenes[0] ?>' alt='<?php echo url::site('publicacion/imagenes').'/'.$fila->imagenes[0] ?>' /></td>
-	</tr>
+			<?php if($fila->imagenes[0] == NULL){?>
+				<tr>
+					<td rowspan="5"><img width="72" height="72" src='<?php echo url::base(FALSE).'media/img/no_img.gif' ?>' /></td>
+				</tr>
+			<?php }else{ ?>
+				<tr>
+					<td rowspan="5"><img width="72" height="72" src='<?php echo url::site('imagen/mostrar').'/'.$fila->imagenes[0] ?>' alt='<?php echo url::site('publicacion/imagenes').'/'.$fila->imagenes[0] ?>' /></td>
+				</tr>
+				<?php } ?>
 	<tr>
 		<td><?php echo $fila->tipoinmueble->nombre; ?></td>
 	</tr>

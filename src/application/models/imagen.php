@@ -47,23 +47,26 @@ class Imagen_Model extends ORM {
 		}
 
 	}
-	
-	public static function generar_imagen($id, $imprimir = TRUE){
-		$link = mysql_connect('localhost', 'root', 'acer');
-		if (!$link) die('Error al conectarse con MySQL: ' . mysql_error().' <br>Número del error: '.mysql_errno());
-		if (! @mysql_select_db("meresidencio",$link)){
-			echo "No se pudo conectar correctamente con la Base de datos";
-			exit();
-		}
-		$mime = ORM::factory('imagen', $id)->mime;
-		$result = mysql_query("SELECT imagen FROM imagenes WHERE id=$id");
-		$result_array = mysql_fetch_array($result);
 
-		if($imprimir){
-			header("Content-Type: $mime");
-			echo $result_array[0];
+	public static function generar_imagen($id, $imprimir = TRUE){
+		if($id !=NULL){
+			$link = mysql_connect('localhost', 'root', 'acer');
+			if (!$link) die('Error al conectarse con MySQL: ' . mysql_error().' <br>Número del error: '.mysql_errno());
+			if (! @mysql_select_db("meresidencio",$link)){
+				echo "No se pudo conectar correctamente con la Base de datos";
+				exit();
+			}
+			$mime = ORM::factory('imagen', $id)->mime;
+			$result = mysql_query("SELECT imagen FROM imagenes WHERE id=$id");
+			$result_array = mysql_fetch_array($result);
+			if($imprimir){
+				header("Content-Type: $mime");
+				echo $result_array[0];
+			}else{
+				return $result_array[0];
+			}
 		}else{
-			return $result_array[0];
+			return NULL;
 		}
 	}
 }

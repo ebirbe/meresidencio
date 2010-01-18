@@ -5,6 +5,7 @@ class Publicacion_Controller extends Template_Controller {
 	protected $formulario;
 	protected $errores;
 	protected $mensaje;
+	protected $ultimo_id;
 
 	public function __construct()
 	{
@@ -57,10 +58,12 @@ class Publicacion_Controller extends Template_Controller {
 		$vista = new View("publicacion/agregar");
 		if($_POST){
 			if($this->_agregar($_POST)){
+				url::redirect(url::site("imagen/agregar/$this->ultimo_id"));
 				$this->mensaje = "Se guard&oacute; con &eacute;xito.";
 				$this->limpiar_formulario();
 			}
 		}
+		//TODO Cambiar esto por un id usuario real
 		$usuario = ORM::factory('usuario', 1);
 		$vista->usuario_id = $usuario->id;
 		$vista->mensaje = $this->mensaje;
@@ -97,6 +100,7 @@ class Publicacion_Controller extends Template_Controller {
 
 			//Guarda la publicacion
 			$publicacion->save();
+			$this->ultimo_id = $publicacion->id;
 
 			$exito = TRUE;
 		}

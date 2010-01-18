@@ -23,25 +23,24 @@ class Imagen_Controller extends Template_Controller {
 		);
 	}
 
-	public function agregar($publicacion_id){
+	public function agregar($publicacion_id, $nueva_pub = FALSE){
 		$this->template->titulo = "Agregar im&aacute;genes a la publicaci&oacute;n $publicacion_id";
 		$vista = new View('imagen/agregar');
 
+		if($nueva_pub) $this->mensaje = "Su publicaci&oacute;n se guardo con &eacute;xito bajo el Nro. $publicacion_id, si lo desea puede proceder a agregar im&aacute;genes a su publicaci&oacute;n";
+
 		$publicacion = ORM::factory('publicacion', $publicacion_id);
 
-		if($publicacion->imagenes->count() >= MAXIMO_IMAGENES){
-			$vista->tope = TRUE;
-		}else{
-			$vista->tope = FALSE;
-		}
+		$vista->numero_imagenes = $publicacion->imagenes->count();
 
 		if($_POST){
-			if($this->_agregar($_POST, $publicacion_id)){
+			if($this->_agregar($publicacion_id)){
 				$this->mensaje = "Se guardo con &eacute;xito.";
 				$this->limpiar_formulario();
 			}
 		}
 
+		$vista->mensaje = $this->mensaje;
 		$vista->publicacion = $publicacion;
 		$vista->formulario = $this->formulario;
 		$vista->errores = $this->errores;
@@ -54,9 +53,8 @@ class Imagen_Controller extends Template_Controller {
 	 * de los estados en la base de datos
 	 *
 	 */
-	public function _agregar($datos, $publicacion_id){
+	public function _agregar($publicacion_id){
 		$exito = false;
-		$datos = $_POST;
 		$publicacion = new Publicacion_Model();
 
 		if($this->_validar()){
@@ -146,5 +144,6 @@ class Imagen_Controller extends Template_Controller {
 
 		$this->template->contenido = $vista;
 	}
+
 }
 ?>

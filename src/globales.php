@@ -14,7 +14,7 @@ define('NOMBRE_SITIO', 'MeResidencio.Com');
  * que se muestran en los resultados de
  * las busquedas.
  */
-define('ITEMS_POR_PAGINA', 2);
+define('ITEMS_POR_PAGINA', 5);
 
 /**
  * La cantidad de imagenes maxima permitida para
