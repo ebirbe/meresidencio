@@ -37,6 +37,7 @@ class Publicacion_Controller extends Template_Controller {
 			'descripcion' => '',
 			'servicio' => array(),
 			'cercania' => array(),
+			'activo' => '',
 		);
 	}
 
@@ -60,6 +61,7 @@ class Publicacion_Controller extends Template_Controller {
 		$this->template->titulo = html::specialchars("Agregar una Publicacion Nueva");
 
 		$vista = new View("publicacion/agregar");
+		$vista->editar = FALSE;
 
 		if($_POST){
 
@@ -167,9 +169,11 @@ class Publicacion_Controller extends Template_Controller {
 
 		$this->template->titulo = html::specialchars("Editar Publicacion Nro. $publicacion_id");
 
+		$vista = new View("publicacion/agregar");
+		$vista->editar = TRUE;
+		
 		$this->llenar_formulario($publicacion_id);
 
-		$vista = new View("publicacion/agregar");
 		if($_POST){
 			if($this->_editar($publicacion_id)){
 				//url::redirect(url::site("publicacion/detalles/$publicacion_id"));
@@ -237,12 +241,16 @@ class Publicacion_Controller extends Template_Controller {
 			$publicacion->descripcion = $datos['descripcion'];
 			$publicacion->precio = $datos['precio'];
 			$publicacion->deposito = $datos['deposito'];
-
+			
+			if(isset($datos['activo']))		$publicacion->activo = 1;
+			else							$publicacion->activo = 0;
 			if(isset($datos['servicio']))	$publicacion->servicios = $datos['servicio'];
 			if(isset($datos['cercania']))	$publicacion->cercanias = $datos['cercania'];
 
 			//Guarda la publicacion
 			$publicacion->save();
+			
+			$publicacion->clear_cache();
 
 			$exito = TRUE;
 		}
@@ -263,7 +271,7 @@ class Publicacion_Controller extends Template_Controller {
 		//CONDICION DE BUSQUEDA
 		$datos = $this->_limpiar_datos_busqueda($_POST);
 		$filtrar = FALSE;
-		$where_cond = NULL;
+		$where_cond['activo'] = 1;
 
 		foreach ($datos as $clave => $valor){
 			if($valor != NULL){
@@ -316,7 +324,8 @@ class Publicacion_Controller extends Template_Controller {
 			->join($join_tbl, $join_cond)
 			->where($where_cond);
 		}else{
-			$publicaciones;
+			$publicaciones
+			->where($where_cond);
 		}
 
 		//Comienza a prepararse la Paginacion
@@ -342,6 +351,7 @@ class Publicacion_Controller extends Template_Controller {
 			->find_all();
 		}else{
 			$publicaciones = $publicaciones
+			->where($where_cond)
 			->limit($limit)
 			->offset($offset)
 			->find_all();

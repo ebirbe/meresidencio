@@ -86,6 +86,13 @@
 		<td><?php echo form::textarea(array('name'=>'descripcion', 'name'=>'descripcion', 'cols'=>'50', 'rows'=>'5'), $formulario['descripcion']) ?></td>
 		<td><?php echo $errores['descripcion'] ?></td>
 	</tr>
+	<?php if($editar){?>
+	<tr>
+		<td><?php echo form::label('activo','Publicaci&oacute;n activa:') ?></td>
+		<td><?php echo form::checkbox('activo', 1, $formulario['activo']); ?></td>
+		<td><?php echo $errores['activo'] ?></td>
+	</tr>
+	<?php }?>
 	<tr>
 		<td colspan="3"><?php echo form::submit(NULL, 'Guardar') ?></td>
 	</tr>
