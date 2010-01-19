@@ -57,7 +57,7 @@
 	<tr>
 		<td><?php 
 		foreach (ORM::factory('servicio')->find_all() as $servicio){
-			echo form::checkbox('servicio[]', $servicio->id);
+			echo form::checkbox('servicio[]', $servicio->id, in_array($servicio->id, $formulario['servicio']));
 			echo form::label($servicio->nombre, $servicio->nombre);
 			echo "<br>";
 		}
@@ -65,7 +65,7 @@
 
 		<td colspan="2"><?php 
 		foreach (ORM::factory('cercania')->find_all() as $cercania){
-			echo form::checkbox('cercania[]', $cercania->id);
+			echo form::checkbox('cercania[]', $cercania->id, in_array($cercania->id, $formulario['cercania']));
 			echo form::label($cercania->nombre, $cercania->nombre);
 			echo "<br>";
 		}

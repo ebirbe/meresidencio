@@ -1,8 +1,6 @@
-- Las imagenes dan error al guardar
 - Mostrar Publicaciones hechas por mi
 - Iniciar sesion debe verificar que el usuario esté habilitado y no deshabilitado
 - Cambiar contraseña
-- Editar Publicación.
 - Eliminar Publicación.
 - Al buscar y usar la paginación, se pierden los parámetros de la búsqueda.
 - Ofertar Publicación

@@ -28,15 +28,21 @@ class Imagen_Controller extends Template_Controller {
 		$vista = new View('imagen/agregar');
 
 		if($nueva_pub) $this->mensaje = "Su publicaci&oacute;n se guardo con &eacute;xito bajo el Nro. $publicacion_id, si lo desea puede proceder a agregar im&aacute;genes a su publicaci&oacute;n";
-
+		
 		$publicacion = ORM::factory('publicacion', $publicacion_id);
-
 		$vista->numero_imagenes = $publicacion->imagenes->count();
 
 		if($_POST){
+			if($vista->numero_imagenes == MAXIMO_IMAGENES-2) {$_FILES['imagen3'] = NULL;}
+			if($vista->numero_imagenes == MAXIMO_IMAGENES-1) {$_FILES['imagen2'] = NULL; $_FILES['imagen3'] = NULL;}
 			if($this->_agregar($publicacion_id)){
 				$this->mensaje = "Se guardo con &eacute;xito.";
 				$this->limpiar_formulario();
+
+				//Pedimos que realice de nuevo la consulta para contemplar los nuevos datos
+				$publicacion->reload();
+				//Necesito volver a contar los registros ya que se han agregado nuevos
+				$vista->numero_imagenes = $publicacion->imagenes->count();
 			}
 		}
 
@@ -55,7 +61,6 @@ class Imagen_Controller extends Template_Controller {
 	 */
 	public function _agregar($publicacion_id){
 		$exito = false;
-		$publicacion = new Publicacion_Model();
 
 		if($this->_validar()){
 
@@ -102,6 +107,22 @@ class Imagen_Controller extends Template_Controller {
 		}
 	}
 
+	public function eliminar($imagen_id){
+		$this->template->titulo = "Eliminar imagen $imagen_id";
+		
+		//TODO Validar que sea usuario permitido para borrar la imagen
+		$vista = new View('imagen/eliminar');
+		
+		$imagen = ORM::factory('imagen', $imagen_id);
+		
+		$vista->publicacion_id = $imagen->publicacion_id;
+		$vista->imagen_id = $imagen_id;
+		
+		$imagen->delete();
+		
+		$this->template->contenido = $vista;
+	}
+
 	/**
 	 * Las Vistas hacen el llamado a este metodo para que
 	 * imprima las imagenes de las publicaciones
@@ -135,7 +156,6 @@ class Imagen_Controller extends Template_Controller {
 		)
 		);
 		$offset = $paginacion->sql_offset;
-
 		$imagen = $imagen->where('publicacion_id', $id_pub)->limit(LIMIT)->offset($offset)->find();
 
 		$vista->id_pub = $id_pub;

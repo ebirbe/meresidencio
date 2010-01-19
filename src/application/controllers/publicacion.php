@@ -6,6 +6,8 @@ class Publicacion_Controller extends Template_Controller {
 	protected $errores;
 	protected $mensaje;
 	protected $ultimo_id;
+	protected $servicios_sel;
+	protected $cercanias_sel;
 
 	public function __construct()
 	{
@@ -33,6 +35,8 @@ class Publicacion_Controller extends Template_Controller {
 			'precio' => '',
 			'deposito' => '',
 			'descripcion' => '',
+			'servicio' => array(),
+			'cercania' => array(),
 		);
 	}
 
@@ -56,7 +60,15 @@ class Publicacion_Controller extends Template_Controller {
 		$this->template->titulo = html::specialchars("Agregar una Publicacion Nueva");
 
 		$vista = new View("publicacion/agregar");
+
 		if($_POST){
+
+			$datos = $_POST;
+			//Reponemos los servcios seleccionados
+			if(isset($datos['servicio'])) $this->servicios_sel = $datos['servicio'];
+			//Reponemos las cercanias seleccionadas
+			if(isset($datos['cercania'])) $this->cercanias_sel = $datos['cercania'];
+
 			if($this->_agregar($_POST)){
 				url::redirect(url::site("imagen/agregar/$this->ultimo_id"));
 				$this->mensaje = "Se guard&oacute; con &eacute;xito.";
@@ -65,6 +77,7 @@ class Publicacion_Controller extends Template_Controller {
 		}
 		//TODO Cambiar esto por un id usuario real
 		$usuario = ORM::factory('usuario', 1);
+
 		$vista->usuario_id = $usuario->id;
 		$vista->mensaje = $this->mensaje;
 		$vista->formulario = $this->formulario;
@@ -144,6 +157,97 @@ class Publicacion_Controller extends Template_Controller {
 		if($array[$campo] == 0){
 			$array->add_error($campo, 'required');
 		}
+	}
+
+	/**
+	 * Controla la salida en pantalla de el formulario
+	 * para agregar estados.
+	 */
+	public function editar($publicacion_id){
+
+		$this->template->titulo = html::specialchars("Editar Publicacion Nro. $publicacion_id");
+
+		$this->llenar_formulario($publicacion_id);
+
+		$vista = new View("publicacion/agregar");
+		if($_POST){
+			if($this->_editar($publicacion_id)){
+				//url::redirect(url::site("publicacion/detalles/$publicacion_id"));
+				$this->mensaje = "Se guard&oacute; con &eacute;xito.";
+				$this->llenar_formulario($publicacion_id);
+			}
+		}
+
+		//TODO Cambiar esto por un id usuario real
+		$usuario = ORM::factory('usuario', 1);
+		$vista->usuario_id = $usuario->id;
+		$vista->mensaje = $this->mensaje;
+		$vista->formulario = $this->formulario;
+		$vista->errores = $this->errores;
+
+		$this->template->contenido = $vista;
+	}
+
+	public function llenar_formulario($publicacion_id){
+		$publicacion = ORM::factory('publicacion', $publicacion_id);
+
+		$servicios = array();
+		$cercanias = array();
+		foreach ($publicacion->servicios as $aux){
+			$servicios[] = $aux->id;
+		}
+		foreach ($publicacion->cercanias as $aux){
+			$cercanias[] = $aux->id;
+		}
+
+		$this->formulario = array(
+			'tipoinmueble' => $publicacion->tipoinmueble,
+			'sexo' => $publicacion->sexo,
+			'estado' => $publicacion->zona->ciudad->estado->id,
+			'ciudad' => $publicacion->zona->ciudad->id,
+			'zona' => $publicacion->zona_id,
+			'direccion' => $publicacion->direccion,
+			'habitaciones' => $publicacion->habitaciones,
+			'mts' => $publicacion->mts,
+			'precio' => $publicacion->precio,
+			'deposito' => $publicacion->deposito,
+			'descripcion' => $publicacion->descripcion,
+			'activo' => $publicacion->activo,
+			'servicio' => $servicios,
+			'cercania' => $cercanias,
+		);
+	}
+
+	/**
+	 * Realiza todos los procesos relacionados a la insersion
+	 * de los estados en la base de datos
+	 *
+	 */
+	public function _editar($publicacion_id){
+		$exito = false;
+		$datos = $_POST;
+		$publicacion = new Publicacion_Model($publicacion_id);
+
+		if($this->_validar()){
+			$publicacion->tipoinmueble_id = $datos['tipoinmueble'];
+			$publicacion->sexo = $datos['sexo'];
+			$publicacion->zona_id = $datos['zona'];
+			$publicacion->direccion = $datos['direccion'];
+			$publicacion->mts = $datos['mts'];
+			$publicacion->descripcion = $datos['descripcion'];
+			$publicacion->precio = $datos['precio'];
+			$publicacion->deposito = $datos['deposito'];
+
+			if(isset($datos['servicio']))	$publicacion->servicios = $datos['servicio'];
+			if(isset($datos['cercania']))	$publicacion->cercanias = $datos['cercania'];
+
+			//Guarda la publicacion
+			$publicacion->save();
+
+			$exito = TRUE;
+		}
+
+		return $exito;
 	}
 
 	public function lista(){

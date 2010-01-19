@@ -8,8 +8,8 @@
 		$i = 1;
 		foreach($publicacion->imagenes as $imagen){
 			?> <a
-			href='<?php echo url::site('imagen/album').'/'.$publicacion->id.'/pagina/'.$i++ ?>'
-			target='_blank'><img width="72" height="72"
+			href='<?php echo url::site('imagen/album').'/'.$publicacion->id.'/pagina/'.$i++ ?>'><img
+			width="72" height="72"
 			src='<?php echo url::site('imagen/mostrar').'/'.$imagen ?>' /></a> <?php } ?>
 		</td>
 	</tr>
@@ -76,17 +76,22 @@
 		<td><?php echo $publicacion->descripcion; ?></td>
 	</tr>
 </table>
-<?php if(isset($usuario_sesion) && $usuario_sesion->id == $publicacion->usuario_id){ ?>
+		<?php if(isset($usuario_sesion) && $usuario_sesion->id == $publicacion->usuario_id){ ?>
 <table>
 	<tr>
 		<th>Operaciones</th>
 	</tr>
 	<tr>
-		<td><a href=''>Editar</a></td>
+		<td><a href='<?php echo url::site('publicacion/editar/'.$publicacion->id)?>'>Editar Publicacion</a></td>
+	</tr>
+	<tr>
+		<td><a href='<?php echo url::site('imagen/agregar/'.$publicacion->id)?>'>Editar Imagenes</a></td>
+	</tr>
+	<tr>
 		<td><a href=''>Eliminar</a></td>
 	</tr>
 </table>
-<?php } ?>
+		<?php } ?>
 
 
 <br>
