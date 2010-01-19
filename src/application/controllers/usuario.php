@@ -9,8 +9,6 @@ class Usuario_Controller extends Template_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->session = Session::instance();
-
 		$this->template->titulo = html::specialchars("Administracion de Usuario");
 		$this->limpiar_formulario();
 		$this->errores = $this->formulario;
@@ -43,6 +41,8 @@ class Usuario_Controller extends Template_Controller {
 		$contenido .= html_Core::anchor('usuario/buscar', 'Buscar Usuario');
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('usuario/suscribir', 'Suscribir Usuario');
+		$contenido .= "<br>";
+		$contenido .= html_Core::anchor('usuario/cerrar_sesion', 'Cerrar Sesion');
 		$this->template->contenido = $contenido;
 	}
 
@@ -141,7 +141,7 @@ class Usuario_Controller extends Template_Controller {
 			$usuario->apellido = $datos['apellido'];
 			$usuario->login = $datos['login'];
 			$usuario->clave = $datos['clave'];
-			$usuario->tipo = 1;
+			$usuario->tipo = USUARIO_COMUN;
 			$usuario->activo = true;
 			$usuario->save();
 			$exito = true;
@@ -154,6 +154,9 @@ class Usuario_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function editar($id){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,USUARIO_VENDE, USUARIO_COMUN));
 
 		$this->template->titulo = html::specialchars("Datos del Usuario");
 
@@ -237,6 +240,10 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function buscar(){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
+		
 		$this->template->titulo = "Buscar Usuarios";
 
 		$vista = new View('usuario/buscar');
@@ -261,13 +268,14 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function iniciar_sesion(){
+		
 		$this->template->titulo = "Buscar Usuarios";
 
 		$vista = new View('usuario/iniciar_sesion');
 		$vista->mensaje='';
 		$post = $_POST;
 		if($post){
-			if(!$this->_usuario_valido($post)){
+			if(!$this->_iniciar_sesion($post)){
 				$vista->mensaje = "Usuario o Contrase&ntilde;a inv&aacute;lido.";
 			}else{
 				$cond = array(
@@ -283,17 +291,28 @@ class Usuario_Controller extends Template_Controller {
 		$this->template->contenido = $vista;
 	}
 
-	public function _usuario_valido($post){
+	public function _iniciar_sesion($post){
 		$valido = FALSE;
 		$cond = array(
 			'login' => $post['login'],
 			'clave' => $post['clave'],
+			'activo' => 1,
 		);
 		$usuario = ORM::factory('usuario')->where($cond)->find();
 
 		if($usuario->id > 0) $valido = true;
 
 		return $valido;
+	}
+	
+	public function cerrar_sesion(){
+		$this->session->destroy();
+		url::redirect(url::site('usuario/iniciar_sesion'));
+	}
+	
+	public function acceso_denegado(){
+		$this->template->titulo = "Acceso Denegado";
+		$this->template->contenido = new View('usuario/acceso_denegado');
 	}
 }
 ?>

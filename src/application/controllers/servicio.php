@@ -25,6 +25,10 @@ class Servicio_Controller extends Template_Controller {
 	}
 
 	public function index(){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
+		
 		$contenido = Servicio_Model::combobox();
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('servicio/agregar','Nuevo Servicio');
@@ -39,7 +43,10 @@ class Servicio_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function agregar(){
-
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
+		
 		$this->template->titulo = html::specialchars("Agregar un nuevo servicio");
 
 		$vista = new View("servicio/agregar");
@@ -97,6 +104,9 @@ class Servicio_Controller extends Template_Controller {
 	 * incluidos en la base de datos
 	 */
 	public function lista(){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 
 		$vista = new View('servicio/lista');
 		$vista->cabecera_tabla = 'Servicios';
@@ -110,7 +120,10 @@ class Servicio_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function editar($id){
-
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
+		
 		$this->template->titulo = html::specialchars("Editar Servicio");
 
 		$this->formulario = array(
@@ -154,7 +167,10 @@ class Servicio_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function borrar($id){
-
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
+		
 		ORM::factory('servicio', $id)->delete();
 
 		$contenido = "Borrado";

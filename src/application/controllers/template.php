@@ -28,7 +28,10 @@ abstract class Template_Controller extends Controller {
 	public function __construct()
 	{
 		parent::__construct();
-
+		
+		//Inicializa las sesiones
+		$this->session = Session::instance();
+		
 		// Load the template
 		$this->template = new View($this->template);
 

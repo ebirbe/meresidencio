@@ -25,6 +25,10 @@ class Cercania_Controller extends Template_Controller {
 	}
 
 	public function index(){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
+		
 		$contenido = Cercania_Model::combobox();
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('cercania/agregar','Nueva Cercania');
@@ -39,6 +43,9 @@ class Cercania_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function agregar(){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 
 		$this->template->titulo = html::specialchars("Agregar un nueva cercania");
 
@@ -97,6 +104,9 @@ class Cercania_Controller extends Template_Controller {
 	 * incluidos en la base de datos
 	 */
 	public function lista(){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 
 		$vista = new View('cercania/lista');
 		$vista->cabecera_tabla = 'Cercanias';
@@ -110,6 +120,9 @@ class Cercania_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function editar($id){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 
 		$this->template->titulo = html::specialchars("Editar Cercania");
 
@@ -154,7 +167,10 @@ class Cercania_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function borrar($id){
-
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
+		
 		ORM::factory('cercania', $id)->delete();
 
 		$contenido = "Borrado";

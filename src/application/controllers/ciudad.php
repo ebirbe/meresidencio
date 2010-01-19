@@ -25,6 +25,10 @@ class Ciudad_Controller extends Template_Controller {
 	}
 
 	public function index($estado_id = NULL){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
+		
 		$datos = $_POST;
 		if ($estado_id == NULL) {
 			if ($datos==NULL){
@@ -52,6 +56,9 @@ class Ciudad_Controller extends Template_Controller {
 	 */
 	public function borrar($id){
 		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
+		
 		$contenido = "Borrado";
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('ciudad', '<-Volver');
@@ -64,6 +71,9 @@ class Ciudad_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function editar($estado_id, $id){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 	
 		$this->template->titulo = html::specialchars("Editar Ciudad");
 
@@ -112,6 +122,9 @@ class Ciudad_Controller extends Template_Controller {
 	 * incluidos en la base de datos
 	 */
 	public function lista($estado_id){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 
 		$condicion = array(
 			'estado_id' => $estado_id,
@@ -130,7 +143,10 @@ class Ciudad_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function agregar($estado_id){
-
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
+		
 		$this->template->titulo = html::specialchars("Agregar un nueva Ciudad");
 
 		$vista = new View("ciudad/agregar");

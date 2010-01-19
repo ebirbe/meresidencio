@@ -24,6 +24,10 @@ class Estado_Controller extends Template_Controller {
 	}
 
 	public function index(){
+
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
+
 		$contenido = Estado_Model::combobox();
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('estado/agregar','Agregar Estado');
@@ -37,6 +41,10 @@ class Estado_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function borrar($id){
+
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
+
 		//TODO Implementar
 		$contenido = "Borrado";
 		$contenido .= "<br>";
@@ -50,6 +58,10 @@ class Estado_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function editar($id){
+
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
+
 		//TODO Implementar
 		$this->template->titulo = html::specialchars("Editar Estado");
 
@@ -94,6 +106,9 @@ class Estado_Controller extends Template_Controller {
 	 */
 	public function lista(){
 
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
+
 		$vista = new View('estado/lista');
 		$vista->cabecera_tabla = 'Lista de Estados';
 		$estado = new Estado_Model();
@@ -106,7 +121,10 @@ class Estado_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function agregar(){
-		
+
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
+
 		$this->template->titulo = html::specialchars("Agregar un nuevo Estado");
 
 		$vista = new View("estado/agregar");

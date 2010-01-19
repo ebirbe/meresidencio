@@ -22,4 +22,11 @@ define('ITEMS_POR_PAGINA', 5);
  */
 define('MAXIMO_IMAGENES', 6);
 
+/**
+ * Numeros Identificadores de cada tipo de Usuario
+ */
+define('USUARIO_ADMIN', 1);
+define('USUARIO_VENDE', 2);
+define('USUARIO_COMUN', 3);
+
 ?>

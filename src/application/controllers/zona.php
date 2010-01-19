@@ -25,6 +25,10 @@ class Zona_Controller extends Template_Controller {
 	}
 
 	public function index($ciudad_id = NULL){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
+		
 		$datos = $_POST;
 		$datos = arr::extract($datos, 'estado', 'ciudad');
 		
@@ -70,6 +74,9 @@ class Zona_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function borrar($id){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 
 		ORM::factory('zona', $id)->delete();
 		$contenido = "Borrado";
@@ -83,6 +90,9 @@ class Zona_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function editar($ciudad_id, $id){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 
 		$this->template->titulo = html::specialchars("Editar Zona");
 
@@ -131,6 +141,9 @@ class Zona_Controller extends Template_Controller {
 	 * incluidos en la base de datos
 	 */
 	public function lista($ciudad_id){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 
 		$condicion = array(
 			'ciudad_id' => $ciudad_id,
@@ -149,6 +162,9 @@ class Zona_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function agregar($ciudad_id){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 
 		$this->template->titulo = html::specialchars("Agregar un nueva Zona");
 

@@ -12,7 +12,6 @@ class Publicacion_Controller extends Template_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->session = Session::instance();
 		$this->template->titulo = html::specialchars("Administracion de Publicaciones");
 		$this->limpiar_formulario();
 		$this->errores = $this->formulario;
@@ -57,7 +56,10 @@ class Publicacion_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function agregar(){
-
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
+		
 		$this->template->titulo = html::specialchars("Agregar una Publicacion Nueva");
 
 		$vista = new View("publicacion/agregar");
@@ -166,6 +168,9 @@ class Publicacion_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function editar($publicacion_id){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
 
 		$this->template->titulo = html::specialchars("Editar Publicacion Nro. $publicacion_id");
 
@@ -396,6 +401,9 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function mis_publicaciones($id_usuario){
+		
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
 
 		$this->template->titulo = "Mis Publicaciones";
 		$vista = new View('publicacion/buscar');
