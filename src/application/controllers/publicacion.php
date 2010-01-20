@@ -56,10 +56,10 @@ class Publicacion_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function agregar(){
-		
+
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
-		
+
 		$this->template->titulo = html::specialchars("Agregar una Publicacion Nueva");
 
 		$vista = new View("publicacion/agregar");
@@ -168,7 +168,7 @@ class Publicacion_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function editar($publicacion_id){
-		
+
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
 
@@ -176,7 +176,7 @@ class Publicacion_Controller extends Template_Controller {
 
 		$vista = new View("publicacion/agregar");
 		$vista->editar = TRUE;
-		
+
 		$this->llenar_formulario($publicacion_id);
 
 		if($_POST){
@@ -246,7 +246,7 @@ class Publicacion_Controller extends Template_Controller {
 			$publicacion->descripcion = $datos['descripcion'];
 			$publicacion->precio = $datos['precio'];
 			$publicacion->deposito = $datos['deposito'];
-			
+
 			if(isset($datos['activo']))		$publicacion->activo = 1;
 			else							$publicacion->activo = 0;
 			if(isset($datos['servicio']))	$publicacion->servicios = $datos['servicio'];
@@ -254,7 +254,7 @@ class Publicacion_Controller extends Template_Controller {
 
 			//Guarda la publicacion
 			$publicacion->save();
-			
+
 			$publicacion->clear_cache();
 
 			$exito = TRUE;
@@ -263,9 +263,12 @@ class Publicacion_Controller extends Template_Controller {
 		return $exito;
 	}
 
-	public function lista(){
+	public function lista($token = NULL){
+
 		$this->template->titulo = "Lista de Publicaciones";
 		$vista = new View('publicacion/buscar');
+		$vista->token = $this->_generar_token();
+		$vista->url = 'publicacion/lista/';
 
 		/**
 		 * La busqueda no la puedo separar por ahora porque la
@@ -277,6 +280,16 @@ class Publicacion_Controller extends Template_Controller {
 		$datos = $this->_limpiar_datos_busqueda($_POST);
 		$filtrar = FALSE;
 		$where_cond['activo'] = 1;
+		if($_POST){
+			$this->session->set('pub_busqueda', $datos);
+		}
+
+		if($token != NULL){
+			$parametros = $this->session->get('pub_busqueda');
+			if ($token == $parametros['token']){
+				$datos = $parametros;
+			}
+		}
 
 		foreach ($datos as $clave => $valor){
 			if($valor != NULL){
@@ -299,7 +312,6 @@ class Publicacion_Controller extends Template_Controller {
 				}
 			}
 		}
-		//FIN CONDICION DE BUSQUEDA
 
 		$publicaciones = ORM::factory('publicacion');
 		$join_tbl = array(
@@ -377,9 +389,10 @@ class Publicacion_Controller extends Template_Controller {
 			'zona' => '',
 			'tipoinmueble' => '',
 			'sexo' => '',
+			'token' => '',
 		);
 		foreach ($post as $key => $value) {
-			if ($value != 0) {
+			if ($value !=0 || $post['sexo']!='') {
 				$array[$key] = $value;
 			};
 		}
@@ -400,16 +413,19 @@ class Publicacion_Controller extends Template_Controller {
 
 	}
 
-	public function mis_publicaciones($id_usuario){
-		
+	public function mis_publicaciones(){
+
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
 
+		$id_usuario = $this->session->get('usuario')->id;
+
 		$this->template->titulo = "Mis Publicaciones";
 		$vista = new View('publicacion/buscar');
+		$vista->token = $this->_generar_token();
+		$vista->url = 'publicacion/mis_publicaciones/';
 
 		$publicaciones = ORM::factory('publicacion');
-
 		$publicaciones->where('usuario_id', $id_usuario);
 
 		//Comienza a prepararse la Paginacion
@@ -435,6 +451,10 @@ class Publicacion_Controller extends Template_Controller {
 		$vista->paginacion = $paginacion;
 		$this->template->contenido = $vista;
 
+	}
+
+	public function _generar_token(){
+		return mt_rand(1, 9999999999);
 	}
 }
 ?>

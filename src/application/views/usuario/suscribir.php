@@ -20,6 +20,11 @@
 		<td><?php echo $errores['clave'] ?></td>
 	</tr>
 	<tr>
+		<td><?php echo form::label('confirmacion', 'Confirme su contrase&ntilde;a:')?></td>
+		<td><?php echo form::password('confirmacion', $formulario['confirmacion'])?></td>
+		<td><?php echo $errores['confirmacion'] ?></td>
+	</tr>
+	<tr>
 		<td><?php echo form::label('correo', 'Correo Electronico:')?></td>
 		<td><?php echo form::input('correo', $formulario['correo'])?></td>
 		<td><?php echo $errores['correo'] ?></td>

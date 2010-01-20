@@ -8,23 +8,25 @@ class Usuario_Model extends ORM {
 	 * usuario a algun modulo.
 	 * @param $tipo_permitido
 	 */
-	public function puede_entrar($tipo_permitido = NULL){
+	public function puede_entrar($usuario, $tipo_permitido = NULL){
 		$permitido = FALSE;
 
-		if($this->tipo == USUARIO_ADMIN){
+		if($usuario->tipo == USUARIO_ADMIN){
 			//Acceso total
 			return TRUE;
 		}
 
-		if($this->tipo != NULL){
+		if($tipo_permitido != NULL){
 			//acceso limitado
 			if(is_array($tipo_permitido)){
 				foreach ($tipo_permitido as $t){
-					if($this->tipo == $t) $permitido = TRUE;
-					break;
+					if($usuario->tipo == $t){
+						$permitido = TRUE;
+						break;
+					}
 				}
 				
-			}else if($this->tipo == $tipo_permitido) $permitido = TRUE;
+			}else if($usuario->tipo == $tipo_permitido) $permitido = TRUE;
 			
 		}else{
 			//acceso a cualquier usuario
@@ -38,11 +40,11 @@ class Usuario_Model extends ORM {
 		$permitido = FALSE;
 
 		if(is_a($usuario, 'Usuario_Model')){
-			if( $usuario->puede_entrar($tipo_permitido)){
+			if( $usuario->puede_entrar($usuario, $tipo_permitido)){
 				$permitido = TRUE;
 			}
 		}
-
+		
 		if(!$permitido) url::redirect('usuario/acceso_denegado');
 	}
 }

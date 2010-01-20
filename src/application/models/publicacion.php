@@ -11,6 +11,7 @@ class Publicacion_Model extends ORM {
 	 * en la columna imagenes.sexo
 	 */
 	public static $sexo_lista = array(
+		'' => 'Seleccione...',
 		'Mixto' => 'Mixto',
 		'Masculino' => 'Masculino',
 		'Femenino' => 'Femenino',

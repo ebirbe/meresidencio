@@ -36,5 +36,22 @@ $lang = array
 	(
 		'phone' => 'No es un tel&eacute;fono v&aacute;lido. ej: XXXX-XXX.XX.XX',
 	),
+	//Para la clave actual en el cambio de clave
+	'actual' => array
+	(
+		'required' => 'Este campo es requerido.',
+		'clave_incorrecta' => 'Clave de usuario incorrecta.'
+	),
+	'nueva' => array
+	(
+		'required' => 'Este campo es requerido.',
+		'standard_text' => 'Contiene caract&eacute;res inv&aacute;lidos.',
+		'length' => 'Debe escribir entre 4 y 20 caracteres.',
+	),
+	'confirmacion' => array
+	(
+		'required' => 'Este campo es requerido.',
+		'no_coincide' => 'La clave nueva y la confirmaci&oacute;n deben ser id&eacute;nticas.'
+	),
 );
 ?>

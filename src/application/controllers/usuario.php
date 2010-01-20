@@ -31,12 +31,19 @@ class Usuario_Controller extends Template_Controller {
 			'estado' => '',
 			'ciudad' => '',
 			'zona' => '',
+
+		//Cambio de Contraseña
+			'actual' => '',
+			'nueva'  => '',
+			'confirmacion' => '',
 		);
 	}
 
 	public function index() {
 		$this->template->titulo = "Administracion de Usuarios";
 		$contenido = html_Core::anchor('usuario/iniciar_sesion', 'Iniciar Sesi&oacute;n');
+		$contenido .= "<br>";
+		$contenido .= html_Core::anchor('usuario/cambiar_clave', 'Cambiar Clave');
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('usuario/buscar', 'Buscar Usuario');
 		$contenido .= "<br>";
@@ -52,10 +59,13 @@ class Usuario_Controller extends Template_Controller {
 		if($_POST){
 			if($exito = $this->_suscribir()){
 				$this->template->titulo = "Felicitaciones {$_POST['nombre']}! Registro exitoso.";
+				
+				//TODO Aqui seria mejor usar un redirect y convertir la bienvenida en un metodo
 				$vista = new View('usuario/bienvenida');
 				$vista->nombre = $_POST['nombre'];
 				$vista->apellido = $_POST['apellido'];
 				$vista->login = $_POST['login'];
+
 				$this->limpiar_formulario();
 			}
 		}
@@ -77,9 +87,11 @@ class Usuario_Controller extends Template_Controller {
 			$post->add_rules('correo','required', 'email');
 			$post->add_rules('login','required', 'standard_text','length[1,45]');
 			$post->add_rules('clave','required', 'standard_text','length[4,20]');
+			$post->add_rules('confirmacion','required');
 
 			$post->add_callbacks('login', array($this, '_unico'));
 			$post->add_callbacks('correo', array($this, '_unico'));
+			$post->add_callbacks('clave', array($this, '_no_coincide'));
 		}
 		$post->add_rules('correo','required', 'email');
 		$post->add_rules('nombre','required', 'standard_text','length[1,45]');
@@ -154,7 +166,7 @@ class Usuario_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function editar($id){
-		
+
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,USUARIO_VENDE, USUARIO_COMUN));
 
@@ -240,10 +252,10 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function buscar(){
-		
+
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
-		
+
 		$this->template->titulo = "Buscar Usuarios";
 
 		$vista = new View('usuario/buscar');
@@ -268,7 +280,7 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function iniciar_sesion(){
-		
+
 		$this->template->titulo = "Buscar Usuarios";
 
 		$vista = new View('usuario/iniciar_sesion');
@@ -304,15 +316,90 @@ class Usuario_Controller extends Template_Controller {
 
 		return $valido;
 	}
-	
+
 	public function cerrar_sesion(){
 		$this->session->destroy();
 		url::redirect(url::site('usuario/iniciar_sesion'));
 	}
-	
+
 	public function acceso_denegado(){
 		$this->template->titulo = "Acceso Denegado";
 		$this->template->contenido = new View('usuario/acceso_denegado');
+	}
+
+	public function cambiar_clave(){
+
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
+
+		$this->template->titulo = "Cambiar Clave de Acceso";
+
+		$vista = new View('usuario/cambiar_clave');
+
+		if($_POST){
+			if($this->_cambiar_clave()){
+				$this->mensaje = "Los datos se guard&aacute;ron con &eacute;xito.";
+				$this->limpiar_formulario();
+			}
+		}
+		
+		$vista->mensaje = $this->mensaje;
+		$vista->errores = $this->errores;
+		$this->template->contenido = $vista;
+	}
+
+	public function _cambiar_clave(){
+		$exito = false;
+		$datos = $_POST;
+		$usuario = $this->session->get('usuario');
+		if($this->_validar_clave_nueva()){
+			
+			$usuario->clave = $datos['nueva'];
+
+			$usuario->save();
+			$usuario->clear_cache();//Para que los datos que sean solicitados nuevamente no esten corruptos
+			$exito = true;
+		}
+		return $exito;
+	}
+
+	/**
+	 * Validacion
+	 */
+	public function _validar_clave_nueva() {
+
+		$post = new Validation_Core($_POST);
+		$post->pre_filter('trim');
+
+		//Requeridos
+		$post->add_rules('actual','required');
+		$post->add_rules('nueva','required', 'standard_text','length[4,20]');
+		$post->add_rules('confirmacion','required');
+
+		//Verificar que la identidad del usuario con su clave actual
+		$post->add_callbacks('actual', array($this, '_clave_actual_correcta'));
+		//La clave nueva debe ser igual a la confirmacion
+		$post->add_callbacks('nueva', array($this, '_no_coincide'));
+
+		$exito = $post->validate();
+
+		$this->mensaje = "Problema al Guardar";
+		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
+		$this->errores = arr::overwrite($this->errores, $post->errors('usuario_errores'));
+
+		return $exito;
+	}
+
+	public function _clave_actual_correcta(Validation_Core  $array, $campo){
+		if($array[$campo] != $this->session->get('usuario')->clave){
+			$array->add_error($campo, 'clave_incorrecta');
+		}
+	}
+
+	public function _no_coincide(Validation_Core  $array, $campo){
+		if($array[$campo] != $array['confirmacion']){
+			$array->add_error('confirmacion', 'no_coincide');
+		}
 	}
 }
 ?>

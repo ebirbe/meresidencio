@@ -34,10 +34,6 @@
 		<td><?php echo $publicacion->zona->nombre; ?></td>
 	</tr>
 	<tr>
-		<td>Direccion: //Mostrar solo al ofertar</td>
-		<td><?php echo $publicacion->direccion; ?></td>
-	</tr>
-	<tr>
 		<td>Metros<sup>2</sup>:</td>
 		<td><?php echo $publicacion->mts; ?></td>
 	</tr>
@@ -72,7 +68,7 @@
 		<td><?php echo $publicacion->deposito; ?></td>
 	</tr>
 	<tr>
-		<td>Descripcion:</td>
+		<td>Descripci&oacute;n:</td>
 		<td><?php echo $publicacion->descripcion; ?></td>
 	</tr>
 </table>

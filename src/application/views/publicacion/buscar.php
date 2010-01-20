@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <?php echo new View('js/combo_regiones'); ?>
-<?php echo form::open()?>
+<?php echo form::open($url.$token)?>
+<?php echo form::hidden('token', $token)?>
 <table>
 	<tr>
 		<th colspan="2">Buscar Publicacion</th>
