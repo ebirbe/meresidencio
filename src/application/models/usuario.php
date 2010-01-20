@@ -36,7 +36,7 @@ class Usuario_Model extends ORM {
 		return $permitido;
 	}
 
-	public static function otorgar_acceso($usuario, $tipo_permitido = NULL){
+	public static function otorgar_acceso($usuario, $tipo_permitido = NULL, $mensaje_id = 0){
 		$permitido = FALSE;
 
 		if(is_a($usuario, 'Usuario_Model')){
@@ -45,7 +45,18 @@ class Usuario_Model extends ORM {
 			}
 		}
 		
-		if(!$permitido) url::redirect('usuario/acceso_denegado');
+		if(!$permitido) url::redirect('usuario/acceso_denegado/'.$mensaje_id);
+	}
+	
+	public function es_propio($propietario_id){
+		if($this->id == $propietario_id){
+			return TRUE;
+		}elseif($this->tipo == USUARIO_ADMIN){
+			//Acceso al administrador
+			return TRUE;
+		}else{
+			return FALSE;
+		}
 	}
 }
 ?>

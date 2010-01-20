@@ -1,18 +1,23 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <table>
 	<tr>
-		<th colspan="2">Cod. de Publicaci&oacute;n <?php echo $publicacion->id ?></th>
+		<th colspan="6">Publicaci&oacute;n nro. <?php echo $publicacion->id ?></th>
 	</tr>
 	<tr>
-		<td><?php
-		$i = 1;
-		foreach($publicacion->imagenes as $imagen){
-			?> <a
+	<?php
+	$i = 1;
+	foreach($publicacion->imagenes as $imagen){
+		?>
+
+		<td><a
 			href='<?php echo url::site('imagen/album').'/'.$publicacion->id.'/pagina/'.$i++ ?>'><img
 			width="72" height="72"
-			src='<?php echo url::site('imagen/mostrar').'/'.$imagen ?>' /></a> <?php } ?>
-		</td>
+			src='<?php echo url::site('imagen/mostrar').'/'.$imagen ?>' /></a></td>
+
+			<?php } ?>
 	</tr>
+</table>
+<table>
 	<tr>
 		<td>Tipo:</td>
 		<td><?php echo $publicacion->tipoinmueble->nombre; ?></td>
@@ -72,19 +77,20 @@
 		<td><?php echo $publicacion->descripcion; ?></td>
 	</tr>
 </table>
-		<?php if(isset($usuario_sesion) && $usuario_sesion->id == $publicacion->usuario_id){ ?>
+		<?php if(isset($usuario_sesion) && $usuario_sesion->es_propio($publicacion->usuario_id)){ ?>
 <table>
 	<tr>
 		<th>Operaciones</th>
 	</tr>
 	<tr>
-		<td><a href='<?php echo url::site('publicacion/editar/'.$publicacion->id)?>'>Editar Publicacion</a></td>
+		<td><a
+			href='<?php echo url::site('publicacion/editar/'.$publicacion->id)?>'>Editar
+		Publicacion</a></td>
 	</tr>
 	<tr>
-		<td><a href='<?php echo url::site('imagen/agregar/'.$publicacion->id)?>'>Editar Imagenes</a></td>
-	</tr>
-	<tr>
-		<td><a href=''>Eliminar</a></td>
+		<td><a
+			href='<?php echo url::site('imagen/agregar/'.$publicacion->id)?>'>Editar
+		Imagenes</a></td>
 	</tr>
 </table>
 		<?php } ?>

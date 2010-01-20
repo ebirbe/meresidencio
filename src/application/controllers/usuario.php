@@ -59,7 +59,7 @@ class Usuario_Controller extends Template_Controller {
 		if($_POST){
 			if($exito = $this->_suscribir()){
 				$this->template->titulo = "Felicitaciones {$_POST['nombre']}! Registro exitoso.";
-				
+
 				//TODO Aqui seria mejor usar un redirect y convertir la bienvenida en un metodo
 				$vista = new View('usuario/bienvenida');
 				$vista->nombre = $_POST['nombre'];
@@ -243,7 +243,10 @@ class Usuario_Controller extends Template_Controller {
 			else $usuario->ciudad_id = $datos['ciudad'];
 			if($datos['zona'] == 0) $usuario->zona_id = NULL;
 			else $usuario->zona_id = $datos['zona'];
-
+			
+			//Cambiamos el tipo de usuario para permitir publicar
+			$usuario->tipo = USUARIO_VENDE;
+			
 			$usuario->save();
 			$usuario->clear_cache();//Para que los datos que sean solicitados nuevamente no esten corruptos
 			$exito = true;
@@ -322,9 +325,26 @@ class Usuario_Controller extends Template_Controller {
 		url::redirect(url::site('usuario/iniciar_sesion'));
 	}
 
-	public function acceso_denegado(){
+	public function acceso_denegado($mensaje_id){
 		$this->template->titulo = "Acceso Denegado";
-		$this->template->contenido = new View('usuario/acceso_denegado');
+		$vista = new View('usuario/acceso_denegado');
+		switch ($mensaje_id) {
+			case MSJ_INICIAR_SESION:
+				$mensaje = "Para acceder a esta secci&oacute;n debe <a href='".url::site("usuario/iniciar_sesion")."'>Iniciar Sesi&oacute;n</a>.";
+				break;
+			case MSJ_SOLO_ADMIN:
+				$mensaje = "Esta secci&oacute;n es solo para administradores de este Portal Web.";
+				break;
+			case MSJ_COMPLETAR_REGISTRO:
+				$mensaje = "Para poder disfrutar de los servicios de publicaci&oacute;n debe <a href='".url::site('usuario')."'>completar</a> su registro o <a href='".url::site("usuario/iniciar_sesion")."'>Iniciar Sesi&oacute;n</a>";
+				break;
+			default:
+				$mensaje = "No tiene permisos de acceso.";
+				break;
+		}
+		
+		$vista->mensaje = $mensaje;
+		$this->template->contenido = $vista;
 	}
 
 	public function cambiar_clave(){
@@ -342,7 +362,7 @@ class Usuario_Controller extends Template_Controller {
 				$this->limpiar_formulario();
 			}
 		}
-		
+
 		$vista->mensaje = $this->mensaje;
 		$vista->errores = $this->errores;
 		$this->template->contenido = $vista;
@@ -353,7 +373,7 @@ class Usuario_Controller extends Template_Controller {
 		$datos = $_POST;
 		$usuario = $this->session->get('usuario');
 		if($this->_validar_clave_nueva()){
-			
+				
 			$usuario->clave = $datos['nueva'];
 
 			$usuario->save();

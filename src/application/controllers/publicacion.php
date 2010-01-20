@@ -58,7 +58,7 @@ class Publicacion_Controller extends Template_Controller {
 	public function agregar(){
 
 		//Control de acceso
-		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
 
 		$this->template->titulo = html::specialchars("Agregar una Publicacion Nueva");
 
@@ -137,6 +137,7 @@ class Publicacion_Controller extends Template_Controller {
 		$post->add_rules('estado','required');
 		$post->add_rules('ciudad','required');
 		$post->add_rules('zona','required');
+		$post->add_rules('sexo','required');
 		$post->add_rules('direccion','standard_text', 'length[0,200]');
 		$post->add_rules('habitaciones','numeric', 'required');
 		$post->add_rules('mts','numeric');
@@ -170,7 +171,7 @@ class Publicacion_Controller extends Template_Controller {
 	public function editar($publicacion_id){
 
 		//Control de acceso
-		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
 
 		$this->template->titulo = html::specialchars("Editar Publicacion Nro. $publicacion_id");
 
@@ -416,7 +417,7 @@ class Publicacion_Controller extends Template_Controller {
 	public function mis_publicaciones(){
 
 		//Control de acceso
-		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
 
 		$id_usuario = $this->session->get('usuario')->id;
 

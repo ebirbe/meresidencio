@@ -17,6 +17,10 @@ $lang = array
 	(
 		'required' => 'Este campo es requerido.',
 	),
+	'sexo' => array
+	(
+		'required' => 'Este campo es requerido.',
+	),
 	'direccion' => array
 	(
 		'standard_text' => 'Contiene caract&eacute;res inv&aacute;lidos.',

@@ -29,4 +29,13 @@ define('USUARIO_ADMIN', 1);
 define('USUARIO_VENDE', 2);
 define('USUARIO_COMUN', 3);
 
+
+/**
+ * Mensajes de error
+ */
+
+define('MSJ_INICIAR_SESION', 0);
+define('MSJ_COMPLETAR_REGISTRO', 1);
+define('MSJ_SOLO_ADMIN', 2);
+
 ?>

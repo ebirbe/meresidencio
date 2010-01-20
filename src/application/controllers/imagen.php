@@ -26,7 +26,7 @@ class Imagen_Controller extends Template_Controller {
 	public function agregar($publicacion_id, $nueva_pub = FALSE){
 		
 		//Control de acceso
-		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
 		
 		$this->template->titulo = "Agregar im&aacute;genes a la publicaci&oacute;n $publicacion_id";
 		$vista = new View('imagen/agregar');
@@ -114,7 +114,7 @@ class Imagen_Controller extends Template_Controller {
 	public function eliminar($imagen_id){
 				
 		//Control de acceso
-		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
 		
 		$this->template->titulo = "Eliminar imagen $imagen_id";
 		
