@@ -77,11 +77,11 @@
 		<td><?php echo $publicacion->descripcion; ?></td>
 	</tr>
 </table>
-		<?php if(isset($usuario_sesion) && $usuario_sesion->es_propio($publicacion->usuario_id)){ ?>
 <table>
 	<tr>
 		<th>Operaciones</th>
 	</tr>
+	<?php if(isset($usuario_sesion) && $usuario_sesion->es_propio($publicacion->usuario_id)){ ?>
 	<tr>
 		<td><a
 			href='<?php echo url::site('publicacion/editar/'.$publicacion->id)?>'>Editar
@@ -92,8 +92,14 @@
 			href='<?php echo url::site('imagen/agregar/'.$publicacion->id)?>'>Editar
 		Imagenes</a></td>
 	</tr>
+	<?php }else{?>
+		<tr>
+		<td><a
+			href='<?php echo url::site('publicacion/ofertar/'.$publicacion->id)?>'>Ofertar</a></td>
+	</tr>
+	<?php } ?>
 </table>
-		<?php } ?>
+		
 
 
 <br>

@@ -457,5 +457,23 @@ class Publicacion_Controller extends Template_Controller {
 	public function _generar_token(){
 		return mt_rand(1, 9999999999);
 	}
+
+	public function ofertar($publicacion_id){
+		$this->auto_render = false;
+		echo "Enviando...";
+
+		$to      = 'erickcion@gmail.com';  // Address can also be array('to@example.com', 'Name')
+		$from    = 'erickcion@gmail.com';
+		$subject = 'Este es un correo de prueba';
+		$message = 'Este es un mensaje de ejemplo';
+		
+		if (email::send($to,$from, $subject, $message)){
+			echo "Exito";
+		}else{
+			echo "Fallo";
+		}
+		
+		phpinfo();
+	}
 }
 ?>
