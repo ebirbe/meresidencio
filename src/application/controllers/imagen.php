@@ -118,7 +118,6 @@ class Imagen_Controller extends Template_Controller {
 		
 		$this->template->titulo = "Eliminar imagen $imagen_id";
 		
-		//TODO Validar que sea usuario permitido para borrar la imagen
 		$vista = new View('imagen/eliminar');
 		
 		$imagen = ORM::factory('imagen', $imagen_id);

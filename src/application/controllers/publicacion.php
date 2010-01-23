@@ -79,8 +79,8 @@ class Publicacion_Controller extends Template_Controller {
 				$this->limpiar_formulario();
 			}
 		}
-		//TODO Cambiar esto por un id usuario real
-		$usuario = ORM::factory('usuario', 1);
+
+		$usuario = ORM::factory('usuario', $this->session->get('usuario')->id);
 
 		$vista->usuario_id = $usuario->id;
 		$vista->mensaje = $this->mensaje;
@@ -188,8 +188,7 @@ class Publicacion_Controller extends Template_Controller {
 			}
 		}
 
-		//TODO Cambiar esto por un id usuario real
-		$usuario = ORM::factory('usuario', 1);
+		$usuario = ORM::factory('usuario', $this->session->get('usuario')->id);
 		$vista->usuario_id = $usuario->id;
 		$vista->mensaje = $this->mensaje;
 		$vista->formulario = $this->formulario;
@@ -340,10 +339,12 @@ class Publicacion_Controller extends Template_Controller {
 			$publicaciones
 			->select('*')
 			->join($join_tbl, $join_cond)
-			->where($where_cond);
+			->where($where_cond)
+			->orderby('publicaciones.id', 'DESC');
 		}else{
 			$publicaciones
-			->where($where_cond);
+			->where($where_cond)
+			->orderby('publicaciones.id', 'DESC');
 		}
 
 		//Comienza a prepararse la Paginacion
@@ -364,12 +365,14 @@ class Publicacion_Controller extends Template_Controller {
 			->select('publicaciones.*, zonas.ciudad_id, ciudades.estado_id')//Necesario porque sino selecciona solo 'publicaciones.*' y no los demas campos
 			->join($join_tbl, $join_cond)
 			->where($where_cond)
+			->orderby('publicaciones.id', 'DESC')
 			->limit($limit)
 			->offset($offset)
 			->find_all();
 		}else{
 			$publicaciones = $publicaciones
 			->where($where_cond)
+			->orderby('publicaciones.id', 'DESC')
 			->limit($limit)
 			->offset($offset)
 			->find_all();
@@ -459,21 +462,44 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function ofertar($publicacion_id){
-		$this->auto_render = false;
-		echo "Enviando...";
 
-		$to      = 'erickcion@gmail.com';  // Address can also be array('to@example.com', 'Name')
-		$from    = 'erickcion@gmail.com';
-		$subject = 'Este es un correo de prueba';
-		$message = 'Este es un mensaje de ejemplo';
-		
-		if (email::send($to,$from, $subject, $message)){
-			echo "Exito";
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN), MSJ_INICIAR_SESION);
+
+		$usuario = $this->session->get('usuario');
+		$publicacion = ORM::factory('publicacion', $publicacion_id);
+		$calificacion = ORM::factory('calificacion', $publicacion_id)
+		->where('publicacion_id', $publicacion_id)
+		->where('cliente_id', $usuario->id)
+		->find();
+
+		if($calificacion->cliente_id == 0){
+			//echo "NO HABIA OFERTADO";
+			$calificacion_id = $this->_ofertar($publicacion_id, $usuario->id, $publicacion->usuario_id);
 		}else{
-			echo "Fallo";
+			//echo "YA OFERTO";
+			$calificacion_id = $calificacion->id;
 		}
-		
-		phpinfo();
+
+		$this->template->titulo = "Solicitud de Alquiler";
+		$vista = new View('publicacion/ofertar');
+		$vista->publicacion = $publicacion;
+		$vista->calificacion_id = $calificacion_id;
+		$this->template->contenido = $vista;
+
+
+	}
+
+	public function _ofertar($publicacion_id, $cliente_id, $usuario_id){
+		$calificacion = ORM::factory('calificacion');
+		$calificacion->fecha = date('Y-m-d');
+		$calificacion->puntos = CALIFICACION_SIN;
+		$calificacion->cliente_id = $cliente_id;
+		$calificacion->usuario_id = $usuario_id;
+		$calificacion->publicacion_id = $publicacion_id;
+		$calificacion->save();
+
+		return $calificacion->id;
 	}
 }
 ?>

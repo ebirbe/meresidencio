@@ -49,6 +49,8 @@ class Usuario_Controller extends Template_Controller {
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('usuario/suscribir', 'Suscribir Usuario');
 		$contenido .= "<br>";
+		$contenido .= html_Core::anchor('usuario/mis_solicitudes', 'Mis Solicitudes');
+		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('usuario/cerrar_sesion', 'Cerrar Sesion');
 		$this->template->contenido = $contenido;
 	}
@@ -243,10 +245,10 @@ class Usuario_Controller extends Template_Controller {
 			else $usuario->ciudad_id = $datos['ciudad'];
 			if($datos['zona'] == 0) $usuario->zona_id = NULL;
 			else $usuario->zona_id = $datos['zona'];
-			
+				
 			//Cambiamos el tipo de usuario para permitir publicar
 			$usuario->tipo = USUARIO_VENDE;
-			
+				
 			$usuario->save();
 			$usuario->clear_cache();//Para que los datos que sean solicitados nuevamente no esten corruptos
 			$exito = true;
@@ -342,7 +344,7 @@ class Usuario_Controller extends Template_Controller {
 				$mensaje = "No tiene permisos de acceso.";
 				break;
 		}
-		
+
 		$vista->mensaje = $mensaje;
 		$this->template->contenido = $vista;
 	}
@@ -373,7 +375,7 @@ class Usuario_Controller extends Template_Controller {
 		$datos = $_POST;
 		$usuario = $this->session->get('usuario');
 		if($this->_validar_clave_nueva()){
-				
+
 			$usuario->clave = $datos['nueva'];
 
 			$usuario->save();
@@ -420,6 +422,51 @@ class Usuario_Controller extends Template_Controller {
 		if($array[$campo] != $array['confirmacion']){
 			$array->add_error('confirmacion', 'no_coincide');
 		}
+	}
+
+	public function mis_solicitudes(){
+
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN), MSJ_INICIAR_SESION);
+
+		$this->template->titulo = "Mis Solicitudes";
+
+		$vista = new View('usuario/mis_solicitudes');
+
+		$usuario = $this->session->get('usuario');
+		$calificaciones = ORM::factory('calificacion')->where('cliente_id', $usuario->id);
+
+		//Comienza a prepararse la Paginacion
+		$paginacion = new Pagination(
+		array(
+					'uri_segment' => 'pagina',
+					'total_items' => $calificaciones->count_all(),
+					'items_per_page' => ITEMS_POR_PAGINA,
+					'style' => 'classic',
+		)
+		);
+
+		$limit = ITEMS_POR_PAGINA;
+		$offset = $paginacion->sql_offset;
+
+		$calificaciones = $calificaciones
+		->orderby('id', 'DESC')
+		->limit($limit)
+		->offset($offset)
+		->find_all();
+		
+		$publicaciones = array();
+		
+		foreach ($calificaciones as $fila){
+			$publicaciones[] = ORM::factory('publicacion', $fila->publicacion_id);
+		}
+		
+		
+		$vista->publicacion = $publicaciones;
+		$vista->paginacion = $paginacion;
+		$this->template->contenido = $vista;
+
+		//echo Kohana::debug($publicaciones);
 	}
 }
 ?>

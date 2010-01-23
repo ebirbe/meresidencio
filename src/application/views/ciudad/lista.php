@@ -1,6 +1,4 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script');
-//TODO Generar la vista de estado
-//TODO Hacer la busqueda de estados
 ?>
 <table>
 	<tr>

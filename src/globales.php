@@ -38,4 +38,12 @@ define('MSJ_INICIAR_SESION', 0);
 define('MSJ_COMPLETAR_REGISTRO', 1);
 define('MSJ_SOLO_ADMIN', 2);
 
+/**
+ * Calificaciones
+ */
+
+define('CALIFICACION_SIN', 0);
+define('CALIFICACION_NULA', 1);
+define('CALIFICACION_EXITO', 2);
+define('CALIFICACION_FALLIDA', 3);
 ?>
