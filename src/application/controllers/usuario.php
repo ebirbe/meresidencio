@@ -51,6 +51,8 @@ class Usuario_Controller extends Template_Controller {
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('usuario/mis_solicitudes', 'Mis Solicitudes');
 		$contenido .= "<br>";
+		$contenido .= html_Core::anchor('calificacion/mis_calificaciones', 'Mis Calificaciones');
+		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('usuario/cerrar_sesion', 'Cerrar Sesion');
 		$this->template->contenido = $contenido;
 	}
@@ -450,6 +452,7 @@ class Usuario_Controller extends Template_Controller {
 		$offset = $paginacion->sql_offset;
 
 		$calificaciones = $calificaciones
+		->where('cliente_id', $usuario->id)
 		->orderby('id', 'DESC')
 		->limit($limit)
 		->offset($offset)
