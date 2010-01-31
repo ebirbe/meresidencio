@@ -29,11 +29,30 @@ abstract class Template_Controller extends Controller {
 	{
 		parent::__construct();
 		
-		//Inicializa las sesiones
-		$this->session = Session::instance();
-		
 		// Load the template
 		$this->template = new View($this->template);
+		
+		/***********************
+		 * Datos Agregados por mi
+		 */
+		
+		//Inicializa las sesiones
+		$this->session = Session::instance();
+		$usuario = $this->session->get('usuario');
+		
+		$this->template->intro_lateral = NULL/*INTRO_LATERAL*/;
+		$this->template->panel_sesion = new View('usuario/iniciar_sesion_lateral');
+		$this->template->panel_sesion->sesion_usuario = $usuario;
+		
+		$v_notif = NULL;
+		if($usuario){
+			$m_notif = new Notificacion_Model($usuario);
+			$v_notif = new View('notificacion/notificacion_lateral');
+			$v_notif->notificaciones = $m_notif->componer_notificaiones();
+		}
+		$this->template->notificaciones = $v_notif;
+		
+		/***********************/
 
 		if ($this->auto_render == TRUE)
 		{

@@ -1,15 +1,31 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.'); ?>
-<div class="box">
-	<p>This is the default Kohana index page. You may also access this page as <code><?php echo html::anchor('welcome/index', 'welcome/index') ?></code>.</p>
+<h3><strong><em>Bienvenido a <?php echo NOMBRE_SITIO ?></em></strong></h3>
+<p class="intro-text">En este portal podras disfrutar de las ventajas
+tecnologicas que te ofrecemos para conseguir residencias estudiantiles
+en alquiler desde la comodidad de tu casa.<br />
+De igual modo, si tienes en mente alquilar habitaciones o cualquier otro
+inmueble a jovenes estudiantes universitarios, este es el sitio
+adecuado. Si deseas conocer mas sobre nosotros visita nuestra seccion <a
+	href="<?php echo url::site("nosotros/quienes")?>">&iquest;Quienes
+Somos?</a>.</p>
 
-	<p>
-		To change what gets displayed for this page, edit <code>application/controllers/welcome.php</code>.<br />
-		To change this text, edit <code>application/views/welcome_content.php</code>.
-	</p>
+<div class="clear"></div>
+
+<?php echo $publicaciones_aleatorias ?>
+
+<!-- 
+<h2>Publicaciones Aleatorias</h2>
+<div class="portfolio-entry"> <?php 
+$img = html_Core::image('media/img/gallery_01.jpg', array('alt'=>'Photo floating to the left', 'class'=>'img-left'), FALSE);
+$url = url::base().'media/img/gallery_01_lg.jpg';
+?> <a href="<?php echo $url ?>" class="lightbox"><?php echo $img ?></a>
+<h3>Portfolio Entry 01</h3>
+
+<p>This is the description of the portfolio item. This is the
+description of the portfolio item. This is the description of the
+portfolio item. This is the description of the portfolio item. This is
+the description of the portfolio item. This is the description of the
+portfolio item.</p>
 </div>
-
-<ul>
-<?php foreach ($links as $title => $url): ?>
-	<li><?php echo ($title === 'License') ? html::file_anchor($url, html::specialchars($title)) : html::anchor($url, html::specialchars($title)) ?></li>
-<?php endforeach ?>
-</ul>
+<div class="clear"></div>
+-->

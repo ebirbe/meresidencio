@@ -38,11 +38,11 @@
 	<?php foreach ($publicacion as $fila) { ?>
 			<?php if($fila->imagenes[0] == NULL){?>
 				<tr>
-					<td rowspan="5"><img width="72" height="72" src='<?php echo url::base(FALSE).'media/img/no_img.gif' ?>' /></td>
+					<td rowspan="5"><img width="150" height="150" src='<?php echo url::base(FALSE).'media/img/no_img.gif' ?>' /></td>
 				</tr>
 			<?php }else{ ?>
 				<tr>
-					<td rowspan="5"><img width="72" height="72" src='<?php echo url::site('imagen/mostrar').'/'.$fila->imagenes[0] ?>' alt='<?php echo url::site('publicacion/imagenes').'/'.$fila->imagenes[0] ?>' /></td>
+					<td rowspan="5"><img width="150" height="150" src='<?php echo url::site('imagen/mostrar').'/'.$fila->imagenes[0] ?>' alt='<?php echo url::site('publicacion/imagenes').'/'.$fila->imagenes[0] ?>' /></td>
 				</tr>
 				<?php } ?>
 	<tr>

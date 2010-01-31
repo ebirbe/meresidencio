@@ -7,17 +7,21 @@
 	<?php
 	$i = 1;
 	foreach($publicacion->imagenes as $imagen){
+		if($i++ == 5) echo "</tr><tr>";
 		?>
-
-		<td><a
-			href='<?php echo url::site('imagen/album').'/'.$publicacion->id.'/pagina/'.$i++ ?>'><img
-			width="72" height="72"
+		<td><a class="lightbox"
+			href='<?php echo url::site('imagen/mostrar').'/'.$imagen ?>'><img
+			class="img-left"
 			src='<?php echo url::site('imagen/mostrar').'/'.$imagen ?>' /></a></td>
 
 			<?php } ?>
 	</tr>
 </table>
 <table>
+	<tr>
+		<td>Propietario:</td>
+		<td><?php echo $publicacion->usuario->login; ?></td>
+	</tr>
 	<tr>
 		<td>Tipo:</td>
 		<td><?php echo $publicacion->tipoinmueble->nombre; ?></td>
@@ -93,14 +97,14 @@
 		Imagenes</a></td>
 	</tr>
 	<?php }else{?>
-		<tr>
+	<tr>
 		<td><a
 			href='<?php echo url::site('publicacion/ofertar/'.$publicacion->id)?>'>Ofertar</a></td>
 	</tr>
 	<?php } ?>
 </table>
-		
+
 
 
 <br>
-		<?php echo html::anchor('publicacion', '<- Volver') ?>
+	<?php echo html::anchor('publicacion', '<- Volver') ?>
