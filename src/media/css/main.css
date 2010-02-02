@@ -4,6 +4,8 @@
 body { background:#18191B url('../img/body_bg.gif') repeat-x }
 a { color:#517307 }
 a:hover { color:#67920D }
+div		{FONT-FAMILY: Verdana, Tahoma, Sans-Serif; FONT-SIZE: 12px}
+table {	margin: auto; }
 
 #navigation { border-bottom:3px solid #FFF }
 #navigation a:hover { background:#E2F3BE; color:#67920D }
@@ -56,26 +58,27 @@ a:hover { color:#67920D }
 .gallery-block li a { border:1px solid #000 }
 .gallery-block li a:hover { border:1px solid #FFF }
 
-#main-content .left { background:#F3F0E8; border-right:1px solid #FFF }
+#main-content .left { background:#fffcf2/*#F3F0E8*/; border-right:1px solid #FFF }
 #main-content .right { border-left:1px solid #A7947A; background:#C7B998 }
 	
-#main-content ul { color:#534C42 }
+#main-content ul { color:#2e2a25/*#534C42*/}
 #main-content .right ul { color:#23201B !important }
 
 #main-content h2 { color:#4B3D1B; border-bottom:1px solid #4B3D1B }
 #main-content h3 { color:#4B3D1B }
 
-#main-content p { color:#534C42 }
+#main-content p, #main-content table { color:#534C42 }
 #main-content .right p { color:#23201B !important }
 #main-content p.intro-text { color:#23201B }
 
-#main-content a { color:#2E546F }
+#main-content a { color:#005896/*#2E546F*/ }
 
 .portfolio-entry { border-top:1px solid #DBD1B9 }
 
-input { border:1px solid #C7B998; color:#333; display:block; padding:3px; margin:0 0 10px 0; font-family:Georgia, "Times New Roman", Times, serif; font-size:12px; }
+input, select { border:1px solid #C7B998; color:#333; display:block; padding:3px; margin:0 0 10px 0; font-family:Verdana, Tahoma, Sans-Serif; font-size:12px; }
+.hidden { border:0px; padding:0px; margin:0 0 0 0;}
 textarea { border:1px solid #C7B998; color:#333 }
-.button { background:#336A93; color:#FFF; border:2px solid #0E3B65 }
+.button { background:#336A93; color:#FFF; border:1px solid #0E3B65 }
 
 #footer { border-left:1px solid #325772; border-right:1px solid #325772; color:#FFF; border-top:1px solid #000; background:#0F3149 }
 #footer a { color:#E2F3BE }
@@ -104,6 +107,7 @@ img { border:none }
 	
 .img-left { float:left; width: 160px; height: 120px; margin:0 20px 15px 0; position:relative; top:5px }
 .img-right { float:right; margin:0 0 15px 20px; position:relative; top:5px }
+.img-center { display: block; margin: auto auto 15px auto; width: 160px; height: 120px; position:relative; top:0px; }
 	
 	
 /* --------------------------------------------- */
@@ -113,9 +117,9 @@ img { border:none }
 #header h1 { width:289px; height:75px; margin:0; padding:0; position:absolute; top:29px; left:29px }
 #header h1 a { text-indent:-2000px; display:block; background:url('../img/logo.png') no-repeat; width:289px; height:75px }
 
-#header .contact-info { text-align:right; font-size:22px; width:650px; height:50px; position:absolute; right:30px; bottom:20px }
-#header .contact-info em { font-family:Arial, Helvetica, sans-serif; font-style:normal }
-#header .contact-info small { display:block; margin:0; padding:0; font-size:16px }
+#header .contact-info { text-align:right; font-size:20px; width:650px; height:50px; position:absolute; right:30px; bottom:20px }
+#header .contact-info em { font-family:Verdana, Tahoma, Sans-Serif; font-style:normal }
+#header .contact-info small { display:block; margin:0; padding:0; font-size:14px }
 
 #header .contact-info a { text-decoration:underline }
 #header .contact-info a:hover { text-decoration:none }
@@ -123,7 +127,7 @@ img { border:none }
 /* --------------------------------------------- */
 /* Navigation ---------------------------------- */
 
-#navigation { font-family:Arial, Helvetica, sans-serif; position:relative; z-index:30; font-size:16px; font-weight:bold; width:980px; height:46px; background:url('../img/nav_bg.gif') no-repeat }
+#navigation { font-family:Verdana, Tahoma, Sans-Serif; position:relative; z-index:30; font-size:16px;/*este 16 solo permite que los submenu aparezcan un poco mas bajo*/ font-weight:normal; width:980px; height:46px; background:url('../img/nav_bg.gif') no-repeat }
 
 #navigation a.first { border-left:none }
 #navigation a.last { border-right:none }
@@ -162,8 +166,8 @@ img { border:none }
 	
 	/* Dropdown Styling */
 	.sf-menu { margin:0 }
-	.sf-menu a { text-transform:uppercase; font-size:16px; padding:11px 20px 11px 20px; text-decoration:none }
-	.sf-menu ul a { background:none; cursor:pointer; text-transform:none; border-left:none; border-right:none; font-size:12px; padding:10px 10px 10px 10px; text-decoration:none }
+	.sf-menu a { text-transform:capitalize; font-size:16px; padding:11px 20px 11px 20px; text-decoration:none }
+	.sf-menu ul a { background:none; cursor:pointer; text-transform:capitalize; border-left:none; border-right:none; font-size:10px; padding:10px 10px 10px 10px; text-decoration:none }
 	
 	.sf-menu li:hover, .sf-menu li.sfHover,
 	.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active { outline:0 }
@@ -176,7 +180,7 @@ img { border:none }
 	a:hover > .sf-sub-indicator,
 	a:active > .sf-sub-indicator,
 	li:hover > a > .sf-sub-indicator,
-	li.sfHover > a > .sf-sub-indicator { background-position: -10px -100px }
+	li.sfHover > a > .sf-sub-indicator { background-position: -10px -100px; }
 	
 	.sf-menu ul .sf-sub-indicator { background-position: -10px 0 }
 	.sf-menu ul a > .sf-sub-indicator { background-position: 0 0 }
@@ -195,7 +199,7 @@ img { border:none }
 
 #myController { display:none }
 #mySlides img { display:block; margin:0 }
-.blue-block { display:block !important; text-align:center; padding:15px 0 0 0; font-size:25px; font-family:Georgia, "Times New Roman", Times, serif; display:block; width:980px; height:48px; background:url('../img/blue_bar_bg.gif') repeat-x }
+.blue-block { display:block !important; text-align:center; padding:15px 0 0 0; font-size:25px; font-family:Verdana, Tahoma, Sans-Serif; display:block; width:980px; height:48px; background:url('../img/blue_bar_bg.gif') repeat-x }
 .blue-block a { text-decoration:underline }
 .blue-block a:hover { text-decoration:none }
 
@@ -253,34 +257,56 @@ img { border:none }
 	
 #main-content ul { margin:0 0 0 15px; padding:0 0 0 10px; line-height:20px; font-size:12px }
 
-#main-content h2 { font-size:18px; font-weight:normal; margin:0; padding:0 0 5px 0; font-family:Georgia, "Times New Roman", Times, serif }
+#main-content h2 { font-size:18px; font-weight:normal; margin:0; padding:0 0 5px 0; font-family:Verdana, Tahoma, Sans-Serif; }
 #main-content h2 strong, #main-content h2 b { letter-spacing:-1px }
 
-#main-content h3 { font-size:24px; font-weight:normal; margin:0; padding:5px 0 0 0; font-family:Georgia, "Times New Roman", Times, serif }
+#main-content h3 { font-size:20px; font-weight:normal; margin:0; padding:5px 0 0 0; font-family:Verdana, Tahoma, Sans-Serif; }
 
-#main-content p { padding:0; margin:15px 0; font-size:12px; line-height:18px }
+#main-content p, #main-content p { padding:0; margin:15px 0; font-size:12px; line-height:18px }
 
-#main-content p.intro-text { margin:15px 0 15px 0; font-size:12px; font-weight:bold; line-height:20px }
+#main-content p.intro-text { margin:15px 0 15px 0; font-size:13px; font-weight:normal; line-height:20px; text-align: justify; }
 
 
 /* --------------------------------------------- */
 /* Portfolio Page ------------------------------ */
 
 .portfolio-entry { clear:both; padding:5px 0 0 0; margin:8px 0 0 0 }
-
+.portfolio-entry h3 a {font-size: 20px}
 
 /* --------------------------------------------- */
 /* Sesion Lateral -------------------------------- */
 
 form { margin:0; padding:0 }
 .textbox-lateral { width: 130px}
-.button { font-weight:bold; padding:5px 8px; font-family:Arial, Helvetica, sans-serif; font-size:12px; text-transform:uppercase; display:block; clear:both; margin:10px 0 10px 0; }
+.button { font-weight:bold; padding:3px 5px; font-family:Verdana, Helvetica, sans-serif; font-size:10px; text-transform:uppercase; display:block; clear:both; margin:0px 0 10px 0; }
 
 
 /* --------------------------------------------- */
 /* Footer ----------------------- */
 
-#footer { position:relative; font-size:14px; width:938px; margin:0 auto; padding:20px }
+#footer { position:relative; font-size:12px; width:938px; margin:0 auto; padding:20px }
 #footer a { text-decoration:underline }
 #footer a:hover { text-decoration:none }
 #footer span { position:absolute; right:20px; top:20px }
+
+.tabla_ext { width: 700px;}
+.columna_titulos { width: 100px; }
+
+#main-content .comodidades {
+	width:300px;
+	margin:0;
+	padding:15px;
+	float:left }
+	
+#main-content .cercanias {
+	width:300px;
+	margin:0;
+	padding:15px;
+	float:right; 
+}
+#main-content .precio {
+	color: #336A93;
+	font-size: 24px;
+	font-weight: bolder;
+	text-align: center;
+}

@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <?php if($sesion_usuario){?>
 	
-	<h2><em><strong>Hola <?php echo $sesion_usuario->nombre." ".$sesion_usuario->apellido?></strong></em></h2>
+	<h2><strong>Hola <?php echo $sesion_usuario->nombre." ".$sesion_usuario->apellido?></strong></h2>
 	<p>Tu sesi&oacute;n como usuario registrado est&aacute; iniciada.
 	Ahora podr&aacute;s ofertar las residencias que sean de tu
 	inter&eacute;s o publicar anuncios gratuitos en nuestra p&aacute;gina web.</p>
@@ -13,7 +13,7 @@
 <?php }else{?>
 
 	<?php echo form::open(url::site("usuario/iniciar_sesion")) ?>
-	<h2><em><strong>Inicio de Sesi&oacute;n</strong></em></h2>
+	<h2><strong>Inicio de Sesi&oacute;n</strong></h2>
 	<p>
 		<?php echo form::label('usuario', 'Usuario:')?>
 		<?php echo form::input(array('class'=>'textbox-lateral', 'name' => 'login'))?>

@@ -1,11 +1,9 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <?php echo new View('js/combo_regiones'); ?>
+<h2>Buscar Publicaci&oacute;n</h2>
 <?php echo form::open($url.$token)?>
-<?php echo form::hidden('token', $token)?>
-<table>
-	<tr>
-		<th colspan="2">Buscar Publicacion</th>
-	</tr>
+<input type='hidden' class='hidden' value='<?php echo $token ?>'>
+<table class='tabla_ext'>
 	<tr>
 		<td><?php echo form_Core::label('estado', 'Estado') ?></td>
 		<td><?php echo form_Core::label('ciudad', 'Ciudad') ?></td>
@@ -24,18 +22,20 @@
 	<tr>
 		<td><?php echo Tipoinmueble_Model::combobox(); ?></td>
 		<td><?php echo Publicacion_Model::combobox_sexo(); ?></td>
-		<td><?php echo form::submit('submit', 'Buscar') ?></td>
+		<td><?php echo form::submit(array('class' => 'button'), 'Buscar') ?></td>
 	</tr>
 </table>
 <?php echo form::close()?>
-<table>
-	<tr>
-		<th colspan="5">Resultados de la Busqueda</th>
-	</tr>
-	<tr>
-		<td colspan="2"><?php echo $paginacion ?></td>
-	</tr>
-	<?php foreach ($publicacion as $fila) { ?>
+<div class="clear"></div>
+<h2>Resultados de la Busqueda</h2>
+<?php echo $paginacion ?>
+<div class="clear"></div>
+	<?php foreach ($publicacion as $fila) { 
+		$pub_item = new View('publicacion/item');
+		$pub_item->publ = $fila;
+		echo $pub_item;
+		?>
+		<!-- 
 			<?php if($fila->imagenes[0] == NULL){?>
 				<tr>
 					<td rowspan="5"><img width="150" height="150" src='<?php echo url::base(FALSE).'media/img/no_img.gif' ?>' /></td>
@@ -57,11 +57,7 @@
 	<tr>
 		<td><?php echo $fila->descripcion; ?> <a href='<?php echo url::site('publicacion/detalles').'/'.$fila->id ?>'>m&aacute;s &gt;</a></td>
 	</tr>
+	 -->
 	<?php } ?>
-	<tr>
-		<td colspan="2"><?php echo $paginacion ?></td>
-	</tr>
-</table>
-
-<br>
-		<?php echo html::anchor('publicacion', '<- Volver') ?>
+<div class="clear"></div>
+<?php echo $paginacion ?>
