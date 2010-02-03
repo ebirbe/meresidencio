@@ -2,15 +2,14 @@
 $menu = array(
 	"Inicio" => url::base(),
 	"Usuario" => array(
-		"Registrarme" => url::site("usuario/suscribir"),
-		"Iniciar Sesi&oacute;n" => url_Core::site("usuario/iniciar_sesion"),
-		"Adminstraci&oacute;n" => array(
-			"Estados" => url_Core::site("estado"),
-			"otro" => array("Estados" => url_Core::site("estado"),),
-		),
+		"Inicio" => url_Core::site("usuario/mi_cuenta"),
+		"Mis solicitudes" => url_Core::site("usuario/mis_solicitudes"),
+		"Mis Publicaciones" => url_Core::site("publicacion/mis_publicaciones"),
+		"Mis calificaciones" => url_Core::site("calificacion/mis_calificaciones"),
+		"Cambiar Clave" => url_Core::site("usuario/cambiar_clave"),
 	),
 	"Publicaci&oacute;n" => array(
-		"Buscar Residencias" => url::site("publicacion/lista"),
+		"Buscar Residencia" => url::site("publicacion/lista"),
 		"Publicar Residencia" => url::site("publicacion/agregar"),
 	),
 	"Nosotros" => array(
@@ -128,16 +127,14 @@ function dibujar_menu($m, $c){
     	<div class="right">
             <?php echo $intro_lateral ?>
             <?php echo $panel_sesion ?>
+            <?php echo $panel_opciones ?>
             <?php echo $notificaciones ?>
         </div>
-    	
-      <div class="left">
+    <div class="left">
 		        <?php echo $contenido ?>
       </div>
       <div class="clear"></div>
-        
     </div>
-    
 </div>
 <!-- END content -->
 

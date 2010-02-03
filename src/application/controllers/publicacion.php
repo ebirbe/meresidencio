@@ -412,7 +412,32 @@ class Publicacion_Controller extends Template_Controller {
 		if($usuario){
 			$vista->usuario_sesion = $usuario;
 		}
-		$vista->publicacion = ORM::factory("publicacion", $id);
+		$publicacion = ORM::factory("publicacion", $id);
+		$vista->publicacion = $publicacion;
+		$vista->vista_caracteristicas = new View('publicacion/caracteristicas');
+		$vista->vista_caracteristicas->publicacion = $publicacion; 
+		
+		//Componemos el panel de opciones y los vinculos
+		$v_opciones = new View('plantillas/panel_opciones');
+		$links = array();
+		if(is_a($usuario, "Usuario_Model") && $usuario->es_propio($publicacion->usuario_id)){
+			$links[]=array(
+				url::site('publicacion/editar/'.$publicacion->id),
+				"Editar publicaci&oacute;n",
+			);
+			$links[]=array(
+				url::site('publicacion/ofertar/'.$publicacion->id),
+				"Editar im&aacute;genes",
+			);
+		}else{
+			$links[]=array(
+				url::site('publicacion/ofertar/'.$publicacion->id),
+				"Ofertar",
+			);
+		}
+		$v_opciones->links = $links;
+		
+		$this->template->panel_opciones = $v_opciones;
 		$this->template->contenido = $vista;
 
 	}
@@ -480,10 +505,23 @@ class Publicacion_Controller extends Template_Controller {
 			//echo "YA OFERTO";
 			$calificacion_id = $calificacion->id;
 		}
-
+		
+		$this->template->panel_opciones = new View('plantillas/panel_opciones');
+		$links[] = array(
+				url::site('calificacion/calificar/'.$calificacion_id),
+				"Calificar Operaci&oacute;n",
+		);
+		$links[] = array(
+				url::site('publicacion/detalles/'.$publicacion_id),
+				"Ver Original",
+		);
+		$this->template->panel_opciones->links = $links;
+		
 		$this->template->titulo = "Solicitud de Alquiler";
 		$vista = new View('publicacion/ofertar');
 		$vista->publicacion = $publicacion;
+		$vista->vista_caracteristicas = new View('publicacion/caracteristicas');
+		$vista->vista_caracteristicas->publicacion = $publicacion;
 		$vista->calificacion_id = $calificacion_id;
 		$this->template->contenido = $vista;
 

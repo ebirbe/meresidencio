@@ -41,6 +41,7 @@ abstract class Template_Controller extends Controller {
 		$usuario = $this->session->get('usuario');
 		
 		$this->template->intro_lateral = NULL/*INTRO_LATERAL*/;
+		$this->template->panel_opciones = NULL/*PANEL_OPCIONES*/;
 		$this->template->panel_sesion = new View('usuario/iniciar_sesion_lateral');
 		$this->template->panel_sesion->sesion_usuario = $usuario;
 		

@@ -65,6 +65,7 @@ table {	margin: auto; }
 #main-content .right ul { color:#23201B !important }
 
 #main-content h2 { color:#4B3D1B; border-bottom:1px solid #4B3D1B }
+#main-content .right h2 { font-size: 13px; font-weight: bold; }
 #main-content h3 { color:#4B3D1B }
 
 #main-content p, #main-content table { color:#534C42 }
@@ -75,10 +76,10 @@ table {	margin: auto; }
 
 .portfolio-entry { border-top:1px solid #DBD1B9 }
 
-input, select { border:1px solid #C7B998; color:#333; display:block; padding:3px; margin:0 0 10px 0; font-family:Verdana, Tahoma, Sans-Serif; font-size:12px; }
+input, select, file { border:1px solid #C7B998; color:#333; display:block; padding:3px; margin:0 0 10px 0; font-family:Verdana, Tahoma, Sans-Serif; font-size:12px; }
 .hidden { border:0px; padding:0px; margin:0 0 0 0;}
 textarea { border:1px solid #C7B998; color:#333 }
-.button { background:#336A93; color:#FFF; border:1px solid #0E3B65 }
+.button { background:#336A93; color:#FFF; border:1px solid #0E3B65; cursor: pointer; }
 
 #footer { border-left:1px solid #325772; border-right:1px solid #325772; color:#FFF; border-top:1px solid #000; background:#0F3149 }
 #footer a { color:#E2F3BE }
@@ -167,7 +168,7 @@ img { border:none }
 	/* Dropdown Styling */
 	.sf-menu { margin:0 }
 	.sf-menu a { text-transform:capitalize; font-size:16px; padding:11px 20px 11px 20px; text-decoration:none }
-	.sf-menu ul a { background:none; cursor:pointer; text-transform:capitalize; border-left:none; border-right:none; font-size:10px; padding:10px 10px 10px 10px; text-decoration:none }
+	.sf-menu ul a { background:none; cursor:pointer; text-transform:capitalize; border-left:none; border-right:none; font-size:12px; padding:10px 10px 10px 10px; text-decoration:none; font-weight: bold; }
 	
 	.sf-menu li:hover, .sf-menu li.sfHover,
 	.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active { outline:0 }

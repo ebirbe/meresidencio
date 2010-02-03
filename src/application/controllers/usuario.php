@@ -247,10 +247,10 @@ class Usuario_Controller extends Template_Controller {
 			else $usuario->ciudad_id = $datos['ciudad'];
 			if($datos['zona'] == 0) $usuario->zona_id = NULL;
 			else $usuario->zona_id = $datos['zona'];
-				
+
 			//Cambiamos el tipo de usuario para permitir publicar
 			$usuario->tipo = USUARIO_VENDE;
-				
+
 			$usuario->save();
 			$usuario->clear_cache();//Para que los datos que sean solicitados nuevamente no esten corruptos
 			$exito = true;
@@ -302,9 +302,7 @@ class Usuario_Controller extends Template_Controller {
 					'clave' => $post['clave'],
 				);
 				$this->session->set('usuario',ORM::factory('usuario')->where($cond)->find());
-				//echo Kohana::debug($_SESSION);
-				$usuario = $this->session->get('usuario');
-				$vista->mensaje = 'BIENVENIDO ' . $usuario->nombre;
+				header("Location: ".url::site('usuario/mi_cuenta'));
 			}
 		}
 		$this->template->contenido = $vista;
@@ -457,19 +455,37 @@ class Usuario_Controller extends Template_Controller {
 		->limit($limit)
 		->offset($offset)
 		->find_all();
-		
+
 		$publicaciones = array();
-		
+
 		foreach ($calificaciones as $fila){
 			$publicaciones[] = ORM::factory('publicacion', $fila->publicacion_id);
 		}
-		
-		
+
+
 		$vista->publicacion = $publicaciones;
 		$vista->paginacion = $paginacion;
 		$this->template->contenido = $vista;
+	}
 
-		//echo Kohana::debug($publicaciones);
+	public function mi_cuenta(){
+
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
+
+		$usuario = $this->session->get('usuario');
+		
+		$this->template->titulo = "Mi Cuenta";
+
+		$vista = new View('usuario/mi_cuenta');
+		$vista->vista_notif = new View('notificacion/lista');
+		$vista->usuario = $usuario;
+		$m_notif = new Notificacion_Model($usuario);
+		$vista->vista_notif->notificaciones = $m_notif->componer_notificaiones();
+
+		$vista->mensaje = $this->mensaje;
+		$vista->errores = $this->errores;
+		$this->template->contenido = $vista;
 	}
 }
 ?>

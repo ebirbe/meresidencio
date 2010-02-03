@@ -1,3 +1,4 @@
+- Al Registrar hacer de una vez el inicio de sesion automatico
 - Activar un menu de "opciones" en el sidebar
 - Corregir el ofertar (Al parecer la BD es vieja)
 - Cualquier USUARIO_VENDEDOR puede acceder a la modificacion de publiacaicones de los demas usuarios

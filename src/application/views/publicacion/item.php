@@ -1,8 +1,15 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.'); ?>
 <?php 
-$url = url::site('publicacion/detalles/'.$publ->id);
+switch ($uso){
+	case "solicitud":
+		$url = url::site('publicacion/ofertar/'.$publ->id);
+		break;
+	default:
+		$url = url::site('publicacion/detalles/'.$publ->id);
+		break;
+}
 if($publ->imagenes[0] == NULL){
-	 $img = html_Core::image('media/img/no_img.gif', array('class'=>'img-left'), FALSE);
+	$img = html_Core::image('media/img/no_img.gif', array('class'=>'img-left'), FALSE);
 }else{
 	$img = html_Core::image('imagen/mostrar/'.$publ->imagenes[0], array('class'=>'img-left'), TRUE);
 }
