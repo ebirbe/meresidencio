@@ -6,28 +6,27 @@
 	</tr>
 	<tr>
 		<td><?php echo form::input('buscar')?></td>
-		<td><?php echo form::submit('submit', 'Buscar') ?></td>
+		<td><?php echo form::submit(array('class'=>'button'), 'Buscar') ?></td>
 	</tr>
 </table>
 <?php echo form::close()?>
-<table>
-	<tr>
-		<th colspan="5">Resultados de la Busqueda</th>
-	</tr>
-	<tr>
+
+<h2>Lista de Usuarios</h2>
+<br>
+<table class="tabla_alertas">
+	<tr align="left">
+		<th>ID</th>
 		<th>LOGIN</th>
 		<th>NOMBRE</th>
 		<th>APELLIDO</th>
 		<th>CORREO</th>
 		<th>OPCION</th>
 	</tr>
-	<?php foreach ($usuario as $fila) { ?>
-	<tr>
-		<td><?php echo $fila->login ?></td>
-		<td><?php echo $fila->nombre ?></td>
-		<td><?php echo $fila->apellido ?></td>
-		<td><?php echo $fila->correo ?></td>
-		<td><?php echo html_Core::anchor('usuario/editar/'.$fila->id, 'Ver') ?></td>
-	</tr>
-	<?php } ?>
+	<?php foreach ($usuario as $fila) {
+		$usr_item = new View('usuario/item');
+		$usr_item->fila = $fila;
+		echo  $usr_item;
+	}?>
 </table>
+<br/>
+<div class="clear"></div>

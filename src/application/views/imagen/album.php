@@ -10,6 +10,3 @@
 		<td><img src='<?php echo url::site('imagen/mostrar').'/'.$id_img ?>' /></td>
 	</tr>
 </table>
-
-<br>
-		<?php echo html::anchor('publicacion', '<- Volver') ?>

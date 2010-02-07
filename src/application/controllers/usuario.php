@@ -263,7 +263,7 @@ class Usuario_Controller extends Template_Controller {
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 
-		$this->template->titulo = "Buscar Usuarios";
+		$this->template->titulo = "Lista de Usuarios";
 
 		$vista = new View('usuario/buscar');
 		if(isset($_POST['buscar'])){
@@ -301,8 +301,13 @@ class Usuario_Controller extends Template_Controller {
 					'login' => $post['login'],
 					'clave' => $post['clave'],
 				);
-				$this->session->set('usuario',ORM::factory('usuario')->where($cond)->find());
-				header("Location: ".url::site('usuario/mi_cuenta'));
+				$usuario = ORM::factory('usuario')->where($cond)->find();
+				$this->session->set('usuario',$usuario);
+				if($usuario->tipo == USUARIO_ADMIN){
+					header("Location: ".url::site('admin'));
+				}else{
+					header("Location: ".url::site('usuario/mi_cuenta'));
+				}
 			}
 		}
 		$this->template->contenido = $vista;
@@ -474,7 +479,7 @@ class Usuario_Controller extends Template_Controller {
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
 
 		$usuario = $this->session->get('usuario');
-		
+
 		$this->template->titulo = "Mi Cuenta";
 
 		$vista = new View('usuario/mi_cuenta');
@@ -487,28 +492,49 @@ class Usuario_Controller extends Template_Controller {
 		$vista->errores = $this->errores;
 		$this->template->contenido = $vista;
 	}
-	
+
 	public function mis_datos(){
-		
+
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
-		
+
 		$usuario = $this->session->get('usuario');
-		
+
 		$this->template->panel_opciones = new View('plantillas/panel_opciones');
 		$links[] = array(
-				url::site('usuario/editar/'.$usuario->id),
+		url::site('usuario/editar/'.$usuario->id),
 				"Editar Mis Datos",
 		);
 		$links[] = array(
-				url::site('usuario/cambiar_clave'),
+		url::site('usuario/cambiar_clave'),
 				"Cambiar Clave",
 		);
 		$this->template->panel_opciones->links = $links;
-		
+
 		$vista = new View('usuario/mis_datos');
 		$vista->usuario = $usuario;
-		
+
+		$this->template->contenido = $vista;
+	}
+
+	public function datos_usuario($usuario_id){
+
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
+
+		$usuario = new Usuario_Model($usuario_id);
+
+		$this->template->panel_opciones = new View('plantillas/panel_opciones');
+		$links[] = array(
+		url::site('usuario/editar/'.$usuario->id),
+				"Editar Datos",
+		);
+
+		$this->template->panel_opciones->links = $links;
+
+		$vista = new View('usuario/mis_datos');
+		$vista->usuario = $usuario;
+
 		$this->template->contenido = $vista;
 	}
 }

@@ -405,7 +405,7 @@ class Publicacion_Controller extends Template_Controller {
 
 	public function detalles($id = NULL){
 
-		$this->template->titulo = "Lista de Publicaciones";
+		$this->template->titulo = "Detalles de la publicacion #$id";
 		$vista = new View('publicacion/detalles');
 
 		$usuario = $this->session->get('usuario');
@@ -426,7 +426,7 @@ class Publicacion_Controller extends Template_Controller {
 				"Editar publicaci&oacute;n",
 			);
 			$links[]=array(
-				url::site('publicacion/ofertar/'.$publicacion->id),
+				url::site('imagen/agregar/'.$publicacion->id),
 				"Editar im&aacute;genes",
 			);
 		}else{

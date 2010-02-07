@@ -24,15 +24,15 @@ class Imagen_Controller extends Template_Controller {
 	}
 
 	public function agregar($publicacion_id, $nueva_pub = FALSE){
-		
+
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
-		
+
 		$this->template->titulo = "Agregar im&aacute;genes a la publicaci&oacute;n $publicacion_id";
 		$vista = new View('imagen/agregar');
 
 		if($nueva_pub) $this->mensaje = "Su publicaci&oacute;n se guardo con &eacute;xito bajo el Nro. $publicacion_id, si lo desea puede proceder a agregar im&aacute;genes a su publicaci&oacute;n";
-		
+
 		$publicacion = ORM::factory('publicacion', $publicacion_id);
 		$vista->numero_imagenes = $publicacion->imagenes->count();
 
@@ -112,21 +112,21 @@ class Imagen_Controller extends Template_Controller {
 	}
 
 	public function eliminar($imagen_id){
-				
+
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
-		
+
 		$this->template->titulo = "Eliminar imagen $imagen_id";
-		
+
 		$vista = new View('imagen/eliminar');
-		
+
 		$imagen = ORM::factory('imagen', $imagen_id);
-		
+
 		$vista->publicacion_id = $imagen->publicacion_id;
 		$vista->imagen_id = $imagen_id;
-		
+
 		$imagen->delete();
-		
+
 		$this->template->contenido = $vista;
 	}
 
@@ -172,5 +172,39 @@ class Imagen_Controller extends Template_Controller {
 		$this->template->contenido = $vista;
 	}
 
+	public function todas(){
+
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN), MSJ_INICIAR_SESION);
+
+		$this->template->titulo = "Lista de imagenes";
+
+		$vista = new View('imagen/todas');
+
+		$imagenes = ORM::factory('imagen');
+		//Comienza a prepararse la Paginacion
+		$paginacion = new Pagination(
+		array(
+						'uri_segment' => 'pagina',
+						'total_items' => $imagenes->count_all(),
+						'items_per_page' => 9,
+						'style' => 'classic',
+		)
+		);
+		
+		$limit = 9;
+		$offset = $paginacion->sql_offset;
+
+		$imagenes = $imagenes
+		->orderby('id','DESC')
+		->limit($limit)
+		->offset($offset)
+		->find_all();
+		
+		$vista->paginacion = $paginacion;
+		$vista->imagenes = $imagenes;
+
+		$this->template->contenido = $vista;
+	}
 }
 ?>

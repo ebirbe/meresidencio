@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <h2>Mis Datos</h2>
 <br>
-<table class="tabla_ext">
+<table class="comodidades">
 	<tr>
 		<td class="columna_titulos"><strong>Codigo:</strong></td>
 		<td>#<?php echo $usuario->id ?></td>
@@ -19,9 +19,11 @@
 		<td><?php echo $usuario->apellido ?></td>
 	</tr>
 	<tr>
-		<td class="columna_titulos"><strong>Fecha de Nacimiento:</strong></td>
+		<td class="columna_titulos"><strong>F. de Nac.:</strong></td>
 		<td><?php echo $usuario->fecha_nac ?></td>
 	</tr>
+</table>
+<table class="cercanias">
 	<tr>
 		<td class="columna_titulos"><strong>Correo:</strong></td>
 		<td><?php echo $usuario->correo ?></td>

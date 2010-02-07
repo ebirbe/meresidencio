@@ -76,7 +76,7 @@ table {	margin: auto; }
 
 .portfolio-entry { border-top:1px solid #DBD1B9 }
 
-input, select, file { border:1px solid #C7B998; color:#333; display:block; padding:3px; margin:0 0 10px 0; font-family:Verdana, Tahoma, Sans-Serif; font-size:12px; }
+input, select, file { border:1px solid #C7B998; color:#333; /*display:block;*/ padding:3px; margin:0 0 10px 0; font-family:Verdana, Tahoma, Sans-Serif; font-size:12px; }
 .hidden { border:0px; padding:0px; margin:0 0 0 0;}
 textarea { border:1px solid #C7B998; color:#333 }
 .button { background:#336A93; color:#FFF; border:1px solid #0E3B65; cursor: pointer; }
