@@ -8,7 +8,7 @@
 		cliente?</th>
 	</tr>
 	<tr>
-		<td><?php echo form_Core::textarea('respuesta', $formulario['respuesta']); ?></td>
+		<td><?php echo form_Core::textarea(array('name'=>'respuesta','cols'=>'60','rows'=>'3'), $formulario['respuesta']); ?></td>
 		<td><?php echo $errores['respuesta']?></td>
 	</tr>
 	<tr>
@@ -17,5 +17,3 @@
 </table>
 <?php echo form::close(); ?>
 <?php }?>
-<br>
-<?php echo html::anchor('usuario', '<- Volver') ?>

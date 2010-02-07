@@ -1,11 +1,6 @@
-- Al Registrar hacer de una vez el inicio de sesion automatico
-- Activar un menu de "opciones" en el sidebar
-- Corregir el ofertar (Al parecer la BD es vieja)
+- class="intro-text" para todas las descripciones de los modulos
 - Cualquier USUARIO_VENDEDOR puede acceder a la modificacion de publiacaicones de los demas usuarios
-- En los DETALLES de publicacion a cualquiera que sea vendedor le muestra las
-opciones de Editar Publicaion e Imagenes
 - Al iniciar sesion redireccionar al usuario a su pagina personal
-- Cuando se busca una residencia, mantener los parametros seleccionados en el formulario
 - En la pantalla buscar residencias mostrar la descripcion de la busqueda al realizarla
 - Al agregar zonas y (supongo que ciudades tambien) no permite agregarlas si otra ciudad (o estado) tienen una zona (y ciudad tambien) con el mismo nombre
 - Resaltar los Textos: "Se guardó con éxito"

@@ -2,10 +2,9 @@
 <?php echo html_Core::script('media/js/scw.js', FALSE); ?>
 <?php echo $script_combo; ?>
 <?php echo form_Core::open(/*NULL, array('method'=>'get')*/);?>
-<table>
-	<tr>
-		<th colspan="3">Datos Personales del Usuario</th>
-	</tr>
+<h2>Editar Mis Datos Personales</h2>
+<br/>
+<table class="tabla_ext">
 	<?php if($mensaje) {?>
 	<tr>
 		<th colspan="3"><?php echo $mensaje ?></th>
@@ -74,7 +73,7 @@
 		<td><?php echo $errores['zona'] ?></td>
 	</tr>
 	<tr>
-		<td colspan="3"><?php echo form::submit('sibmit', 'Guardar')?></td>
+		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Guardar')?></td>
 	</tr>
 </table>
 		<?php echo form::close();?>

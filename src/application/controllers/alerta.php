@@ -9,7 +9,7 @@ class Alerta_Controller extends Template_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->template->titulo = html::specialchars("Administracion de Estado");
+		$this->template->titulo = html::specialchars("Administracion de Alertas");
 		$this->limpiar_formulario();
 		$this->errores = $this->formulario;
 		$this->mensaje = '';
@@ -80,15 +80,11 @@ class Alerta_Controller extends Template_Controller {
 		$vista = new View("alerta/agregar");
 		if($_POST){
 			if($this->_agregar($usuario->id)){
-				$this->mensaje = "Tu alerta se guardo con &eacute;xito.";
+				$this->mensaje = "Tu alerta se guard&oacute; con &eacute;xito.";
 				$this->limpiar_formulario();
 			}
 		}
-
-		$vista->mensaje = $this->mensaje;
-		$vista->errores = $this->errores;
-
-		$this->template->contenido = $vista;
+		$this->mis_alertas();
 	}
 
 	/**
@@ -97,21 +93,35 @@ class Alerta_Controller extends Template_Controller {
 	public function _validar($usuario_id){
 
 		$datos = $_POST;
-
 		$exito = TRUE;
 
-		$alerta = ORM::factory('alerta')
-		->where('usuario_id', $usuario_id)
-		->where('estado_id', $datos['estado'])
-		->where('ciudad_id', $datos['ciudad'])
-		->where('zona_id', $datos['zona'])
-		->where('tipoinmueble_id', $datos['tipoinmueble'])->find();
-
-		if($alerta->id > 0){
-			$this->mensaje = "No se guard&oacute;, Ya te has suscrito a una alerta id&eacute;ntica";
-			$exito = FALSE;
+		if(
+		$datos['estado']==0 &&
+		$datos['ciudad']==0 &&
+		$datos['zona']==0 &&
+		$datos['tipoinmueble']==0
+		){
+			$this->mensaje = "Debes seleccionar algo.";
+			return FALSE;
 		}
 
+		foreach (ORM::factory('alerta')->find_all() as $alerta){
+			if($alerta->estado_id=="") $alerta->estado_id=0;
+			if($alerta->ciudad_id=="") $alerta->ciudad_id=0;
+			if($alerta->zona_id=="") $alerta->zona_id=0;
+			if($alerta->tipoinmueble_id=="") $alerta->tipoinmueble_id=0;
+			if(
+			$datos['estado'] == $alerta->estado_id &&
+			$datos['ciudad'] == $alerta->ciudad_id &&
+			$datos['zona'] == $alerta->zona_id &&
+			$datos['tipoinmueble'] == $alerta->tipoinmueble_id
+			){
+				$this->mensaje = "No se guard&oacute;, Ya te has suscrito a una alerta id&eacute;ntica";
+				$exito = FALSE;
+				break;
+			}
+		}
+		
 		return $exito;
 	}
 
@@ -142,11 +152,11 @@ class Alerta_Controller extends Template_Controller {
 
 		$usuario = $this->session->get('usuario');
 		$alertas = ORM::factory('alerta')
-		->where('usuario_id',$usuario->id)->find_all();
-
+		->where('usuario_id',$usuario->id)->orderby('id','DESC')->find_all();
 		$this->template->titulo = "Mis Alertas";
 		$vista = new View('alerta/mis_alertas');
 		$vista->alertas = $alertas;
+		$vista->mensaje = $this->mensaje;
 		$this->template->contenido = $vista;
 
 

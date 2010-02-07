@@ -3,9 +3,11 @@ $menu = array(
 	"Inicio" => url::base(),
 	"Usuario" => array(
 		"Inicio" => url_Core::site("usuario/mi_cuenta"),
+		"Mis Alertas" => url_Core::site("alerta/mis_alertas"),
 		"Mis solicitudes" => url_Core::site("usuario/mis_solicitudes"),
 		"Mis Publicaciones" => url_Core::site("publicacion/mis_publicaciones"),
 		"Mis calificaciones" => url_Core::site("calificacion/mis_calificaciones"),
+		"Mis Datos" => url_Core::site("usuario/mis_datos"),
 		"Cambiar Clave" => url_Core::site("usuario/cambiar_clave"),
 	),
 	"Publicaci&oacute;n" => array(

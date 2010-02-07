@@ -293,6 +293,10 @@ form { margin:0; padding:0 }
 .tabla_ext { width: 700px;}
 .columna_titulos { width: 100px; }
 
+.tabla_alertas { width: 700px;}
+.tabla_alertas td {border-bottom:1px solid #DBD1B9; vertical-align: top;padding-top: 5px; padding-bottom: 5px}
+.notificacion { margin-left: 15px; margin-bottom: 5px;}
+
 #main-content .comodidades {
 	width:300px;
 	margin:0;

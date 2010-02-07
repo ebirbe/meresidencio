@@ -25,6 +25,7 @@ if($publ->imagenes[0] == NULL){
 	</ul>
 	<p>
 	<?php
+	if ($publ->descripcion=='') echo '&nbsp;';
 	echo trim(substr($publ->descripcion, 0, 70));
 	if(strlen($publ->descripcion) > 70) echo "... (Contin&uacute;a.)";
 	?>

@@ -8,9 +8,9 @@ class Calificacion_Model extends ORM {
 	 */
 	public static $calif_lista = array(
 		'' => 'Seleccione...',
-		CALIFICACION_NULA => 'Nula',
-		CALIFICACION_FALLIDA => 'Fallida',
-		CALIFICACION_EXITO => 'Exitosa',
+	CALIFICACION_NULA => 'Nula',
+	CALIFICACION_FALLIDA => 'Fallida',
+	CALIFICACION_EXITO => 'Exitosa',
 	);
 
 	/**
@@ -20,6 +20,43 @@ class Calificacion_Model extends ORM {
 	 */
 	public static function combobox_calificacion($selected = NULL){
 		return form::dropdown('puntos', Calificacion_Model::$calif_lista, $selected);
+	}
+
+	public static function total($usuario_id){
+		$calificaiones = ORM::factory('calificacion')
+		->where('usuario_id', $usuario_id);
+		return $calificaiones->count_all();
+	}
+	public static function contar_calificacion($usuario_id, $puntos){
+		$calificaiones = ORM::factory('calificacion')
+		->where('usuario_id', $usuario_id)
+		->where('puntos', $puntos);
+		return $calificaiones->count_all();
+	}
+	public static function porcentaje_calificacion($usuario_id, $puntos){
+		$calificacion = Calificacion_Model::contar_calificacion($usuario_id,$puntos);
+		$total = Calificacion_Model::total($usuario_id);
+		if($total == 0) return 0;
+		/**
+		 * total ---------------- 100%
+		 * calificacion --------- X
+		 */
+		return ($calificacion * 100) / $total;
+	}
+	public static function total_contar($usuario_id){
+		$exito = Calificacion_Model::contar_calificacion($usuario_id, CALIFICACION_EXITO);
+		$fallo = Calificacion_Model::contar_calificacion($usuario_id, CALIFICACION_FALLIDA);
+		return $exito - $fallo;
+	}
+	public static function total_porcentaje($usuario_id){
+		$tot_contar = Calificacion_Model::total_contar($usuario_id);
+		$total = Calificacion_Model::total($usuario_id);
+		if($total == 0) return 0;
+		/**
+		 * total      ----------- 100%
+		 * tot_contar ----------- X
+		 */
+		return ($tot_contar * 100) / $total;
 	}
 
 }

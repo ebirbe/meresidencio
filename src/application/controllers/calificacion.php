@@ -204,38 +204,30 @@ class Calificacion_Controller extends Template_Controller {
 		
 
 		$usuario = $this->session->get('usuario');
-		$calificaciones = ORM::factory('calificacion')
-		->where('usuario_id', $usuario->id);
-		
 		$this->template->titulo = "Mis Calificaciones";
-
 		$vista = new View('calificacion/mis_calificaciones');
-
-		//Comienza a prepararse la Paginacion
-		$paginacion = new Pagination(
-		array(
-					'uri_segment' => 'pagina',
-					'total_items' => $calificaciones->count_all(),
-					'items_per_page' => ITEMS_POR_PAGINA,
-					'style' => 'classic',
-		)
-		);
-
-		$limit = ITEMS_POR_PAGINA;
-		$offset = $paginacion->sql_offset;
-
-		$calificaciones = $calificaciones
-		->where('usuario_id', $usuario->id)
-		->orderby('id', 'DESC')
-		->limit($limit)
-		->offset($offset)
-		->find_all();
 		
-		$vista->calificaciones = $calificaciones;
-		$vista->paginacion = $paginacion;
+		
+		
+		$vista->usuario = $usuario;
 		$this->template->contenido = $vista;
 
 		//echo Kohana::debug($publicaciones);
+	}
+	
+	public function estadisticas($usuario_id = NULL){
+		
+		$vista = new View('calificacion/estadisticas');
+		if(isset($usuario_id)){
+			$usuario = new Usuario_Model($usuario_id);
+		}else{
+			$usuario = $this->session->get('usuario');
+		}
+		
+		$this->template->titulo = "Calificaciones para $usuario->login";
+		
+		$vista->usuario = $usuario;
+		$this->template->contenido = $vista;
 	}
 	
 }

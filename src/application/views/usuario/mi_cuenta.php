@@ -9,3 +9,15 @@ ofertas de alquiler de manera sencilla y totalmente gratuita.</p>
 <div class="clear"></div>
 <?php echo $vista_notif ?>
 <h2><strong>Alertas</strong></h2>
+<table class="tabla_alertas">
+<?php
+$i=0;
+foreach ($usuario->alertas as $fila){
+	if($i++ >= 2) break;
+	$item = new View('alerta/item');
+	$item->fila = $fila;
+	echo $item;
+}
+?>
+</table>
+<?php echo "<br /><div align='right'>".html::anchor('alerta/mis_alertas', "Ver todas", array('align'=>'right'))."</div>";?>

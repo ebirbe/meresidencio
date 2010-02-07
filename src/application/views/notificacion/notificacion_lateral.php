@@ -6,10 +6,10 @@ if($notificaciones != array()){
 	$i=0;
 	foreach ($notificaciones as $notif){
 		if($i++ == 5) break;
-		echo "$notif\n<hr>";
+		echo "<li class='notificacion'>$notif</li>";
 	}
 }else{
-	echo "No tienes ning&uacute;na notificaci&oacute;n.";
+	echo "<p>No tienes ning&uacute;na notificaci&oacute;n.</p>";
 }
 echo "<br /><div align='right'>".html::anchor('notificacion/mostrar', "Ver todas", array('align'=>'right'))."</div>";
 ?>
