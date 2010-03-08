@@ -10,21 +10,21 @@
 		inter&eacute;s o <em><?php echo html_Core::anchor("publicacion/agregar","publicar") ?></em> anuncios gratuitos en nuestra p&aacute;gina web.</p>
 	<?php }?>
 	<ul>
-		<li><a href='<?php echo url::site("usuario/cerrar_sesion")?>'>Cerrar Sesi&oacute;n</a></li>
+		<li><a href='<?php echo url::site("usuario/cerrar_sesion")?>'><?php echo html_Core::image('media/img/iconos/status_busy.png', array('class'=>'icono'))?>Cerrar Sesi&oacute;n</a></li>
 	</ul>
 	<br/>
 	
 <?php }else{?>
 
 	<?php echo form::open(url::site("usuario/iniciar_sesion")) ?>
-	<h2><strong>Inicio de Sesi&oacute;n</strong></h2>
+	<h2><?php echo html_Core::image('media/img/iconos/user.png', array('class'=>'icono'))?><strong>Inicio de Sesi&oacute;n</strong></h2>
 	<p>
 		<?php echo form::label('usuario', 'Usuario:')?>
 		<?php echo form::input(array('class'=>'textbox-lateral', 'name' => 'login'))?>
 		<?php echo form::label('clave', 'Contrase&ntilde;a:')?>
 		<?php echo form::password(array('class'=>'textbox-lateral', 'name' => 'clave'))?>
 		<?php echo form::submit(array('class'=>'button', 'name' => 'sibmit'), 'Entrar') ?>
-		<a href='<?php echo url::site("usuario/suscribir")?>'>Registrarme</a>
+		<a href='<?php echo url::site("usuario/suscribir")?>'><?php echo html_Core::image('media/img/iconos/user_add.png', array('class'=>'icono'))?>Registrarme</a>
 		<br/>
 		
 	</p>

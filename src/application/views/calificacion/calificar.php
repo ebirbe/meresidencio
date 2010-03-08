@@ -33,7 +33,7 @@ dicha operaci&oacute;n respondiendo estas sencillas preguntas:</p>
 <?php }else{?>
 <table>
 	<tr>
-		<th>Ya has calificado esta operaci&oacute;n</th>
+		<th class="msg_exito">Ya has calificado esta operaci&oacute;n</th>
 	</tr>
 </table>
 <?php echo $vista_ya_califico; ?>

@@ -30,5 +30,5 @@ if($publ->imagenes[0] == NULL){
 	if(strlen($publ->descripcion) > 70) echo "... (Contin&uacute;a.)";
 	?>
 	</p>
-	<a href='<?php echo $url?>' class="img-right">Ver m&aacute;s...</a>
+	<a href='<?php echo $url?>' class="img-right"><?php echo html_Core::image('media/img/iconos/add.png', array('class'=>'icono'))?>Ver m&aacute;s...</a>
 </div>

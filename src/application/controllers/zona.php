@@ -106,10 +106,13 @@ class Zona_Controller extends Template_Controller {
 		$vista = new View("zona/agregar");
 		if($_POST){
 			if($this->_editar($id)){
-				$this->mensaje = $_POST['zona']." se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['zona']." se guard&oacute; con &eacute;xito.</div>";
 			}
 		}
 
+		$zona = new Zona_Model();
+		$vista->zona = $zona->find_all()->as_array();
+		
 		$vista->mensaje = $this->mensaje;
 		$vista->nombreCiudad = $ciudad->nombre;
 		$vista->ciudad_id = $ciudad_id;
@@ -171,11 +174,14 @@ class Zona_Controller extends Template_Controller {
 		$vista = new View("zona/agregar");
 		if($_POST){
 			if($this->_agregar($ciudad_id)){
-				$this->mensaje = $_POST['zona']." se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['zona']." se guard&oacute; con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 			}
 		}
-
+		
+		$zona = new Zona_Model();
+		$vista->zona = $zona->find_all()->as_array();
+		
 		$vista->mensaje = $this->mensaje;
 		$vista->nombreCiudad = ORM::factory('ciudad',$ciudad_id)->nombre;
 		$vista->ciudad_id = $ciudad_id;
@@ -213,7 +219,7 @@ class Zona_Controller extends Template_Controller {
 
 		$exito = $post->validate();
 
-		$this->mensaje = "Problema al Guardar";
+		$this->mensaje = "<div class='msg_error'>Problema al Guardar</div>";
 		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
 		$this->errores = arr::overwrite($this->errores, $post->errors('formulario_errores'));
 

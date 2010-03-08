@@ -27,8 +27,5 @@
 	<tr>
 		<td colspan="3"><?php echo form::submit('sibmit', 'Cambiar Clave')?></td>
 	</tr>
-	<tr>
-		<td colspan="3"><a href=''>&iquest;Olvid&oacute; su contrase&ntilde;a?</a></td>
-	</tr>
 </table>
 	<?php echo form::close() ?>

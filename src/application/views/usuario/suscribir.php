@@ -1,16 +1,14 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
+<h2>Suscripci&oacute;n</h2>
 <?php echo form::open() ?>
-<table>
-	<tr>
-		<th colspan="3">Suscripci&oacute;n</th>
-	</tr>
+<table class="tabla_ext">
 	<?php if($mensaje) {?>
 	<tr>
-		<th colspan="3"><?php echo $mensaje ?></th>
+		<th colspan="3" class="msg_error"><?php echo $mensaje ?></th>
 	</tr>
 	<?php }?>
 	<tr>
-		<td><?php echo form::label('usuario', 'Usuario:')?></td>
+		<td width="200"><?php echo form::label('usuario', 'Usuario:')?></td>
 		<td><?php echo form::input('login', $formulario['login'])?></td>
 		<td><?php echo $errores['login'] ?></td>
 	</tr>
@@ -40,7 +38,7 @@
 		<td><?php echo $errores['apellido'] ?></td>
 	</tr>
 	<tr>
-		<td colspan="3"><?php echo form::submit('sibmit', 'Registrar!')?></td>
+		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Registrar!')?></td>
 	</tr>
 </table>
 	<?php echo form::close() ?>

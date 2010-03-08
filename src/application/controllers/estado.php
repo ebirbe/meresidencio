@@ -28,13 +28,15 @@ class Estado_Controller extends Template_Controller {
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 
-		$contenido = Estado_Model::combobox();
+		$this->agregar();
+		
+		/*$contenido = Estado_Model::combobox();
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('estado/agregar','Agregar Estado');
 		$contenido .= '<br>';
 		$contenido .=  html_Core::anchor('estado/lista','Ver Estados');
 
-		$this->template->contenido = $contenido;
+		$this->template->contenido = $contenido;*/
 	}
 	/**
 	 * Genera la vista de borrado.
@@ -44,13 +46,9 @@ class Estado_Controller extends Template_Controller {
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
-
-		//TODO Implementar
-		$contenido = "Borrado";
-		$contenido .= "<br>";
-		$contenido .= html_Core::anchor('estado/lista', '<-volver');
-		$this->template->contenido = $contenido;
+		$this->auto_render = false;
 		ORM::factory('estado', $id)->delete();
+		header("Location: ". url::site("estado"));
 	}
 
 	/**
@@ -72,10 +70,13 @@ class Estado_Controller extends Template_Controller {
 		$vista = new View("estado/agregar");
 		if($_POST){
 			if($this->_editar($_POST, $id)){
-				$this->mensaje = $_POST['estado']." se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['estado']." se guard&oacute; con &eacute;xito.</div>";
 			}
 		}
-
+		
+		$estado = new Estado_Model();
+		$vista->estado = $estado->find_all()->as_array();
+		
 		$vista->mensaje = $this->mensaje;
 		$vista->formulario = $this->formulario;
 		$vista->errores = $this->errores;
@@ -110,7 +111,6 @@ class Estado_Controller extends Template_Controller {
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 
 		$vista = new View('estado/lista');
-		$vista->cabecera_tabla = 'Lista de Estados';
 		$estado = new Estado_Model();
 		$vista->estado = $estado->find_all()->as_array();
 		$this->template->contenido = $vista;
@@ -130,15 +130,17 @@ class Estado_Controller extends Template_Controller {
 		$vista = new View("estado/agregar");
 		if($_POST){
 			if($this->_agregar($_POST)){
-				$this->mensaje = $_POST['estado']." se guardo con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['estado']." se guardo con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 			}
 		}
 
+		$estado = new Estado_Model();
+		$vista->estado = $estado->find_all()->as_array();
+		
 		$vista->mensaje = $this->mensaje;
 		$vista->formulario = $this->formulario;
 		$vista->errores = $this->errores;
-
 		$this->template->contenido = $vista;
 	}
 
@@ -167,7 +169,7 @@ class Estado_Controller extends Template_Controller {
 
 		$exito = $post->validate();
 
-		$this->mensaje = "Problema al Guardar";
+		$this->mensaje = "<div class='msg_error'>Problema al Guardar<div>";
 		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
 		$this->errores = arr::overwrite($this->errores, $post->errors('formulario_errores'));
 

@@ -46,13 +46,15 @@ abstract class Template_Controller extends Controller {
 		$this->template->panel_sesion->sesion_usuario = $usuario;
 		
 		$v_notif = NULL;
+		$usr_tipo = NULL;
 		if($usuario){
+			$usr_tipo = $usuario->tipo;
 			$m_notif = new Notificacion_Model($usuario);
 			$v_notif = new View('notificacion/notificacion_lateral');
 			$v_notif->notificaciones = $m_notif->componer_notificaiones();
 		}
 		$this->template->notificaciones = $v_notif;
-		
+		$this->template->usr_tipo = $usr_tipo;
 		/***********************/
 
 		if ($this->auto_render == TRUE)

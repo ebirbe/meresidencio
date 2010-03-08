@@ -22,6 +22,24 @@ $menu = array(
 	"Contacto" => "#",
 );
 
+if($usr_tipo == USUARIO_ADMIN){
+	$menu["Administrar"] = array(
+		"Usuarios" => url::site("usuario/buscar"),
+		"Publicaciones" => url::site("publicacion/lista"),
+		"Imagenes" => url::site("imagen/todas"),
+		"Regiones" => array(
+			"Estados"=> url::site("estado"),
+			"Ciudades"=> url::site("ciudad"),
+			"Zonas"=> url::site("zona"),
+		),
+		"Otros" => array(
+			"Tipos de Inmueble"=> url::site("tipoinmueble"),
+			"Comodidades"=> url::site("servicio"),
+			"Cercan&iacute;as"=> url::site("cercania"),
+		),
+	);
+}
+
 function dibujar_menu($m, $c){
 	switch ($c) {
 		case 0:
@@ -141,7 +159,8 @@ function dibujar_menu($m, $c){
 <!-- END content -->
 
 <div id="footer">
-    <a class="first" href="index-2.html">Home</a>
+	<!--
+	<a class="first" href="index-2.html">Home</a>
     &nbsp;|&nbsp;
     <a href="services.html">Our Services</a>
     &nbsp;|&nbsp;
@@ -153,6 +172,8 @@ function dibujar_menu($m, $c){
     &nbsp;|&nbsp;
     <a class="last" href="contact.html">Contact Us</a>
     
-    <span>Copyright &copy; 2008 Business Professional Package</span></div>
+    <span>Copyright &copy; 2008 Business Professional Package</span>
+    -->
+</div>
 </body>
 </html>

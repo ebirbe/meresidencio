@@ -87,10 +87,13 @@ class Ciudad_Controller extends Template_Controller {
 		$vista = new View("ciudad/agregar");
 		if($_POST){
 			if($this->_editar($id)){
-				$this->mensaje = $_POST['ciudad']." se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['ciudad']." se guard&oacute; con &eacute;xito.</div>";
 			}
 		}
-
+		
+		$ciudad = new Ciudad_Model();
+		$vista->ciudad = $ciudad->find_all()->as_array();
+		
 		$vista->mensaje = $this->mensaje;
 		$vista->nombreEstado = $estado->nombre;
 		$vista->estado_id = $estado_id;
@@ -131,7 +134,6 @@ class Ciudad_Controller extends Template_Controller {
 		);
 
 		$vista = new View('ciudad/lista');
-		$vista->cabecera_tabla = 'Lista de Ciudades';
 		$ciudad = new Ciudad_Model();
 		$vista->ciudad = $ciudad->where($condicion)->find_all()->as_array();
 		$vista->estado_id = $estado_id;
@@ -152,11 +154,14 @@ class Ciudad_Controller extends Template_Controller {
 		$vista = new View("ciudad/agregar");
 		if($_POST){
 			if($this->_agregar($estado_id)){
-				$this->mensaje = $_POST['ciudad']." se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['ciudad']." se guard&oacute; con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 			}
 		}
-
+		
+		$ciudad = new Ciudad_Model();
+		$vista->ciudad = $ciudad->find_all()->as_array();
+		
 		$vista->mensaje = $this->mensaje;
 		$vista->nombreEstado = ORM::factory('estado',$estado_id)->nombre;
 		$vista->estado_id = $estado_id;
@@ -194,7 +199,7 @@ class Ciudad_Controller extends Template_Controller {
 
 		$exito = $post->validate();
 
-		$this->mensaje = "Problema al Guardar";
+		$this->mensaje = "<div class='msg_error'>Problema al Guardar</div>";
 		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
 		$this->errores = arr::overwrite($this->errores, $post->errors('formulario_errores'));
 

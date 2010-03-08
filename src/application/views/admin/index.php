@@ -20,7 +20,7 @@
 	}?>
 </table>
 <br/>
-<div align="left"><?php echo html::anchor(url::site('usuario/buscar'), 'Ver Todos...');?></div>
+<div align="left"><?php echo html_Core::image('media/img/iconos/add.png', array('class'=>'icono'))?><?php echo html::anchor(url::site('usuario/buscar'), 'Ver Todos...');?></div>
 <br/>
 <div class="clear"></div>
 
@@ -32,7 +32,7 @@
 	echo  $pub_item;
 }?>
 <div class="clear"></div>
-<div align="left"><?php echo html::anchor(url::site('publicacion/lista'), 'Ver Todas...');?></div>
+<div align="left"><?php echo html_Core::image('media/img/iconos/add.png', array('class'=>'icono'))?><?php echo html::anchor(url::site('publicacion/lista'), 'Ver Todas...');?></div>
 <br/>
 <div class="clear"></div>
 <h2>Im&aacute;genes Nuevas</h2>
@@ -43,5 +43,5 @@ $imagen_lista->imagenes = $imagenes;
 $imagen_lista->admin = TRUE;
 echo $imagen_lista;
 ?>
-<div align="left"><?php echo html::anchor(url::site('imagen/todas'), 'Ver Todas...');?></div>
+<div align="left"><?php echo html_Core::image('media/img/iconos/add.png', array('class'=>'icono'))?><?php echo html::anchor(url::site('imagen/todas'), 'Ver Todas...');?></div>
 <br/>

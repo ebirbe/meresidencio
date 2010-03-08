@@ -64,5 +64,3 @@
 	</tr>
 </table>
 		<?php echo form::close() ?>
-<br>
-		<?php echo html::anchor('imagen', '<- Volver') ?>

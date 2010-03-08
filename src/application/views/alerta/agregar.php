@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <?php echo new View('js/combo_regiones'); ?>
-<?php echo form::open()?>
+<?php echo form::open(url::site('alerta/agregar'))?>
 <table>
 	<tr>
-		<th colspan="4"><?php echo $mensaje ?></th>
+		<th colspan="5"><?php echo $mensaje ?></th>
 	</tr>
 	<tr>
 		<td><?php echo form_Core::label('estado', 'Estado') ?></td>
@@ -16,10 +16,8 @@
 		<td><?php echo Ciudad_Model::combobox(); ?></td>
 		<td><?php echo Zona_Model::combobox(); ?></td>
 		<td><?php echo Tipoinmueble_Model::combobox(); ?></td>
-	</tr>
-	<tr>
-		
-		<td colspan="4"><?php echo form::submit('submit', 'Suscribir') ?></td>
+		<td><?php echo form::submit(array("class"=>"button"), 'Suscribir') ?></td>
 	</tr>
 </table>
 <?php echo form::close()?>
+<div class="clear"></div>

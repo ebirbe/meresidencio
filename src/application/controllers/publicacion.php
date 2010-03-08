@@ -75,7 +75,7 @@ class Publicacion_Controller extends Template_Controller {
 
 			if($this->_agregar($_POST)){
 				url::redirect(url::site("imagen/agregar/$this->ultimo_id"));
-				$this->mensaje = "Se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>Se guard&oacute; con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 			}
 		}
@@ -151,7 +151,7 @@ class Publicacion_Controller extends Template_Controller {
 
 		$exito = $post->validate();
 
-		$this->mensaje = "Problema al Guardar";
+		$this->mensaje = "<div class='msg_error'>Problema al Guardar</div>";
 		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
 		$this->errores = arr::overwrite($this->errores, $post->errors('publicacion_errores'));
 
@@ -183,7 +183,7 @@ class Publicacion_Controller extends Template_Controller {
 		if($_POST){
 			if($this->_editar($publicacion_id)){
 				//url::redirect(url::site("publicacion/detalles/$publicacion_id"));
-				$this->mensaje = "Se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>Se guard&oacute; con &eacute;xito.</div>";
 				$this->llenar_formulario($publicacion_id);
 			}
 		}

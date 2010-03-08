@@ -11,7 +11,7 @@ if($notificaciones != array()){
 }else{
 	echo "<p>No tienes ning&uacute;na notificaci&oacute;n.</p>";
 }
-echo "<br /><div align='right'>".html::anchor('notificacion/mostrar', "Ver todas", array('align'=>'right'))."</div>";
 ?>
+<br /><div align='right'><?php echo html_Core::image('media/img/iconos/add.png', array('class'=>'icono'))?><?php echo html::anchor('notificacion/mostrar', "Ver todas", array('align'=>'right'))?></div>
 <br />
 <div class="clear"></div>

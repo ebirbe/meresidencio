@@ -31,7 +31,7 @@ class Imagen_Controller extends Template_Controller {
 		$this->template->titulo = "Agregar im&aacute;genes a la publicaci&oacute;n $publicacion_id";
 		$vista = new View('imagen/agregar');
 
-		if($nueva_pub) $this->mensaje = "Su publicaci&oacute;n se guardo con &eacute;xito bajo el Nro. $publicacion_id, si lo desea puede proceder a agregar im&aacute;genes a su publicaci&oacute;n";
+		if($nueva_pub) $this->mensaje = "<div class='msg_exito'>Su publicaci&oacute;n se guardo con &eacute;xito bajo el Nro. $publicacion_id, si lo desea puede proceder a agregar im&aacute;genes a su publicaci&oacute;n</div>";
 
 		$publicacion = ORM::factory('publicacion', $publicacion_id);
 		$vista->numero_imagenes = $publicacion->imagenes->count();
@@ -40,7 +40,7 @@ class Imagen_Controller extends Template_Controller {
 			if($vista->numero_imagenes == MAXIMO_IMAGENES-2) {$_FILES['imagen3'] = NULL;}
 			if($vista->numero_imagenes == MAXIMO_IMAGENES-1) {$_FILES['imagen2'] = NULL; $_FILES['imagen3'] = NULL;}
 			if($this->_agregar($publicacion_id)){
-				$this->mensaje = "Se guardo con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>Se guardo con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 
 				//Pedimos que realice de nuevo la consulta para contemplar los nuevos datos
@@ -84,14 +84,13 @@ class Imagen_Controller extends Template_Controller {
 	public function _validar(){
 
 		$post = new Validation_Core($_POST);
-		$post->pre_filter('trim');
 		$post->add_callbacks('imagen1', array($this, '_mime_valido'));
 		$post->add_callbacks('imagen2', array($this, '_mime_valido'));
 		$post->add_callbacks('imagen3', array($this, '_mime_valido'));
 
 		$exito = $post->validate();
 
-		$this->mensaje = "Problema al Guardar";
+		$this->mensaje = "<div class='msg_error'>Problema al Guardar</div>";
 		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
 		$this->errores = arr::overwrite($this->errores, $post->errors('imagen_errores'));
 

@@ -5,5 +5,5 @@
 	<td><?php echo $fila->nombre ?></td>
 	<td><?php echo $fila->apellido ?></td>
 	<td><?php echo $fila->correo ?></td>
-	<td><?php echo html_Core::anchor('usuario/datos_usuario/'.$fila->id, 'Ver') ?></td>
+	<td><a href="<?php echo url::site('usuario/datos_usuario/'.$fila->id)?>"><?php echo html_Core::image('media/img/iconos/arrow_right.png', array('class'=>'icono'))?></a></td>
 </tr>

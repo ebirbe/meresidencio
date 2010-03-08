@@ -104,7 +104,7 @@ class Usuario_Controller extends Template_Controller {
 
 		$exito = $post->validate();
 
-		$this->mensaje = "Problema al Guardar";
+		$this->mensaje = "<div class='msg_error'>Problema al Guardar</div>";
 		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
 		$this->errores = arr::overwrite($this->errores, $post->errors('usuario_errores'));
 
@@ -181,7 +181,7 @@ class Usuario_Controller extends Template_Controller {
 		$vista = new View("usuario/datos");
 		if($_POST){
 			if($this->_editar($id)){
-				$this->mensaje = "Los datos se guard&aacute;ron con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>Los datos se guard&aacute;ron con &eacute;xito.</div>";
 			}
 		}
 
@@ -343,7 +343,7 @@ class Usuario_Controller extends Template_Controller {
 				$mensaje = "Esta secci&oacute;n es solo para administradores de este Portal Web.";
 				break;
 			case MSJ_COMPLETAR_REGISTRO:
-				$mensaje = "Para poder disfrutar de los servicios de publicaci&oacute;n debe <a href='".url::site('usuario')."'>completar</a> su registro o <a href='".url::site("usuario/iniciar_sesion")."'>Iniciar Sesi&oacute;n</a>";
+				$mensaje = "Para poder disfrutar de los servicios de publicaci&oacute;n debe <a href='".url::site('usuario/mis_datos')."'>completar</a> su registro o <a href='".url::site("usuario/iniciar_sesion")."'>Iniciar Sesi&oacute;n</a>";
 				break;
 			default:
 				$mensaje = "No tiene permisos de acceso.";
@@ -365,7 +365,7 @@ class Usuario_Controller extends Template_Controller {
 
 		if($_POST){
 			if($this->_cambiar_clave()){
-				$this->mensaje = "Los datos se guard&aacute;ron con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>Los datos se guard&aacute;ron con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 			}
 		}
@@ -410,7 +410,7 @@ class Usuario_Controller extends Template_Controller {
 
 		$exito = $post->validate();
 
-		$this->mensaje = "Problema al Guardar";
+		$this->mensaje = "<div class='msg_error'>Problema al Guardar</div>";
 		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
 		$this->errores = arr::overwrite($this->errores, $post->errors('usuario_errores'));
 

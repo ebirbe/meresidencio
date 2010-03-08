@@ -80,7 +80,7 @@ class Alerta_Controller extends Template_Controller {
 		$vista = new View("alerta/agregar");
 		if($_POST){
 			if($this->_agregar($usuario->id)){
-				$this->mensaje = "Tu alerta se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>Tu alerta se guard&oacute; con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 			}
 		}
@@ -96,16 +96,16 @@ class Alerta_Controller extends Template_Controller {
 		$exito = TRUE;
 
 		if(
-		$datos['estado']==0 &&
-		$datos['ciudad']==0 &&
-		$datos['zona']==0 &&
-		$datos['tipoinmueble']==0
+			$datos['estado']==0 &&
+			$datos['ciudad']==0 &&
+			$datos['zona']==0 &&
+			$datos['tipoinmueble']==0
 		){
-			$this->mensaje = "Debes seleccionar algo.";
+			$this->mensaje = "<div class='msg_error'>Debes seleccionar algo.</div>";
 			return FALSE;
 		}
 
-		foreach (ORM::factory('alerta')->find_all() as $alerta){
+		foreach (ORM::factory('alerta')->where("usuario_id", $usuario_id)->find_all() as $alerta){
 			if($alerta->estado_id=="") $alerta->estado_id=0;
 			if($alerta->ciudad_id=="") $alerta->ciudad_id=0;
 			if($alerta->zona_id=="") $alerta->zona_id=0;
@@ -116,7 +116,7 @@ class Alerta_Controller extends Template_Controller {
 			$datos['zona'] == $alerta->zona_id &&
 			$datos['tipoinmueble'] == $alerta->tipoinmueble_id
 			){
-				$this->mensaje = "No se guard&oacute;, Ya te has suscrito a una alerta id&eacute;ntica";
+				$this->mensaje = "<div class='msg_exito'>No se guard&oacute;, Ya te has suscrito a una alerta id&eacute;ntica</div>";
 				$exito = FALSE;
 				break;
 			}
