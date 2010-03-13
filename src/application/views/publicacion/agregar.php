@@ -1,12 +1,10 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script');?>
 <?php echo html_Core::script('media/js/scw.js', FALSE); ?>
 <?php echo new View('js/combo_regiones'); ?>
+<h2>Menu de Publicaci&oacute;n</h2>
 <?php echo form::open() ?>
 <?php echo form::hidden('usuario',$usuario_id) ?>
-<table>
-	<tr>
-		<th colspan="3">Agregar Publicaci&oacute;n</th>
-	</tr>
+<table class="tabla_ext">
 	<tr>
 		<th colspan="3"><?php echo $mensaje ?></th>
 	</tr>
@@ -37,22 +35,24 @@
 	</tr>
 	<tr>
 		<td><?php echo form::label('direccion','Direccion:') ?></td>
-		<td><?php echo form::input('direccion', $formulario['direccion']) ?></td>
+		<td><?php echo form::input('direccion', $formulario['direccion'], "size='30'") ?></td>
 		<td><?php echo $errores['direccion'] ?></td>
 	</tr>
 	<tr>
 		<td><?php echo form::label('hab','Habitaciones:') ?></td>
-		<td><?php echo form::input('habitaciones', $formulario['habitaciones']) ?></td>
+		<td><?php echo form::input('habitaciones', $formulario['habitaciones'], "size='2'") ?></td>
 		<td><?php echo $errores['habitaciones'] ?></td>
 	</tr>
 	<tr>
 		<td><?php echo form::label('mts','Metros<sup>2</sup>:') ?></td>
-		<td><?php echo form::input('mts', $formulario['mts']) ?></td>
+		<td><?php echo form::input('mts', $formulario['mts'], "size='2'") ?></td>
 		<td><?php echo $errores['mts'] ?></td>
 	</tr>
+</table>
+<table class="tabla_ext">
 	<tr>
-		<td colspan="1">Servicios:</td>
-		<td colspan="2">Cercanias:</td>
+		<th colspan="1">COMODIDADES:</th>
+		<th colspan="2">CERCANIAS:</th>
 	</tr>
 	<tr>
 		<td><?php 
@@ -71,14 +71,16 @@
 		}
 		?></td>
 	</tr>
+</table>
+<table class="tabla_ext">
 	<tr>
 		<td><?php echo form::label('precio','Precio:') ?></td>
-		<td><?php echo form::input('precio', $formulario['precio']) ?></td>
+		<td><?php echo form::input('precio', $formulario['precio'], "size='8'") ?></td>
 		<td><?php echo $errores['precio'] ?></td>
 	</tr>
 	<tr>
 		<td><?php echo form::label('deposito','Meses de Deposito:') ?></td>
-		<td><?php echo form::input('deposito', $formulario['deposito']) ?></td>
+		<td><?php echo form::input('deposito', $formulario['deposito'], "size='2'") ?></td>
 		<td><?php echo $errores['deposito'] ?></td>
 	</tr>
 	<tr>
@@ -94,7 +96,7 @@
 	</tr>
 	<?php }?>
 	<tr>
-		<td colspan="3"><?php echo form::submit(NULL, 'Guardar') ?></td>
+		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Guardar') ?></td>
 	</tr>
 </table>
 		<?php echo form::close() ?>

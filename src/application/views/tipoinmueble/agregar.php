@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script');?>
-
+<h2>Agregar Tipo de Inmueble</h2>
 <?php echo form::open() ?>
-<table>
+<table class="tabla_ext">
 	<tr>
 		<th colspan="4"><?php echo $mensaje ?></th>
 	</tr>
@@ -11,9 +11,12 @@
 		<td><?php echo $errores['tipoinmueble'] ?></td>
 	</tr>
 	<tr>
-		<td colspan="4"><?php echo form::submit(NULL,'Guardar') ?></td>
+		<td colspan="4"><?php echo form::submit(array('class'=>'button'),'Guardar') ?></td>
 	</tr>
 </table>
 <?php echo form::close() ?>
-<br>
-<?php echo html::anchor('tipoinmueble', '<- Volver') ?>
+<?php 
+$lista = new View('tipoinmueble/lista');
+$lista->tipo_in = ORM::factory('tipoinmueble')->find_all();
+echo $lista;
+?>

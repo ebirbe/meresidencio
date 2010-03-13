@@ -29,6 +29,9 @@ class Tipoinmueble_Controller extends Template_Controller {
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 		
+		$this->agregar();
+		
+		/*
 		$contenido = Tipoinmueble_Model::combobox();
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('tipoinmueble/agregar','Nuevo Tipo de Inmueble');
@@ -36,6 +39,7 @@ class Tipoinmueble_Controller extends Template_Controller {
 		$contenido .=  html_Core::anchor('tipoinmueble/lista','Ver Tipo de Inmueble');
 
 		$this->template->contenido = $contenido;
+		*/
 	}
 
 	/**
@@ -52,11 +56,11 @@ class Tipoinmueble_Controller extends Template_Controller {
 		$vista = new View("tipoinmueble/agregar");
 		if($_POST){
 			if($this->_agregar($_POST)){
-				$this->mensaje = $_POST['tipoinmueble']." se guardo con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['tipoinmueble']." se guardo con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 			}
 		}
-
+		
 		$vista->mensaje = $this->mensaje;
 		$vista->formulario = $this->formulario;
 		$vista->errores = $this->errores;
@@ -92,7 +96,7 @@ class Tipoinmueble_Controller extends Template_Controller {
 
 		$exito = $post->validate();
 
-		$this->mensaje = "Problema al Guardar";
+		$this->mensaje = "<div class='msg_error'>Problema al Guardar</div>";
 		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
 		$this->errores = arr::overwrite($this->errores, $post->errors('formulario_errores'));
 
@@ -133,7 +137,7 @@ class Tipoinmueble_Controller extends Template_Controller {
 		$vista = new View("tipoinmueble/agregar");
 		if($_POST){
 			if($this->_editar($_POST, $id)){
-				$this->mensaje = $_POST['tipoinmueble']." se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['tipoinmueble']." se guard&oacute; con &eacute;xito.</div>";
 			}
 		}
 
@@ -172,11 +176,13 @@ class Tipoinmueble_Controller extends Template_Controller {
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 
 		ORM::factory('tipoinmueble', $id)->delete();
+		$this->auto_render = false;
+		header("Location: ". url::site("tipoinmueble"));
 
-		$contenido = "Borrado";
+		/*$contenido = "Borrado";
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('tipoinmueble/lista', '<- Volver');
-		$this->template->contenido = $contenido;
+		$this->template->contenido = $contenido;*/
 	}
 }
 ?>

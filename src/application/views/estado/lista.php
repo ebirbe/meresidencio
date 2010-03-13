@@ -7,13 +7,13 @@
 		<td rowspan="4"><?php echo html_Core::specialchars($fila->nombre) ?></td>
 	</tr>
 	<tr>
-		<td class="columna_titulos"><?php echo html_Core::anchor('estado/editar/'.$fila->id, 'Editar') ?></td>
+		<td class="columna_titulos"><a href='<?php echo url::site('estado/editar/'.$fila->id)?>'><?php echo html_Core::image('media/img/iconos/table_edit.png', array('class'=>'icono'))?>Editar</a></td>
 	</tr>
 	<tr>
-		<td><?php echo html_Core::anchor('estado/borrar/'.$fila->id, 'Borrar') ?></td>
+		<td><a href='<?php echo url::site('estado/borrar/'.$fila->id)?>'><?php echo html_Core::image('media/img/iconos/cancel.png', array('class'=>'icono'))?>Borrar</a></td>
 	</tr>
 	<tr>
-		<td><?php echo html_Core::anchor('ciudad/agregar/'.$fila->id, 'Ver Ciudades') ?></td>
+		<td><a href='<?php echo url::site('ciudad/agregar/'.$fila->id)?>'><?php echo html_Core::image('media/img/iconos/arrow_right.png', array('class'=>'icono'))?>Ciudades</a></td>
 	</tr>
 	<?php } ?>
 </table>

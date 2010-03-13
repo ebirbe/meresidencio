@@ -108,7 +108,7 @@ img { border:none }
 	
 .img-left { float:left; width: 160px; height: 120px; margin:0 20px 15px 0; position:relative; top:5px }
 .img-right { float:right; margin:0 0 15px 20px; position:relative; top:5px }
-.img-center { display: block; margin: auto auto 15px auto; width: 160px; height: 120px; position:relative; top:0px; }
+.img-center { display: block; margin: 15px auto 15px auto; width: 160px; height: 120px; position:relative; top:0px; }
 	
 	
 /* --------------------------------------------- */
@@ -339,4 +339,17 @@ label {
 	vertical-align: middle;
 	position: relative;
 	margin: 0 5px 0 0; 
+}
+
+.tbl_navegar {
+	width:724px;
+	margin:auto;
+	padding:5px;
+}
+
+.btn_navegar {
+	background-color: #ffff99;
+	width:200px;
+	text-align: center;
+	font-weight: bold;
 }

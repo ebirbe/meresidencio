@@ -5,6 +5,7 @@ class Ciudad_Controller extends Template_Controller {
 	protected $formulario;
 	protected $errores;
 	protected $mensaje;
+	protected $estado_id;
 
 	public function __construct()
 	{
@@ -29,7 +30,9 @@ class Ciudad_Controller extends Template_Controller {
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 		
-		$datos = $_POST;
+		$this->agregar($estado_id);
+		
+		/*$datos = $_POST;
 		if ($estado_id == NULL) {
 			if ($datos==NULL){
 				$contenido = "Debe seleccionar un estado primero:<br>";
@@ -47,7 +50,8 @@ class Ciudad_Controller extends Template_Controller {
 			$contenido .= '<br>';
 			$contenido .=  html_Core::anchor('ciudad/lista/'.$estado_id,'Ver Ciudades');
 		}
-		$this->template->contenido = $contenido;
+		$this->estado_id = $estado_id;
+		$this->template->contenido = $contenido;*/
 	}
 
 	/**
@@ -59,11 +63,14 @@ class Ciudad_Controller extends Template_Controller {
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 		
-		$contenido = "Borrado";
+		/*$contenido = "Borrado";
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('ciudad', '<-Volver');
-		$this->template->contenido = $contenido;
+		$this->template->contenido = $contenido;*/
+		$estado_id = ORM::factory('ciudad', $id)->estado_id;
 		ORM::factory('ciudad', $id)->delete();
+		$this->auto_render = false;
+		header("Location: ". url::site("ciudad/$estado_id"));
 	}
 
 	/**
@@ -71,6 +78,8 @@ class Ciudad_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function editar($estado_id, $id){
+		
+		$this->estado_id = $estado_id;
 		
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
@@ -90,9 +99,6 @@ class Ciudad_Controller extends Template_Controller {
 				$this->mensaje = "<div class='msg_exito'>".$_POST['ciudad']." se guard&oacute; con &eacute;xito.</div>";
 			}
 		}
-		
-		$ciudad = new Ciudad_Model();
-		$vista->ciudad = $ciudad->find_all()->as_array();
 		
 		$vista->mensaje = $this->mensaje;
 		$vista->nombreEstado = $estado->nombre;
@@ -146,6 +152,8 @@ class Ciudad_Controller extends Template_Controller {
 	 */
 	public function agregar($estado_id){
 		
+		$this->estado_id = $estado_id;
+		
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 		
@@ -158,9 +166,6 @@ class Ciudad_Controller extends Template_Controller {
 				$this->limpiar_formulario();
 			}
 		}
-		
-		$ciudad = new Ciudad_Model();
-		$vista->ciudad = $ciudad->find_all()->as_array();
 		
 		$vista->mensaje = $this->mensaje;
 		$vista->nombreEstado = ORM::factory('estado',$estado_id)->nombre;
@@ -180,6 +185,7 @@ class Ciudad_Controller extends Template_Controller {
 	public function _unico(Validation_Core  $array, $campo){
 		$condicion = array(
 			'nombre' => $array[$campo],
+			'estado_id' => $this->estado_id,
 		);
 		$existe = (bool)ORM::factory('ciudad')->where($condicion)->count_all();
 		if($existe){

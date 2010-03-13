@@ -7,10 +7,10 @@
 		<td rowspan="3"><?php echo html_Core::specialchars($fila->nombre) ?></td>
 	</tr>
 	<tr>
-		<td><?php echo html_Core::anchor('zona/editar/'.$fila->ciudad_id.'/'.$fila->id, 'Editar') ?></td>
+		<td class="columna_titulos"><a href='<?php echo url::site('zona/editar/'.$fila->ciudad_id.'/'.$fila->id)?>'><?php echo html_Core::image('media/img/iconos/table_edit.png', array('class'=>'icono'))?>Editar</a></td>
 	</tr>
 	<tr>
-		<td><?php echo html_Core::anchor('zona/borrar/'.$fila->id, 'Borrar') ?></td>
+		<td><a href='<?php echo url::site('zona/borrar/'.$fila->id)?>'><?php echo html_Core::image('media/img/iconos/cancel.png', array('class'=>'icono'))?>Borrar</a></td>
 	</tr>
 	<?php } ?>
 </table>

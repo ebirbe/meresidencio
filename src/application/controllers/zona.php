@@ -5,6 +5,7 @@ class Zona_Controller extends Template_Controller {
 	protected $formulario;
 	protected $errores;
 	protected $mensaje;
+	protected $ciudad_id;
 
 	public function __construct()
 	{
@@ -26,6 +27,9 @@ class Zona_Controller extends Template_Controller {
 
 	public function index($ciudad_id = NULL){
 		
+		$this->agregar($ciudad_id);
+		
+		/*
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 		
@@ -67,6 +71,7 @@ class Zona_Controller extends Template_Controller {
 		
 		//Se imprime el contenido
 		$this->template->contenido = $contenido;
+		*/
 	}
 
 	/**
@@ -77,12 +82,15 @@ class Zona_Controller extends Template_Controller {
 		
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
-
+		
+		$ciudad_id = ORM::factory('zona', $id)->ciudad_id;
 		ORM::factory('zona', $id)->delete();
-		$contenido = "Borrado";
+		$this->auto_render = false;
+		header("Location: ". url::site("zona/$ciudad_id"));
+		/*$contenido = "Borrado";
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('zona', '<-Volver');
-		$this->template->contenido = $contenido;
+		$this->template->contenido = $contenido;*/
 	}
 
 	/**
@@ -131,7 +139,7 @@ class Zona_Controller extends Template_Controller {
 		$exito = false;
 		$datos = $_POST;
 		$zona = new Zona_Model($id);
-		if($this->_validar()){
+		if($this->_validar($zona->ciudad_id)){
 			$zona->nombre = $datos['zona'];
 			$zona->save();
 			$exito = true;
@@ -200,6 +208,7 @@ class Zona_Controller extends Template_Controller {
 	public function _unico(Validation_Core  $array, $campo){
 		$condicion = array(
 			'nombre' => $array[$campo],
+			'ciudad_id' => $this->ciudad_id,
 		);
 		$existe = (bool)ORM::factory('zona')->where($condicion)->count_all();
 		if($existe){
@@ -210,7 +219,9 @@ class Zona_Controller extends Template_Controller {
 	/**
 	 * Validacion de los datos obtenidos a traves del metodo post
 	 */
-	public function _validar(){
+	public function _validar($ciudad_id){
+		
+		$this->ciudad_id = $ciudad_id;
 
 		$post = new Validation_Core($_POST);
 		$post->pre_filter('trim');
@@ -234,11 +245,11 @@ class Zona_Controller extends Template_Controller {
 	public function _agregar($ciudad_id){
 		$exito = false;
 		$datos = $_POST;
-		$ciudad = new Zona_Model();
-		if($this->_validar()){
-			$ciudad->nombre = $datos['zona'];
-			$ciudad->ciudad_id = $ciudad_id;
-			$ciudad->save();
+		$zona = new Zona_Model();
+		if($this->_validar($ciudad_id)){
+			$zona->nombre = $datos['zona'];
+			$zona->ciudad_id = $ciudad_id;
+			$zona->save();
 			$exito = true;
 		}
 		return $exito;

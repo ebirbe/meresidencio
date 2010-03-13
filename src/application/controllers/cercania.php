@@ -26,7 +26,9 @@ class Cercania_Controller extends Template_Controller {
 
 	public function index(){
 		
-		//Control de acceso
+		$this->agregar();
+		
+		/*//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 		
 		$contenido = Cercania_Model::combobox();
@@ -36,6 +38,7 @@ class Cercania_Controller extends Template_Controller {
 		$contenido .=  html_Core::anchor('cercania/lista','Ver Cercanias');
 
 		$this->template->contenido = $contenido;
+		*/
 	}
 
 	/**
@@ -52,7 +55,7 @@ class Cercania_Controller extends Template_Controller {
 		$vista = new View("cercania/agregar");
 		if($_POST){
 			if($this->_agregar($_POST)){
-				$this->mensaje = $_POST['cercania']." se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['cercania']." se guard&oacute; con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 			}
 		}
@@ -92,7 +95,7 @@ class Cercania_Controller extends Template_Controller {
 
 		$exito = $post->validate();
 
-		$this->mensaje = "Problema al Guardar";
+		$this->mensaje = "<div class='msg_error'>Problema al Guardar</div>";
 		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
 		$this->errores = arr::overwrite($this->errores, $post->errors('formulario_errores'));
 
@@ -133,7 +136,7 @@ class Cercania_Controller extends Template_Controller {
 		$vista = new View("cercania/agregar");
 		if($_POST){
 			if($this->_editar($_POST, $id)){
-				$this->mensaje = $_POST['cercania']." se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['cercania']." se guard&oacute; con &eacute;xito.</div>";
 			}
 		}
 
@@ -172,11 +175,13 @@ class Cercania_Controller extends Template_Controller {
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 		
 		ORM::factory('cercania', $id)->delete();
+		$this->auto_render = false;
+		header("Location: ". url::site('cercania'));
 
-		$contenido = "Borrado";
+		/*$contenido = "Borrado";
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('cercania/lista', '<- Volver');
-		$this->template->contenido = $contenido;
+		$this->template->contenido = $contenido;*/
 	}
 }
 ?>

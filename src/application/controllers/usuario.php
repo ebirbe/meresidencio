@@ -62,9 +62,11 @@ class Usuario_Controller extends Template_Controller {
 		$vista = new View('usuario/suscribir');
 		if($_POST){
 			if($exito = $this->_suscribir()){
+
 				$this->template->titulo = "Felicitaciones {$_POST['nombre']}! Registro exitoso.";
 
 				//TODO Aqui seria mejor usar un redirect y convertir la bienvenida en un metodo
+
 				$vista = new View('usuario/bienvenida');
 				$vista->nombre = $_POST['nombre'];
 				$vista->apellido = $_POST['apellido'];
@@ -160,6 +162,11 @@ class Usuario_Controller extends Template_Controller {
 			$usuario->tipo = USUARIO_COMUN;
 			$usuario->activo = true;
 			$usuario->save();
+				
+			$mail = new View('mail/bienvenida');
+			$mail->usuario = $usuario;
+			email::send($usuario->correo, "erickcion@gmail.com", "Registro exitoso en ".NOMBRE_SITIO, $mail, TRUE);
+				
 			$exito = true;
 		}
 		return $exito;

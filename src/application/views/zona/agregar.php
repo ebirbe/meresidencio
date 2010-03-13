@@ -17,7 +17,7 @@
 <?php echo form::close() ?>
 <?php 
 $lista = new View('zona/lista');
-$lista->zona = $zona;
+$lista->zona = ORM::factory('zona')->where('ciudad_id', $ciudad_id)->find_all();
 $lista->ciudad_id = $ciudad_id;
 echo $lista;
 ?>

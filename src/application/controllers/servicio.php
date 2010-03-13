@@ -26,6 +26,9 @@ class Servicio_Controller extends Template_Controller {
 
 	public function index(){
 		
+		$this->agregar();
+		
+		/*
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 		
@@ -36,6 +39,7 @@ class Servicio_Controller extends Template_Controller {
 		$contenido .=  html_Core::anchor('servicio/lista','Ver Servicios');
 
 		$this->template->contenido = $contenido;
+		*/
 	}
 
 	/**
@@ -52,7 +56,7 @@ class Servicio_Controller extends Template_Controller {
 		$vista = new View("servicio/agregar");
 		if($_POST){
 			if($this->_agregar($_POST)){
-				$this->mensaje = $_POST['servicio']." se guardo con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['servicio']." se guardo con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 			}
 		}
@@ -92,7 +96,7 @@ class Servicio_Controller extends Template_Controller {
 
 		$exito = $post->validate();
 
-		$this->mensaje = "Problema al Guardar";
+		$this->mensaje = "<div class='msg_error'>Problema al Guardar</div>";
 		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
 		$this->errores = arr::overwrite($this->errores, $post->errors('formulario_errores'));
 
@@ -133,7 +137,7 @@ class Servicio_Controller extends Template_Controller {
 		$vista = new View("servicio/agregar");
 		if($_POST){
 			if($this->_editar($_POST, $id)){
-				$this->mensaje = $_POST['servicio']." se guard&oacute; con &eacute;xito.";
+				$this->mensaje = "<div class='msg_exito'>".$_POST['servicio']." se guard&oacute; con &eacute;xito.</div>";
 			}
 		}
 
@@ -172,11 +176,13 @@ class Servicio_Controller extends Template_Controller {
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
 		
 		ORM::factory('servicio', $id)->delete();
-
-		$contenido = "Borrado";
+		$this->auto_render = false;
+		header("Location: ". url::site('servicio'));
+		
+		/*$contenido = "Borrado";
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('servicio/lista', '<- Volver');
-		$this->template->contenido = $contenido;
+		$this->template->contenido = $contenido;*/
 	}
 }
 ?>

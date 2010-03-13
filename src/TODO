@@ -1,5 +1,7 @@
 - Menu de desplazamiento falta
 - Olvido su contraseña falta
+- Borrar imagen dice "Volver" y manda una pagina mala
+- El calculo q esta en la calificacion esta malo
 
 - Al agregar zonas y (supongo que ciudades tambien) no permite agregarlas si otra ciudad (o estado) tienen una zona (y ciudad tambien) con el mismo nombre
 - En la opción de Habilitar y Deshabilitar usuario (en usuario/editar) al deshabilitar notificar las consecuensias y pedir confirmación
@@ -21,3 +23,4 @@ Descripcion
 <?php echo html_Core::image('media/img/iconos/user.png', array('class'=>'icono'))?>
 
 array('class'=>'button')
+<div class='msg_exito'>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 $menu = array(
 	"Inicio" => url::base(),
 	"Usuario" => array(
@@ -27,11 +27,7 @@ if($usr_tipo == USUARIO_ADMIN){
 		"Usuarios" => url::site("usuario/buscar"),
 		"Publicaciones" => url::site("publicacion/lista"),
 		"Imagenes" => url::site("imagen/todas"),
-		"Regiones" => array(
-			"Estados"=> url::site("estado"),
-			"Ciudades"=> url::site("ciudad"),
-			"Zonas"=> url::site("zona"),
-		),
+		"Regiones" => url::site("estado"),
 		"Otros" => array(
 			"Tipos de Inmueble"=> url::site("tipoinmueble"),
 			"Comodidades"=> url::site("servicio"),
@@ -141,7 +137,7 @@ function dibujar_menu($m, $c){
       	</ul>
     </div>
 	<!-- END navigation -->
-   
+
    <!-- Content -->
     <div id="main-content">
     	<div class="right">
@@ -150,6 +146,29 @@ function dibujar_menu($m, $c){
             <?php echo $panel_opciones ?>
             <?php echo $notificaciones ?>
         </div>
+    
+    <!-- Barra de Historial
+    <div>
+   	<table class="tbl_navegar">
+   		<tr>
+   		<?php
+   		if(is_array($historial)){
+   			krsort($historial);
+   			$i=0;
+   			foreach ($historial as $fila){
+   				if($i==3) break;
+   		?>
+   			<td class="btn_navegar"><?php echo html::anchor($fila[1], $fila[0])?></td>
+   		<?php 
+   			$i++;
+   			}
+   		}
+   		?>
+   		</tr>
+   	</table>
+   </div>
+  END Barra de Historial -->
+   
     <div class="left">
 		        <?php echo $contenido ?>
       </div>

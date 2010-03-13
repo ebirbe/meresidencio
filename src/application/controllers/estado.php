@@ -46,8 +46,9 @@ class Estado_Controller extends Template_Controller {
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
-		$this->auto_render = false;
+		
 		ORM::factory('estado', $id)->delete();
+		$this->auto_render = false;
 		header("Location: ". url::site("estado"));
 	}
 

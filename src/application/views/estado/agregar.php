@@ -15,7 +15,6 @@
 	</tr>
 </table>
 <?php echo form::close() ?>
-<br>
 <?php 
 $lista = new View('estado/lista');
 $lista->estado = $estado;

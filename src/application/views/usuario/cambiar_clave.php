@@ -1,9 +1,7 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
+<h2>Cambiar Clave</h2>
 <?php echo form::open() ?>
-<table>
-	<tr>
-		<th colspan="3">Cambiar Clave</th>
-	</tr>
+<table class="tabla_ext">
 	<?php if($mensaje) {?>
 	<tr>
 		<th colspan="3"><?php echo $mensaje ?></th>
@@ -25,7 +23,7 @@
 		<td><?php echo $errores['confirmacion']?></td>
 	</tr>
 	<tr>
-		<td colspan="3"><?php echo form::submit('sibmit', 'Cambiar Clave')?></td>
+		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Cambiar Clave')?></td>
 	</tr>
 </table>
 	<?php echo form::close() ?>
