@@ -118,13 +118,114 @@ class Publicacion_Controller extends Template_Controller {
 			//Guarda la publicacion
 			$publicacion->save();
 			$this->ultimo_id = $publicacion->id;
-
+				
+			//Envio de Alertas por correo.
+				
+			$mail = new View('mail/alerta');
+			$mail->publicacion = $publicacion;
+			
+			$zona = $publicacion->zona->id;
+			$ciudad = $publicacion->zona->ciudad->id;
+			$estado = $publicacion->zona->ciudad->estado->id;
+			$tipoinmueble = $publicacion->tipoinmueble->id;
+			
+			//Quien busca por Tipo
+			$where_cond = array(
+				'estado_id' => NULL,
+				'ciudad_id' => NULL,
+				'zona_id' => NULL,
+				'tipoinmueble_id' => $tipoinmueble,
+			);
+			$alertas = ORM::factory('alerta')
+			->where($where_cond)->find_all();
+			foreach ($alertas as $fila){
+				$mail->usuario = $fila->usuario;
+				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+			}
+			
+			//Quien busca por zona
+			$where_cond = array(
+				'zona_id' => $zona,
+				'tipoinmueble_id' => NULL,
+			);
+			$alertas = ORM::factory('alerta')
+			->where($where_cond)->find_all();
+			foreach ($alertas as $fila){
+				$mail->usuario = $fila->usuario;
+				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+			}
+			
+			//Quien busca por zona y Tipo
+			$where_cond = array(
+				'zona_id' => $zona,
+				'tipoinmueble_id' => $tipoinmueble,
+			);
+			$alertas = ORM::factory('alerta')
+			->where($where_cond)->find_all();
+			
+			foreach ($alertas as $fila){
+				$mail->usuario = $fila->usuario;
+				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+			}
+			
+			//Quien busca por ciudad y Tipo
+			$where_cond = array(
+				'ciudad_id' => $ciudad,
+				'zona_id' => NULL,
+				'tipoinmueble_id' => $tipoinmueble,
+			);
+			$alertas = ORM::factory('alerta')
+			->where($where_cond)->find_all();
+			foreach ($alertas as $fila){
+				$mail->usuario = $fila->usuario;
+				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+			}
+			
+			//Quien busca por ciudad
+			$where_cond = array(
+				'ciudad_id' => $ciudad,
+				'zona_id' => NULL,
+				'tipoinmueble_id' => NULL,
+			);
+			$alertas = ORM::factory('alerta')
+			->where($where_cond)->find_all();
+			foreach ($alertas as $fila){
+				$mail->usuario = $fila->usuario;
+				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+			}
+			
+			//Quien busca por estado y Tipo
+			$where_cond = array(
+				'estado_id' => $estado,
+				'ciudad_id' => NULL,
+				'zona_id' => NULL,
+				'tipoinmueble_id' => $tipoinmueble,
+			);
+			$alertas = ORM::factory('alerta')
+			->where($where_cond)->find_all();
+			foreach ($alertas as $fila){
+				$mail->usuario = $fila->usuario;
+				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+			}
+			
+			//Quien busca por estado
+			$where_cond = array(
+				'estado_id' => $estado,
+				'ciudad_id' => NULL,
+				'zona_id' => NULL,
+				'tipoinmueble_id' => NULL,
+			);
+			$alertas = ORM::factory('alerta')
+			->where($where_cond)->find_all();
+			foreach ($alertas as $fila){
+				$mail->usuario = $fila->usuario;
+				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+			}
+			
 			$exito = TRUE;
 		}
-
 		return $exito;
 	}
-
 
 	/**
 	 * Validacion de los datos obtenidos a traves del metodo post
@@ -279,7 +380,7 @@ class Publicacion_Controller extends Template_Controller {
 		//CONDICION DE BUSQUEDA
 		$datos = $this->_limpiar_datos_busqueda($_POST);
 		$filtrar = FALSE;
-		$where_cond['activo'] = 1;
+		$where_cond['activo'] = TRUE;
 		if($_POST){
 			$this->session->set('pub_busqueda', $datos);
 		}
@@ -415,28 +516,28 @@ class Publicacion_Controller extends Template_Controller {
 		$publicacion = ORM::factory("publicacion", $id);
 		$vista->publicacion = $publicacion;
 		$vista->vista_caracteristicas = new View('publicacion/caracteristicas');
-		$vista->vista_caracteristicas->publicacion = $publicacion; 
-		
+		$vista->vista_caracteristicas->publicacion = $publicacion;
+
 		//Componemos el panel de opciones y los vinculos
 		$v_opciones = new View('plantillas/panel_opciones');
 		$links = array();
 		if(is_a($usuario, "Usuario_Model") && $usuario->es_propio($publicacion->usuario_id)){
 			$links[]=array(
-				url::site('publicacion/editar/'.$publicacion->id),
+			url::site('publicacion/editar/'.$publicacion->id),
 				"Editar publicaci&oacute;n",
 			);
 			$links[]=array(
-				url::site('imagen/agregar/'.$publicacion->id),
+			url::site('imagen/agregar/'.$publicacion->id),
 				"Editar im&aacute;genes",
 			);
 		}else{
 			$links[]=array(
-				url::site('publicacion/ofertar/'.$publicacion->id),
+			url::site('publicacion/ofertar/'.$publicacion->id),
 				"Ofertar",
 			);
 		}
 		$v_opciones->links = $links;
-		
+
 		$this->template->panel_opciones = $v_opciones;
 		$this->template->contenido = $vista;
 
@@ -505,18 +606,18 @@ class Publicacion_Controller extends Template_Controller {
 			//echo "YA OFERTO";
 			$calificacion_id = $calificacion->id;
 		}
-		
+
 		$this->template->panel_opciones = new View('plantillas/panel_opciones');
 		$links[] = array(
-				url::site('calificacion/calificar/'.$calificacion_id),
+		url::site('calificacion/calificar/'.$calificacion_id),
 				"Calificar Operaci&oacute;n",
 		);
 		$links[] = array(
-				url::site('publicacion/detalles/'.$publicacion_id),
+		url::site('publicacion/detalles/'.$publicacion_id),
 				"Ver Original",
 		);
 		$this->template->panel_opciones->links = $links;
-		
+
 		$this->template->titulo = "Solicitud de Alquiler";
 		$vista = new View('publicacion/ofertar');
 		$vista->publicacion = $publicacion;
@@ -536,7 +637,13 @@ class Publicacion_Controller extends Template_Controller {
 		$calificacion->usuario_id = $usuario_id;
 		$calificacion->publicacion_id = $publicacion_id;
 		$calificacion->save();
-
+		
+		//Envio de Correo al cliente
+		$mail = new View('mail/ofertar');
+		$mail->publicacion = $calificacion->publicacion;
+		
+		Mail_Model::enviar(ORM::factory('usuario',$cliente_id)->correo,MAIL_ASNT_OFERTAR,$mail);
+		
 		return $calificacion->id;
 	}
 }

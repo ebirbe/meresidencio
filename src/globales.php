@@ -62,4 +62,14 @@ define('INTRO_LATERAL',
 	 <p>La nueva web para la promoci&oacute;n de residencias estudiantiles te da la bienvenida a su portal. Gracias por Visitarnos!!</p>\n
 	 <div class='clear'></div>\n"
 );
+
+/**
+ * Variables de Correos Electronicos
+ */
+//CORREOS ELECTRONICOS
+define('MAIL_DE', NOMBRE_SITIO.' <erickcion@gmail.com>');
+//ASUNTOS
+define('MAIL_ASNT_BIENVENIDA', 'Registro exitoso en '. NOMBRE_SITIO);
+define('MAIL_ASNT_ALERTA', 'Han publicado una residencia para ti');
+define('MAIL_ASNT_OFERTAR', 'Datos de residencia solicitada');
 ?>

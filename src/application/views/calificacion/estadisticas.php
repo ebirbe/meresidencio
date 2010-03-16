@@ -26,7 +26,7 @@ $calificaciones = $calificaciones
 <h2>Estad&iacute;sticas</h2>
 <br/>
 <table>
-	<tr>
+	<tr class="msg_exito">
 		<th>Exitosas</th>
 		<td align="right" width="100"><?php echo Calificacion_Model::contar_calificacion($usuario->id, CALIFICACION_EXITO); ?>pts</td>
 		<td align="right" width="100"><?php echo Calificacion_Model::porcentaje_calificacion($usuario->id, CALIFICACION_EXITO); ?>%</td>
@@ -36,15 +36,15 @@ $calificaciones = $calificaciones
 		<td align="right"><?php echo Calificacion_Model::contar_calificacion($usuario->id, CALIFICACION_NULA); ?>pts</td>
 		<td align="right"><?php echo Calificacion_Model::porcentaje_calificacion($usuario->id, CALIFICACION_NULA); ?>%</td>
 	</tr>
-	<tr>
+	<tr  class="msg_error">
 		<th>Fallidas</th>
 		<td align="right"><?php echo Calificacion_Model::contar_calificacion($usuario->id, CALIFICACION_FALLIDA); ?>pts</td>
 		<td align="right"><?php echo Calificacion_Model::porcentaje_calificacion($usuario->id, CALIFICACION_FALLIDA); ?>%</td>
 	</tr>
-	<tr>
+	<tr style="font-size: large">
 		<th>Total</th>
 		<td align="right"><?php echo Calificacion_Model::total_contar($usuario->id); ?>pts</td>
-		<td align="right"><h3><?php echo Calificacion_Model::total_porcentaje($usuario->id); ?>%</h3></td>
+		<td align="right"><?php echo Calificacion_Model::total_porcentaje($usuario->id); ?>%</td>
 	</tr>
 </table>
 <br>

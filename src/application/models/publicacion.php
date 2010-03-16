@@ -27,7 +27,7 @@ class Publicacion_Model extends ORM {
 	}
 	
 	public function aleatorias(){
-		return $this->orderby(NULL, 'RAND()')->limit(3)->find_all();
+		return $this->where('activo', true)->orderby(NULL, 'RAND()')->limit(3)->find_all();
 	}
 }
 ?>

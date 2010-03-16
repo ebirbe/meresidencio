@@ -85,7 +85,7 @@
 	</tr>
 	<tr>
 		<td><?php echo form::label('descripcion','Descripcion:') ?></td>
-		<td><?php echo form::textarea(array('name'=>'descripcion', 'name'=>'descripcion', 'cols'=>'50', 'rows'=>'5'), $formulario['descripcion']) ?></td>
+		<td><?php echo form::textarea(array('name'=>'descripcion', 'cols'=>'50', 'rows'=>'5'), $formulario['descripcion']) ?></td>
 		<td><?php echo $errores['descripcion'] ?></td>
 	</tr>
 	<?php if($editar){?>

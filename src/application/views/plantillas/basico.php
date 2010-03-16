@@ -15,15 +15,16 @@ $menu = array(
 		"Publicar Residencia" => url::site("publicacion/agregar"),
 	),
 	"Nosotros" => array(
-		"&iquest;Quienes Somos?" => url::site("publicacion/lista"),
-		"Mision" => "#",
-		"Vision" => "#",
+		"&iquest;Quienes Somos?" => url::site("nosotros/quienes"),
+		"Mision" => url::site("nosotros/mision"),
+		"Vision" => url::site("nosotros/vision"),
 	),
-	"Contacto" => "#",
+	"Contacto" => url::site("nosotros/contacto"),
 );
 
 if($usr_tipo == USUARIO_ADMIN){
 	$menu["Administrar"] = array(
+		"Inicio" => url::site("admin"),
 		"Usuarios" => url::site("usuario/buscar"),
 		"Publicaciones" => url::site("publicacion/lista"),
 		"Imagenes" => url::site("imagen/todas"),

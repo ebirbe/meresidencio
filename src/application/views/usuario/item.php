@@ -1,5 +1,10 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <tr>
+	<?php if($fila->activo){?>
+		<td><?php echo html_Core::image('media/img/iconos/accept.png', array('class'=>'icono'))?></td>
+	<?php }else{?>
+		<td><?php echo html_Core::image('media/img/iconos/cross.png', array('class'=>'icono'))?></td>
+	<?php }?>
 	<td>#<?php echo $fila->id ?></td>
 	<td><?php echo $fila->login ?></td>
 	<td><?php echo $fila->nombre ?></td>

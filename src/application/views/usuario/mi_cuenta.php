@@ -20,4 +20,4 @@ foreach ($usuario->alertas as $fila){
 }
 ?>
 </table>
-<?php echo "<br /><div align='right'>".html::anchor('alerta/mis_alertas', "Ver todas", array('align'=>'right'))."</div>";?>
+<?php echo "<br /><div align='right'>".html::anchor('alerta/mis_alertas', html_Core::image('media/img/iconos/add.png', array('class'=>'icono'))."Ver todas", array('align'=>'right'))."</div>";?>

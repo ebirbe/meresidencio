@@ -24,8 +24,8 @@
 			else  						echo "-";
 			?>
 		</td>
-		<td class="columna_titulos"><?php echo html::anchor('alerta/consultar/'.$fila->id, 'Consultar') ?></td>
+		<td class="columna_titulos"><?php echo html::anchor('alerta/consultar/'.$fila->id, html_Core::image('media/img/iconos/table_edit.png', array('class'=>'icono')).'Consultar') ?></td>
 	</tr>
 	<tr>
-		<td class="columna_titulos"><?php echo html::anchor('alerta/eliminar/'.$fila->id, 'Eliminar') ?></td>
+		<td class="columna_titulos"><?php echo html::anchor('alerta/eliminar/'.$fila->id, html_Core::image('media/img/iconos/cancel.png', array('class'=>'icono')).'Eliminar') ?></td>
 	</tr>

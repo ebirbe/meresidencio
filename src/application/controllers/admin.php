@@ -15,6 +15,7 @@ class Admin_Controller extends Template_Controller {
 		$vista = new View('admin/index');
 		$usuario = $this->session->get('usuario');
 		$publicacion = ORM_Core::factory('publicacion')
+		->where('activo', TRUE)
 		->limit(2)
 		->orderby('id','DESC')
 		->find_all();

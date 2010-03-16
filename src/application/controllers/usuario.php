@@ -162,11 +162,12 @@ class Usuario_Controller extends Template_Controller {
 			$usuario->tipo = USUARIO_COMUN;
 			$usuario->activo = true;
 			$usuario->save();
-				
+			
+			//Se envia el correo de confirmacion
 			$mail = new View('mail/bienvenida');
 			$mail->usuario = $usuario;
-			email::send($usuario->correo, "erickcion@gmail.com", "Registro exitoso en ".NOMBRE_SITIO, $mail, TRUE);
-				
+			Mail_Model::enviar($usuario->correo, MAIL_ASNT_BIENVENIDA, $mail);
+			
 			$exito = true;
 		}
 		return $exito;

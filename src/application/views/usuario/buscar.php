@@ -15,6 +15,7 @@
 <br>
 <table class="tabla_alertas">
 	<tr align="left">
+		<th>ACT</th>
 		<th>ID</th>
 		<th>LOGIN</th>
 		<th>NOMBRE</th>

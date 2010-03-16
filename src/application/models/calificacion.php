@@ -23,8 +23,12 @@ class Calificacion_Model extends ORM {
 	}
 
 	public static function total($usuario_id){
+		$where_cond = array(
+			'usuario_id' => $usuario_id,
+			'puntos !=' => CALIFICACION_NULA,
+		);
 		$calificaiones = ORM::factory('calificacion')
-		->where('usuario_id', $usuario_id);
+		->where($where_cond);
 		return $calificaiones->count_all();
 	}
 	public static function contar_calificacion($usuario_id, $puntos){
@@ -44,9 +48,10 @@ class Calificacion_Model extends ORM {
 		return ($calificacion * 100) / $total;
 	}
 	public static function total_contar($usuario_id){
+		$nulo = Calificacion_Model::contar_calificacion($usuario_id, CALIFICACION_NULA);
 		$exito = Calificacion_Model::contar_calificacion($usuario_id, CALIFICACION_EXITO);
 		$fallo = Calificacion_Model::contar_calificacion($usuario_id, CALIFICACION_FALLIDA);
-		return $exito - $fallo;
+		return ($exito + $nulo) - $fallo;
 	}
 	public static function total_porcentaje($usuario_id){
 		$tot_contar = Calificacion_Model::total_contar($usuario_id);
@@ -58,6 +63,5 @@ class Calificacion_Model extends ORM {
 		 */
 		return ($tot_contar * 100) / $total;
 	}
-
 }
 ?>
