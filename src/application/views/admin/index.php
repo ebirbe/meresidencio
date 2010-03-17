@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
-<h2>Bienvenido Administrador</h2>
-<p>Esta es la lista de los movimientos recientes realizados en el portal.</p>
+<h2><strong>Bienvenido Administrador</strong></h2>
+<p class="intro-text">Esta es la lista de los movimientos recientes realizados en el portal.</p>
 
 <h2>Usuarios Nuevos</h2>
 <br>

@@ -1,12 +1,10 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script');?>
+<h2>Agregar im&aacute;genes a la publicaci&oacute;n <?php echo $publicacion_id ?></h2>
 <?php echo form::open_multipart() ?>
 <?php echo form::hidden('publicacion',$publicacion_id) ?>
-<table>
+<table class="tabla_ext">
 	<tr>
 		<th colspan="3"><?php echo $mensaje ?></th>
-	</tr>
-	<tr>
-		<th colspan="3">Agregar im&aacute;genes a la publicaci&oacute;n <?php echo $publicacion_id ?></th>
 	</tr>
 	<?php if($numero_imagenes >= 6) {?>
 	<tr>
@@ -36,10 +34,14 @@
 	</tr>
 	<?php } ?>
 	<tr>
-		<td colspan="3"><?php echo form::submit(NULL, 'Guardar') ?></td>
+		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Guardar') ?></td>
 	</tr>
 	<?php }?>
 </table>
+<div class="clear"></div>
+<br>
+<h2>Im&aacute;genes</h2>
+<br>
 <table>
 	<tr>
 	<?php
@@ -57,10 +59,13 @@
 	<?php
 	foreach($publicacion->imagenes as $imagen){
 		?>
-		<td><a
-			href='<?php echo url::site('imagen/eliminar').'/'.$imagen->id ?>'>Eliminar</a>
+		<td align="center"><a
+			href='<?php echo url::site('imagen/eliminar').'/'.$imagen->id ?>'><?php echo html_Core::image('media/img/iconos/cancel.png', array('class'=>'icono', 'alt'=>'Eliminar'))?></a>
 		</td>
 		<?php } ?>
 	</tr>
 </table>
 		<?php echo form::close() ?>
+		<div class="clear"></div>
+		<br><br>
+		<div align="center"><?php echo form::open(url::site("publicacion/detalles/".$publicacion_id), array("method"=>"get")) . form::submit(array('class'=>'button'), 'Finalizar') . form::close() ?></div>
