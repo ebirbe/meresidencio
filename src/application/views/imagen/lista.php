@@ -2,9 +2,10 @@
 $publicacion = "";
 $borrar = "";
 ?>
-<?php if ($imagenes->count() > 0){ ?>
+
 <table class="tabla_ext">
 	<tr>
+	<?php if ($imagenes->count() > 0){ ?>
 	<?php
 	$i = 0;
 	foreach($imagenes as $imagen){
@@ -23,7 +24,9 @@ $borrar = "";
 		</div>
 		</td>
 		<?php } ?>
+		<?php }else{?>
+		<td align="center"><?php echo html_Core::image('media/img/no_img.gif')?></td>
+		<?php }?>
 	</tr>
 </table>
-		<?php }?>
 <div class="clear"></div>

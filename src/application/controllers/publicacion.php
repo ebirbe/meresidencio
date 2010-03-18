@@ -524,16 +524,16 @@ class Publicacion_Controller extends Template_Controller {
 		if(is_a($usuario, "Usuario_Model") && $usuario->es_propio($publicacion->usuario_id)){
 			$links[]=array(
 			url::site('publicacion/editar/'.$publicacion->id),
-				"Editar publicaci&oacute;n",
+				html_Core::image('media/img/iconos/table_edit.png', array('class'=>'icono')) . "Editar publicaci&oacute;n",
 			);
 			$links[]=array(
 			url::site('imagen/agregar/'.$publicacion->id),
-				"Editar im&aacute;genes",
+				html_Core::image('media/img/iconos/picture_edit.png', array('class'=>'icono')) . "Editar im&aacute;genes",
 			);
 		}else{
 			$links[]=array(
 			url::site('publicacion/ofertar/'.$publicacion->id),
-				"Ofertar",
+				html_Core::image('media/img/iconos/cart_go.png', array('class'=>'icono')) . "Solicitar",
 			);
 		}
 		$v_opciones->links = $links;

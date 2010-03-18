@@ -86,7 +86,7 @@ class Zona_Controller extends Template_Controller {
 		$ciudad_id = ORM::factory('zona', $id)->ciudad_id;
 		ORM::factory('zona', $id)->delete();
 		$this->auto_render = false;
-		header("Location: ". url::site("zona/$ciudad_id"));
+		header("Location: ". url::site("zona/agregar/$ciudad_id"));
 		/*$contenido = "Borrado";
 		$contenido .= "<br>";
 		$contenido .= html_Core::anchor('zona', '<-Volver');

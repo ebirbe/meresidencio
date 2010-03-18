@@ -18,18 +18,18 @@ echo $imagen_lista;
 	<?php if(isset($usuario_sesion) && $usuario_sesion->es_propio($publicacion->usuario_id)){ ?>
 	<tr>
 		<td><a
-			href='<?php echo url::site('publicacion/editar/'.$publicacion->id)?>'>Editar
+			href='<?php echo url::site('publicacion/editar/'.$publicacion->id)?>'><?php echo html_Core::image('media/img/iconos/table_edit.png', array('class'=>'icono'))?>Editar
 		Publicacion</a></td>
 	</tr>
 	<tr>
 		<td><a
-			href='<?php echo url::site('imagen/agregar/'.$publicacion->id)?>'>Editar
+			href='<?php echo url::site('imagen/agregar/'.$publicacion->id)?>'><?php echo html_Core::image('media/img/iconos/picture_edit.png', array('class'=>'icono'))?>Editar
 		Imagenes</a></td>
 	</tr>
 	<?php }else{?>
 	<tr>
 		<td><a
-			href='<?php echo url::site('publicacion/ofertar/'.$publicacion->id)?>'>Ofertar</a></td>
+			href='<?php echo url::site('publicacion/ofertar/'.$publicacion->id)?>'><?php echo html_Core::image('media/img/iconos/cart_go.png', array('class'=>'icono'))?>Solicitar</a></td>
 	</tr>
 	<?php } ?>
 </table>

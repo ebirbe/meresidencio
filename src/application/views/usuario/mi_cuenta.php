@@ -11,12 +11,16 @@ ofertas de alquiler de manera sencilla y totalmente gratuita.</p>
 <h2><strong>Alertas</strong></h2>
 <table class="tabla_alertas">
 <?php
-$i=0;
-foreach ($usuario->alertas as $fila){
-	if($i++ >= 2) break;
-	$item = new View('alerta/item');
-	$item->fila = $fila;
-	echo $item;
+if(is_array($usuario->alertas)){
+	$i=0;
+	foreach ($usuario->alertas as $fila){
+		if($i++ >= 2) break;
+		$item = new View('alerta/item');
+		$item->fila = $fila;
+		echo $item;
+	}
+}else{
+	echo "<tr><td>No te has suscrito a ninguna alerta.</td></tr>";
 }
 ?>
 </table>

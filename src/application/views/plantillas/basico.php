@@ -122,9 +122,9 @@ function dibujar_menu($m, $c){
     <!-- Header -->
     <div id="header">
 		<h1><a href="<?php echo url_Core::base() ?>"><?php echo NOMBRE_SITIO ?></a></h1>
-		<span class="contact-info">
-			<?php echo SLOGAN ?>
-		</span>
+		<div class="logo2">
+			<!--<?php echo SLOGAN ?>-->
+		</div>
   	</div>
     <!-- END header -->
     

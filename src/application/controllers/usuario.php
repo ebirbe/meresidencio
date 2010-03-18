@@ -511,11 +511,11 @@ class Usuario_Controller extends Template_Controller {
 		$this->template->panel_opciones = new View('plantillas/panel_opciones');
 		$links[] = array(
 		url::site('usuario/editar/'.$usuario->id),
-				"Editar Mis Datos",
+				html_Core::image('media/img/iconos/user_edit.png', array('class'=>'icono')) . "Editar Datos",
 		);
 		$links[] = array(
 		url::site('usuario/cambiar_clave'),
-				"Cambiar Clave",
+				html_Core::image('media/img/iconos/key_go.png', array('class'=>'icono')) . "Cambiar Clave",
 		);
 		$this->template->panel_opciones->links = $links;
 

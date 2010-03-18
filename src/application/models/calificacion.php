@@ -45,7 +45,7 @@ class Calificacion_Model extends ORM {
 		 * total ---------------- 100%
 		 * calificacion --------- X
 		 */
-		return ($calificacion * 100) / $total;
+		return round(($calificacion * 100) / $total);
 	}
 	public static function total_contar($usuario_id){
 		$nulo = Calificacion_Model::contar_calificacion($usuario_id, CALIFICACION_NULA);
@@ -61,7 +61,7 @@ class Calificacion_Model extends ORM {
 		 * total      ----------- 100%
 		 * tot_contar ----------- X
 		 */
-		return ($tot_contar * 100) / $total;
+		return round(($tot_contar * 100) / $total);
 	}
 }
 ?>
