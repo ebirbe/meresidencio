@@ -66,7 +66,15 @@ class Usuario_Controller extends Template_Controller {
 				$this->template->titulo = "Felicitaciones {$_POST['nombre']}! Registro exitoso.";
 
 				//TODO Aqui seria mejor usar un redirect y convertir la bienvenida en un metodo
-
+				
+				$cond = array(
+					'login' => $_POST['login'],
+					'clave' => $_POST['clave'],
+					'activo' => TRUE,
+				);
+				$usuario = ORM::factory('usuario')->where($cond)->find();
+				$this->session->set('usuario',$usuario);
+				
 				$vista = new View('usuario/bienvenida');
 				$vista->nombre = $_POST['nombre'];
 				$vista->apellido = $_POST['apellido'];
@@ -308,6 +316,7 @@ class Usuario_Controller extends Template_Controller {
 				$cond = array(
 					'login' => $post['login'],
 					'clave' => $post['clave'],
+					'activo' => TRUE,
 				);
 				$usuario = ORM::factory('usuario')->where($cond)->find();
 				$this->session->set('usuario',$usuario);
@@ -535,7 +544,7 @@ class Usuario_Controller extends Template_Controller {
 		$this->template->panel_opciones = new View('plantillas/panel_opciones');
 		$links[] = array(
 		url::site('usuario/editar/'.$usuario->id),
-				"Editar Datos",
+				html_Core::image('media/img/iconos/user_edit.png', array('class'=>'icono')) . "Editar Datos",
 		);
 
 		$this->template->panel_opciones->links = $links;

@@ -11,9 +11,15 @@
 		<td><?php echo $errores['zona'] ?></td>
 	</tr>
 	<tr>
-		<td colspan="4"><?php echo form::submit(array("class"=>"button"),'Guardar') ?></td>
+		<td colspan="2"><?php echo form::submit(array("class"=>"button"),'Guardar') ?></td>
+		<?php if(isset($editar)){?>
+		<td><input type="button"
+			OnClick="window.location.href='<?php echo url::site('zona/agregar/'.$ciudad_id) ?>'"
+			class="button" value="Finalizar" /></td>
+			<?php }?>
 	</tr>
 </table>
+<div align="right"><?php echo html_Core::anchor(url::site('ciudad/agregar/'.ORM::factory('ciudad', $ciudad_id)->estado_id), html_Core::image('media/img/iconos/arrow_left.png', array('class'=>'icono'))."Ciudades")?></div>
 <?php echo form::close() ?>
 <?php 
 $lista = new View('zona/lista');

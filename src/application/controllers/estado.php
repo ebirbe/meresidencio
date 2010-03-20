@@ -77,7 +77,7 @@ class Estado_Controller extends Template_Controller {
 		
 		$estado = new Estado_Model();
 		$vista->estado = $estado->find_all()->as_array();
-		
+		$vista->editar = TRUE;
 		$vista->mensaje = $this->mensaje;
 		$vista->formulario = $this->formulario;
 		$vista->errores = $this->errores;

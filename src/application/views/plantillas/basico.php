@@ -110,7 +110,6 @@ function dibujar_menu($m, $c){
     	   });
     });
     </script>
-	
     
     <title><?php echo html_Core::specialchars(NOMBRE_SITIO). " - ".$titulo; ?></title>
 </head>

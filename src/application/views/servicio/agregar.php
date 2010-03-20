@@ -11,7 +11,12 @@
 		<td><?php echo $errores['servicio'] ?></td>
 	</tr>
 	<tr>
-		<td colspan="4"><?php echo form::submit(array('class'=>'button'),'Guardar') ?></td>
+		<td colspan="2"><?php echo form::submit(array('class'=>'button'),'Guardar') ?></td>
+		<?php if(isset($editar)){?>
+		<td><input type="button"
+			OnClick="window.location.href='<?php echo url::site('servicio/agregar/') ?>'"
+			class="button" value="Finalizar" /></td>
+			<?php }?>
 	</tr>
 </table>
 <?php echo form::close() ?>

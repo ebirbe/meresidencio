@@ -11,12 +11,17 @@
 		<td><?php echo $errores['estado'] ?></td>
 	</tr>
 	<tr>
-		<td colspan="4"><?php echo form::submit(array("class"=>"button"),'Guardar') ?></td>
+		<td colspan="2"><?php echo form::submit(array("class"=>"button"),'Guardar') ?></td>
+		<?php if(isset($editar)){?>
+		<td><input type="button"
+			OnClick="window.location.href='<?php echo url::site('estado/agregar/') ?>'"
+			class="button" value="Finalizar" /></td>
+			<?php }?>
 	</tr>
 </table>
-<?php echo form::close() ?>
-<?php 
-$lista = new View('estado/lista');
-$lista->estado = $estado;
-echo $lista;
+			<?php echo form::close() ?>
+			<?php
+			$lista = new View('estado/lista');
+			$lista->estado = $estado;
+			echo $lista;
 ?>

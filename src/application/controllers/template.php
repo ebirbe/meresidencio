@@ -43,19 +43,35 @@ abstract class Template_Controller extends Controller {
 		$this->template->historial = $this->session->get('historial');
 
 		$this->template->intro_lateral = NULL/*INTRO_LATERAL*/;
-		$this->template->panel_opciones = NULL/*PANEL_OPCIONES*/;
 		$this->template->panel_sesion = new View('usuario/iniciar_sesion_lateral');
 		$this->template->panel_sesion->sesion_usuario = $usuario;
 
 		$v_notif = NULL;
 		$usr_tipo = NULL;
+		$v_opciones = NULL;
 		if($usuario){
 			$usr_tipo = $usuario->tipo;
 			$m_notif = new Notificacion_Model($usuario);
 			$v_notif = new View('notificacion/notificacion_lateral');
 			$v_notif->notificaciones = $m_notif->componer_notificaiones();
+				
+			//Componemos el panel de opciones y los vinculos
+			$v_opciones = new View('plantillas/panel_opciones');
+			$links = array();
+			if(is_a($usuario, "Usuario_Model")){
+				$links[]=array(
+				url::site('publicacion/agregar/'),
+				html_Core::image('media/img/iconos/application_form_add.png', array('class'=>'icono')) . "Publicar",
+				);
+				$links[]=array(
+				url::site('publicacion/buscar/'),
+				html_Core::image('media/img/iconos/zoom.png', array('class'=>'icono')) . "Buscar",
+				);
+			}
+			$v_opciones->links = $links;
 		}
-		$this->template->notificaciones = $v_notif;
+		$this->template->panel_opciones = $v_opciones/*PANEL_OPCIONES*/;
+		$this->template->notificaciones = $v_notif;/*PANEL NOTIFICACIONES*/
 		$this->template->usr_tipo = $usr_tipo;
 		/***********************/
 

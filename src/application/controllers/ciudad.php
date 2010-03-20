@@ -100,6 +100,7 @@ class Ciudad_Controller extends Template_Controller {
 			}
 		}
 		
+		$vista->editar = TRUE;
 		$vista->mensaje = $this->mensaje;
 		$vista->nombreEstado = $estado->nombre;
 		$vista->estado_id = $estado_id;

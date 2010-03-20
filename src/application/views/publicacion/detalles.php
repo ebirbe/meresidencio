@@ -10,7 +10,7 @@ echo $imagen_lista;
 ?>
 
 <?php echo $vista_caracteristicas; ?>
-
+<!-- 
 <table>
 	<tr>
 		<th><h3>Opciones</h3></th>
@@ -33,3 +33,4 @@ echo $imagen_lista;
 	</tr>
 	<?php } ?>
 </table>
+ -->

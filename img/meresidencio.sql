@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-03-2010 a las 00:24:58
+-- Tiempo de generación: 18-03-2010 a las 16:30:31
 -- Versión del servidor: 5.1.37
 -- Versión de PHP: 5.2.10-2ubuntu6.4
 
@@ -46,7 +46,6 @@ INSERT INTO `cercanias` (`id`, `nombre`) VALUES
 -- Volcar la base de datos para la tabla `cercanias_publicaciones`
 --
 
-
 --
 -- Volcar la base de datos para la tabla `ciudades`
 --
@@ -72,22 +71,42 @@ INSERT INTO `ciudades` (`id`, `nombre`, `estado_id`) VALUES
 --
 
 INSERT INTO `estados` (`id`, `nombre`) VALUES
-(1, 'Guarico');
+(1, 'Guarico'),
+(2, 'Amazonas'),
+(3, 'Anzoategui'),
+(4, 'Apure'),
+(5, 'Aragua'),
+(6, 'Barinas'),
+(7, 'Bolivar'),
+(8, 'Carabobo'),
+(9, 'Cojedes'),
+(10, 'Delta Amacuro'),
+(11, 'Dtto. Capital'),
+(12, 'Falcon'),
+(13, 'Lara'),
+(14, 'Merida'),
+(15, 'Miranda'),
+(16, 'Monagas'),
+(17, 'Nueva Esparta'),
+(18, 'Portuguesa'),
+(19, 'Sucre'),
+(20, 'Tachira'),
+(21, 'Trujillo'),
+(22, 'Vargas'),
+(23, 'Yaracuy'),
+(24, 'Zulia');
 
 --
 -- Volcar la base de datos para la tabla `imagenes`
 --
 
-
 --
 -- Volcar la base de datos para la tabla `publicaciones`
 --
 
-
 --
 -- Volcar la base de datos para la tabla `publicaciones_servicios`
 --
-
 
 --
 -- Volcar la base de datos para la tabla `servicios`
@@ -121,7 +140,7 @@ INSERT INTO `tipoinmuebles` (`id`, `nombre`) VALUES
 --
 
 INSERT INTO `usuarios` (`id`, `login`, `clave`, `correo`, `nombre`, `apellido`, `fecha_nac`, `telefono`, `tipo`, `activo`, `estado_id`, `ciudad_id`, `zona_id`) VALUES
-(1, 'admin', '1234', 'erickcion@gmail.com', 'Erick', 'Birbe', '1987-12-12', '04128663381', 1, 1, NULL, NULL, NULL);
+(1, 'admin', '1234', 'erickcion@gmail.com', 'Erick', 'Birbe', '1987-12-12', '04128663381', 1, 1, NULL, NULL, NULL),
 
 --
 -- Volcar la base de datos para la tabla `zonas`

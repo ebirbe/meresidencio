@@ -141,6 +141,7 @@ class Servicio_Controller extends Template_Controller {
 			}
 		}
 
+		$vista->editar = TRUE;
 		$vista->mensaje = $this->mensaje;
 		$vista->formulario = $this->formulario;
 		$vista->errores = $this->errores;

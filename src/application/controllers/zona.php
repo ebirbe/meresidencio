@@ -121,6 +121,7 @@ class Zona_Controller extends Template_Controller {
 		$zona = new Zona_Model();
 		$vista->zona = $zona->find_all()->as_array();
 		
+		$vista->editar = TRUE;
 		$vista->mensaje = $this->mensaje;
 		$vista->nombreCiudad = $ciudad->nombre;
 		$vista->ciudad_id = $ciudad_id;
