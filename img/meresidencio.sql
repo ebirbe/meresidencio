@@ -28,6 +28,21 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Volcar la base de datos para la tabla `calificaciones`
 --
 
+--
+-- Volcar la base de datos para la tabla `servicios`
+--
+
+INSERT INTO `servicios` (`id`, `nombre`) VALUES
+(1, 'Microonda'),
+(2, 'Cocina'),
+(3, 'Nevera'),
+(4, 'TV por Cable'),
+(5, 'Internet'),
+(6, 'Baño'),
+(7, 'Cama'),
+(8, 'Estacionamiento'),
+(9, 'A/Acondicionado'),
+(10, 'Entrada independiente');
 
 --
 -- Volcar la base de datos para la tabla `cercanias`
@@ -45,26 +60,6 @@ INSERT INTO `cercanias` (`id`, `nombre`) VALUES
 --
 -- Volcar la base de datos para la tabla `cercanias_publicaciones`
 --
-
---
--- Volcar la base de datos para la tabla `ciudades`
---
-
-INSERT INTO `ciudades` (`id`, `nombre`, `estado_id`) VALUES
-(1, 'San Juan de los Morros', 1),
-(2, 'Chaguaramas', 1),
-(3, 'El Socorro', 1),
-(4, 'Guayabal', 1),
-(5, 'Valle de la Pascua', 1),
-(6, 'Las Mercedes', 1),
-(7, 'El Sombrero', 1),
-(8, 'Calabozo', 1),
-(9, 'Altagracia de Orituco', 1),
-(10, 'Ortiz', 1),
-(11, 'Tucupido', 1),
-(12, 'San José de Guaribe', 1),
-(13, 'Santa María de Ipire', 1),
-(14, 'Zaraza', 1);
 
 --
 -- Volcar la base de datos para la tabla `estados`
@@ -96,51 +91,26 @@ INSERT INTO `estados` (`id`, `nombre`) VALUES
 (23, 'Yaracuy'),
 (24, 'Zulia');
 
---
--- Volcar la base de datos para la tabla `imagenes`
---
 
 --
--- Volcar la base de datos para la tabla `publicaciones`
+-- Volcar la base de datos para la tabla `ciudades`
 --
 
---
--- Volcar la base de datos para la tabla `publicaciones_servicios`
---
-
---
--- Volcar la base de datos para la tabla `servicios`
---
-
-INSERT INTO `servicios` (`id`, `nombre`) VALUES
-(1, 'Microonda'),
-(2, 'Cocina'),
-(3, 'Nevera'),
-(4, 'TV por Cable'),
-(5, 'Internet'),
-(6, 'Baño'),
-(7, 'Cama'),
-(8, 'Estacionamiento'),
-(9, 'A/Acondicionado'),
-(10, 'Entrada independiente');
-
---
--- Volcar la base de datos para la tabla `tipoinmuebles`
---
-
-INSERT INTO `tipoinmuebles` (`id`, `nombre`) VALUES
-(1, 'Casa'),
-(2, 'Apartamento'),
-(3, 'Habitacion'),
-(4, 'Apartamento Tipo Estudio'),
-(5, 'Anexo');
-
---
--- Volcar la base de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `login`, `clave`, `correo`, `nombre`, `apellido`, `fecha_nac`, `telefono`, `tipo`, `activo`, `estado_id`, `ciudad_id`, `zona_id`) VALUES
-(1, 'admin', '1234', 'erickcion@gmail.com', 'Erick', 'Birbe', '1987-12-12', '04128663381', 1, 1, NULL, NULL, NULL),
+INSERT INTO `ciudades` (`id`, `nombre`, `estado_id`) VALUES
+(1, 'San Juan de los Morros', 1),
+(2, 'Chaguaramas', 1),
+(3, 'El Socorro', 1),
+(4, 'Guayabal', 1),
+(5, 'Valle de la Pascua', 1),
+(6, 'Las Mercedes', 1),
+(7, 'El Sombrero', 1),
+(8, 'Calabozo', 1),
+(9, 'Altagracia de Orituco', 1),
+(10, 'Ortiz', 1),
+(11, 'Tucupido', 1),
+(12, 'San José de Guaribe', 1),
+(13, 'Santa María de Ipire', 1),
+(14, 'Zaraza', 1);
 
 --
 -- Volcar la base de datos para la tabla `zonas`
@@ -209,3 +179,34 @@ INSERT INTO `zonas` (`id`, `ciudad_id`, `nombre`) VALUES
 (65, 1, 'Campo Alegra'),
 (66, 1, 'Loma Colorada'),
 (67, 1, 'Loma Las Casitas');
+
+--
+-- Volcar la base de datos para la tabla `imagenes`
+--
+
+--
+-- Volcar la base de datos para la tabla `publicaciones`
+--
+
+--
+-- Volcar la base de datos para la tabla `publicaciones_servicios`
+--
+
+--
+-- Volcar la base de datos para la tabla `tipoinmuebles`
+--
+
+INSERT INTO `tipoinmuebles` (`id`, `nombre`) VALUES
+(1, 'Casa'),
+(2, 'Apartamento'),
+(3, 'Habitacion'),
+(4, 'Apartamento Tipo Estudio'),
+(5, 'Anexo');
+
+--
+-- Volcar la base de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `login`, `clave`, `correo`, `nombre`, `apellido`, `fecha_nac`, `telefono`, `tipo`, `activo`, `estado_id`, `ciudad_id`, `zona_id`) VALUES
+(1, 'admin', '1234', 'erickcion@gmail.com', 'Erick', 'Birbe', '1987-12-12', '04128663381', 1, 1, NULL, NULL, NULL),
+
