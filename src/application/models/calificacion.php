@@ -26,6 +26,7 @@ class Calificacion_Model extends ORM {
 		$where_cond = array(
 			'usuario_id' => $usuario_id,
 			'puntos !=' => CALIFICACION_NULA,
+			'puntos !=' => CALIFICACION_SIN,
 		);
 		$calificaiones = ORM::factory('calificacion')
 		->where($where_cond);

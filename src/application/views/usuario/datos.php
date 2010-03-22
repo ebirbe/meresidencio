@@ -2,7 +2,7 @@
 <?php echo html_Core::script('media/js/scw.js', FALSE); ?>
 <?php echo $script_combo; ?>
 <?php echo form_Core::open(/*NULL, array('method'=>'get')*/);?>
-<h2>Editar Mis Datos Personales</h2>
+<h2>Editar Datos de Usuario</h2>
 <br/>
 <table class="tabla_ext">
 	<?php if($mensaje) {?>
@@ -10,11 +10,13 @@
 		<th colspan="3"><?php echo $mensaje ?></th>
 	</tr>
 	<?php }?>
+	<?php if($usuario->tipo == USUARIO_ADMIN) {?>
 	<tr>
 		<td><?php echo form::label('estatus', 'Estatus:')?></td>
 		<td><?php echo form_Core::radio('activo',1, $formulario['activo']==1) ?>Habilitado<br><?php echo form_Core::radio('activo',0, $formulario['activo']==0) ?>Inhabilitado</td>
 		<td><?php echo $errores['activo'] ?></td>
 	</tr>
+	<?php }?>
 	<tr>
 		<td><?php echo form::label('login', 'Usuario:')?></td>
 		<td><?php echo form::input(array('name'=>'usuario', 'readonly'=>'readonly'), $formulario['login'])?></td>

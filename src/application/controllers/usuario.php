@@ -209,6 +209,7 @@ class Usuario_Controller extends Template_Controller {
 		$vista->zona = Zona_Model::combobox($usuario->ciudad_id, $usuario->zona_id, TRUE);
 
 		$vista->mensaje = $this->mensaje;
+		$vista->usuario = $this->session->get('usuario');
 		$vista->formulario = $this->formulario;
 		$vista->errores = $this->errores;
 

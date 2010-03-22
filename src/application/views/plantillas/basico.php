@@ -5,14 +5,14 @@ $menu = array(
 		"Inicio" => url_Core::site("usuario/mi_cuenta"),
 		"Mis Alertas" => url_Core::site("alerta/mis_alertas"),
 		"Mis solicitudes" => url_Core::site("usuario/mis_solicitudes"),
-		"Mis Publicaciones" => url_Core::site("publicacion/mis_publicaciones"),
-		"Mis calificaciones" => url_Core::site("calificacion/mis_calificaciones"),
 		"Mis Datos" => url_Core::site("usuario/mis_datos"),
 		"Cambiar Clave" => url_Core::site("usuario/cambiar_clave"),
 	),
 	"Publicaci&oacute;n" => array(
 		"Buscar Residencia" => url::site("publicacion/lista"),
 		"Publicar Residencia" => url::site("publicacion/agregar"),
+		"Mis Publicaciones" => url_Core::site("publicacion/mis_publicaciones"),
+		"Mis calificaciones" => url_Core::site("calificacion/mis_calificaciones"),
 	),
 	"Nosotros" => array(
 		"&iquest;Quienes Somos?" => url::site("nosotros/quienes"),

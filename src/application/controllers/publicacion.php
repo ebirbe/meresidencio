@@ -393,6 +393,7 @@ class Publicacion_Controller extends Template_Controller {
 		}
 
 		foreach ($datos as $clave => $valor){
+			//echo "$clave = $valor<br>";
 			if($valor != NULL){
 
 				$filtrar = true;
@@ -403,7 +404,7 @@ class Publicacion_Controller extends Template_Controller {
 					case "zona":
 					case "tipoinmueble":
 						//en todos estos casos concatenamos '_id' para coincidir con la BD
-						$where_cond[$clave."_id"] = $valor;
+						if($valor!=0) $where_cond[$clave."_id"] = $valor;
 						break;
 
 					case "sexo":
@@ -610,11 +611,11 @@ class Publicacion_Controller extends Template_Controller {
 		$this->template->panel_opciones = new View('plantillas/panel_opciones');
 		$links[] = array(
 		url::site('calificacion/calificar/'.$calificacion_id),
-				"Calificar Operaci&oacute;n",
+				html_Core::image('media/img/iconos/thumb_up.png', array('class'=>'icono')) . "Calificar",
 		);
 		$links[] = array(
 		url::site('publicacion/detalles/'.$publicacion_id),
-				"Ver Original",
+				html_Core::image('media/img/iconos/eye.png', array('class'=>'icono')) . "Ver Original",
 		);
 		$this->template->panel_opciones->links = $links;
 

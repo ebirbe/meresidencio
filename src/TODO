@@ -1,8 +1,4 @@
 - Olvido su contraseña falta
-- Borrar imagen dice "Volver" y manda una pagina mala
-
-- Al agregar zonas y (supongo que ciudades tambien) no permite agregarlas si otra ciudad (o estado) tienen una zona (y ciudad tambien) con el mismo nombre
-- En la opción de Habilitar y Deshabilitar usuario (en usuario/editar) al deshabilitar notificar las consecuensias y pedir confirmación
 - Filtrar todas las entradas ya que estan aceptando <HTML>
 - Tener siempre el cuaderno de notas cerca!!!
 

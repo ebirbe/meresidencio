@@ -54,22 +54,22 @@ abstract class Template_Controller extends Controller {
 			$m_notif = new Notificacion_Model($usuario);
 			$v_notif = new View('notificacion/notificacion_lateral');
 			$v_notif->notificaciones = $m_notif->componer_notificaiones();
-				
-			//Componemos el panel de opciones y los vinculos
-			$v_opciones = new View('plantillas/panel_opciones');
-			$links = array();
-			if(is_a($usuario, "Usuario_Model")){
-				$links[]=array(
-				url::site('publicacion/agregar/'),
-				html_Core::image('media/img/iconos/application_form_add.png', array('class'=>'icono')) . "Publicar",
-				);
-				$links[]=array(
-				url::site('publicacion/buscar/'),
-				html_Core::image('media/img/iconos/zoom.png', array('class'=>'icono')) . "Buscar",
-				);
-			}
-			$v_opciones->links = $links;
 		}
+
+		//Componemos el panel de opciones y los vinculos
+		$v_opciones = new View('plantillas/panel_opciones');
+
+		$links[]=array(
+		url::site('publicacion/lista/'),
+		html_Core::image('media/img/iconos/zoom.png', array('class'=>'icono')) . "Buscar",
+		);
+		$links[]=array(
+		url::site('publicacion/agregar/'),
+		html_Core::image('media/img/iconos/application_form_add.png', array('class'=>'icono')) . "Publicar",
+		);
+
+		$v_opciones->links = $links;
+
 		$this->template->panel_opciones = $v_opciones/*PANEL_OPCIONES*/;
 		$this->template->notificaciones = $v_notif;/*PANEL NOTIFICACIONES*/
 		$this->template->usr_tipo = $usr_tipo;
