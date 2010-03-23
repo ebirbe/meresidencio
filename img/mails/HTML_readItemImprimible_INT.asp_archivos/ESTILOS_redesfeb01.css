@@ -1,0 +1,496 @@
+body, td, th {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+}
+
+INPUT {
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: #666666 1px solid; BORDER-BOTTOM: #666666 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #f6f6f6
+}
+SELECT {
+	FONT-SIZE: 8pt; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #f6f6f6
+}
+TEXTAREA {
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 8pt; BORDER-LEFT: #666666 1px solid; BORDER-BOTTOM: #666666 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #f6f6f6
+}
+
+A {text-decoration: none; color: #000099;}
+A:link {text-decoration: none; color: #000099;}
+A:Active {text-decoration: none; color: #000099;}
+A:Visited {text-decoration: none;color: #800080;}
+A:hover {text-decoration: underline;color: #000099;}
+
+.bordetablas {
+	border: 1px solid #333333;
+}
+.categoriatablas {
+	background-color: #DDDDDD;
+	font-weight: bold;
+	border-top: 1px solid #333333;
+	border-right: 1px none #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px none #333333;
+	color: #333333;
+}
+.categoriatablas2 {
+	background-color: #DDDDDD;
+	font-weight: bold;	
+	border-right: 1px none #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px none #333333;
+	color: #333333;
+}
+.bordearribaderecha {
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-top-color: #333333;
+	border-right-color: #333333;
+}
+.bordearriba {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #333333;
+}
+.bordearribaabajo {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #333333;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #333333;
+}
+.titulosmodulos {
+	font-weight: bold;
+	color: #000000;
+}
+.titulosOficinaVirtual {
+	font-weight: bold;
+	color: #70BC1F;
+}
+
+.celdascabecera {
+	background-color: #FFFFFF;
+	border-top: 1px solid #333333;
+	border-left: 1px solid #333333;
+	font-size: 8pt;
+	text-align: center;
+	color: #FF6600;
+}
+.celdascabecera a {
+	background-color: #FFFFFF;
+	width:100%;
+	height:100%;
+	color: #FF6600;
+}
+.celdascabecera a:hover {
+	background-color: #FF6600;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.lineahorizontal {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #333333;
+}
+.vermas {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 7pt;
+	text-align: right;
+}
+.recuadronoticias {
+	background-color: #F1F3F3;
+	margin: 3px;
+	padding: 3px;
+	font-size: 7pt;
+}
+.recuadrocine {
+	background-color: #F7F8C9;
+	margin: 3px;
+	padding: 3px;
+	font-size: 8pt;
+	border: 1px solid #DCDCB8;
+}
+.recuadrochistes {
+	background-color: #EDEEF1;
+	margin: 3px;
+	padding: 3px;
+	font-size: 8pt;
+	border: 1px solid #8089AC;
+}
+.fuentepeq {
+	font-size: 7pt;
+}
+.fecha {
+	font-size: 7pt;
+	color: #333333;
+	text-align: right;
+}
+.tcr {
+	padding-bottom:3px;
+}.lineavertical {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #333333;
+}
+
+.subCategoriaCorportativa {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: #eeeeee;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #000099;
+	border-right-color: #000099;
+	border-bottom-color: #000099;
+	border-left-color: #000099;
+}
+.CategoriaCorportativa {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	background-color: #000099;
+	border: 1px solid #000099;
+	font-weight: bold;
+	font-size: 12px;
+
+}
+
+.subCategoria2Corportativa {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: #CCCCCC;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	border-top-color: #000099;
+	border-right-color: #000099;
+	border-bottom-color: #000099;
+	border-left-color: #000099;
+}
+
+.Categoria2Corportativa {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	background-color: #000099;
+	border: 1px none #000066;
+	font-weight: bold;
+	font-size: 10px;
+	text-decoration: underline;
+	font-style: italic;
+
+
+}
+.BodyFont {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+
+}
+
+
+.LineaAzulPiePagina {
+	border-top: 1px solid #000099;
+	border-right: 1px none #000099;
+	border-bottom: 1px none #000099;
+	border-left: 1px none #000099;
+	background-color: #CCCCCC;
+
+}
+.LineaCrisPiePagina {
+
+	border-top: 1px solid #666666;
+	border-right: 1px none #666666;
+	border-bottom: 1px solid #FFFFFF;
+	border-left: 1px none #666666;
+	background-color: #CCCCCC;
+}
+.LineaGrisCabecerablancoAzul {
+	border-top: 1px solid #FFFFFF;
+	border-right: 1px none #FFFFFF;
+	border-bottom: 1px solid #000066;
+	border-left: 1px none #FFFFFF;
+	background-color: #CCCCCC;
+}
+.LineaGrisJuegosenlineaCabecerablancoAzul {
+	border-top: 1px solid #FFFFFF;
+	border-right: 1px none #FFFFFF;
+	border-bottom: 1px solid #000066;
+	border-left: 1px none #FFFFFF;
+	background-color: #B9B9FF;
+}
+.LineaVerdeCabecera {
+	border-top: 1px solid #000066;
+	border-right: 1px none #FFFFFF;
+	border-bottom: 1px none #000066;s
+	border-left: 1px none #FFFFFF;
+	background-color: #70BC1F;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	font-weight: normal;
+
+
+}
+.LineaVerdeCabeceraBold {
+
+	border-top: 1px solid #000066;
+	border-right: 1px none #FFFFFF;
+	border-bottom: 1px none #000066;
+	border-left: 1px none #FFFFFF;
+	background-color: #70BC1F;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.LineaVerdeCabeceraBold:hover {
+	text-decoration: underline;
+	color: #000066;
+}
+
+.LineaGrisJuegosenlineaCabecera {
+	border-top: 1px solid #000066;
+	border-right: 1px none #FFFFFF;
+	border-bottom: 1px none #000066;s
+	border-left: 1px none #FFFFFF;
+	background-color: #BFBFBF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	font-weight: normal;
+
+
+}
+.LineaGrisJuegosenlineaCabeceraBold {
+
+	border-top: 1px solid #000066;
+	border-right: 1px none #FFFFFF;
+	border-bottom: 1px none #000066;
+	border-left: 1px none #FFFFFF;
+	background-color: #BFBFBF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.LineaGrisJuegosenlineaCabeceraBold:hover {
+	text-decoration: underline;
+	color: #000066;
+}
+.LineaGrisCabeceraCorreo {
+
+	border-left: 1px none #FFFFFF;
+	background-color: #EEEEEE;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000066;
+	font-weight: bold;
+	border-top: 1px groove #000066;
+	border-right: 1px none #000066;
+	border-bottom: 1px solid #000066;
+	border-left: 1px solid #000066;
+
+
+
+}
+.LineaGrisCabeceraCorreo2 {
+
+	border-left: 1px none #FFFFFF;
+	background-color: #EEEEEE;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000066;
+	font-weight: bold;
+	border-top: 1px solid #000066;
+	border-right: 1px none #000066;
+	border-bottom: 1px solid #000066;
+	border-left: 1px none #000066;
+}
+.BodyFontBlue {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000066;
+}
+.CategoriaProductos {
+
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	background-color: #CCCCCC;
+	border: 1px none #000099;
+	font-weight: bold;
+	font-size: 12px;
+}
+.TituloEnCaja {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #EEEEEE;
+	font-weight: bold;
+	color: #000066;
+	border: 1px solid #CCCCCC;
+}
+.LineaCris {
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px none #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px none #CCCCCC;
+}
+.TituloAzulBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000066;
+	font-weight: bold;
+
+}
+.SubTituloAzulItalic {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000066;
+	font-weight: normal;
+	font-style: italic;
+
+}
+.subCategoriaProductos2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: #FFFFFF;
+	font-weight: normal;
+	color: #000000;
+	border-top: 1px none #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px none #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+
+}
+.subCategoriaProductos2 A { COLOR: #000000; TEXT-DECORATION: underline; }
+}
+.subCategoriaProductos2 A:hover { COLOR: #000066; }
+
+.subCategoriaProductos2 A:visited { COLOR: #000000; }
+
+.subCategoriaProductos3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: #FFFFFF;
+	font-weight: bold;
+	color: #000066;
+	border-top: 1px none #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px none #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+
+}
+.subCategoriaProductos3 A { COLOR: #000066; TEXT-DECORATION: underline; }
+}
+.subCategoriaProductos3 A:hover { COLOR: #000000; }
+
+
+.LineaCris2 {
+	border-top: 1px none #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+}
+
+.smallblue
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+    FONT-SIZE: 11px}
+.smallblue A { COLOR: #0f0ebe; TEXT-DECORATION: underline; }
+.smallblue A:hover { COLOR: #009900; }
+
+.smallblueVerde {
+	COLOR: #70BC1F;
+	FONT-FAMILY: Arial, Helvetica, sans-serif;
+	FONT-SIZE: 10px;
+	font-style: italic;
+}
+.smallblueVerde A { COLOR: #70BC1F; TEXT-DECORATION: underline; }
+.smallblueVerde A:hover { COLOR: #70BC1F; }
+
+.LineaNegraPunteadaV {
+	border-top: 1px none #333333;
+	border-right: 1px none #333333;
+	border-bottom: 1px none #333333;
+	border-left: 1px dotted #333333;
+}
+.LineaNegraPunteadaH {
+	border-top: 1px none #333333;
+	border-right: 1px none #333333;
+	border-bottom: 1px dotted #333333;
+	border-left: 1px none #333333;
+}
+.TituloVerdeBold {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #333333;
+	font-weight: bold;
+}
+.LineaNegraH {
+	border-top: 1px none #333333;
+	border-right: 1px none #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px none #333333;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+
+
+}
+.noticias {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+
+}	
+.noticias A { COLOR: #0f0ebe; TEXT-DECORATION: underline; }
+.noticias A:hover { COLOR: #009900; }.menunuevo { BACKGROUND-COLOR: #6699cc; COLOR: #FFFFFF; FONT-FAMILY : Verdana, Arial, Helvetica, sans-serif; FONT-WEIGHT: bolder; FONT-SIZE: 7.5pt; ; text-decoration: none}
+
+.corp
+{
+    COLOR: black;
+    FONT-FAMILY: Arial, Verdana;
+    FONT-SIZE: 8pt
+}
+.corp A
+{
+    COLOR: black;
+    FONT-SIZE: 8pt;
+}
+.corp A:hover
+{
+    COLOR: #0f0ebe;
+}
+.TituloEnCajaBlanco {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #000066;
+	border: 1px solid #CCCCCC;
+}
+.TituloEnCajaVerde {
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #EEEEEE;
+	font-weight: bold;
+	color: #000066;
+	border: 1px solid #70bc1f;
+}

@@ -1,0 +1,255 @@
+A:Visited {text-decoration: none;color: #000099;}
+A:hover {text-decoration: underline;color: #000099;}
+
+.barratitcorreo {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	background-color: #000099;
+	border: 1px solid #000099;
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.botoncorreo {
+    FONT-SIZE: 8pt;
+    FONT-FAMILY: Verdana
+}
+
+.col1tablacorreo {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #eeeeee;
+
+}
+
+.col1tablacorreo2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #ffffff;
+
+}
+
+.col1tablacorreoAzul {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #EAEFFB;
+
+}
+
+.barraDiv {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #ffb17d;
+	border: 2px solid #ffb17d;
+}
+
+.textoNormal {
+    FONT-SIZE: 8pt;
+    COLOR: black;
+    FONT-FAMILY: Verdana
+}
+
+.headtabla1correo {
+    BORDER-RIGHT: #ffffff 0px solid;
+    BORDER-TOP: #ffffff 0px solid;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 8pt;
+    BORDER-LEFT: #ffffff 0px solid;
+    COLOR: #ffffff;
+    BORDER-BOTTOM: #ffffff 0px solid;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    BACKGROUND-COLOR: #FFB17D
+}
+	
+.menu2correo {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000066;
+	font-weight: bold;
+	border: 1px solid #ffffff;
+}
+.menu2correo A:hover{text-decoration:none;}
+
+.tabla1correo {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	background-color: #eeeeee;
+
+}
+
+.menu1 {
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 7.5pt;
+    COLOR: #0f0ebe;
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    BACKGROUND-COLOR: #abc6fe
+}
+
+.contadorPaginas {
+    FONT-SIZE: 8pt;
+    FONT-FAMILY: Verdana
+}
+
+.barratitcorreo2 {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFFF;
+	background-color: #FFB17D;
+	border: 1px solid #FFB17D;
+	font-size: 12px;
+}
+
+.tabla1CorreoLink {
+    FONT-SIZE: 8pt;
+    COLOR: darkorange;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #eeeeee
+}
+
+.contactos {
+	PADDING-RIGHT: 4px;
+	PADDING-LEFT: 4px;
+	PADDING-BOTTOM: 4px;
+	PADDING-TOP: 4px;
+	OVERFLOW: auto;
+	VERTICAL-ALIGN: top;
+	WIDTH: 190px;
+	BACKGROUND-COLOR: #ffffff;
+	border: 2px solid #000099;
+}
+
+.nuevosContactos {
+	VERTICAL-ALIGN: top;
+	BACKGROUND-COLOR: #ffffff;
+	OVERFLOW-Y: auto;
+	border-top: 2px solid #ffb17d;
+	border-right: 2px solid #ffb17d;
+	border-bottom: 1px solid #ffb17d;
+	border-left: 2px solid #ffb17d;
+}
+
+.seccion1Barra {
+	background-color: #dddddd;
+	font-weight: bold;
+	border-right: 1px none #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px none #333333;
+	color: #333333;
+}
+
+.seccionBarra {
+	background-color: #dddddd;
+	font-weight: bold;	
+	border-top: 1px solid #333333;
+	border-right: 1px none #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px none #333333;
+	color: #333333;
+}
+
+.opcionBarraIzquierdaMOut {
+	cursor: pointer; cursor: hand;
+	background-color: #FFFFFF;
+	text-decoration: none
+}
+
+.opcionBarraIzquierdaMOver {
+	cursor: pointer; cursor: hand;
+	background-color: #ffb17d;
+	text-decoration: underline
+}
+
+.BodyFontGrande {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+
+}
+
+.tituloCorreo {
+	color: #333333;
+	background-color: #dddddd;
+	border-top: 1px solid #333333;
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #333333;
+}
+
+.BodyFontVerdana {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+
+}
+
+/*------------------------------------Estilos del Editor de texto enriquecido---------------------------------*/
+.text {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color : #000000;
+	font-size: 13px;
+	font-weight: normal;
+}
+
+.error {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color : #FF0000;
+	font-size: 13px;
+	font-weight: normal;
+}
+
+.smText {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color : #000000;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+.heading {
+	font-family: Arial, Helvetica, sans-serif;
+	color : #000000;
+	font-size: 19px;
+	font-weight: bold;
+}
+
+a.smLink  {
+	color : #0000FF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+a.smLink:hover {
+	color : #FF0000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration : underline;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+a.smLink:visited  {
+	color : #990099;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+a.smLink:visited:hover {
+	color : #FF0000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration : underline;
+	font-size: 10px;
+	font-weight: normal;
+}
+
+ul {
+	list-style-type: square;
+}
+
+hr {
+	height: 0px; 
+	border: solid #D1D7DC 0px; 
+	border-top-width: 1px;
+}
