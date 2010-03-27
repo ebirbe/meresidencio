@@ -145,20 +145,6 @@ function dibujar_menu($m, $c){
             <?php echo $panel_sesion ?>
             <?php echo $panel_opciones ?>
             <?php echo $notificaciones ?>
-            
-	    <div class="test_pub">
-	    	<strong>
-		    	<p align="center">Su publicidad aqui.</p>
-		    	<p align="center">125px X 150px</p>
-	    	</strong>
-	    </div>
-	    <div class="test_pub">
-	    	<strong>
-		    	<p align="center">Su publicidad aqui.</p>
-		    	<p align="center">125px X 150px</p>
-	    	</strong>
-	    </div>
-            
     </div>
     <div class="left">
 		        <?php echo $contenido ?>
