@@ -121,9 +121,9 @@ function dibujar_menu($m, $c){
     <!-- Header -->
     <div id="header">
 		<h1><a href="<?php echo url_Core::base() ?>"><?php echo NOMBRE_SITIO ?></a></h1>
-		<div class="logo2">
+		<span class="logo2">
 			<!--<?php echo SLOGAN ?>-->
-		</div>
+		</span>
   	</div>
     <!-- END header -->
     
@@ -145,33 +145,44 @@ function dibujar_menu($m, $c){
             <?php echo $panel_sesion ?>
             <?php echo $panel_opciones ?>
             <?php echo $notificaciones ?>
-        </div>
-    
-    <!-- Barra de Historial
-    <div>
-   	<table class="tbl_navegar">
-   		<tr>
-   		<?php
-   		if(is_array($historial)){
-   			krsort($historial);
-   			$i=0;
-   			foreach ($historial as $fila){
-   				if($i==3) break;
-   		?>
-   			<td class="btn_navegar"><?php echo html::anchor($fila[1], $fila[0])?></td>
-   		<?php 
-   			$i++;
-   			}
-   		}
-   		?>
-   		</tr>
-   	</table>
-   </div>
-  END Barra de Historial -->
-   
+            
+	    <div class="test_pub">
+	    	<strong>
+		    	<p align="center">Su publicidad aqui.</p>
+		    	<p align="center">125px X 150px</p>
+	    	</strong>
+	    </div>
+	    <div class="test_pub">
+	    	<strong>
+		    	<p align="center">Su publicidad aqui.</p>
+		    	<p align="center">125px X 150px</p>
+	    	</strong>
+	    </div>
+            
+    </div>
     <div class="left">
 		        <?php echo $contenido ?>
-      </div>
+    </div>
+    <div class="publicidad">
+    <div class="test_pub">
+    	<strong>
+	    	<p align="center">Su publicidad aqui.</p>
+	    	<p align="center">125px X 150px</p>
+    	</strong>
+    </div>
+    <div class="test_pub">
+    	<strong>
+	    	<p align="center">Su publicidad aqui.</p>
+	    	<p align="center">125px X 150px</p>
+    	</strong>
+    </div>
+    <div class="test_pub">
+    	<strong>
+	    	<p align="center">Su publicidad aqui.</p>
+	    	<p align="center">125px X 150px</p>
+    	</strong>
+    </div>
+    </div>
       <div class="clear"></div>
     </div>
 </div>

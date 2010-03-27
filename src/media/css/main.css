@@ -1,28 +1,16 @@
 /*** ----------------------------------------- ***/
 	/*** COLORS! (for easy updating!) ------------ ***/
 body {
-	background: #18191B url('../img/body_bg.gif') repeat-x
-}
-
-a {
-	color: #517307
-}
-
-a:hover {
-	color: #67920D
+	background: #FFFFFF;
 }
 
 div {
 	FONT-FAMILY: Verdana, Tahoma, Sans-Serif;
-	FONT-SIZE: 12px
-}
-
-table {
-	margin: auto;
+	FONT-SIZE: 11px
 }
 
 #navigation {
-	border-bottom: 3px solid #FFF
+	border: 1px solid #bfb9b2;
 }
 
 #navigation a:hover {
@@ -105,8 +93,8 @@ table {
 }
 
 #main-content {
-	background: #DBD1B9;
-	border: 2px solid #f3ece3
+	background: #fffced /*DBD1B9*/;
+	border: 1px solid #bfb9b2
 }
 
 #header .contact-info {
@@ -143,17 +131,15 @@ table {
 }
 
 #main-content .left {
-	background: #fffcf2 /*#F3F0E8*/;
-	border-right: 1px solid #FFF
+	background: #fffced;
 }
 
 #main-content .right {
-	border-left: 1px solid #A7947A;
-	background: #C7B998
+	background: #f1ffd4;
 }
 
 #main-content ul {
-	color: #2e2a25 /*#534C42*/
+	color: #2e2a25;
 }
 
 #main-content .right ul {
@@ -196,11 +182,11 @@ table {
 
 input,select,file {
 	border: 1px solid #C7B998;
-	color: #333; /*display:block;*/
+	color: #333;
 	padding: 3px;
 	margin: 0 0 10px 0;
 	font-family: Verdana, Tahoma, Sans-Serif;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .hidden {
@@ -211,7 +197,7 @@ input,select,file {
 
 textarea {
 	border: 1px solid #C7B998;
-	color: #333
+	color: #333;
 }
 
 .button {
@@ -222,11 +208,9 @@ textarea {
 }
 
 #footer {
-	border-left: 1px solid #325772;
-	border-right: 1px solid #325772;
+	border: 1px solid #bfb9b2;
 	color: #FFF;
-	border-top: 1px solid #000;
-	background: #0F3149
+	background: #cde3fa;
 }
 
 #footer a {
@@ -303,8 +287,9 @@ img {
 #header {
 	position: relative;
 	width: 980px;
-	height: 126px;
-	background: url('../img/header_bg.jpg') no-repeat
+	height: 100px;
+	background: #cde3fa;
+	border: 1px solid #bfb9b2;
 }
 
 #header h1 {
@@ -313,8 +298,8 @@ img {
 	margin: 0;
 	padding: 0;
 	position: absolute;
-	top: 20px;
-	left: 29px
+	top: 10px;
+	left: 10px
 }
 
 #header h1 a {
@@ -461,7 +446,7 @@ ul.sf-menu li li li:hover ul,ul.sf-menu li li li.sfHover ul {
 	text-transform: capitalize;
 	border-left: none;
 	border-right: none;
-	font-size: 12px;
+	font-size: 11px;
 	padding: 10px 10px 10px 10px;
 	text-decoration: none;
 	font-weight: bold;
@@ -653,8 +638,8 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 /* --------------------------------------------- */
 	/* Main Homepage Content ----------------------- */
 #main-content {
-	width: 936px;
-	padding: 20px;
+	width: 968px;
+	padding: 5px;
 	border-bottom: none
 }
 
@@ -663,25 +648,40 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 }
 
 #main-content .left {
-	width: 724px;
-	/*width:574px;*/
+	border: 1px solid #bfb9b2;
+	border-top: 0px;
+	/*width: 773px;*/
+	width: 649px;
 	margin: 0;
-	padding: 15px;
-	float: left
+	padding: 5px;
+	float: left;
 }
 
 #main-content .right {
+	border: 1px solid #bfb9b2;
+	border-right: 0px;
 	width: 150px;
 	margin: 0;
-	padding: 15px;
-	float: left
+	padding: 5px;
+	float: left;
+	width: 150px;
+}
+
+#main-content .publicidad {
+	background: #f1ffd4;
+	border: 1px solid #bfb9b2;
+	border-left: 0px;
+	margin: 0;
+	padding: 5px;
+	float: left;
+	width: 135px;
 }
 
 #main-content ul {
 	margin: 0 0 0 15px;
 	padding: 0 0 0 10px;
 	line-height: 20px;
-	font-size: 12px
+	font-size: 11px
 }
 
 #main-content h2 {
@@ -707,7 +707,7 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 #main-content p,#main-content p {
 	padding: 0;
 	margin: 15px 0;
-	font-size: 12px;
+	font-size: 11px;
 	line-height: 18px
 }
 
@@ -757,7 +757,7 @@ form {
 	/* Footer ----------------------- */
 #footer {
 	position: relative;
-	font-size: 12px;
+	font-size: 10px;
 	width: 938px;
 	margin: 0 auto;
 	padding: 20px
@@ -778,7 +778,7 @@ form {
 }
 
 .tabla_ext {
-	width: 700px;
+	width: 100%;
 }
 
 .columna_titulos {
@@ -786,7 +786,7 @@ form {
 }
 
 .tabla_alertas {
-	width: 700px;
+	width: 100%;
 }
 
 .tabla_alertas td {
@@ -802,14 +802,14 @@ form {
 }
 
 #main-content .comodidades {
-	width: 300px;
+	width: 260px;
 	margin: 0;
 	padding: 15px;
-	float: left
+	float: left;
 }
 
 #main-content .cercanias {
-	width: 300px;
+	width: 260px;
 	margin: 0;
 	padding: 15px;
 	float: right;
@@ -825,7 +825,7 @@ form {
 #main-content .msg_error {
 	line-height: 3;
 	font-weight: bolder;
-	font-size: 12px;
+	font-size: 11px;
 	text-align: center;
 	color: red;
 	background-color: #ffff99;
@@ -834,7 +834,7 @@ form {
 #main-content .msg_exito {
 	line-height: 3;
 	font-weight: bolder;
-	font-size: 12px;
+	font-size: 11px;
 	text-align: center;
 	color: green;
 	background-color: #ffff99;
@@ -864,14 +864,26 @@ label {
 }
 
 #header .logo2 {
+	z-index: 100;
 	float: right;
 	width: 234px;
 	height: 119px;
-	margin: 0;
-	margin-right: 20px;
-	padding: 0;
-	position: relative;
-	top: 2px;
-	display: block;
+	position: absolute;
+	top: -10px;
+	left: 740px;
 	background: url('../img/logo-right.png') no-repeat;
+	text-indent: -2000px;
+	display: block;
+}
+
+table {
+	margin: auto;
+}
+
+.test_pub {
+	width: 125px;
+	height: 160px;
+	margin: 10px auto 10px auto;
+	background: #cde3fa;
+	border: 1px solid #DBD1B9;
 }
