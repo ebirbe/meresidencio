@@ -4,6 +4,21 @@ class Usuario_Model extends ORM {
 	protected $has_many = array('publicaciones', 'calificaciones', 'alertas');
 
 	/**
+	 * Confirmacion de los datos recibidos por el link del correo
+	 * @param unknown_type $string_MD5
+	 */
+	public function confirmar($string_MD5){
+		if($this->id > 0 &&					//Si el usuario existe
+		$this->confirmado == FALSE &&		//y no se ha confirmado
+		md5($this->login) == $string_MD5){	//Y su login en MD5 concuerda con el MD5 recibido
+			$this->confirmado = TRUE;
+			$this->save();
+			return TRUE;					//Se confirma el correo del usuario
+		}
+		return FALSE;						// Sino, no hubo exito
+	}
+
+	/**
 	 * Este metodo verifica el acceso de un
 	 * usuario a algun modulo.
 	 * @param $tipo_permitido
@@ -25,9 +40,9 @@ class Usuario_Model extends ORM {
 						break;
 					}
 				}
-				
+
 			}else if($usuario->tipo == $tipo_permitido) $permitido = TRUE;
-			
+
 		}else{
 			//acceso a cualquier usuario
 			$permitido = TRUE;
@@ -44,10 +59,10 @@ class Usuario_Model extends ORM {
 				$permitido = TRUE;
 			}
 		}
-		
+
 		if(!$permitido) url::redirect('usuario/acceso_denegado/'.$mensaje_id);
 	}
-	
+
 	public function es_propio($propietario_id){
 		if($this->id == $propietario_id){
 			return TRUE;

@@ -25,9 +25,16 @@ class Publicacion_Model extends ORM {
 	public static function combobox_sexo($selected = NULL){
 		return form::dropdown('sexo', Publicacion_Model::$sexo_lista, $selected);
 	}
-	
+
 	public function aleatorias(){
 		return $this->where('activo', true)->orderby(NULL, 'RAND()')->limit(3)->find_all();
+	}
+
+	public function sumar_visita(){
+		if($this->id > 0){
+			$this->visitas += 1;
+			$this->save();
+		}
 	}
 }
 ?>

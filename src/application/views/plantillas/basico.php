@@ -8,7 +8,7 @@ $menu = array(
 		"Mis Datos" => url_Core::site("usuario/mis_datos"),
 		"Cambiar Clave" => url_Core::site("usuario/cambiar_clave"),
 	),
-	"Publicaci&oacute;n" => array(
+	"Residencias" => array(
 		"Buscar Residencia" => url::site("publicacion/lista"),
 		"Publicar Residencia" => url::site("publicacion/agregar"),
 		"Mis Publicaciones" => url_Core::site("publicacion/mis_publicaciones"),
@@ -150,24 +150,24 @@ function dibujar_menu($m, $c){
 		        <?php echo $contenido ?>
     </div>
     <div class="publicidad">
-    <div class="test_pub">
-    	<strong>
-	    	<p align="center">Su publicidad aqui.</p>
-	    	<p align="center">125px X 150px</p>
-    	</strong>
-    </div>
-    <div class="test_pub">
-    	<strong>
-	    	<p align="center">Su publicidad aqui.</p>
-	    	<p align="center">125px X 150px</p>
-    	</strong>
-    </div>
-    <div class="test_pub">
-    	<strong>
-	    	<p align="center">Su publicidad aqui.</p>
-	    	<p align="center">125px X 150px</p>
-    	</strong>
-    </div>
+	    <div class="cuadro_pub">
+	    	<strong>
+		    	<p align="center">Su publicidad aqui.</p>
+		    	<p align="center">125px X 150px</p>
+	    	</strong>
+	    </div>
+	  	<div class="cuadro_pub">
+	    	<strong>
+		    	<p align="center">Su publicidad aqui.</p>
+		    	<p align="center">125px X 150px</p>
+	    	</strong>
+	    </div>
+	    <div class="cuadro_pub">
+	    	<strong>
+		    	<p align="center">Su publicidad aqui.</p>
+		    	<p align="center">125px X 150px</p>
+	    	</strong>
+	    </div>
     </div>
       <div class="clear"></div>
     </div>
@@ -175,6 +175,9 @@ function dibujar_menu($m, $c){
 <!-- END content -->
 
 <div id="footer">
+<p>Generada con <a href="http://kohanaphp.com">Kohana</a> {execution_time} segundos, usando {memory_usage} de memoria.</p>
+<p>Algunos <a href="http://www.famfamfam.com/lab/icons/silk/">iconos</a> utilizados en esta pagina son de licencia Creative Commons</p>
+<p>&copy; Copyrigth 2010, Erick Birbe. </p>
 	<!--
 	<a class="first" href="index-2.html">Home</a>
     &nbsp;|&nbsp;

@@ -74,7 +74,7 @@ class Publicacion_Controller extends Template_Controller {
 			if(isset($datos['cercania'])) $this->cercanias_sel = $datos['cercania'];
 
 			if($this->_agregar($_POST)){
-				url::redirect(url::site("imagen/agregar/$this->ultimo_id"));
+				url::redirect(url::site("imagen/agregar/$this->ultimo_id/1"));
 				$this->mensaje = "<div class='msg_exito'>Se guard&oacute; con &eacute;xito.</div>";
 				$this->limpiar_formulario();
 			}
@@ -101,13 +101,14 @@ class Publicacion_Controller extends Template_Controller {
 		$publicacion = new Publicacion_Model();
 
 		if($this->_validar()){
+			$publicacion->fecha = date("Y-m-d");
 			$publicacion->usuario_id = $datos['usuario'];
 			$publicacion->tipoinmueble_id = $datos['tipoinmueble'];
 			$publicacion->sexo = $datos['sexo'];
 			$publicacion->zona_id = $datos['zona'];
-			$publicacion->direccion = $datos['direccion'];
+			$publicacion->direccion = htmlentities($datos['direccion']);
 			$publicacion->mts = $datos['mts'];
-			$publicacion->descripcion = $datos['descripcion'];
+			$publicacion->descripcion = htmlentities($datos['descripcion']);
 			$publicacion->precio = $datos['precio'];
 			$publicacion->deposito = $datos['deposito'];
 			$publicacion->activo = 1;
@@ -342,9 +343,9 @@ class Publicacion_Controller extends Template_Controller {
 			$publicacion->tipoinmueble_id = $datos['tipoinmueble'];
 			$publicacion->sexo = $datos['sexo'];
 			$publicacion->zona_id = $datos['zona'];
-			$publicacion->direccion = $datos['direccion'];
+			$publicacion->direccion = htmlentities($datos['direccion']);
 			$publicacion->mts = $datos['mts'];
-			$publicacion->descripcion = $datos['descripcion'];
+			$publicacion->descripcion = htmlentities($datos['descripcion']);
 			$publicacion->precio = $datos['precio'];
 			$publicacion->deposito = $datos['deposito'];
 
@@ -515,6 +516,9 @@ class Publicacion_Controller extends Template_Controller {
 			$vista->usuario_sesion = $usuario;
 		}
 		$publicacion = ORM::factory("publicacion", $id);
+		
+		$publicacion->sumar_visita();
+		
 		$vista->publicacion = $publicacion;
 		$vista->vista_caracteristicas = new View('publicacion/caracteristicas');
 		$vista->vista_caracteristicas->publicacion = $publicacion;

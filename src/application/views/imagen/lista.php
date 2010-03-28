@@ -11,16 +11,17 @@ $borrar = "";
 	foreach($imagenes as $imagen){
 		if($i++ % 3 == 0) echo "</tr><tr>";
 
-		if(isset($admin)){
-			$publicacion = "<a href='".url::site('publicacion/detalles/'.$imagen->publicacion_id)."'>".html_Core::image('media/img/iconos/eye.png', array('class'=>'icono'))."</a>";/*html::anchor(url::site('publicacion/detalles/'.$imagen->publicacion_id), 'Ver');*/
-			/*$borrar = "<a href='".url::site('imagen/eliminar/'.$imagen->id)."'>".html_Core::image('media/img/iconos/cancel.png', array('class'=>'icono'))."</a>";/*html::anchor(url::site('imagen/eliminar/'.$imagen->id), 'Borrar');*/
+		if(isset($admin) && $admin==TRUE){
+			$publicacion = "<a href='".url::site('publicacion/detalles/'.$imagen->publicacion_id)."'>".html_Core::image('media/img/iconos/eye.png', array('class'=>'icono'))."</a>";
+		}elseif (isset($admin) && $admin==FALSE){
+			$publicacion = "<a href='".url::site('imagen/eliminar').'/'.$imagen->id."'>".html_Core::image('media/img/iconos/cancel.png', array('class'=>'icono'))."</a>";
 		}
 		?>
 		<td><a class="lightbox"
-			href='<?php echo url::site('imagen/mostrar').'/'.$imagen ?>'><img
+			href='<?php echo url::base().$imagen->img_g ?>'><img
 			class="img-center"
-			src='<?php echo url::site('imagen/mostrar').'/'.$imagen ?>' /></a>
-		<div align="center"><?php if(isset($admin))echo $publicacion/*." | ".$borrar*/?>
+			src='<?php echo url::base().$imagen->img_p ?>' /></a>
+		<div align="center"><?php if(isset($admin))echo $publicacion?>
 		</div>
 		</td>
 		<?php } ?>

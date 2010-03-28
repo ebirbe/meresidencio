@@ -2,16 +2,15 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-DROP SCHEMA IF EXISTS `meresidencio` ;
-CREATE SCHEMA IF NOT EXISTS `meresidencio` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-USE `meresidencio`;
+CREATE SCHEMA IF NOT EXISTS `mereside_meresidencio` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
+USE `mereside_meresidencio`;
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`estados`
+-- Table `mereside_meresidencio`.`estados`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`estados` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`estados` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`estados` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`estados` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`) )
@@ -19,49 +18,39 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`ciudades`
+-- Table `mereside_meresidencio`.`ciudades`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`ciudades` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`ciudades` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`ciudades` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`ciudades` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NULL ,
   `estado_id` INT NOT NULL ,
   PRIMARY KEY (`id`, `estado_id`) ,
-  INDEX `fk_ciudad_estado` (`estado_id` ASC) ,
-  CONSTRAINT `fk_ciudad_estado`
-    FOREIGN KEY (`estado_id` )
-    REFERENCES `meresidencio`.`estados` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `fk_ciudad_estado` (`estado_id` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`zonas`
+-- Table `mereside_meresidencio`.`zonas`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`zonas` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`zonas` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`zonas` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`zonas` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `ciudad_id` INT NOT NULL ,
   `nombre` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`, `ciudad_id`) ,
-  INDEX `fk_zona_ciudad1` (`ciudad_id` ASC) ,
-  CONSTRAINT `fk_zona_ciudad1`
-    FOREIGN KEY (`ciudad_id` )
-    REFERENCES `meresidencio`.`ciudades` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `fk_zona_ciudad1` (`ciudad_id` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`usuarios`
+-- Table `mereside_meresidencio`.`usuarios`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`usuarios` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`usuarios` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`usuarios` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`usuarios` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `login` VARCHAR(50) NOT NULL ,
   `clave` VARCHAR(20) NOT NULL ,
@@ -72,37 +61,23 @@ CREATE  TABLE IF NOT EXISTS `meresidencio`.`usuarios` (
   `telefono` VARCHAR(45) NULL ,
   `tipo` INT NULL ,
   `activo` TINYINT(1) NOT NULL DEFAULT 1 COMMENT 'Para hacer las eliminaciones logicamente y no fisicamente' ,
+  `confirmado` TINYINT(1) NOT NULL DEFAULT 0 ,
   `estado_id` INT NULL ,
   `ciudad_id` INT NULL ,
   `zona_id` INT NULL ,
   PRIMARY KEY (`id`, `login`) ,
   INDEX `fk_usuario_estado1` (`estado_id` ASC) ,
   INDEX `fk_usuario_ciudad1` (`ciudad_id` ASC) ,
-  INDEX `fk_usuario_zona1` (`zona_id` ASC) ,
-  CONSTRAINT `fk_usuario_estado1`
-    FOREIGN KEY (`estado_id` )
-    REFERENCES `meresidencio`.`estados` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_usuario_ciudad1`
-    FOREIGN KEY (`ciudad_id` )
-    REFERENCES `meresidencio`.`ciudades` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_usuario_zona1`
-    FOREIGN KEY (`zona_id` )
-    REFERENCES `meresidencio`.`zonas` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `fk_usuario_zona1` (`zona_id` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`tipoinmuebles`
+-- Table `mereside_meresidencio`.`tipoinmuebles`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`tipoinmuebles` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`tipoinmuebles` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`tipoinmuebles` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`tipoinmuebles` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NULL ,
   PRIMARY KEY (`id`) )
@@ -110,12 +85,13 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`publicaciones`
+-- Table `mereside_meresidencio`.`publicaciones`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`publicaciones` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`publicaciones` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`publicaciones` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`publicaciones` (
   `id` INT NOT NULL AUTO_INCREMENT ,
+  `fecha` DATE NOT NULL ,
   `direccion` VARCHAR(200) NOT NULL DEFAULT 'No especificada' ,
   `habitaciones` INT NOT NULL DEFAULT 1 ,
   `mts` DOUBLE NOT NULL DEFAULT 0 ,
@@ -123,38 +99,24 @@ CREATE  TABLE IF NOT EXISTS `meresidencio`.`publicaciones` (
   `precio` DOUBLE NOT NULL DEFAULT 0 ,
   `deposito` INT NOT NULL DEFAULT 0 ,
   `activo` TINYINT(1) NOT NULL DEFAULT 1 ,
+  `visitas` INT NOT NULL DEFAULT 0 ,
   `sexo` ENUM('Mixto', 'Masculino', 'Femenino') NOT NULL ,
   `usuario_id` INT NOT NULL ,
   `zona_id` INT NOT NULL ,
   `tipoinmueble_id` INT NOT NULL ,
-  PRIMARY KEY (`id`, `usuario_id`, `zona_id`, `tipoinmueble_id`, `sexo`) ,
+  PRIMARY KEY (`id`, `usuario_id`, `zona_id`, `tipoinmueble_id`, `sexo`, `fecha`) ,
   INDEX `fk_publicacion_usuario1` (`usuario_id` ASC) ,
   INDEX `fk_publicacion_zona1` (`zona_id` ASC) ,
-  INDEX `fk_publicacion_tipoinmueble1` (`tipoinmueble_id` ASC) ,
-  CONSTRAINT `fk_publicacion_usuario1`
-    FOREIGN KEY (`usuario_id` )
-    REFERENCES `meresidencio`.`usuarios` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_publicacion_zona1`
-    FOREIGN KEY (`zona_id` )
-    REFERENCES `meresidencio`.`zonas` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_publicacion_tipoinmueble1`
-    FOREIGN KEY (`tipoinmueble_id` )
-    REFERENCES `meresidencio`.`tipoinmuebles` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `fk_publicacion_tipoinmueble1` (`tipoinmueble_id` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`servicios`
+-- Table `mereside_meresidencio`.`servicios`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`servicios` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`servicios` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`servicios` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`servicios` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`) )
@@ -162,11 +124,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`cercanias`
+-- Table `mereside_meresidencio`.`cercanias`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`cercanias` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`cercanias` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`cercanias` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`cercanias` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `nombre` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`) )
@@ -174,61 +136,41 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`cercanias_publicaciones`
+-- Table `mereside_meresidencio`.`cercanias_publicaciones`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`cercanias_publicaciones` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`cercanias_publicaciones` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`cercanias_publicaciones` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`cercanias_publicaciones` (
   `publicacion_id` INT NOT NULL ,
   `cercania_id` INT NOT NULL ,
   `distancia` FLOAT NULL ,
   PRIMARY KEY (`publicacion_id`, `cercania_id`) ,
   INDEX `fk_publicacion_has_cercania_publicacion1` (`publicacion_id` ASC) ,
-  INDEX `fk_publicacion_has_cercania_cercania1` (`cercania_id` ASC) ,
-  CONSTRAINT `fk_publicacion_has_cercania_publicacion1`
-    FOREIGN KEY (`publicacion_id` )
-    REFERENCES `meresidencio`.`publicaciones` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_publicacion_has_cercania_cercania1`
-    FOREIGN KEY (`cercania_id` )
-    REFERENCES `meresidencio`.`cercanias` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `fk_publicacion_has_cercania_cercania1` (`cercania_id` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`publicaciones_servicios`
+-- Table `mereside_meresidencio`.`publicaciones_servicios`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`publicaciones_servicios` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`publicaciones_servicios` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`publicaciones_servicios` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`publicaciones_servicios` (
   `publicacion_id` INT NOT NULL ,
   `servicio_id` INT NOT NULL ,
   `uso` ENUM('Individual','Compartido') NULL COMMENT '0 = null;\n1 = Individual;\n2 = Compartido;' ,
   PRIMARY KEY (`publicacion_id`, `servicio_id`) ,
   INDEX `fk_publicacion_has_servicios_publicacion1` (`publicacion_id` ASC) ,
-  INDEX `fk_publicacion_has_servicios_servicios1` (`servicio_id` ASC) ,
-  CONSTRAINT `fk_publicacion_has_servicios_publicacion1`
-    FOREIGN KEY (`publicacion_id` )
-    REFERENCES `meresidencio`.`publicaciones` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_publicacion_has_servicios_servicios1`
-    FOREIGN KEY (`servicio_id` )
-    REFERENCES `meresidencio`.`servicios` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `fk_publicacion_has_servicios_servicios1` (`servicio_id` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`calificaciones`
+-- Table `mereside_meresidencio`.`calificaciones`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`calificaciones` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`calificaciones` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`calificaciones` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`calificaciones` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `fecha` DATE NOT NULL ,
   `puntos` INT NOT NULL ,
@@ -241,31 +183,16 @@ CREATE  TABLE IF NOT EXISTS `meresidencio`.`calificaciones` (
   PRIMARY KEY (`id`, `cliente_id`, `publicacion_id`, `usuario_id`) ,
   INDEX `fk_calificacion_usuario1` (`cliente_id` ASC) ,
   INDEX `fk_calificacion_publicacion1` (`publicacion_id` ASC) ,
-  INDEX `fk_calificacion_usuario2` (`usuario_id` ASC) ,
-  CONSTRAINT `fk_calificacion_usuario1`
-    FOREIGN KEY (`cliente_id` )
-    REFERENCES `meresidencio`.`usuarios` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_calificacion_publicacion1`
-    FOREIGN KEY (`publicacion_id` )
-    REFERENCES `meresidencio`.`publicaciones` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_calificacion_usuario2`
-    FOREIGN KEY (`usuario_id` )
-    REFERENCES `meresidencio`.`usuarios` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `fk_calificacion_usuario2` (`usuario_id` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`alertas`
+-- Table `mereside_meresidencio`.`alertas`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`alertas` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`alertas` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`alertas` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`alertas` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `zona_id` INT NULL ,
   `ciudad_id` INT NULL ,
@@ -277,52 +204,22 @@ CREATE  TABLE IF NOT EXISTS `meresidencio`.`alertas` (
   INDEX `fk_alerta_ciudad1` (`ciudad_id` ASC) ,
   INDEX `fk_alerta_estado1` (`estado_id` ASC) ,
   INDEX `fk_alerta_tipoinmueble1` (`tipoinmueble_id` ASC) ,
-  INDEX `fk_alertas_usuarios1` (`usuario_id` ASC) ,
-  CONSTRAINT `fk_alerta_zona1`
-    FOREIGN KEY (`zona_id` )
-    REFERENCES `meresidencio`.`zonas` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_alerta_ciudad1`
-    FOREIGN KEY (`ciudad_id` )
-    REFERENCES `meresidencio`.`ciudades` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_alerta_estado1`
-    FOREIGN KEY (`estado_id` )
-    REFERENCES `meresidencio`.`estados` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_alerta_tipoinmueble1`
-    FOREIGN KEY (`tipoinmueble_id` )
-    REFERENCES `meresidencio`.`tipoinmuebles` (`id` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `fk_alertas_usuarios1`
-    FOREIGN KEY (`usuario_id` )
-    REFERENCES `meresidencio`.`usuarios` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_alertas_usuarios1` (`usuario_id` ASC) )
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `meresidencio`.`imagenes`
+-- Table `mereside_meresidencio`.`imagenes`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `meresidencio`.`imagenes` ;
+DROP TABLE IF EXISTS `mereside_meresidencio`.`imagenes` ;
 
-CREATE  TABLE IF NOT EXISTS `meresidencio`.`imagenes` (
+CREATE  TABLE IF NOT EXISTS `mereside_meresidencio`.`imagenes` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `imagen` MEDIUMBLOB NOT NULL ,
-  `mime` VARCHAR(20) NOT NULL ,
+  `img_p` VARCHAR(255) NOT NULL ,
+  `img_g` VARCHAR(255) NOT NULL ,
   `publicacion_id` INT NOT NULL ,
   PRIMARY KEY (`id`, `publicacion_id`) ,
-  INDEX `fk_imagenes_publicaciones1` (`publicacion_id` ASC) ,
-  CONSTRAINT `fk_imagenes_publicaciones1`
-    FOREIGN KEY (`publicacion_id` )
-    REFERENCES `meresidencio`.`publicaciones` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_imagenes_publicaciones1` (`publicacion_id` ASC) )
 ENGINE = InnoDB;
 
 

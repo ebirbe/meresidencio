@@ -2,25 +2,13 @@
 
 class Imagen_Controller extends Template_Controller {
 
-	protected $formulario;
-	protected $errores;
 	protected $mensaje;
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->template->titulo = html::specialchars("Administracion de Im&aacute;genes");
-		$this->limpiar_formulario();
-		$this->errores = $this->formulario;
 		$this->mensaje = '';
-	}
-
-	public function limpiar_formulario(){
-		$this->formulario = array(
-			'imagen1' => '',
-			'imagen2' => '',
-			'imagen3' => '',
-		);
 	}
 
 	public function agregar($publicacion_id, $nueva_pub = FALSE){
@@ -31,17 +19,14 @@ class Imagen_Controller extends Template_Controller {
 		$this->template->titulo = "Agregar im&aacute;genes a la publicaci&oacute;n $publicacion_id";
 		$vista = new View('imagen/agregar');
 
-		if($nueva_pub) $this->mensaje = "<div class='msg_exito'>Su publicaci&oacute;n se guardo con &eacute;xito bajo el Nro. $publicacion_id, si lo desea puede proceder a agregar im&aacute;genes a su publicaci&oacute;n</div>";
+		if($nueva_pub) $this->mensaje = "<div class='msg_exito'>Su publicaci&oacute;n se guardo con el ID #$publicacion_id. Ahora puede agregar im&aacute;genes a su publicaci&oacute;n</div>";
 
 		$publicacion = ORM::factory('publicacion', $publicacion_id);
 		$vista->numero_imagenes = $publicacion->imagenes->count();
 
 		if($_POST){
-			if($vista->numero_imagenes == MAXIMO_IMAGENES-2) {$_FILES['imagen3'] = NULL;}
-			if($vista->numero_imagenes == MAXIMO_IMAGENES-1) {$_FILES['imagen2'] = NULL; $_FILES['imagen3'] = NULL;}
 			if($this->_agregar($publicacion_id)){
 				$this->mensaje = "<div class='msg_exito'>Se guardo con &eacute;xito.</div>";
-				$this->limpiar_formulario();
 
 				//Pedimos que realice de nuevo la consulta para contemplar los nuevos datos
 				$publicacion->reload();
@@ -52,8 +37,6 @@ class Imagen_Controller extends Template_Controller {
 
 		$vista->mensaje = $this->mensaje;
 		$vista->publicacion = $publicacion;
-		$vista->formulario = $this->formulario;
-		$vista->errores = $this->errores;
 		$vista->publicacion_id = $publicacion_id;
 		$this->template->contenido = $vista;
 	}
@@ -66,48 +49,48 @@ class Imagen_Controller extends Template_Controller {
 	public function _agregar($publicacion_id){
 		$exito = false;
 
-		if($this->_validar()){
+		$files = Validation::factory($_FILES)
+		->add_rules('imagen', 'upload::valid', 'upload::required','upload::type[gif,jpg,jpeg,png]', 'upload::size[5M]');
 
-			Imagen_Model::guardar_imagen($_FILES['imagen1'], $publicacion_id);
-			Imagen_Model::guardar_imagen($_FILES['imagen2'], $publicacion_id);
-			Imagen_Model::guardar_imagen($_FILES['imagen3'], $publicacion_id);
-
-			$exito = TRUE;
-		}
-
-		return $exito;
-	}
-
-	/**
-	 * Validacion de los datos obtenidos a traves del metodo post
-	 */
-	public function _validar(){
-
-		$post = new Validation_Core($_POST);
-		$post->add_callbacks('imagen1', array($this, '_mime_valido'));
-		$post->add_callbacks('imagen2', array($this, '_mime_valido'));
-		$post->add_callbacks('imagen3', array($this, '_mime_valido'));
-
-		$exito = $post->validate();
-
-		$this->mensaje = "<div class='msg_error'>Problema al Guardar</div>";
-		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
-		$this->errores = arr::overwrite($this->errores, $post->errors('imagen_errores'));
-
-		return $exito;
-	}
-
-	public function _mime_valido(Validation_Core  $array, $campo){
-		$nombre = $_FILES[$campo]['name'];
-		if(strlen($nombre) > 0){
-			$ext = strtolower(substr($nombre, -4, 4));
-			if($ext != ".jpg" && $ext != ".png" && $ext != ".gif"){
-				$ext = strtolower(substr($nombre, -5, 5));
-				if($ext != ".jpeg"){
-					$array->add_error($campo, 'extension');
+		if ($files->validate())
+		{
+				
+			// Nombre de archivo temporal
+			$filename = upload::save('imagen');
+				
+			// Preparacion de Tabla en la BD
+			$imagen = new Imagen_Model();
+			$imagen->publicacion_id = $publicacion_id;
+			$imagen->save();
+			$imagen->img_p = 'fotos/residencia_'.$imagen->id.'_p_'.basename($filename);
+			$imagen->img_g = 'fotos/residencia_'.$imagen->id.'_g_'.basename($filename);
+			$imagen->save();
+				
+			// Formato Grande
+			$img = Image::factory($filename);
+			if($img->__get('width') > 800 || $img->__get('height') > 600){
+				if($img->__get('height') > $img->__get('height')){
+					$relacion = Image::WIDTH;
+				}else{
+					$relacion = Image::HEIGHT;
 				}
+				$img->resize(800, 600, $relacion);
 			}
+			$img->save($imagen->img_g);
+				
+			// Formato Pequeño
+			Image::factory($filename)
+			->resize(160, 120, Image::HEIGHT)
+			->quality(60)
+			->save($imagen->img_p);
+
+			// Remove the temporary file
+			unlink($filename);
+				
+			$exito = true;
 		}
+
+		return $exito;
 	}
 
 	public function eliminar($imagen_id){
@@ -117,13 +100,21 @@ class Imagen_Controller extends Template_Controller {
 
 		$this->template->titulo = "Eliminar imagen $imagen_id";
 
-		$vista = new View('imagen/eliminar');
-
 		$imagen = ORM::factory('imagen', $imagen_id);
 
+		$vista = new View('imagen/eliminar');
 		$vista->publicacion_id = $imagen->publicacion_id;
 		$vista->imagen_id = $imagen_id;
 
+		// Borramos la imagen grande
+		if (!unlink($imagen->img_g)){
+			echo 'No se pudo borrar del disco: '.$imagen->img_g;
+		}
+		// Borramos la imagen pequeña
+		if (!unlink($imagen->img_p)){
+			echo 'No se pudo borrar del disco: '.$imagen->img_p;
+		}
+		// Borramos el registro de la BD
 		$imagen->delete();
 
 		$this->template->contenido = $vista;
@@ -190,7 +181,7 @@ class Imagen_Controller extends Template_Controller {
 						'style' => 'classic',
 		)
 		);
-		
+
 		$limit = 9;
 		$offset = $paginacion->sql_offset;
 
@@ -199,7 +190,7 @@ class Imagen_Controller extends Template_Controller {
 		->limit($limit)
 		->offset($offset)
 		->find_all();
-		
+
 		$vista->paginacion = $paginacion;
 		$vista->imagenes = $imagenes;
 

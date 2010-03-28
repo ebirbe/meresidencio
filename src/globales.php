@@ -52,7 +52,7 @@ define('NOMBRE_SITIO', 'MeResidencio.Com');
 /**
  * Slogan de la pagina web
  */
-define('SLOGAN', "<strong>El N&uacute;mero Uno</strong><small>en promoci&oacute;n de residencias.</small>");
+define('SLOGAN', "<strong>Mudate Ya!</strong>");
 
 /**
  * Primera columna que aperece en la barra lateral
@@ -72,4 +72,5 @@ define('MAIL_DE', NOMBRE_SITIO.' <erickcion@gmail.com>');
 define('MAIL_ASNT_BIENVENIDA', 'Registro exitoso en '. NOMBRE_SITIO);
 define('MAIL_ASNT_ALERTA', 'Han publicado una residencia para ti');
 define('MAIL_ASNT_OFERTAR', 'Datos de residencia solicitada');
+define('MAIL_ASNT_CONTACTO', 'Nuevo comentario de usuario');
 ?>

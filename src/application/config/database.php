@@ -30,12 +30,12 @@ $config['default'] = array
 	'connection'    => array
 	(
 		'type'     => 'mysql',
-		'user'     => 'root',
-		'pass'     => 'acer',
+		'user'     => 'mereside',
+		'pass'     => 'b7248923',
 		'host'     => 'localhost',
 		'port'     => FALSE,
 		'socket'   => FALSE,
-		'database' => 'meresidencio'
+		'database' => 'mereside_meresidencio'
 	),
 	'character_set' => 'utf8',
 	'table_prefix'  => '',

@@ -1,6 +1,7 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <?php echo form::open() ?>
 <h2>Iniciar Sesi&oacute;n</h2>
+<p>Si a&uacute;n no est&aacute;s registrado puedes <?php echo html::anchor(url::site('usuario/suscribir'), "registrarte aqui")?>.</p>
 <table class="tabla_ext">
 	<?php if($mensaje) {?>
 	<tr>
@@ -19,7 +20,7 @@
 		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Iniciar Sesion')?></td>
 	</tr>
 	<tr>
-		<td colspan="3"><a href=''><?php echo html_Core::image('media/img/iconos/key_delete.png', array('class'=>'icono'))?>&iquest;Olvid&oacute; su contrase&ntilde;a?</a></td>
+		<td colspan="3"><a href=''><?php echo html_Core::image('media/img/iconos/key_delete.png', array('class'=>'icono'))?>&iquest;Olvidaste tu contrase&ntilde;a?</a></td>
 	</tr>
 </table>
 	<?php echo form::close() ?>

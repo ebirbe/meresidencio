@@ -11,7 +11,8 @@ switch ($uso){
 if($publ->imagenes[0] == NULL){
 	$img = html_Core::image('media/img/no_img.gif', array('class'=>'img-left'), FALSE);
 }else{
-	$img = html_Core::image('imagen/mostrar/'.$publ->imagenes[0], array('class'=>'img-left'), TRUE);
+	$imagen = new Imagen_Model($publ->imagenes[0]->id);
+	$img = "<img src='".url::base().$imagen->img_p."' class='img-left' />";
 }
 ?>
 <div class="portfolio-entry">

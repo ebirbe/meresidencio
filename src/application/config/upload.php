@@ -9,7 +9,7 @@ $config['directory'] = DOCROOT.'upload';
 /**
  * Enable or disable directory creation.
  */
-$config['create_directories'] = FALSE;
+$config['create_directories'] = TRUE;
 
 /**
  * Remove spaces from uploaded filenames.

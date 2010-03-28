@@ -33,6 +33,16 @@ class Nosotros_Controller extends Template_Controller {
 	public function contacto(){
 		$this->template->titulo = "Contacto";
 		$vista = new View('nosotros/contacto');
+		$mensaje = NULL;
+		if($_POST){
+			$mail = new View('mail/contacto');
+			$mail->nombre = htmlentities($_POST['nombre']);
+			$mail->correo = htmlentities($_POST['correo']);
+			$mail->mensaje = htmlentities($_POST['mensaje']);
+			Mail_Model::enviar(MAIL_DE, MAIL_ASNT_CONTACTO,$mail);
+			$mensaje = "<div class='msg_exito'>Su comentario se envio con exito.</div>";
+		}
+		$vista->mensaje = $mensaje;
 		$this->template->contenido = $vista;
 	}
 }

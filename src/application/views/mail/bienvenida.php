@@ -3,6 +3,8 @@
 <h1>FELICITACIONES <?php echo strtoupper($usuario->nombre." ".$usuario->apellido)?>!</h1>
 <p>Te has registrado satisfactoriamente en <?php echo html::anchor(url::site(), NOMBRE_SITIO) ?>.
 Ahora puedes disfrutar de nuestros servicios con solo iniciar sesion.</p>
+<p>Antes de poder iniciar tu sesion personal debes confirmar tu correo a traves de este vinculo:</p>
+<p><?php echo html::anchor('usuario/confirmar/'.$usuario->id."/".md5($usuario->login)) ?></p>
 <p>Tus datos de acceso son los siguientes:</p>
 <table style="margin:auto;">
 	<tr>

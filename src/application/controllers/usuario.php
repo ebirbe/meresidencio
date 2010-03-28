@@ -63,18 +63,10 @@ class Usuario_Controller extends Template_Controller {
 		if($_POST){
 			if($exito = $this->_suscribir()){
 
-				$this->template->titulo = "Felicitaciones {$_POST['nombre']}! Registro exitoso.";
+				$this->template->titulo = "Confirma tu correo";
 
 				//TODO Aqui seria mejor usar un redirect y convertir la bienvenida en un metodo
-				
-				$cond = array(
-					'login' => $_POST['login'],
-					'clave' => $_POST['clave'],
-					'activo' => TRUE,
-				);
-				$usuario = ORM::factory('usuario')->where($cond)->find();
-				$this->session->set('usuario',$usuario);
-				
+
 				$vista = new View('usuario/bienvenida');
 				$vista->nombre = $_POST['nombre'];
 				$vista->apellido = $_POST['apellido'];
@@ -163,19 +155,19 @@ class Usuario_Controller extends Template_Controller {
 		$usuario = new Usuario_Model();
 		if($this->_validar()){
 			$usuario->correo = $datos['correo'];
-			$usuario->nombre = $datos['nombre'];
-			$usuario->apellido = $datos['apellido'];
+			$usuario->nombre = htmlentities($datos['nombre']);
+			$usuario->apellido = htmlentities($datos['apellido']);
 			$usuario->login = $datos['login'];
 			$usuario->clave = $datos['clave'];
 			$usuario->tipo = USUARIO_COMUN;
-			$usuario->activo = true;
+			$usuario->activo = FALSE; //Se activa solo al confimar
 			$usuario->save();
-			
+				
 			//Se envia el correo de confirmacion
 			$mail = new View('mail/bienvenida');
 			$mail->usuario = $usuario;
 			Mail_Model::enviar($usuario->correo, MAIL_ASNT_BIENVENIDA, $mail);
-			
+				
 			$exito = true;
 		}
 		return $exito;
@@ -248,8 +240,8 @@ class Usuario_Controller extends Template_Controller {
 			$usuario->correo = $usuario->correo;
 
 			$usuario->activo = (boolean)$datos['activo'];
-			$usuario->nombre = $datos['nombre'];
-			$usuario->apellido = $datos['apellido'];
+			$usuario->nombre = htmlspecialchars($datos['nombre']);
+			$usuario->apellido = htmlentities($datos['apellido']);
 			$usuario->fecha_nac = $datos['fecha_nac'];
 			$usuario->telefono = $datos['telefono'];
 
@@ -312,7 +304,7 @@ class Usuario_Controller extends Template_Controller {
 		$post = $_POST;
 		if($post){
 			if(!$this->_iniciar_sesion($post)){
-				$vista->mensaje = "Usuario o Contrase&ntilde;a inv&aacute;lido.";
+				$vista->mensaje = "Datos inv&aacute;lidos.<br>Si ya te registraste recuerda confirmar tu correo.";
 			}else{
 				$cond = array(
 					'login' => $post['login'],
@@ -336,7 +328,8 @@ class Usuario_Controller extends Template_Controller {
 		$cond = array(
 			'login' => $post['login'],
 			'clave' => $post['clave'],
-			'activo' => 1,
+			'activo' => TRUE,
+			'confirmado' => TRUE,
 		);
 		$usuario = ORM::factory('usuario')->where($cond)->find();
 
@@ -521,11 +514,11 @@ class Usuario_Controller extends Template_Controller {
 		$this->template->panel_opciones = new View('plantillas/panel_opciones');
 		$links[] = array(
 		url::site('usuario/editar/'.$usuario->id),
-				html_Core::image('media/img/iconos/user_edit.png', array('class'=>'icono')) . "Editar Datos",
+		html_Core::image('media/img/iconos/user_edit.png', array('class'=>'icono')) . "Editar Datos",
 		);
 		$links[] = array(
 		url::site('usuario/cambiar_clave'),
-				html_Core::image('media/img/iconos/key_go.png', array('class'=>'icono')) . "Cambiar Clave",
+		html_Core::image('media/img/iconos/key_go.png', array('class'=>'icono')) . "Cambiar Clave",
 		);
 		$this->template->panel_opciones->links = $links;
 
@@ -545,7 +538,7 @@ class Usuario_Controller extends Template_Controller {
 		$this->template->panel_opciones = new View('plantillas/panel_opciones');
 		$links[] = array(
 		url::site('usuario/editar/'.$usuario->id),
-				html_Core::image('media/img/iconos/user_edit.png', array('class'=>'icono')) . "Editar Datos",
+		html_Core::image('media/img/iconos/user_edit.png', array('class'=>'icono')) . "Editar Datos",
 		);
 
 		$this->template->panel_opciones->links = $links;
@@ -553,6 +546,25 @@ class Usuario_Controller extends Template_Controller {
 		$vista = new View('usuario/mis_datos');
 		$vista->usuario = $usuario;
 
+		$this->template->contenido = $vista;
+	}
+
+	public function confirmar($usuario_id, $string_MD5){
+		$usuario = new Usuario_Model($usuario_id);
+		$confirmacion = $usuario->confirmar($string_MD5);
+		if($confirmacion){
+			$resultado = "Exitosa";
+			$mensaje = "Ya puede disfrutar de todos nuestros servicios. " . html::anchor(url::site('usuario/iniciar_sesion'), "Inicia tu Sesion") ." ya!";
+		}else{
+			$resultado = "FALLIDA";
+			$mensaje = "Lo sentimos pero NO COINCIDEN LOS DATOS. Por favor intentelo nuevamente o " . html::anchor(url::site('nosotros/contacto'), "contactenos") . " si persiste el problema.";
+		}
+		
+		$vista = new View('usuario/confirmar');
+		$vista->resultado = $resultado;
+		$vista->mensaje = $mensaje;
+		
+		$this->template->titulo = "Confirmacion de Correo Electronico";
 		$this->template->contenido = $vista;
 	}
 }

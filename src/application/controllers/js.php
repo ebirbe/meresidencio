@@ -7,13 +7,18 @@
  */
 class Js_Controller extends Controller {
 	/**
+	 * Para evitar que haya codigo html en el
+	 * ajax
+	 * @var $auto_render unknown_type
+	 */
+	public $auto_render = FALSE;
+	/**
 	 * Devuelve los datos solicitados por los
 	 * combobox de estado, ciudad y zona
 	 */
 	public function llenar_combo_regiones() {
 
 		if(request::is_ajax()){
-			$this->auto_render = FALSE;
 
 			switch ($_POST['combo']) {
 				case 'estado':

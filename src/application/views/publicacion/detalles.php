@@ -1,6 +1,23 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
-<div align="left"><h5>Propietario: <?php echo $publicacion->usuario->login; ?></h5></div>
-<div align="right"><h4>Publicaci&oacute;n #<?php echo $publicacion->id ?></h4></div>
+<?php
+$fecha = split("-",$publicacion->fecha);
+?>
+<table id="cabecera_detalles">
+	<tr>
+		<td align="left">Publicaci&oacute;n #<?php echo $publicacion->id ?></td>
+		<td align="right">Publicada por <?php echo $publicacion->usuario->login; ?></td>
+	</tr>
+	<tr>
+		<td align="left">Visto <?php echo $publicacion->visitas; ?> veces.</td>
+		<td align="right">Solicitado por <?php echo $publicacion->calificaciones->count() ?>
+		usuarios.</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">Publicado el<br><?php echo $fecha[2]."-".$fecha[1]."-".$fecha[0]; ?></td>
+	</tr>
+</table>
+<div class="clear"></div>
+<br>
 <h2>Im&aacute;genes</h2>
 <br>
 <?php
@@ -10,27 +27,3 @@ echo $imagen_lista;
 ?>
 
 <?php echo $vista_caracteristicas; ?>
-<!-- 
-<table>
-	<tr>
-		<th><h3>Opciones</h3></th>
-	</tr>
-	<?php if(isset($usuario_sesion) && $usuario_sesion->es_propio($publicacion->usuario_id)){ ?>
-	<tr>
-		<td><a
-			href='<?php echo url::site('publicacion/editar/'.$publicacion->id)?>'><?php echo html_Core::image('media/img/iconos/table_edit.png', array('class'=>'icono'))?>Editar
-		Publicacion</a></td>
-	</tr>
-	<tr>
-		<td><a
-			href='<?php echo url::site('imagen/agregar/'.$publicacion->id)?>'><?php echo html_Core::image('media/img/iconos/picture_edit.png', array('class'=>'icono'))?>Editar
-		Imagenes</a></td>
-	</tr>
-	<?php }else{?>
-	<tr>
-		<td><a
-			href='<?php echo url::site('publicacion/ofertar/'.$publicacion->id)?>'><?php echo html_Core::image('media/img/iconos/cart_go.png', array('class'=>'icono'))?>Solicitar</a></td>
-	</tr>
-	<?php } ?>
-</table>
- -->
