@@ -207,6 +207,6 @@ INSERT INTO `tipoinmuebles` (`id`, `nombre`) VALUES
 -- Volcar la base de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `login`, `clave`, `correo`, `nombre`, `apellido`, `fecha_nac`, `telefono`, `tipo`, `activo`, `estado_id`, `ciudad_id`, `zona_id`) VALUES
-(1, 'admin', '1234', 'erickcion@gmail.com', 'Erick', 'Birbe', '1987-12-12', '04128663381', 1, 1, NULL, NULL, NULL);
+INSERT INTO `usuarios` (`id`, `login`, `clave`, `correo`, `nombre`, `apellido`, `fecha_nac`, `telefono`, `tipo`, `activo`, `confirmado`, `estado_id`, `ciudad_id`, `zona_id`) VALUES
+(1, 'admin', '1234', 'erickcion@gmail.com', 'Erick', 'Birbe', '1987-12-12', '04128663381', 1, 1, 1, NULL, NULL, NULL);
 

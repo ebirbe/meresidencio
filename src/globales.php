@@ -73,4 +73,56 @@ define('MAIL_ASNT_BIENVENIDA', 'Registro exitoso en '. NOMBRE_SITIO);
 define('MAIL_ASNT_ALERTA', 'Han publicado una residencia para ti');
 define('MAIL_ASNT_OFERTAR', 'Datos de residencia solicitada');
 define('MAIL_ASNT_CONTACTO', 'Nuevo comentario de usuario');
+
+/**
+ * Estadisticas WEBOSCOPE
+ */
+// INDEX
+define('WEBO_Z_INDEX', 1);
+define('WEBO_P_INDEX', 1);
+// PUBLICACION
+define('WEBO_Z_PUBLICA', 2);
+define('WEBO_P_PUBLICA_LISTA', 1);
+define('WEBO_P_PUBLICA_DETALLE', 2);
+define('WEBO_P_PUBLICA_OFERTA', 3);
+define('WEBO_P_PUBLICA_AGREGAR', 4);
+define('WEBO_P_PUBLICA_EDITAR', 5);
+define('WEBO_P_PUBLICA_IMAGEN', 6);
+// USUARIO
+define('WEBO_Z_USUARIO', 3);
+define('WEBO_P_USUARIO_INICIO', 1);
+define('WEBO_P_USUARIO_NOTIFI', 2);
+define('WEBO_P_USUARIO_SOLICITUD', 3);
+define('WEBO_P_USUARIO_PUBLICA', 4);
+define('WEBO_P_USUARIO_SUSCRIBIR', 5);
+define('WEBO_P_USUARIO_EDITAR', 6);
+define('WEBO_P_USUARIO_SESION', 7);
+define('WEBO_P_USUARIO_DENEGADO', 8);
+define('WEBO_P_USUARIO_CLAVE', 9);
+define('WEBO_P_USUARIO_DATOS', 10);
+define('WEBO_P_USUARIO_CONFIRMAR', 11);
+// ALERTA
+define('WEBO_Z_ALERTA', 4);
+define('WEBO_P_ALERTA_AGREGAR', 1);
+define('WEBO_P_ALERTA_CONSULTAR', 1);
+// CALIFICACIONES
+define('WEBO_Z_CALIFICA', 5);
+define('WEBO_P_CALIFICA_CLIENTE', 1);
+define('WEBO_P_CALIFICA_PROPIETARIO', 2);
+define('WEBO_P_CALIFICA_MIS', 3);
+define('WEBO_P_CALIFICA_VER', 4);
+// ADMIN
+define('WEBO_Z_ADMIN', 6);
+define('WEBO_P_ADMIN_INICIO', 1);
+define('WEBO_P_ADMIN_USUARIO', 2);
+define('WEBO_P_ADMIN_DATOS', 3);
+// NOSOTROS
+define('WEBO_Z_NOSOTROS', 7);
+define('WEBO_P_NOSOTROS_QUIENES', 1);
+define('WEBO_P_NOSOTROS_MISION', 2);
+define('WEBO_P_NOSOTROS_VISION', 3);
+define('WEBO_P_NOSOTROS_CONTACTO', 4);
+// NULL
+define('WEBO_Z_NULL', 1000000);
+define('WEBO_P_NULL', 1000000);
 ?>

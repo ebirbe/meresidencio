@@ -56,6 +56,10 @@ class Publicacion_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function agregar(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_PUBLICA;
+		$this->template->web_page=WEBO_P_PUBLICA_AGREGAR;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
@@ -271,6 +275,10 @@ class Publicacion_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function editar($publicacion_id){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_PUBLICA;
+		$this->template->web_page=WEBO_P_PUBLICA_EDITAR;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
@@ -366,6 +374,10 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function lista($token = NULL){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_PUBLICA;
+		$this->template->web_page=WEBO_P_PUBLICA_LISTA;
 
 		$this->template->titulo = "Lista de Publicaciones";
 		$vista = new View('publicacion/buscar');
@@ -507,6 +519,10 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function detalles($id = NULL){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_PUBLICA;
+		$this->template->web_page=WEBO_P_PUBLICA_DETALLE;
 
 		$this->template->titulo = "Detalles de la publicacion #$id";
 		$vista = new View('publicacion/detalles');
@@ -549,6 +565,10 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function mis_publicaciones(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_PUBLICA;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
@@ -593,6 +613,10 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function ofertar($publicacion_id){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_PUBLICA;
+		$this->template->web_page=WEBO_P_PUBLICA_OFERTA;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN), MSJ_INICIAR_SESION);

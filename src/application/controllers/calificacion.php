@@ -35,6 +35,10 @@ class Calificacion_Controller extends Template_Controller {
 
 
 	public function calificar($calificacion_id){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_CALIFICA;
+		$this->template->web_zone=WEBO_P_CALIFICA_VER;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN), MSJ_INICIAR_SESION);
@@ -57,6 +61,10 @@ class Calificacion_Controller extends Template_Controller {
 		$calificar = TRUE;
 		//Si ya se ha calificado la operacion
 		if($calificacion->razon != ''){
+			
+			// Estadisticas WEBOSCOPE
+			$this->template->web_page=WEBO_P_CALIFICA_PROPIETARIO;
+			
 			$calificar = FALSE;
 
 			//Armamos la vista de que ya califico
@@ -66,6 +74,11 @@ class Calificacion_Controller extends Template_Controller {
 			//Montamos la vista_ya_califico sobre esta
 			$vista->vista_ya_califico = $vista_ya_califico;
 		}else{
+			
+			// Estadisticas WEBOSCOPE
+			$this->template->web_zone=WEBO_Z_CALIFICA;
+			$this->template->web_zone=WEBO_P_CALIFICA_CLIENTE;
+			
 			//Si aun NO se ha calificado la operacion
 			if($_POST){
 				if($this->_calificar_como_cliente($calificacion_id)){
@@ -117,6 +130,10 @@ class Calificacion_Controller extends Template_Controller {
 	}
 
 	public function responder_calificacion($calificacion_id){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_CALIFICA;
+		$this->template->web_zone=WEBO_P_CALIFICA_PROPIETARIO;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
@@ -198,6 +215,10 @@ class Calificacion_Controller extends Template_Controller {
 	}
 	
 	public function mis_calificaciones(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_CALIFICA;
+		$this->template->web_zone=WEBO_P_CALIFICA_MIS;
 		
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);

@@ -77,7 +77,7 @@ function dibujar_menu($m, $c){
     <meta name="revisit-after" content="1 day" />
     <meta name="robots" content="all" />
     
-    <link rel="Shortcut Icon" type="image/ico" href="favicon.html" />
+    <link rel="Shortcut Icon" type="image/ico" href="favicon.ico" />
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     
 	<!-- Pull in the JQUERY library -->
@@ -141,10 +141,35 @@ function dibujar_menu($m, $c){
    <!-- Content -->
     <div id="main-content">
     	<div class="right">
-            <?php echo $intro_lateral ?>
+    	    <?php echo $intro_lateral ?>
             <?php echo $panel_sesion ?>
             <?php echo $panel_opciones ?>
             <?php echo $notificaciones ?>
+            <!--INICIO WEBOSCOPE MeResidencio.com -->
+			<!-- SOLO MODIFICAR WEBO_ZONE Y WEBO_PAGE-->
+			<div align="center">
+				<?php
+				if(!isset($web_zone)) $web_zone=WEBO_Z_NULL;
+				if(!isset($web_page)) $web_page=WEBO_P_NULL;
+				?>
+				
+				<script type="text/javascript">
+					WEBO_ZONE=<?php echo $web_zone?>;
+					WEBO_PAGE=<?php echo $web_page?>;
+					weboscope_ok=0;
+				</script>
+				<script type="text/javascript" src="http://es.weborama.fr/scripts/weboscope_free_es.js"></script>
+				<script>
+					if(weboscope_ok==1){weboscope_free(WEBO_ZONE,WEBO_PAGE,426207);}
+				</script>
+				<noscript>
+					<p>
+						<a href="http://www.weboscope.com/?LANGUAGE=ES">Weboscope medici&oacute;n de audiencia y de eficacia</a>
+						<a href="http://www.weboscope.com/free/?LANGUAGE=ES">Estadsticas gratuitas</a>
+					</p>
+				</noscript>
+			</div>
+			<!-- FIN WEBOSCOPE COPYRIGHT WEBORAMA-->
     </div>
     <div class="left">
 		        <?php echo $contenido ?>
@@ -178,6 +203,8 @@ function dibujar_menu($m, $c){
 <p>Generada con <a href="http://kohanaphp.com">Kohana</a> {execution_time} segundos, usando {memory_usage} de memoria.</p>
 <p>Algunos <a href="http://www.famfamfam.com/lab/icons/silk/">iconos</a> utilizados en esta pagina son de licencia Creative Commons</p>
 <p>&copy; Copyrigth 2010, Erick Birbe. </p>
+<p><?php echo "Z:$web_zone - P:$web_page" ?></p>
+
 	<!--
 	<a class="first" href="index-2.html">Home</a>
     &nbsp;|&nbsp;

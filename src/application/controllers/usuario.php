@@ -58,6 +58,11 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function suscribir() {
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_SUSCRIBIR;
+		
 		$exito = true;
 		$vista = new View('usuario/suscribir');
 		if($_POST){
@@ -160,7 +165,7 @@ class Usuario_Controller extends Template_Controller {
 			$usuario->login = $datos['login'];
 			$usuario->clave = $datos['clave'];
 			$usuario->tipo = USUARIO_COMUN;
-			$usuario->activo = FALSE; //Se activa solo al confimar
+			$usuario->activo = TRUE;
 			$usuario->save();
 				
 			//Se envia el correo de confirmacion
@@ -178,6 +183,10 @@ class Usuario_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function editar($id){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_EDITAR;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,USUARIO_VENDE, USUARIO_COMUN));
@@ -238,8 +247,8 @@ class Usuario_Controller extends Template_Controller {
 			//la validacion no de problemas de 'required'
 			$usuario->login = $usuario->login;
 			$usuario->correo = $usuario->correo;
-
-			$usuario->activo = (boolean)$datos['activo'];
+			
+			if(isset($datos['activo']))$usuario->activo = (boolean)$datos['activo'];
 			$usuario->nombre = htmlspecialchars($datos['nombre']);
 			$usuario->apellido = htmlentities($datos['apellido']);
 			$usuario->fecha_nac = $datos['fecha_nac'];
@@ -268,6 +277,10 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function buscar(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_ADMIN;
+		$this->template->web_page=WEBO_P_ADMIN_USUARIO;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,));
@@ -296,6 +309,10 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function iniciar_sesion(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_SESION;
 
 		$this->template->titulo = "Buscar Usuarios";
 
@@ -344,6 +361,11 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function acceso_denegado($mensaje_id){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_DENEGADO;
+		
 		$this->template->titulo = "Acceso Denegado";
 		$vista = new View('usuario/acceso_denegado');
 		switch ($mensaje_id) {
@@ -366,6 +388,10 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function cambiar_clave(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_CLAVE;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
@@ -441,6 +467,10 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function mis_solicitudes(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_SOLICITUD;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN), MSJ_INICIAR_SESION);
@@ -485,6 +515,10 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function mi_cuenta(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_INICIO;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
@@ -505,6 +539,10 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function mis_datos(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_DATOS;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
@@ -529,6 +567,10 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function datos_usuario($usuario_id){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_ADMIN;
+		$this->template->web_page=WEBO_P_ADMIN_DATOS;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN));
@@ -550,6 +592,11 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function confirmar($usuario_id, $string_MD5){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_CONFIRMAR;
+		
 		$usuario = new Usuario_Model($usuario_id);
 		$confirmacion = $usuario->confirmar($string_MD5);
 		if($confirmacion){

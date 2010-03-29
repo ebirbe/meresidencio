@@ -12,18 +12,14 @@ class Welcome_Controller extends Template_Controller {
 
 	public function index()
 	{
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_INDEX;
+		$this->template->web_page=WEBO_P_INDEX;
+		
 		$this->template->titulo = "Inicio";
 		$contenido = new View("welcome");
 		$contenido->publicaciones_aleatorias = new View('publicacion/aleatorias');
 		$contenido->publicaciones_aleatorias->publicaciones = ORM::factory('publicacion')->aleatorias();
-		/*$contenido .= html_Core::anchor('estado', 'Estados').'<br>';
-		$contenido .= html_Core::anchor('ciudad', 'Ciudades').'<br>';
-		$contenido .= html_Core::anchor('zona', 'Zonas').'<br>';
-		$contenido .= html_Core::anchor('tipoinmueble', 'Tipos de Inmueble').'<br>';
-		$contenido .= html_Core::anchor('servicio', 'Servicios').'<br>';
-		$contenido .= html_Core::anchor('cercania', 'Cercanias').'<br>';
-		$contenido .= html_Core::anchor('usuario', 'Usuarios').'<br>';
-		$contenido .= html_Core::anchor('publicacion', 'Publicaciones').'<br>';*/
 		
 		$this->template->contenido = $contenido;
 	}

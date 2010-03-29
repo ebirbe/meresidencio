@@ -9,6 +9,11 @@ class Admin_Controller extends Template_Controller {
 	}
 
 	public function index(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_ADMIN;
+		$this->template->web_page=WEBO_P_ADMIN_INICIO;
+		
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN), MSJ_INICIAR_SESION);
 		

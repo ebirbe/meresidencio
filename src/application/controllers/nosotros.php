@@ -13,24 +13,44 @@ class Nosotros_Controller extends Template_Controller {
 	}
 
 	public function quienes(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_NOSOTROS;
+		$this->template->web_zone=WEBO_P_NOSOTROS_QUIENES;
+		
 		$this->template->titulo = "Quienes Somos?";
 		$vista = new View('nosotros/quienes');
 		$this->template->contenido = $vista;
 	}
 
 	public function mision(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_NOSOTROS;
+		$this->template->web_zone=WEBO_P_NOSOTROS_MISION;
+		
 		$this->template->titulo = "Mision";
 		$vista = new View('nosotros/mision');
 		$this->template->contenido = $vista;
 	}
 
 	public function vision(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_NOSOTROS;
+		$this->template->web_zone=WEBO_P_NOSOTROS_VISION;
+		
 		$this->template->titulo = "Vision";
 		$vista = new View('nosotros/vision');
 		$this->template->contenido = $vista;
 	}
 
 	public function contacto(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_NOSOTROS;
+		$this->template->web_zone=WEBO_P_NOSOTROS_CONTACTO;
+		
 		$this->template->titulo = "Contacto";
 		$vista = new View('nosotros/contacto');
 		$mensaje = NULL;

@@ -35,7 +35,7 @@ abstract class Template_Controller extends Controller {
 		/***********************
 		 * Datos Agregados por mi
 		 */
-
+		
 		//Inicializa las sesiones
 		$this->session = Session::instance();
 		$usuario = $this->session->get('usuario');

@@ -2,25 +2,13 @@
 
 class Alerta_Controller extends Template_Controller {
 
-	protected $formulario;
-	protected $errores;
 	protected $mensaje;
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->template->titulo = html::specialchars("Administracion de Alertas");
-		$this->limpiar_formulario();
-		$this->errores = $this->formulario;
 		$this->mensaje = '';
-	}
-	/**
-	 * Pone todos los campos en blanco, listo para ser utilizado
-	 */
-	public function limpiar_formulario(){
-		$this->formulario = array(
-			'estado' => '',
-		);
 	}
 
 	public function index(){
@@ -32,43 +20,14 @@ class Alerta_Controller extends Template_Controller {
 	}
 
 	/**
-	 * Genera la vista de borrado.
-	 * @param int $id
-	 */
-	public function borrar($id){
-
-		//Control de acceso
-		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
-
-		//TODO Implementar
-		$contenido = "Borrado";
-		$contenido .= "<br>";
-		$contenido .= html_Core::anchor('estado/lista', '<-volver');
-		$this->template->contenido = $contenido;
-		ORM::factory('estado', $id)->delete();
-	}
-
-	/**
-	 * Genera la Lista de todos los estados
-	 * incluidos en la base de datos
-	 */
-	public function lista(){
-
-		//Control de acceso
-		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
-
-		$vista = new View('estado/lista');
-		$vista->cabecera_tabla = 'Lista de Estados';
-		$estado = new Estado_Model();
-		$vista->estado = $estado->find_all()->as_array();
-		$this->template->contenido = $vista;
-	}
-
-	/**
 	 * Controla la salida en pantalla de el formulario
 	 * para agregar estados.
 	 */
 	public function agregar(){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_ALERTA;
+		$this->template->web_page=WEBO_P_ALERTA_AGREGAR;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN), MSJ_INICIAR_SESION);
@@ -85,44 +44,6 @@ class Alerta_Controller extends Template_Controller {
 			}
 		}
 		$this->mis_alertas();
-	}
-
-	/**
-	 * Validacion de los datos obtenidos a traves del metodo post
-	 */
-	public function _validar($usuario_id){
-
-		$datos = $_POST;
-		$exito = TRUE;
-
-		if(
-			$datos['estado']==0 &&
-			$datos['ciudad']==0 &&
-			$datos['zona']==0 &&
-			$datos['tipoinmueble']==0
-		){
-			$this->mensaje = "<div class='msg_error'>Debes seleccionar algo.</div>";
-			return FALSE;
-		}
-
-		foreach (ORM::factory('alerta')->where("usuario_id", $usuario_id)->find_all() as $alerta){
-			if($alerta->estado_id=="") $alerta->estado_id=0;
-			if($alerta->ciudad_id=="") $alerta->ciudad_id=0;
-			if($alerta->zona_id=="") $alerta->zona_id=0;
-			if($alerta->tipoinmueble_id=="") $alerta->tipoinmueble_id=0;
-			if(
-			$datos['estado'] == $alerta->estado_id &&
-			$datos['ciudad'] == $alerta->ciudad_id &&
-			$datos['zona'] == $alerta->zona_id &&
-			$datos['tipoinmueble'] == $alerta->tipoinmueble_id
-			){
-				$this->mensaje = "<div class='msg_exito'>No se guard&oacute;, Ya te has suscrito a una alerta id&eacute;ntica</div>";
-				$exito = FALSE;
-				break;
-			}
-		}
-		
-		return $exito;
 	}
 
 	/**
@@ -178,6 +99,11 @@ class Alerta_Controller extends Template_Controller {
 	}
 
 	public function consultar($alerta_id){
+		
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_ALERTA;
+		$this->template->web_page=WEBO_P_ALERTA_CONSULTAR;
+		
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN), MSJ_INICIAR_SESION);
 
