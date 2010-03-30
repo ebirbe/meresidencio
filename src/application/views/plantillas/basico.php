@@ -78,7 +78,6 @@ function dibujar_menu($m, $c){
     <meta name="robots" content="all" />
     
     <link rel="Shortcut Icon" type="image/ico" href="favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
     
 	<!-- Pull in the JQUERY library -->
 	<?php echo html_Core::script('media/js/jquery-1.3.2.js', FALSE) ?>

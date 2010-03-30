@@ -164,8 +164,8 @@ class Usuario_Controller extends Template_Controller {
 		$usuario = new Usuario_Model();
 		if($this->_validar()){
 			$usuario->correo = $datos['correo'];
-			$usuario->nombre = htmlentities($datos['nombre']);
-			$usuario->apellido = htmlentities($datos['apellido']);
+			$usuario->nombre = $datos['nombre'];
+			$usuario->apellido = $datos['apellido'];
 			$usuario->login = $datos['login'];
 			$usuario->clave = $datos['clave'];
 			$usuario->tipo = USUARIO_COMUN;
@@ -253,8 +253,8 @@ class Usuario_Controller extends Template_Controller {
 			$usuario->correo = $usuario->correo;
 
 			if(isset($datos['activo']))$usuario->activo = (boolean)$datos['activo'];
-			$usuario->nombre = htmlspecialchars($datos['nombre']);
-			$usuario->apellido = htmlentities($datos['apellido']);
+			$usuario->nombre = $datos['nombre'];
+			$usuario->apellido = $datos['apellido'];
 			$usuario->fecha_nac = $datos['fecha_nac'];
 			$usuario->telefono = $datos['telefono'];
 

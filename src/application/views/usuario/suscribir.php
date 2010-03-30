@@ -1,6 +1,5 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <h2>Suscripci&oacute;n</h2>
-<?php echo Kohana::debug($errores)?>
 <?php echo form::open() ?>
 <table class="tabla_ext">
 	<?php if($mensaje) {?>

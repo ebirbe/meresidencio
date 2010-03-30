@@ -121,6 +121,7 @@ class Calificacion_Controller extends Template_Controller {
 		$datos = $_POST;
 		$estado = new Calificacion_Model($calificacion_id);
 		if($this->_validar()){
+			$estado->fecha_cliente = date('Y-m-d');
 			$estado->puntos = $datos['puntos'];
 			$estado->razon = htmlentities($datos['razon']);
 			$estado->save();
@@ -188,6 +189,7 @@ class Calificacion_Controller extends Template_Controller {
 		$datos = $_POST;
 		$estado = new Calificacion_Model($calificacion_id);
 		if($this->_validar_respuesta()){
+			$estado->fecha_usuario = date('Y-m-d');
 			$estado->respuesta = htmlentities($datos['respuesta']);
 			$estado->activa = FALSE;
 			$estado->save();
