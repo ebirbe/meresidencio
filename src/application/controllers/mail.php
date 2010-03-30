@@ -33,4 +33,9 @@ class Mail_Controller extends Controller {
 		$mail->mensaje = "MEnsaje Cualquiera enviado desde la web";
 		echo $mail;
 	}
+	public function recuperar(){
+		$mail = new View('mail/recuperar');
+		$mail->usuario = ORM::factory('usuario')->orderby(NULL, 'RAND()')->find();
+		echo $mail;
+	}
 }

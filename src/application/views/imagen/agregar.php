@@ -6,16 +6,21 @@
 	<tr>
 		<th colspan="3"><?php echo $mensaje ?></th>
 	</tr>
-	<?php if($numero_imagenes >= 6) {?>
+	<?php if($numero_imagenes >= MAXIMO_IMAGENES) {?>
 	<tr>
 		<th colspan="3">Has alcanzado el m&aacute;ximo de im&aacute;genes.</th>
 	</tr>
-	<?php }else{ ?>
-	<tr>
-		<td>&nbsp;</td>
-		<td><?php echo form::upload(array('name'=>'imagen','accept'=>'image/png,image/jpeg,image/gif')) ?><br>
-		</td>
-	</tr>
+	<?php 
+	}else{
+		for($i=0;$i<(MAXIMO_IMAGENES-$numero_imagenes);$i++)
+		{
+	?>
+		<tr>
+			<td>&nbsp;</td>
+			<td><?php echo form::upload(array('name'=>"imagen[$i]",'accept'=>'image/png,image/jpeg,image/gif')) ?><br>
+			</td>
+		</tr>
+	<?php }?>
 	<tr>
 		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Guardar') ?></td>
 	</tr>

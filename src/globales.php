@@ -67,12 +67,13 @@ define('INTRO_LATERAL',
  * Variables de Correos Electronicos
  */
 //CORREOS ELECTRONICOS
-define('MAIL_DE', NOMBRE_SITIO.' <erickcion@gmail.com>');
+define('MAIL_DE', NOMBRE_SITIO.' <admin@meresidencio.com>');
 //ASUNTOS
 define('MAIL_ASNT_BIENVENIDA', 'Registro exitoso en '. NOMBRE_SITIO);
 define('MAIL_ASNT_ALERTA', 'Han publicado una residencia para ti');
 define('MAIL_ASNT_OFERTAR', 'Datos de residencia solicitada');
 define('MAIL_ASNT_CONTACTO', 'Nuevo comentario de usuario');
+define('MAIL_ASNT_RECUPERAR', 'Datos de Acceso a '. NOMBRE_SITIO);
 
 /**
  * Estadisticas WEBOSCOPE
@@ -101,6 +102,7 @@ define('WEBO_P_USUARIO_DENEGADO', 8);
 define('WEBO_P_USUARIO_CLAVE', 9);
 define('WEBO_P_USUARIO_DATOS', 10);
 define('WEBO_P_USUARIO_CONFIRMAR', 11);
+define('WEBO_P_USUARIO_RECUPERAR', 12);
 // ALERTA
 define('WEBO_Z_ALERTA', 4);
 define('WEBO_P_ALERTA_AGREGAR', 1);

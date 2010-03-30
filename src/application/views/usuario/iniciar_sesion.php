@@ -20,7 +20,7 @@
 		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Iniciar Sesion')?></td>
 	</tr>
 	<tr>
-		<td colspan="3"><a href=''><?php echo html_Core::image('media/img/iconos/key_delete.png', array('class'=>'icono'))?>&iquest;Olvidaste tu contrase&ntilde;a?</a></td>
+		<td colspan="3"><a href='<?php echo url::site('usuario/recuperar')?>'><?php echo html_Core::image('media/img/iconos/key_delete.png', array('class'=>'icono'))?>&iquest;Olvidaste tu contrase&ntilde;a?</a></td>
 	</tr>
 </table>
 	<?php echo form::close() ?>

@@ -623,8 +623,8 @@ class Publicacion_Controller extends Template_Controller {
 
 		$usuario = $this->session->get('usuario');
 		$publicacion = ORM::factory('publicacion', $publicacion_id);
-		$calificacion = ORM::factory('calificacion', $publicacion_id)
-		->where('publicacion_id', $publicacion_id)
+		$calificacion = new Calificacion_Model();
+		$calificacion = $calificacion->where('publicacion_id', $publicacion_id)
 		->where('cliente_id', $usuario->id)
 		->find();
 
@@ -659,7 +659,9 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function _ofertar($publicacion_id, $cliente_id, $usuario_id){
-		$calificacion = ORM::factory('calificacion');
+		// Para solventar el bug que inserta una calificacion fastasma
+		if($publicacion_id==0)return;
+		$calificacion = new Calificacion_Model();
 		$calificacion->fecha = date('Y-m-d');
 		$calificacion->puntos = CALIFICACION_SIN;
 		$calificacion->cliente_id = $cliente_id;
@@ -672,6 +674,7 @@ class Publicacion_Controller extends Template_Controller {
 		$mail->publicacion = $calificacion->publicacion;
 		
 		Mail_Model::enviar(ORM::factory('usuario',$cliente_id)->correo,MAIL_ASNT_OFERTAR,$mail);
+		
 		
 		return $calificacion->id;
 	}

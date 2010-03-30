@@ -36,6 +36,8 @@ class Usuario_Controller extends Template_Controller {
 			'actual' => '',
 			'nueva'  => '',
 			'confirmacion' => '',
+		
+			'captcha' => '',
 		);
 	}
 
@@ -58,15 +60,15 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function suscribir() {
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_USUARIO;
 		$this->template->web_page=WEBO_P_USUARIO_SUSCRIBIR;
-		
+
 		$exito = true;
 		$vista = new View('usuario/suscribir');
 		if($_POST){
-			if($exito = $this->_suscribir()){
+			if($this->_suscribir()){
 
 				$this->template->titulo = "Confirma tu correo";
 
@@ -96,18 +98,20 @@ class Usuario_Controller extends Template_Controller {
 		//Evita que en la edicion se verifique los campos no editables requeridos
 		if(!$editar){
 			$post->add_rules('correo','required', 'email');
-			$post->add_rules('login','required', 'standard_text','length[1,45]');
+			$post->add_rules('login','required', 'alpha_dash','length[1,45]');
 			$post->add_rules('clave','required', 'standard_text','length[4,20]');
 			$post->add_rules('confirmacion','required');
 
 			$post->add_callbacks('login', array($this, '_unico'));
 			$post->add_callbacks('correo', array($this, '_unico'));
 			$post->add_callbacks('clave', array($this, '_no_coincide'));
+		}else{
+			$post->add_rules('telefono','required','phone[11]');
 		}
 		$post->add_rules('correo','required', 'email');
 		$post->add_rules('nombre','required', 'standard_text','length[1,45]');
 		$post->add_rules('apellido','required', 'standard_text','length[1,45]');
-		$post->add_rules('telefono','phone[11]');
+		
 
 		$exito = $post->validate();
 
@@ -167,12 +171,12 @@ class Usuario_Controller extends Template_Controller {
 			$usuario->tipo = USUARIO_COMUN;
 			$usuario->activo = TRUE;
 			$usuario->save();
-				
+
 			//Se envia el correo de confirmacion
 			$mail = new View('mail/bienvenida');
 			$mail->usuario = $usuario;
 			Mail_Model::enviar($usuario->correo, MAIL_ASNT_BIENVENIDA, $mail);
-				
+
 			$exito = true;
 		}
 		return $exito;
@@ -183,7 +187,7 @@ class Usuario_Controller extends Template_Controller {
 	 * @param int $id
 	 */
 	public function editar($id){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_USUARIO;
 		$this->template->web_page=WEBO_P_USUARIO_EDITAR;
@@ -247,7 +251,7 @@ class Usuario_Controller extends Template_Controller {
 			//la validacion no de problemas de 'required'
 			$usuario->login = $usuario->login;
 			$usuario->correo = $usuario->correo;
-			
+
 			if(isset($datos['activo']))$usuario->activo = (boolean)$datos['activo'];
 			$usuario->nombre = htmlspecialchars($datos['nombre']);
 			$usuario->apellido = htmlentities($datos['apellido']);
@@ -277,7 +281,7 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function buscar(){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_ADMIN;
 		$this->template->web_page=WEBO_P_ADMIN_USUARIO;
@@ -309,7 +313,7 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function iniciar_sesion(){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_USUARIO;
 		$this->template->web_page=WEBO_P_USUARIO_SESION;
@@ -361,11 +365,11 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function acceso_denegado($mensaje_id){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_USUARIO;
 		$this->template->web_page=WEBO_P_USUARIO_DENEGADO;
-		
+
 		$this->template->titulo = "Acceso Denegado";
 		$vista = new View('usuario/acceso_denegado');
 		switch ($mensaje_id) {
@@ -388,7 +392,7 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function cambiar_clave(){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_USUARIO;
 		$this->template->web_page=WEBO_P_USUARIO_CLAVE;
@@ -467,7 +471,7 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function mis_solicitudes(){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_USUARIO;
 		$this->template->web_page=WEBO_P_USUARIO_SOLICITUD;
@@ -515,7 +519,7 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function mi_cuenta(){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_USUARIO;
 		$this->template->web_page=WEBO_P_USUARIO_INICIO;
@@ -539,7 +543,7 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function mis_datos(){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_USUARIO;
 		$this->template->web_page=WEBO_P_USUARIO_DATOS;
@@ -567,7 +571,7 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function datos_usuario($usuario_id){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_ADMIN;
 		$this->template->web_page=WEBO_P_ADMIN_DATOS;
@@ -592,11 +596,11 @@ class Usuario_Controller extends Template_Controller {
 	}
 
 	public function confirmar($usuario_id, $string_MD5){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_USUARIO;
 		$this->template->web_page=WEBO_P_USUARIO_CONFIRMAR;
-		
+
 		$usuario = new Usuario_Model($usuario_id);
 		$confirmacion = $usuario->confirmar($string_MD5);
 		if($confirmacion){
@@ -606,13 +610,73 @@ class Usuario_Controller extends Template_Controller {
 			$resultado = "FALLIDA";
 			$mensaje = "Lo sentimos pero NO COINCIDEN LOS DATOS. Por favor intentelo nuevamente o " . html::anchor(url::site('nosotros/contacto'), "contactenos") . " si persiste el problema.";
 		}
-		
+
 		$vista = new View('usuario/confirmar');
 		$vista->resultado = $resultado;
 		$vista->mensaje = $mensaje;
-		
+
 		$this->template->titulo = "Confirmacion de Correo Electronico";
 		$this->template->contenido = $vista;
+	}
+
+	public function recuperar(){
+
+		// Estadisticas WEBOSCOPE
+		$this->template->web_zone=WEBO_Z_USUARIO;
+		$this->template->web_page=WEBO_P_USUARIO_RECUPERAR;
+
+		if($_POST){
+			if($this->_recuperar()){
+				$this->mensaje = "<div class='msg_exito'>Los datos han sido enviados a tu correo.<br>Revisa tu bandeja de entrada.</div>";
+				$this->limpiar_formulario();
+			}
+		}
+		
+		$captcha = new Captcha();
+		
+		$vista = new View('usuario/recuperar');
+		$this->template->titulo = "Recuperaci&oacute;n de Datos de Acceso";
+		$vista->captcha = $captcha->render();
+		$vista->mensaje = $this->mensaje;
+		$vista->formulario = $this->formulario;
+		$vista->errores = $this->errores;
+		$this->template->contenido = $vista;
+
+	}
+
+	public function _recuperar(){
+		$exito = FALSE;
+		$datos = $_POST;
+		if($this->_registrado()){
+			$mail = new View('mail/recuperar');
+			$mail->usuario = ORM::factory('usuario')->where('correo',$datos['correo'])->find();
+			Mail_Model::enviar($datos['correo'],MAIL_ASNT_RECUPERAR,$mail);
+			$exito = TRUE;
+		}
+		return $exito;
+	}
+
+	public function _registrado(){
+		$post = new Validation_Core($_POST);
+		$post->pre_filter('trim');
+		$post->add_rules('correo','required', 'email');
+		$post->add_rules('captcha','required', array('Captcha','valid'));
+		$post->add_callbacks('correo', array($this, '_no_existe'));
+
+		$exito = $post->validate();
+
+		$this->mensaje = "<div class='msg_error'>No se ha enviado</div>";
+		$this->formulario = arr::overwrite($this->formulario, $post->as_array());
+		$this->errores = arr::overwrite($this->errores, $post->errors('usuario_errores'));
+
+		return $exito;
+	}
+
+	public function _no_existe(Validation_Core  $array, $campo){
+		$tot = ORM::factory('usuario')->where('correo',$array[$campo])->count_all();
+		if($tot==0){
+			$array->add_error('correo', 'no_existe');
+		}
 	}
 }
 ?>

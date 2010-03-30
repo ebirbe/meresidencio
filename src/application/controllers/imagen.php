@@ -50,43 +50,47 @@ class Imagen_Controller extends Template_Controller {
 		$exito = false;
 
 		$files = Validation::factory($_FILES)
-		->add_rules('imagen', 'upload::valid', 'upload::required','upload::type[gif,jpg,jpeg,png]', 'upload::size[5M]');
+		->add_rules('imagen', 'upload::valid','upload::type[gif,jpg,jpeg,png]', 'upload::size[5M]');
+
 
 		if ($files->validate())
 		{
-				
-			// Nombre de archivo temporal
-			$filename = upload::save('imagen');
-				
-			// Preparacion de Tabla en la BD
-			$imagen = new Imagen_Model();
-			$imagen->publicacion_id = $publicacion_id;
-			$imagen->save();
-			$imagen->img_p = 'fotos/residencia_'.$imagen->id.'_p_'.basename($filename);
-			$imagen->img_g = 'fotos/residencia_'.$imagen->id.'_g_'.basename($filename);
-			$imagen->save();
-				
-			// Formato Grande
-			$img = Image::factory($filename);
-			if($img->__get('width') > 800 || $img->__get('height') > 600){
-				if($img->__get('height') > $img->__get('height')){
-					$relacion = Image::WIDTH;
-				}else{
-					$relacion = Image::HEIGHT;
-				}
-				$img->resize(800, 600, $relacion);
-			}
-			$img->save($imagen->img_g);
-				
-			// Formato Pequeño
-			Image::factory($filename)
-			->resize(160, 120, Image::HEIGHT)
-			->quality(60)
-			->save($imagen->img_p);
+			foreach( arr::rotate($_FILES['imagen']) as $file ){
+				// Si esta vacio el campo no hace nada
+				if($file['name']=='')continue;
 
-			// Remove the temporary file
-			unlink($filename);
-				
+				// Nombre de archivo temporal
+				$filename = upload::save($file);
+
+				// Preparacion de Tabla en la BD
+				$imagen = new Imagen_Model();
+				$imagen->publicacion_id = $publicacion_id;
+				$imagen->save();// Guardamos para generar el ID unico en el objeto
+				$imagen->img_p = 'fotos/residencia_'.$imagen->id.'_p_'.basename($filename);
+				$imagen->img_g = 'fotos/residencia_'.$imagen->id.'_g_'.basename($filename);
+				$imagen->save();
+
+				// Formato Grande
+				$img = Image::factory($filename);
+				if($img->__get('width') > 800 || $img->__get('height') > 600){
+					if($img->__get('height') > $img->__get('height')){
+						$relacion = Image::WIDTH;
+					}else{
+						$relacion = Image::HEIGHT;
+					}
+					$img->resize(800, 600, $relacion);
+				}
+				$img->save($imagen->img_g);
+
+				// Formato Pequeño
+				Image::factory($filename)
+				->resize(160, 120, Image::HEIGHT)
+				->quality(60)
+				->save($imagen->img_p);
+
+				// Remove the temporary file
+				unlink($filename);
+		 }
 			$exito = true;
 		}
 

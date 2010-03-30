@@ -145,31 +145,6 @@ function dibujar_menu($m, $c){
             <?php echo $panel_sesion ?>
             <?php echo $panel_opciones ?>
             <?php echo $notificaciones ?>
-            <!--INICIO WEBOSCOPE MeResidencio.com -->
-			<!-- SOLO MODIFICAR WEBO_ZONE Y WEBO_PAGE-->
-			<div align="center">
-				<?php
-				if(!isset($web_zone)) $web_zone=WEBO_Z_NULL;
-				if(!isset($web_page)) $web_page=WEBO_P_NULL;
-				?>
-				
-				<script type="text/javascript">
-					WEBO_ZONE=<?php echo $web_zone?>;
-					WEBO_PAGE=<?php echo $web_page?>;
-					weboscope_ok=0;
-				</script>
-				<script type="text/javascript" src="http://es.weborama.fr/scripts/weboscope_free_es.js"></script>
-				<script>
-					if(weboscope_ok==1){weboscope_free(WEBO_ZONE,WEBO_PAGE,426207);}
-				</script>
-				<noscript>
-					<p>
-						<a href="http://www.weboscope.com/?LANGUAGE=ES">Weboscope medici&oacute;n de audiencia y de eficacia</a>
-						<a href="http://www.weboscope.com/free/?LANGUAGE=ES">Estadsticas gratuitas</a>
-					</p>
-				</noscript>
-			</div>
-			<!-- FIN WEBOSCOPE COPYRIGHT WEBORAMA-->
     </div>
     <div class="left">
 		        <?php echo $contenido ?>
@@ -177,20 +152,23 @@ function dibujar_menu($m, $c){
     <div class="publicidad">
 	    <div class="cuadro_pub">
 	    	<strong>
-		    	<p align="center">Su publicidad aqui.</p>
+		    	<p align="center">Espacio disponible</p>
 		    	<p align="center">125px X 150px</p>
+		    	<p align="center"><?php echo html::anchor(url::site('nosotros/contacto'), "Contactanos")?></p>
 	    	</strong>
 	    </div>
 	  	<div class="cuadro_pub">
 	    	<strong>
-		    	<p align="center">Su publicidad aqui.</p>
+		    	<p align="center">Espacio disponible</p>
 		    	<p align="center">125px X 150px</p>
+		    	<p align="center"><?php echo html::anchor(url::site('nosotros/contacto'), "Contactanos")?></p>
 	    	</strong>
 	    </div>
 	    <div class="cuadro_pub">
 	    	<strong>
-		    	<p align="center">Su publicidad aqui.</p>
+		    	<p align="center">Espacio disponible</p>
 		    	<p align="center">125px X 150px</p>
+		    	<p align="center"><?php echo html::anchor(url::site('nosotros/contacto'), "Contactanos")?></p>
 	    	</strong>
 	    </div>
     </div>
@@ -200,9 +178,28 @@ function dibujar_menu($m, $c){
 <!-- END content -->
 
 <div id="footer">
-<p>Generada con <a href="http://kohanaphp.com">Kohana</a> {execution_time} segundos, usando {memory_usage} de memoria.</p>
+<p>Generada con <a href="http://kohanaphp.com">Kohana</a> en {execution_time} segundos, usando {memory_usage} de memoria.</p>
 <p>Algunos <a href="http://www.famfamfam.com/lab/icons/silk/">iconos</a> utilizados en esta pagina son de licencia Creative Commons</p>
 <p>&copy; Copyrigth 2010, Erick Birbe. </p>
+ <!--INICIO WEBOSCOPE MeResidencio.com --> <!-- SOLO MODIFICAR WEBO_ZONE Y WEBO_PAGE-->
+<?php
+if(!isset($web_zone)) $web_zone=WEBO_Z_NULL;
+if(!isset($web_page)) $web_page=WEBO_P_NULL;
+?> <script type="text/javascript">
+					WEBO_ZONE=<?php echo $web_zone?>;
+					WEBO_PAGE=<?php echo $web_page?>;
+					weboscope_ok=0;
+				</script> <script type="text/javascript"
+	src="http://es.weborama.fr/scripts/weboscope_free_es.js"></script> <script>
+					if(weboscope_ok==1){weboscope_free(WEBO_ZONE,WEBO_PAGE,426207);}
+				</script>
+<noscript>
+<p><a href="http://www.weboscope.com/?LANGUAGE=ES">Weboscope
+medici&oacute;n de audiencia y de eficacia</a> <a
+	href="http://www.weboscope.com/free/?LANGUAGE=ES">Estadsticas gratuitas</a>
+</p>
+</noscript>
+<!-- FIN WEBOSCOPE COPYRIGHT WEBORAMA-->
 <p><?php echo "Z:$web_zone - P:$web_page" ?></p>
 
 	<!--

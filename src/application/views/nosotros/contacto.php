@@ -6,22 +6,34 @@ puedes contactar con nosotros a traves de los siguientes medios:</p>
 <?php echo form::open() ?>
 <table class="tabla_ext">
 	<tr>
-		<td colspan="2"><?php echo $mensaje ?></td>
+		<td colspan="3"><?php echo $mensaje ?></td>
 	</tr>
 	<tr>
 		<td><?php echo form::label("nombre", "NOMBRE")?></td>
-		<td><?php echo form::input('nombre') ?></td>
+		<td><?php echo form::input('nombre', $formulario['nombre']) ?></td>
+		<td><?php echo $errores['correo'] ?></td>
 	</tr>
 	<tr>
 		<td><?php echo form::label("nombre", "CORREO")?></td>
-		<td><?php echo form::input ('correo') ?></td>
+		<td><?php echo form::input ('correo', $formulario['correo']) ?></td>
+		<td><?php echo $errores['correo'] ?></td>
 	</tr>
 	<tr>
 		<td><?php echo form::label("nombre", "MENSAJE")?></td>
-		<td><?php echo form::textarea(array('name'=>'mensaje', 'cols'=>'50', 'rows'=>'5')) ?></td>
+		<td><?php echo form::textarea(array('name'=>'mensaje', 'cols'=>'50', 'rows'=>'5'), $formulario['mensaje']) ?></td>
 	</tr>
 	<tr>
-		<td colspan="2"><?php echo form::submit(array('class'=>'button'), 'Enviar') ?></td>
+		<td>&nbsp;</td>
+		<td colspan="2"><?php echo $captcha ?> <br>
+		<?php echo form::label('captcha', 'Escriba el texto que ve en la imagen:')?></td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td><?php echo form::input('captcha')?></td>
+		<td><?php echo $errores['captcha']?></td>
+	</tr>
+	<tr>
+		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Enviar') ?></td>
 	</tr>
 </table>
-<?php echo form::close() ?>
+		<?php echo form::close() ?>
