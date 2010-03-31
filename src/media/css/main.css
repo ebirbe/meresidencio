@@ -210,16 +210,18 @@ textarea {
 #footer {
 	text-align: center;
 	border: 1px solid #bfb9b2;
-	color: #336A93;
-	background: #cde3fa;
+	color: #f1ffd4;
+	background: #245dc7;
 }
 
 #footer a {
-	color: #224661
+	color: #5eafff;
+	text-decoration: none;
 }
 
 #footer a:hover {
-	color: #7f7d77
+	color: #7f7d77;
+	text-decoration: none;
 }
 
 /*** ----------------------------------------- ***/
@@ -289,7 +291,7 @@ img {
 	position: relative;
 	width: 980px;
 	height: 100px;
-	background: #cde3fa;
+	background: #245dc7/*#cde3fa*/;
 	border: 1px solid #bfb9b2;
 }
 
@@ -761,14 +763,6 @@ form {
 	width: 938px;
 	margin: 0 auto;
 	padding: 20px
-}
-
-#footer a {
-	text-decoration: underline
-}
-
-#footer a:hover {
-	text-decoration: none
 }
 
 #footer span {

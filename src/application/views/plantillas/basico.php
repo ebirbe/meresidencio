@@ -146,6 +146,7 @@ function dibujar_menu($m, $c){
             <?php echo $notificaciones ?>
     </div>
     <div class="left">
+    			<div align="center"><?php echo html::anchor(url::site('nosotros/contacto'), html_Core::image('media/img/banner_horizontal.png', 'Publicidad Disponible', FALSE))?></div>
 		        <?php echo $contenido ?>
     </div>
     <div class="publicidad">
