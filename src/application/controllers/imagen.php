@@ -61,17 +61,17 @@ class Imagen_Controller extends Template_Controller {
 
 				// Nombre de archivo temporal
 				$filename = upload::save($file);
+				$img = Image::factory($filename);
 
 				// Preparacion de Tabla en la BD
 				$imagen = new Imagen_Model();
 				$imagen->publicacion_id = $publicacion_id;
 				$imagen->save();// Guardamos para generar el ID unico en el objeto
-				$imagen->img_p = 'fotos/residencia_'.$imagen->id.'_p_'.basename($filename);
-				$imagen->img_g = 'fotos/residencia_'.$imagen->id.'_g_'.basename($filename);
+				$imagen->img_p = 'fotos/residencia_'.$publicacion_id.'_'.$imagen->id.'_p.'.$img->__get('ext');
+				$imagen->img_g = 'fotos/residencia_'.$publicacion_id.'_'.$imagen->id.'_g.'.$img->__get('ext');
 				$imagen->save();
 
 				// Formato Grande
-				$img = Image::factory($filename);
 				if($img->__get('width') > 800 || $img->__get('height') > 600){
 					if($img->__get('height') > $img->__get('height')){
 						$relacion = Image::WIDTH;
