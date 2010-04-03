@@ -41,7 +41,7 @@
 	</table>
 </div>
 <div class="clear"></div>
-<div class="precio"><?php echo $publicacion->precio; ?><br>Bs./Mes</div>
+<div class="precio"><?php echo $publicacion->precio; ?><br/>Bs./Mes</div>
 <div class="clear"></div>
 <div class="comodidades">
 	<h2>Comodidades</h2>

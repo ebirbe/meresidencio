@@ -1,7 +1,7 @@
 /*** ----------------------------------------- ***/
 	/*** COLORS! (for easy updating!) ------------ ***/
 body {
-	background:#94944d;/*#59592e*/
+	background: #94944d; /*#59592e*/
 }
 
 div {
@@ -33,7 +33,7 @@ div {
 }
 
 .sf-menu ul a.top {
-	border-top: none 
+	border-top: none
 }
 
 .sf-menu ul a.bottom {
@@ -165,7 +165,7 @@ div {
 }
 
 #main-content .right p {
-	color: #23201B !important 
+	color: #23201B !important
 }
 
 #main-content p.intro-text {
@@ -291,7 +291,7 @@ img {
 	position: relative;
 	width: 980px;
 	height: 100px;
-	background: #245dc7/*#cde3fa*/;
+	background: #245dc7 /*#cde3fa*/;
 	border: 1px solid #bfb9b2;
 }
 
@@ -776,7 +776,7 @@ form {
 }
 
 .columna_titulos {
-	width: 100px;
+	width: 200px;
 }
 
 .tabla_alertas {
@@ -844,19 +844,6 @@ label {
 	margin: 0 5px 0 0;
 }
 
-.tbl_navegar {
-	width: 724px;
-	margin: auto;
-	padding: 5px;
-}
-
-.btn_navegar {
-	background-color: #ffff99;
-	width: 200px;
-	text-align: center;
-	font-weight: bold;
-}
-
 #header .logo2 {
 	z-index: 100;
 	float: right;
@@ -878,15 +865,21 @@ table {
 	width: 125px;
 	height: 160px;
 	margin: 10px auto 10px auto;
-	background: #FFFFFF;/*#cde3fa;*/
+	background: #FFFFFF;
 	border: 1px solid #DBD1B9;
 }
 
-#cabecera_detalles{
+#cabecera_detalles {
 	width: 100%;
 }
-#cabecera_detalles td{
+
+#cabecera_detalles td {
 	font-weight: bold;
 	font-size: 14px;
 	color: #332920;
+}
+
+.center {
+	margin: auto;
+	text-align: center;
 }

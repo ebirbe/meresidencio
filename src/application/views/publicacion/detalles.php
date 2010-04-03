@@ -9,17 +9,16 @@ $fecha = split("-",$publicacion->fecha);
 	</tr>
 	<tr>
 		<td align="left">Visto <?php echo $publicacion->visitas; ?> veces.</td>
-		<td align="right">Solicitado por <?php echo $publicacion->calificaciones->count() ?>
-		usuarios.</td>
+		<td align="right">Solicitado por <?php echo $publicacion->calificaciones->count() ?> usuarios.</td>
 	</tr>
 	<tr>
-		<td colspan="2" align="center">Publicado el<br><?php echo $fecha[2]."-".$fecha[1]."-".$fecha[0]; ?></td>
+		<td colspan="2" align="center">Publicado el<br/><?php echo $fecha[2]."-".$fecha[1]."-".$fecha[0]; ?></td>
 	</tr>
 </table>
 <div class="clear"></div>
-<br>
+<br/>
 <h2>Im&aacute;genes</h2>
-<br>
+<br/>
 <?php
 $imagen_lista = new View('imagen/lista');
 $imagen_lista->imagenes = $publicacion->imagenes;

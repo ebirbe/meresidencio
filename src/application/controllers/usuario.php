@@ -73,12 +73,8 @@ class Usuario_Controller extends Template_Controller {
 				$this->template->titulo = "Confirma tu correo";
 
 				//TODO Aqui seria mejor usar un redirect y convertir la bienvenida en un metodo
-
 				$vista = new View('usuario/bienvenida');
-				$vista->nombre = $_POST['nombre'];
-				$vista->apellido = $_POST['apellido'];
 				$vista->login = $_POST['login'];
-
 				$this->limpiar_formulario();
 			}
 		}
@@ -106,11 +102,11 @@ class Usuario_Controller extends Template_Controller {
 			$post->add_callbacks('correo', array($this, '_unico'));
 			$post->add_callbacks('clave', array($this, '_no_coincide'));
 		}else{
+			$post->add_rules('nombre','required', 'standard_text','length[1,45]');
+			$post->add_rules('apellido','required', 'standard_text','length[1,45]');
 			$post->add_rules('telefono','required','phone[11]');
 		}
 		$post->add_rules('correo','required', 'email');
-		$post->add_rules('nombre','required', 'standard_text','length[1,45]');
-		$post->add_rules('apellido','required', 'standard_text','length[1,45]');
 		
 
 		$exito = $post->validate();
@@ -164,8 +160,8 @@ class Usuario_Controller extends Template_Controller {
 		$usuario = new Usuario_Model();
 		if($this->_validar()){
 			$usuario->correo = $datos['correo'];
-			$usuario->nombre = $datos['nombre'];
-			$usuario->apellido = $datos['apellido'];
+			//$usuario->nombre = $datos['nombre'];
+			//$usuario->apellido = $datos['apellido'];
 			$usuario->login = $datos['login'];
 			$usuario->clave = $datos['clave'];
 			$usuario->tipo = USUARIO_COMUN;

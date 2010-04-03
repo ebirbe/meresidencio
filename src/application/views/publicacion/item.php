@@ -9,10 +9,10 @@ switch ($uso){
 		break;
 }
 if($publ->imagenes[0] == NULL){
-	$img = html_Core::image('media/img/no_img.gif', array('class'=>'img-left'), FALSE);
+	$img = html_Core::image('media/img/no_img.gif', array('class'=>'img-left', 'alt'=>'Sin Foto'), FALSE);
 }else{
 	$imagen = new Imagen_Model($publ->imagenes[0]->id);
-	$img = "<img src='".url::base().$imagen->img_p."' class='img-left' />";
+	$img = "<img src='".url::base().$imagen->img_p."' class='img-left' alt='Foto de Residencia' />";
 }
 ?>
 <div class="portfolio-entry">
@@ -31,5 +31,5 @@ if($publ->imagenes[0] == NULL){
 	if(strlen($publ->descripcion) > 70) echo "... (Contin&uacute;a.)";
 	?>
 	</p>
-	<a href='<?php echo $url?>' class="img-right"><?php echo html_Core::image('media/img/iconos/add.png', array('class'=>'icono'))?>Ver m&aacute;s...</a>
+	<a href='<?php echo $url?>' class="img-right"><?php echo html_Core::image('media/img/iconos/add.png', array('class'=>'icono', 'alt'=>'Ver Detalles'))?>Ver m&aacute;s...</a>
 </div>

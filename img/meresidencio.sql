@@ -200,7 +200,7 @@ INSERT INTO `tipoinmuebles` (`id`, `nombre`) VALUES
 (1, 'Casa'),
 (2, 'Apartamento'),
 (3, 'Habitacion'),
-(4, 'Apartamento Tipo Estudio'),
+(4, 'Apto. Tipo Estudio'),
 (5, 'Anexo');
 
 --

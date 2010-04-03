@@ -62,9 +62,14 @@ class Publicacion_Controller extends Template_Controller {
 		$this->template->web_page=WEBO_P_PUBLICA_AGREGAR;
 
 		//Control de acceso
-		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
+		//Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
+		
+		if(!$this->session->get('usuario')){
+			url::redirect('usuario/iniciar_sesion');
+		}
+		
 
-		$this->template->titulo = html::specialchars("Agregar una Publicacion Nueva");
+		$this->template->titulo = html::specialchars("Agregar Nueva Residencia");
 
 		$vista = new View("publicacion/agregar");
 		$vista->editar = FALSE;
@@ -523,15 +528,17 @@ class Publicacion_Controller extends Template_Controller {
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_PUBLICA;
 		$this->template->web_page=WEBO_P_PUBLICA_DETALLE;
+		
+		$publicacion = ORM::factory("publicacion", $id);
 
-		$this->template->titulo = "Detalles de la publicacion #$id";
+		$this->template->titulo = "Residencia #$id en ".$publicacion->zona->ciudad->estado->nombre." - ".$publicacion->zona->ciudad->nombre." - ".$publicacion->zona->nombre;
 		$vista = new View('publicacion/detalles');
 
 		$usuario = $this->session->get('usuario');
 		if($usuario){
 			$vista->usuario_sesion = $usuario;
 		}
-		$publicacion = ORM::factory("publicacion", $id);
+		
 		
 		$publicacion->sumar_visita();
 		
@@ -545,16 +552,16 @@ class Publicacion_Controller extends Template_Controller {
 		if(is_a($usuario, "Usuario_Model") && $usuario->es_propio($publicacion->usuario_id)){
 			$links[]=array(
 			url::site('publicacion/editar/'.$publicacion->id),
-				html_Core::image('media/img/iconos/table_edit.png', array('class'=>'icono')) . "Editar publicaci&oacute;n",
+				html_Core::image('media/img/iconos/table_edit.png', array('class'=>'icono', 'alt'=>'Editar Publicacion')) . "Editar publicaci&oacute;n",
 			);
 			$links[]=array(
 			url::site('imagen/agregar/'.$publicacion->id),
-				html_Core::image('media/img/iconos/picture_edit.png', array('class'=>'icono')) . "Editar im&aacute;genes",
+				html_Core::image('media/img/iconos/picture_edit.png', array('class'=>'icono', 'alt'=>'Editar Imagenes')) . "Editar im&aacute;genes",
 			);
 		}else{
 			$links[]=array(
 			url::site('publicacion/ofertar/'.$publicacion->id),
-				html_Core::image('media/img/iconos/cart_go.png', array('class'=>'icono')) . "Solicitar",
+				html_Core::image('media/img/iconos/cart_go.png', array('class'=>'icono', 'alt'=>'Solicitar Residencia')) . "Solicitar",
 			);
 		}
 		$v_opciones->links = $links;

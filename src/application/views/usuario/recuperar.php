@@ -17,7 +17,7 @@ suscribiste y a la cual enviaremos tus datos de acceso.</p>
 		<td><?php echo $errores['correo']?></td>
 	</tr>
 	<tr>
-		<td><?php echo $captcha ?> <br>
+		<td><?php echo $captcha ?> <br/>
 		<?php echo form::label('captcha', 'Escriba el texto que ve en la imagen:')?></td>
 		<td>&nbsp;</td>
 	</tr>

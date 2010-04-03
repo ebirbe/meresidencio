@@ -7,18 +7,18 @@ $menu = array(
 		"Mis solicitudes" => url_Core::site("usuario/mis_solicitudes"),
 		"Mis Datos" => url_Core::site("usuario/mis_datos"),
 		"Cambiar Clave" => url_Core::site("usuario/cambiar_clave"),
-	),
+),
 	"Residencias" => array(
 		"Buscar Residencia" => url::site("publicacion/lista"),
 		"Publicar Residencia" => url::site("publicacion/agregar"),
 		"Mis Publicaciones" => url_Core::site("publicacion/mis_publicaciones"),
 		"Mis calificaciones" => url_Core::site("calificacion/mis_calificaciones"),
-	),
+),
 	"Nosotros" => array(
 		"&iquest;Quienes Somos?" => url::site("nosotros/quienes"),
 		"Mision" => url::site("nosotros/mision"),
 		"Vision" => url::site("nosotros/vision"),
-	),
+),
 	"Contacto" => url::site("nosotros/contacto"),
 );
 
@@ -33,7 +33,7 @@ if($usr_tipo == USUARIO_ADMIN){
 			"Tipos de Inmueble"=> url::site("tipoinmueble"),
 			"Comodidades"=> url::site("servicio"),
 			"Cercan&iacute;as"=> url::site("cercania"),
-		),
+	),
 	);
 }
 
@@ -41,13 +41,13 @@ function dibujar_menu($m, $c){
 	switch ($c) {
 		case 0:
 			$class = "item";
-		break;
+			break;
 		case 1:
 			$class = "item";
 			break;
 		case 2:
 			$class = "";
-		break;
+			break;
 		default:
 			$class="item";
 			break;
@@ -68,35 +68,37 @@ function dibujar_menu($m, $c){
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
-    <meta name="description" content="Promocion y Alquiler de Residencias Estudiantiles en Venezuela" />
-    <meta name="keywords" content="Promocion Alquiler Residencias Estudiantiles Universidad Venezuela" />
-    <meta name="copyright" content="meresidencio.com" />
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <meta name="revisit-after" content="1 day" />
-    <meta name="robots" content="all" />
-    
-    <link rel="Shortcut Icon" type="image/ico" href="favicon.ico" />
-    
-	<!-- Pull in the JQUERY library -->
-	<?php echo html_Core::script('media/js/jquery-1.3.2.js', FALSE) ?>
-	<?php echo html_Core::stylesheet('media/css/main','screen', FALSE) ?>
-    
-    
-    <!-- Pull in and set up the DROPDOWN functionality -->
-    <?php echo html_Core::script('media/js/hoverIntent.js', FALSE) ?>
-    <?php echo html_Core::script('media/js/superfish.js', FALSE) ?>
-    <script type="text/javascript"> 
+<meta name="description"
+	content="Promocion y Alquiler de Residencias Estudiantiles en Venezuela" />
+<meta name="keywords"
+	content="Promocion Alquiler Residencias Estudiantiles Universidad Venezuela" />
+<meta name="copyright" content="meresidencio.com" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="revisit-after" content="1 day" />
+<meta name="robots" content="all" />
+
+<link rel="Shortcut Icon" type="image/ico" href="favicon.ico" />
+
+<!-- Pull in the JQUERY library -->
+<?php echo html_Core::script('media/js/jquery-1.3.2.js', FALSE) ?>
+<?php echo html_Core::stylesheet('media/css/main','screen', FALSE) ?>
+
+
+<!-- Pull in and set up the DROPDOWN functionality -->
+<?php echo html_Core::script('media/js/hoverIntent.js', FALSE) ?>
+<?php echo html_Core::script('media/js/superfish.js', FALSE) ?>
+<script type="text/javascript"> 
         $(document).ready(function(){ 
             $("ul.sf-menu").superfish(); 
         }); 
     </script>
-    <!-- Introducimos el JQUERY LIGHTBOX-->
-    <?php echo html_Core::script('media/js/jquery.lightbox-0.5.min.js', FALSE) ?>
-	<?php echo html_Core::stylesheet('media/css/jquery.lightbox-0.5','screen', FALSE) ?>
-	<!-- Ativando o jQuery lightBox plugin -->
-    <script type="text/javascript">
+<!-- Introducimos el JQUERY LIGHTBOX-->
+<?php echo html_Core::script('media/js/jquery.lightbox-0.5.min.js', FALSE) ?>
+<?php echo html_Core::stylesheet('media/css/jquery.lightbox-0.5','screen', FALSE) ?>
+<!-- Ativando o jQuery lightBox plugin -->
+<script type="text/javascript">
     $(function() {
     	$('a.lightbox').lightBox({
     		imageLoading: '<?php echo url::base()."media/img/lightbox-ico-loading.gif" ?>',
@@ -109,79 +111,65 @@ function dibujar_menu($m, $c){
     	   });
     });
     </script>
-    
-    <title><?php echo html_Core::specialchars(NOMBRE_SITIO). " - ".$titulo; ?></title>
+
+<title><?php echo html_Core::specialchars(NOMBRE_SITIO). " - Residencias en Alquiler - ".$titulo; ?></title>
 </head>
 
 <body>
 <!-- Centers the page -->
-<div id="content">
-	
-    <!-- Header -->
-    <div id="header">
-		<h1><a href="<?php echo url_Core::base() ?>"><?php echo NOMBRE_SITIO ?></a></h1>
-		<span class="logo2">
-			<!--<?php echo SLOGAN ?>-->
-		</span>
-  	</div>
-    <!-- END header -->
-    
-    <!-- Navigation -->
-    <div id="navigation">
-    	<ul id="nav" class="sf-menu">
-    	
-    		<?php
-    			dibujar_menu($menu, 0);
-    		?>
-      	</ul>
-    </div>
-	<!-- END navigation -->
+<div id="content"><!-- Header -->
+<div id="header">
+<h1><a href="<?php echo url_Core::base() ?>"><?php echo NOMBRE_SITIO ?></a></h1>
+<span class="logo2"> <!--<?php echo SLOGAN ?>--> </span></div>
+<!-- END header --> <!-- Navigation -->
+<div id="navigation">
+<ul id="nav" class="sf-menu">
 
-   <!-- Content -->
-    <div id="main-content">
-    	<div class="right">
-    	    <?php echo $intro_lateral ?>
-            <?php echo $panel_sesion ?>
-            <?php echo $panel_opciones ?>
-            <?php echo $notificaciones ?>
-    </div>
-    <div class="left">
-    			<div align="center"><?php echo html::anchor(url::site('nosotros/contacto'), html_Core::image('media/img/banner_horizontal.png', 'Publicidad Disponible', FALSE))?></div>
-		        <?php echo $contenido ?>
-    </div>
-    <div class="publicidad">
-	    <div class="cuadro_pub">
-	    	<strong>
-		    	<p align="center">Espacio disponible</p>
-		    	<p align="center">125px X 150px</p>
-		    	<p align="center"><?php echo html::anchor(url::site('nosotros/contacto'), "Contactanos")?></p>
-	    	</strong>
-	    </div>
-	  	<div class="cuadro_pub">
-	    	<strong>
-		    	<p align="center">Espacio disponible</p>
-		    	<p align="center">125px X 150px</p>
-		    	<p align="center"><?php echo html::anchor(url::site('nosotros/contacto'), "Contactanos")?></p>
-	    	</strong>
-	    </div>
-	    <div class="cuadro_pub">
-	    	<strong>
-		    	<p align="center">Espacio disponible</p>
-		    	<p align="center">125px X 150px</p>
-		    	<p align="center"><?php echo html::anchor(url::site('nosotros/contacto'), "Contactanos")?></p>
-	    	</strong>
-	    </div>
-    </div>
-      <div class="clear"></div>
-    </div>
+<?php
+dibujar_menu($menu, 0);
+?>
+</ul>
+</div>
+<!-- END navigation --> <!-- Content -->
+<div id="main-content">
+<div class="right"><?php echo $intro_lateral ?> <?php echo $panel_sesion ?>
+<?php echo $panel_opciones ?> <?php echo $notificaciones ?></div>
+<div class="left">
+<div class="center"><?php echo html::anchor(url::site('nosotros/contacto'), html_Core::image('media/img/banner_horizontal.png', 'Publicidad Disponible', FALSE))?></div>
+<?php echo $contenido ?></div>
+<div class="publicidad">
+<div class="cuadro_pub">
+<p class="center"><strong>Espacio disponible</strong></p>
+<p class="center"><strong>125px X 150px</strong></p>
+<p class="center"><strong><?php echo html::anchor(url::site('nosotros/contacto'), "Contactanos")?></strong></p>
+
+</div>
+<div class="cuadro_pub">
+<p class="center"><strong>Espacio disponible</strong></p>
+<p class="center"><strong>125px X 150px</strong></p>
+<p class="center"><strong><?php echo html::anchor(url::site('nosotros/contacto'), "Contactanos")?></strong></p>
+
+</div>
+<div class="cuadro_pub">
+<p class="center"><strong>Espacio disponible</strong></p>
+<p class="center"><strong>125px X 150px</strong></p>
+<p class="center"><strong><?php echo html::anchor(url::site('nosotros/contacto'), "Contactanos")?></strong></p>
+
+</div>
+</div>
+<div class="clear"></div>
+</div>
 </div>
 <!-- END content -->
 
 <div id="footer">
-<p>Generada con <a href="http://kohanaphp.com">Kohana</a> en {execution_time} segundos, usando {memory_usage} de memoria.</p>
-<p>Algunos <a href="http://www.famfamfam.com/lab/icons/silk/">iconos</a> utilizados en esta pagina son de licencia Creative Commons</p>
-<p>&copy; Copyrigth 2010, Erick Birbe. </p>
- <!--INICIO WEBOSCOPE MeResidencio.com --> <!-- SOLO MODIFICAR WEBO_ZONE Y WEBO_PAGE-->
+<p>Generada con <a href="http://kohanaphp.com">Kohana</a> en
+{execution_time} segundos, usando {memory_usage} de memoria.</p>
+<p>Algunos <a href="http://www.famfamfam.com/lab/icons/silk/">iconos</a>
+utilizados en esta pagina son de licencia Creative Commons</p>
+<p>&copy; Copyrigth 2010, Erick Birbe.</p>
+<!--INICIO WEBOSCOPE MeResidencio.com -->
+<!-- SOLO MODIFICAR WEBO_ZONE Y WEBO_PAGE
 <?php
 if(!isset($web_zone)) $web_zone=WEBO_Z_NULL;
 if(!isset($web_page)) $web_page=WEBO_P_NULL;
@@ -190,7 +178,8 @@ if(!isset($web_page)) $web_page=WEBO_P_NULL;
 					WEBO_PAGE=<?php echo $web_page?>;
 					weboscope_ok=0;
 				</script> <script type="text/javascript"
-	src="http://es.weborama.fr/scripts/weboscope_free_es.js"></script> <script>
+	src="http://es.weborama.fr/scripts/weboscope_free_es.js"></script> <script
+	type="text/javascript">
 					if(weboscope_ok==1){weboscope_free(WEBO_ZONE,WEBO_PAGE,426207);}
 				</script>
 <noscript>
@@ -199,10 +188,10 @@ medici&oacute;n de audiencia y de eficacia</a> <a
 	href="http://www.weboscope.com/free/?LANGUAGE=ES">Estadsticas gratuitas</a>
 </p>
 </noscript>
-<!-- FIN WEBOSCOPE COPYRIGHT WEBORAMA-->
+ FIN WEBOSCOPE COPYRIGHT WEBORAMA-->
 <p><?php echo "Z:$web_zone - P:$web_page" ?></p>
 
-	<!--
+<!--
 	<a class="first" href="index-2.html">Home</a>
     &nbsp;|&nbsp;
     <a href="services.html">Our Services</a>
@@ -216,7 +205,16 @@ medici&oacute;n de audiencia y de eficacia</a> <a
     <a class="last" href="contact.html">Contact Us</a>
     
     <span>Copyright &copy; 2008 Business Professional Package</span>
-    -->
-</div>
+    --></div>
+    
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-15595959-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
 </body>
 </html>

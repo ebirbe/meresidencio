@@ -15,6 +15,6 @@ Descripcion
 3 = Cliente
 
 <?php echo html_Core::image('media/img/iconos/user.png', array('class'=>'icono'))?>
-
 array('class'=>'button')
+array('class'=>'icono', 'alt'=>'Registrate')
 <div class='msg_exito'>

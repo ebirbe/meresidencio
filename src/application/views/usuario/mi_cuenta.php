@@ -6,6 +6,13 @@ mejores herramientas dise&ntilde;adas para facilitar el trabajo y
 reducir el esfuerzo necesario que implica el conseguir una residencia
 estudiantil adecauda a tus exigencias personales o el publicar las
 ofertas de alquiler de manera sencilla y totalmente gratuita.</p>
+<table class="tabla_ext">
+	<tr>
+		<td><div class="center"><?php echo html_Core::anchor(url::site('publicacion/agregar'),html_Core::image('media/img/btn_publicar.png','Publicar Residencia',FALSE))?></div></td>
+		<td><div class="center"><?php echo html_Core::anchor(url::site('publicacion/lista'),html_Core::image('media/img/btn_buscar.png','Buscar Residencia',FALSE))?></div></td>
+	</tr>
+</table>
+<br/>
 <div class="clear"></div>
 <?php echo $vista_notif ?>
 <h2><strong>Alertas</strong></h2>

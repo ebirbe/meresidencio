@@ -61,11 +61,11 @@ abstract class Template_Controller extends Controller {
 
 		$links[]=array(
 		url::site('publicacion/lista/'),
-		html_Core::image('media/img/iconos/zoom.png', array('class'=>'icono')) . "Buscar",
+		html_Core::image('media/img/iconos/zoom.png', array('class'=>'icono', 'alt'=>'Buscar')) . "Buscar",
 		);
 		$links[]=array(
 		url::site('publicacion/agregar/'),
-		html_Core::image('media/img/iconos/application_form_add.png', array('class'=>'icono')) . "Publicar",
+		html_Core::image('media/img/iconos/application_form_add.png', array('class'=>'icono', 'alt'=>'Publicar')) . "Publicar",
 		);
 
 		$v_opciones->links = $links;

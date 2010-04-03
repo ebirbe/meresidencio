@@ -2,6 +2,7 @@
 <h2><strong>Bienvenido a <?php echo NOMBRE_SITIO ?></strong></h2>
 <table class="tabla_ext">
 	<tr>
+		<td align="center"><?php echo html::anchor(url::site('publicacion/agregar'), html_Core::image('media/img/publica.png', 'Publica tu Residencia', FALSE))?></td>
 		<td align="center"><?php echo html::anchor(url::site('usuario/suscribir'), html_Core::image('media/img/registrate.png', 'Registrate', FALSE))?></td>
 		<td align="center"><?php echo html::anchor(url::site('publicacion/lista'), html_Core::image('media/img/consigue.png', 'Consigue Residencia', FALSE))?></td>
 	</tr>

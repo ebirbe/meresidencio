@@ -2,7 +2,7 @@
 <?php echo new View('js/combo_regiones'); ?>
 <h2>Buscar Publicaci&oacute;n</h2>
 <?php echo form::open($url.$token)?>
-<input type='hidden' class='hidden' value='<?php echo $token ?>'>
+<div><input type='hidden' class='hidden' value='<?php echo $token ?>'/></div>
 <table class='tabla_ext'>
 	<tr>
 		<td><?php echo form_Core::label('estado', 'Estado') ?></td>

@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
 $(document).ready(function(){
 	$("select").change(function(){
 		// Vector para saber cuál es el siguiente combo a llenar
@@ -10,23 +10,34 @@ $(document).ready(function(){
 		// Tomo el valor de la opción seleccionada
 		valor = $(this).val();
 		if(posicion == 'estado'){
-			$("#ciudad").html('	<option value="0" selected="selected">Seleccione...</option>');
-			$("#zona").html('	<option value="0" selected="selected">Seleccione...</option>');
+			//<![CDATA[
+			$("#ciudad").html('	<option value="0" selected="selected">Seleccione...<\/option>');
+			$("#zona").html('	<option value="0" selected="selected">Seleccione...<\/option>');
+			//]]>
+			
 		}
 		if(posicion == 'ciudad'){
-			$("#zona").html('	<option value="0" selected="selected">Seleccione...</option>');
+			//<![CDATA[
+			$("#zona").html('	<option value="0" selected="selected">Seleccione...<\/option>');
+			//]]>
 		}
 		// Evaluó  que si es país y el valor es 0, vacié los combos de estado y ciudad
 		if(posicion == 'estado' && valor=="0"){
-			$("#ciudad").html('	<option value="0" selected="selected">Seleccione...</option>');
-			$("#zona").html('	<option value="0" selected="selected">Seleccione...</option>');
+			//<![CDATA[
+			$("#ciudad").html('	<option value="0" selected="selected">Seleccione...<\/option>');
+			$("#zona").html('	<option value="0" selected="selected">Seleccione...<\/option>');
+			//]]>
 		}else if(posicion == 'ciudad' && valor=="0"){
-			$("#zona").html('	<option value="0" selected="selected">Seleccione...</option>');
+			//<![CDATA[
+			$("#zona").html('	<option value="0" selected="selected">Seleccione...<\/option>');
+			//]]>
 		}else{
 		/* En caso contrario agregado el letreo de cargando a el combo siguiente
 		Ejemplo: Si seleccione país voy a tener que el siguiente según mi vector combos es: estado  por qué  combos [país] = estado
 			*/
-			$("#"+combos[posicion]).html('<option selected="selected" value="0">Cargando...</option>');
+			//<![CDATA[
+			$("#"+combos[posicion]).html('<option selected="selected" value="0">Cargando...<\/option>');
+			//]]>
 			/* Verificamos si el valor seleccionado es diferente de 0 y si el combo es diferente de ciudad, esto porque no tendría caso hacer la consulta a ciudad porque no existe un combo dependiente de este */
 			if(valor != "0" || posicion != 'ciudad'){
 			// Llamamos a pagina de combos.php donde ejecuto las consultas para llenar los combos

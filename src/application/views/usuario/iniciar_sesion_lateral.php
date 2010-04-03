@@ -17,12 +17,12 @@ anuncios gratuitos en nuestra p&aacute;gina web.</p>
 <?php }else{?>
 <?php echo form::open(url::site("usuario/iniciar_sesion")) ?>
 <h2><strong>Inicia tu Sesi&oacute;n</strong></h2>
-<p><a href='<?php echo url::site("usuario/suscribir")?>'><?php echo html_Core::image('media/img/iconos/user_add.png', array('class'=>'icono'))?>Registrate</a>
-<br>
-<a href='<?php echo url::site('usuario/recuperar')?>'><?php echo html_Core::image('media/img/iconos/key_delete.png', array('class'=>'icono'))?>Recuperar Contraseña</a>
-</p>
-<p><?php echo form::label('usuario', 'Usuario:')?> <?php echo form::input(array('class'=>'textbox-lateral', 'name' => 'login'))?>
-<?php echo form::label('clave', 'Contrase&ntilde;a:')?> <?php echo form::password(array('class'=>'textbox-lateral', 'name' => 'clave'))?>
+<p><a href='<?php echo url::site("usuario/suscribir")?>'><?php echo html_Core::image('media/img/iconos/user_add.png', array('class'=>'icono', 'alt'=>'Registrate'))?>Registrate</a>
+<br/>
+<a href='<?php echo url::site('usuario/recuperar')?>'><?php echo html_Core::image('media/img/iconos/key_delete.png', array('class'=>'icono', 'alt'=>'Recuperar Contrase&ntilde;a'))?>Recuperar
+ Contrase&ntilde;a</a></p>
+<p><?php echo form::label('login_lat', 'Usuario:')?> <?php echo form::input(array('class'=>'textbox-lateral', 'name' => 'login','id' => 'login_lat'))?>
+<?php echo form::label('clave_lat', 'Contrase&ntilde;a:')?> <?php echo form::password(array('class'=>'textbox-lateral', 'name' => 'clave','id' => 'clave_lat'))?>
 <?php echo form::submit(array('class'=>'button', 'name' => 'sibmit'), 'Entrar') ?>
 </p>
 <?php echo form::close(); ?>

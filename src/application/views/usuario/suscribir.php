@@ -1,5 +1,6 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <h2>Suscripci&oacute;n</h2>
+<p>Registrate totalmente GRATIS y disfruta de todos los servicios que te ofrecemos en <?php echo NOMBRE_SITIO ?>.</p>
 <?php echo form::open() ?>
 <table class="tabla_ext">
 	<?php if($mensaje) {?>
@@ -8,17 +9,7 @@
 	</tr>
 	<?php }?>
 	<tr>
-		<td><?php echo form::label('nombre:', 'Nombre:')?></td>
-		<td><?php echo form_Core::input('nombre', $formulario['nombre'])?></td>
-		<td><?php echo $errores['nombre'] ?></td>
-	</tr>
-	<tr>
-		<td><?php echo form::label('apellido', 'Apellido:')?></td>
-		<td><?php echo form::input('apellido', $formulario['apellido'])?></td>
-		<td><?php echo $errores['apellido'] ?></td>
-	</tr>
-	<tr>
-		<td width="200"><?php echo form::label('usuario', 'Usuario:')?></td>
+		<td class="columna_titulos"><?php echo form::label('login', 'Usuario o Nickname:')?></td>
 		<td><?php echo form::input('login', $formulario['login'])?></td>
 		<td><?php echo $errores['login'] ?></td>
 	</tr>
