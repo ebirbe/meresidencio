@@ -101,7 +101,7 @@ class Publicacion_Controller extends Template_Controller {
 		$this->formulario['mts'] = 0;
 		$this->formulario['deposito'] = 0;
 
-		$vista->usuario_id = $usuario->id;
+		$vista->usuario = $usuario;
 		$vista->mensaje = $this->mensaje;
 		$vista->formulario = $this->formulario;
 		$vista->errores = $this->errores;

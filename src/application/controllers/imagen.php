@@ -90,9 +90,8 @@ class Imagen_Controller extends Template_Controller {
 					}else{
 						$relacion = Image::HEIGHT;
 					}
-					Image::factory($filename)
-					->resize(160, 120, $relacion)
-					->quality(60);
+					$img->resize(160, 120, $relacion)
+						->quality(60);
 				}
 				$img->save($imagen->img_p);
 				
