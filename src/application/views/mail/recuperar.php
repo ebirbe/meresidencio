@@ -1,6 +1,6 @@
 <html>
 <body>
-<h1><?php echo strtoupper($usuario->nombre." ".$usuario->apellido)?>
+<h1><?php echo strtoupper($usuario->login)?>
  estos son tus datos de acceso.</h1>
 <p>Datos de Acceso a <?php echo html::anchor(url::site(), NOMBRE_SITIO) ?></p>
 <table>

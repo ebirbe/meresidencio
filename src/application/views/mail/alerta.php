@@ -1,6 +1,6 @@
 <html>
 <body>
-<h1><?php echo strtoupper($usuario->nombre)?> HAY UNA NUEVA RESIDENCIA
+<h1><?php echo strtoupper($usuario->login)?> HAY UNA NUEVA RESIDENCIA
 PARA TI</h1>
 <p>Hay una nueva residencia que coincide con tu alerta suscrita.</p>
 <p>Los datos de la residencia son:</p>
@@ -18,7 +18,7 @@ PARA TI</h1>
 		<td><?php echo $publicacion->zona->nombre ?></td>
 	</tr>
 	<tr>
-		<td colspan=2><?php echo html_Core::image('media/img/iconos/eye.png', array('class'=>'icono')).html::anchor(url::site('publicacion/detalles/'.$publicacion->id), 'Ver Detalles') ?></td>
+		<td colspan=2><?php echo html_Core::image('media/img/iconos/add.png', array('class'=>'icono'))." ".html::anchor(url::site('publicacion/detalles/'.$publicacion->id), 'Ver Detalles') ?></td>
 	</tr>
 </table>
 <p>En <?php echo html::anchor(url::base(), NOMBRE_SITIO) ?> trabajamos
