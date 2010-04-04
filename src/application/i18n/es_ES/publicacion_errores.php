@@ -1,6 +1,11 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script');
 $lang = array
 (
+	'telefono' => array
+	(
+		'required' => 'Este campo es requerido.',
+		'phone' => 'No es un tel&eacute;fono v&aacute;lido. ej: XXXX-XXX.XX.XX',
+	),
 	'tipoinmueble' => array
 	(
 		'required' => 'Este campo es requerido.',

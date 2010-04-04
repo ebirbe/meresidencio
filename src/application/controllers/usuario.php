@@ -21,6 +21,7 @@ class Usuario_Controller extends Template_Controller {
 	public function limpiar_formulario(){
 		$this->formulario = array(
 			'activo' => '',
+			'confirmado' => '',
 			'login' => '',
 			'clave' => '',
 			'correo' => '',
@@ -36,7 +37,7 @@ class Usuario_Controller extends Template_Controller {
 			'actual' => '',
 			'nueva'  => '',
 			'confirmacion' => '',
-		
+
 			'captcha' => '',
 		);
 	}
@@ -107,7 +108,7 @@ class Usuario_Controller extends Template_Controller {
 			$post->add_rules('telefono','required','phone[11]');
 		}
 		$post->add_rules('correo','required', 'email');
-		
+
 
 		$exito = $post->validate();
 
@@ -191,7 +192,7 @@ class Usuario_Controller extends Template_Controller {
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN,USUARIO_VENDE, USUARIO_COMUN));
 
-		$this->template->titulo = html::specialchars("Datos del Usuario");
+		$this->template->titulo = html::specialchars("Editar Datos del Usuario");
 
 		$this->llenar_formulario($id);
 
@@ -209,8 +210,9 @@ class Usuario_Controller extends Template_Controller {
 		$vista->ciudad = Ciudad_Model::combobox($usuario->estado_id, $usuario->ciudad_id, TRUE);
 		$vista->zona = Zona_Model::combobox($usuario->ciudad_id, $usuario->zona_id, TRUE);
 
+		$vista->quien_entra = $this->session->get('usuario');
 		$vista->mensaje = $this->mensaje;
-		$vista->usuario = $this->session->get('usuario');
+		$vista->usuario = $usuario;
 		$vista->formulario = $this->formulario;
 		$vista->errores = $this->errores;
 
@@ -221,6 +223,7 @@ class Usuario_Controller extends Template_Controller {
 		$usuario = ORM::factory('usuario',$id);
 		$this->formulario = array(
 			'activo' => $usuario->activo,
+			'confirmado' => $usuario->confirmado,
 			'login' => $usuario->login,
 			'clave' => $usuario->clave,
 			'correo' => $usuario->correo,
@@ -249,6 +252,7 @@ class Usuario_Controller extends Template_Controller {
 			$usuario->correo = $usuario->correo;
 
 			if(isset($datos['activo']))$usuario->activo = (boolean)$datos['activo'];
+			if(isset($datos['confirmado']))$usuario->confirmado = (boolean)$datos['confirmado'];
 			$usuario->nombre = $datos['nombre'];
 			$usuario->apellido = $datos['apellido'];
 			$usuario->fecha_nac = $datos['fecha_nac'];
@@ -274,6 +278,28 @@ class Usuario_Controller extends Template_Controller {
 			$exito = true;
 		}
 		return $exito;
+	}
+
+	public function volver_activo($id_usuario){
+		$this->auto_render=FALSE;
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN));
+		$usuario = new Usuario_Model($id_usuario);
+		$usuario->activo = !$usuario->activo;
+		$usuario->save();
+		header("Location: ".url::site('usuario/editar/'.$id_usuario));
+
+	}
+	
+	public function volver_confirmado($id_usuario){
+		$this->auto_render=FALSE;
+		//Control de acceso
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN));
+		$usuario = new Usuario_Model($id_usuario);
+		$usuario->confirmado = !$usuario->confirmado;
+		$usuario->save();
+		header("Location: ".url::site('usuario/editar/'.$id_usuario));
+
 	}
 
 	public function buscar(){
@@ -321,7 +347,7 @@ class Usuario_Controller extends Template_Controller {
 		$post = $_POST;
 		if($post){
 			if(!$this->_iniciar_sesion($post)){
-				$vista->mensaje = "Datos inv&aacute;lidos.<br>Si ya te registraste recuerda confirmar tu correo.";
+				$vista->mensaje = "Datos inv&aacute;lidos.<br/>Si ya te registraste recuerda confirmar tu correo.";
 			}else{
 				$cond = array(
 					'login' => $post['login'],
@@ -627,9 +653,9 @@ class Usuario_Controller extends Template_Controller {
 				$this->limpiar_formulario();
 			}
 		}
-		
+
 		$captcha = new Captcha();
-		
+
 		$vista = new View('usuario/recuperar');
 		$this->template->titulo = "Recuperaci&oacute;n de Datos de Acceso";
 		$vista->captcha = $captcha->render();

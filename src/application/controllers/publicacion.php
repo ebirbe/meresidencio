@@ -23,6 +23,10 @@ class Publicacion_Controller extends Template_Controller {
 	 */
 	public function limpiar_formulario(){
 		$this->formulario = array(
+			// Datos requeridos del Usuario por si acaso no los ha agregado
+			'telefono' => '',
+		
+			// Datos de lapublicacion
 			'tipoinmueble' => '',
 			'sexo' => '',
 			'estado' => '',
@@ -82,7 +86,7 @@ class Publicacion_Controller extends Template_Controller {
 			//Reponemos las cercanias seleccionadas
 			if(isset($datos['cercania'])) $this->cercanias_sel = $datos['cercania'];
 
-			if($this->_agregar($_POST)){
+			if($this->_agregar()){
 				url::redirect(url::site("imagen/agregar/$this->ultimo_id/1"));
 				$this->mensaje = "<div class='msg_exito'>Se guard&oacute; con &eacute;xito.</div>";
 				$this->limpiar_formulario();
@@ -90,6 +94,12 @@ class Publicacion_Controller extends Template_Controller {
 		}
 
 		$usuario = ORM::factory('usuario', $this->session->get('usuario')->id);
+		
+		// Valores por defecto
+		if($this->formulario['telefono']=='')	$this->formulario['telefono'] = $usuario->telefono;
+		$this->formulario['habitaciones'] = 1;
+		$this->formulario['mts'] = 0;
+		$this->formulario['deposito'] = 0;
 
 		$vista->usuario_id = $usuario->id;
 		$vista->mensaje = $this->mensaje;
@@ -108,8 +118,15 @@ class Publicacion_Controller extends Template_Controller {
 		$exito = false;
 		$datos = $_POST;
 		$publicacion = new Publicacion_Model();
+		$usuario = ORM::factory('usuario', $this->session->get('usuario')->id);
 
 		if($this->_validar()){
+			// Datos del Usuario
+			$usuario->telefono = $datos['telefono'];
+			if($usuario->tipo == USUARIO_COMUN) $usuario->tipo = USUARIO_VENDE;
+			$usuario->save();
+			
+			// Datos de la publicacion
 			$publicacion->fecha = date("Y-m-d");
 			$publicacion->usuario_id = $datos['usuario'];
 			$publicacion->tipoinmueble_id = $datos['tipoinmueble'];
@@ -244,6 +261,7 @@ class Publicacion_Controller extends Template_Controller {
 
 		$post = new Validation_Core($_POST);
 		$post->pre_filter('trim');
+		$post->add_rules('telefono','required','phone[11]');
 		$post->add_rules('tipoinmueble','required');
 		$post->add_rules('estado','required');
 		$post->add_rules('ciudad','required');
@@ -297,14 +315,16 @@ class Publicacion_Controller extends Template_Controller {
 
 		if($_POST){
 			if($this->_editar($publicacion_id)){
-				//url::redirect(url::site("publicacion/detalles/$publicacion_id"));
 				$this->mensaje = "<div class='msg_exito'>Se guard&oacute; con &eacute;xito.</div>";
 				$this->llenar_formulario($publicacion_id);
 			}
 		}
-
+		
 		$usuario = ORM::factory('usuario', $this->session->get('usuario')->id);
-		$vista->usuario_id = $usuario->id;
+		
+		// Valores por defecto
+		$this->formulario['telefono'] = $usuario->telefono;
+		$vista->usuario = $usuario;
 		$vista->mensaje = $this->mensaje;
 		$vista->formulario = $this->formulario;
 		$vista->errores = $this->errores;

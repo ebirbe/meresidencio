@@ -73,7 +73,7 @@ class Imagen_Controller extends Template_Controller {
 
 				// Formato Grande
 				if($img->__get('width') > 800 || $img->__get('height') > 600){
-					if($img->__get('height') > $img->__get('height')){
+					if($img->__get('height') > $img->__get('width')){
 						$relacion = Image::WIDTH;
 					}else{
 						$relacion = Image::HEIGHT;
@@ -83,10 +83,19 @@ class Imagen_Controller extends Template_Controller {
 				$img->save($imagen->img_g);
 
 				// Formato Pequeño
-				Image::factory($filename)
-				->resize(160, 120, Image::HEIGHT)
-				->quality(60)
-				->save($imagen->img_p);
+				$img = Image::factory($filename);
+				if($img->__get('width') > 160 || $img->__get('height') > 120){
+					if($img->__get('height') > $img->__get('width')){
+						$relacion = Image::WIDTH;
+					}else{
+						$relacion = Image::HEIGHT;
+					}
+					Image::factory($filename)
+					->resize(160, 120, $relacion)
+					->quality(60);
+				}
+				$img->save($imagen->img_p);
+				
 
 				// Remove the temporary file
 				unlink($filename);
@@ -98,17 +107,12 @@ class Imagen_Controller extends Template_Controller {
 	}
 
 	public function eliminar($imagen_id){
-
+		$this->auto_render = FALSE;
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
 
-		$this->template->titulo = "Eliminar imagen $imagen_id";
-
 		$imagen = ORM::factory('imagen', $imagen_id);
-
-		$vista = new View('imagen/eliminar');
-		$vista->publicacion_id = $imagen->publicacion_id;
-		$vista->imagen_id = $imagen_id;
+		$publicacion = $imagen->publicacion;
 
 		// Borramos la imagen grande
 		if (!unlink($imagen->img_g)){
@@ -120,8 +124,8 @@ class Imagen_Controller extends Template_Controller {
 		}
 		// Borramos el registro de la BD
 		$imagen->delete();
-
-		$this->template->contenido = $vista;
+		
+		header("Location: " . url::site('imagen/agregar/'.$publicacion->id));
 	}
 
 	/**

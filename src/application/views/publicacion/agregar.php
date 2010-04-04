@@ -3,10 +3,15 @@
 <?php echo new View('js/combo_regiones'); ?>
 <h2>Menu de Publicaci&oacute;n</h2>
 <?php echo form::open() ?>
-<?php echo form::hidden('usuario',$usuario_id) ?>
+<?php echo form::hidden('usuario',$usuario->id) ?>
 <table class="tabla_ext">
 	<tr>
 		<th colspan="3"><?php echo $mensaje ?></th>
+	</tr>
+	<tr>
+		<td><?php echo form::label('telefono', 'Tel&eacute;fono:')?></td>
+		<td><?php echo form::input('telefono', $formulario['telefono'])?></td>
+		<td><?php echo $errores['telefono'] ?></td>
 	</tr>
 	<tr>
 		<td><?php echo form::label('tipoinmueble','Tipo de Inmueble:') ?></td>
