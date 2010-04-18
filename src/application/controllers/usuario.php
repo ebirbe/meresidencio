@@ -317,7 +317,7 @@ class Usuario_Controller extends Template_Controller {
 		if(isset($_POST['buscar'])){
 			$vista->usuario = $this->_buscar($_POST['buscar']);
 		}else{
-			$vista->usuario = ORM::factory('usuario')->find_all();
+			$vista->usuario = ORM::factory('usuario')->orderby('id', 'DESC')->find_all();
 		}
 
 		$this->template->contenido = $vista;
@@ -330,7 +330,7 @@ class Usuario_Controller extends Template_Controller {
 			'login' => $string,
 			'correo' => $string,
 		);
-		$usuario = ORM::factory('usuario')->orlike($condicion)->find_all();
+		$usuario = ORM::factory('usuario')->orlike($condicion)->orderby('id', 'DESC')->find_all();
 		return $usuario;
 	}
 

@@ -1,5 +1,5 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
-	<h2><strong>Opciones:</strong></h2>
+	<h2>Opciones:</h2>
 	<br/>
 	<ul>
 		<?php foreach ($links as $link){?>

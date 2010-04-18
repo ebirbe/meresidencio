@@ -3,8 +3,7 @@ $lang = array
 (
 	'telefono' => array
 	(
-		'required' => 'Este campo es requerido.',
-		'phone' => 'No es un tel&eacute;fono v&aacute;lido. ej: XXXX-XXX.XX.XX',
+		'standard_text' => 'Contiene caract&eacute;res inv&aacute;lidos.',
 	),
 	'tipoinmueble' => array
 	(

@@ -23,10 +23,10 @@ class Publicacion_Controller extends Template_Controller {
 	 */
 	public function limpiar_formulario(){
 		$this->formulario = array(
-			// Datos requeridos del Usuario por si acaso no los ha agregado
+		// Datos requeridos del Usuario por si acaso no los ha agregado
 			'telefono' => '',
-		
-			// Datos de lapublicacion
+
+		// Datos de lapublicacion
 			'tipoinmueble' => '',
 			'sexo' => '',
 			'estado' => '',
@@ -60,18 +60,18 @@ class Publicacion_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function agregar(){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_PUBLICA;
 		$this->template->web_page=WEBO_P_PUBLICA_AGREGAR;
 
 		//Control de acceso
 		//Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
-		
+
 		if(!$this->session->get('usuario')){
 			url::redirect('usuario/iniciar_sesion');
 		}
-		
+
 
 		$this->template->titulo = html::specialchars("Agregar Nueva Residencia");
 
@@ -94,9 +94,8 @@ class Publicacion_Controller extends Template_Controller {
 		}
 
 		$usuario = ORM::factory('usuario', $this->session->get('usuario')->id);
-		
+
 		// Valores por defecto
-		if($this->formulario['telefono']=='')	$this->formulario['telefono'] = $usuario->telefono;
 		$this->formulario['habitaciones'] = 1;
 		$this->formulario['mts'] = 0;
 		$this->formulario['deposito'] = 0;
@@ -121,20 +120,23 @@ class Publicacion_Controller extends Template_Controller {
 		$usuario = ORM::factory('usuario', $this->session->get('usuario')->id);
 
 		if($this->_validar()){
-			// Datos del Usuario
-			$usuario->telefono = $datos['telefono'];
-			if($usuario->tipo == USUARIO_COMUN) $usuario->tipo = USUARIO_VENDE;
-			$usuario->save();
-			
+				
+			if($usuario->tipo == USUARIO_COMUN){
+				$usuario->tipo = USUARIO_VENDE;
+				$usuario->save();
+			}
+				
 			// Datos de la publicacion
 			$publicacion->fecha = date("Y-m-d");
 			$publicacion->usuario_id = $datos['usuario'];
+			$publicacion->telefono = $datos['telefono'];
 			$publicacion->tipoinmueble_id = $datos['tipoinmueble'];
 			$publicacion->sexo = $datos['sexo'];
 			$publicacion->zona_id = $datos['zona'];
-			$publicacion->direccion = htmlentities($datos['direccion']);
+			$publicacion->direccion = util::limpiar_html($datos['direccion']);
+			$publicacion->habitaciones = $datos['habitaciones'];
 			$publicacion->mts = $datos['mts'];
-			$publicacion->descripcion = htmlentities($datos['descripcion']);
+			$publicacion->descripcion = util::limpiar_html($datos['descripcion']);
 			$publicacion->precio = $datos['precio'];
 			$publicacion->deposito = $datos['deposito'];
 			$publicacion->activo = 1;
@@ -145,17 +147,17 @@ class Publicacion_Controller extends Template_Controller {
 			//Guarda la publicacion
 			$publicacion->save();
 			$this->ultimo_id = $publicacion->id;
-				
+
 			//Envio de Alertas por correo.
-				
+
 			$mail = new View('mail/alerta');
 			$mail->publicacion = $publicacion;
-			
+				
 			$zona = $publicacion->zona->id;
 			$ciudad = $publicacion->zona->ciudad->id;
 			$estado = $publicacion->zona->ciudad->estado->id;
 			$tipoinmueble = $publicacion->tipoinmueble->id;
-			
+				
 			//Quien busca por Tipo
 			$where_cond = array(
 				'estado_id' => NULL,
@@ -169,7 +171,7 @@ class Publicacion_Controller extends Template_Controller {
 				$mail->usuario = $fila->usuario;
 				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
 			}
-			
+				
 			//Quien busca por zona
 			$where_cond = array(
 				'zona_id' => $zona,
@@ -181,7 +183,7 @@ class Publicacion_Controller extends Template_Controller {
 				$mail->usuario = $fila->usuario;
 				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
 			}
-			
+				
 			//Quien busca por zona y Tipo
 			$where_cond = array(
 				'zona_id' => $zona,
@@ -189,12 +191,12 @@ class Publicacion_Controller extends Template_Controller {
 			);
 			$alertas = ORM::factory('alerta')
 			->where($where_cond)->find_all();
-			
+				
 			foreach ($alertas as $fila){
 				$mail->usuario = $fila->usuario;
 				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
 			}
-			
+				
 			//Quien busca por ciudad y Tipo
 			$where_cond = array(
 				'ciudad_id' => $ciudad,
@@ -207,7 +209,7 @@ class Publicacion_Controller extends Template_Controller {
 				$mail->usuario = $fila->usuario;
 				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
 			}
-			
+				
 			//Quien busca por ciudad
 			$where_cond = array(
 				'ciudad_id' => $ciudad,
@@ -220,7 +222,7 @@ class Publicacion_Controller extends Template_Controller {
 				$mail->usuario = $fila->usuario;
 				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
 			}
-			
+				
 			//Quien busca por estado y Tipo
 			$where_cond = array(
 				'estado_id' => $estado,
@@ -234,7 +236,7 @@ class Publicacion_Controller extends Template_Controller {
 				$mail->usuario = $fila->usuario;
 				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
 			}
-			
+				
 			//Quien busca por estado
 			$where_cond = array(
 				'estado_id' => $estado,
@@ -248,7 +250,7 @@ class Publicacion_Controller extends Template_Controller {
 				$mail->usuario = $fila->usuario;
 				Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
 			}
-			
+				
 			$exito = TRUE;
 		}
 		return $exito;
@@ -261,7 +263,7 @@ class Publicacion_Controller extends Template_Controller {
 
 		$post = new Validation_Core($_POST);
 		$post->pre_filter('trim');
-		$post->add_rules('telefono','required','phone[11]');
+		$post->add_rules('telefono','standard_text');
 		$post->add_rules('tipoinmueble','required');
 		$post->add_rules('estado','required');
 		$post->add_rules('ciudad','required');
@@ -298,7 +300,7 @@ class Publicacion_Controller extends Template_Controller {
 	 * para agregar estados.
 	 */
 	public function editar($publicacion_id){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_PUBLICA;
 		$this->template->web_page=WEBO_P_PUBLICA_EDITAR;
@@ -315,15 +317,14 @@ class Publicacion_Controller extends Template_Controller {
 
 		if($_POST){
 			if($this->_editar($publicacion_id)){
-				$this->mensaje = "<div class='msg_exito'>Se guard&oacute; con &eacute;xito.</div>";
+				$this->mensaje = "<div class='msg_exito'>Se guard&oacute; con &eacute;xito.<br/>".html::anchor(url::site('publicacion/detalles/'.$publicacion_id), 'Ver la Publicaci&oacute;n')."</div>";
 				$this->llenar_formulario($publicacion_id);
 			}
 		}
-		
-		$usuario = ORM::factory('usuario', $this->session->get('usuario')->id);
-		
-		// Valores por defecto
-		$this->formulario['telefono'] = $usuario->telefono;
+
+		$publicacion = ORM::factory('publicacion', $publicacion_id);
+		$usuario = $publicacion->usuario;
+
 		$vista->usuario = $usuario;
 		$vista->mensaje = $this->mensaje;
 		$vista->formulario = $this->formulario;
@@ -345,17 +346,18 @@ class Publicacion_Controller extends Template_Controller {
 		}
 
 		$this->formulario = array(
+			'telefono' => $publicacion->telefono,
 			'tipoinmueble' => $publicacion->tipoinmueble,
 			'sexo' => $publicacion->sexo,
 			'estado' => $publicacion->zona->ciudad->estado->id,
 			'ciudad' => $publicacion->zona->ciudad->id,
 			'zona' => $publicacion->zona_id,
-			'direccion' => $publicacion->direccion,
+			'direccion' => util::ensuciar_html($publicacion->direccion),
 			'habitaciones' => $publicacion->habitaciones,
 			'mts' => $publicacion->mts,
 			'precio' => $publicacion->precio,
 			'deposito' => $publicacion->deposito,
-			'descripcion' => $publicacion->descripcion,
+			'descripcion' => util::ensuciar_html($publicacion->descripcion),
 			'activo' => $publicacion->activo,
 			'servicio' => $servicios,
 			'cercania' => $cercanias,
@@ -373,12 +375,14 @@ class Publicacion_Controller extends Template_Controller {
 		$publicacion = new Publicacion_Model($publicacion_id);
 
 		if($this->_validar()){
+			$publicacion->telefono = $datos['telefono'];
 			$publicacion->tipoinmueble_id = $datos['tipoinmueble'];
 			$publicacion->sexo = $datos['sexo'];
 			$publicacion->zona_id = $datos['zona'];
-			$publicacion->direccion = htmlentities($datos['direccion']);
+			$publicacion->direccion = util::limpiar_html($datos['direccion']);
+			$publicacion->habitaciones = $datos['habitaciones'];
 			$publicacion->mts = $datos['mts'];
-			$publicacion->descripcion = htmlentities($datos['descripcion']);
+			$publicacion->descripcion = util::limpiar_html($datos['descripcion']);
 			$publicacion->precio = $datos['precio'];
 			$publicacion->deposito = $datos['deposito'];
 
@@ -399,12 +403,12 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function lista($token = NULL){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_PUBLICA;
 		$this->template->web_page=WEBO_P_PUBLICA_LISTA;
 
-		$this->template->titulo = "Lista de Publicaciones";
+		$this->template->titulo = "Lista de Residencias";
 		$vista = new View('publicacion/buscar');
 		$vista->token = $this->_generar_token();
 		$vista->url = 'publicacion/lista/';
@@ -544,24 +548,24 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function detalles($id = NULL){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_PUBLICA;
 		$this->template->web_page=WEBO_P_PUBLICA_DETALLE;
-		
+
 		$publicacion = ORM::factory("publicacion", $id);
 
-		$this->template->titulo = "Residencia #$id en ".$publicacion->zona->ciudad->estado->nombre." - ".$publicacion->zona->ciudad->nombre." - ".$publicacion->zona->nombre;
+		$this->template->titulo = $publicacion->zona->ciudad->estado->nombre." - ".$publicacion->zona->ciudad->nombre." - ".$publicacion->zona->nombre;
 		$vista = new View('publicacion/detalles');
 
 		$usuario = $this->session->get('usuario');
 		if($usuario){
 			$vista->usuario_sesion = $usuario;
 		}
-		
-		
+
+
 		$publicacion->sumar_visita();
-		
+
 		$vista->publicacion = $publicacion;
 		$vista->vista_caracteristicas = new View('publicacion/caracteristicas');
 		$vista->vista_caracteristicas->publicacion = $publicacion;
@@ -572,16 +576,16 @@ class Publicacion_Controller extends Template_Controller {
 		if(is_a($usuario, "Usuario_Model") && $usuario->es_propio($publicacion->usuario_id)){
 			$links[]=array(
 			url::site('publicacion/editar/'.$publicacion->id),
-				html_Core::image('media/img/iconos/table_edit.png', array('class'=>'icono', 'alt'=>'Editar Publicacion')) . "Editar publicaci&oacute;n",
+			html_Core::image('media/img/iconos/table_edit.png', array('class'=>'icono', 'alt'=>'Editar Publicacion')) . "Editar publicaci&oacute;n",
 			);
 			$links[]=array(
 			url::site('imagen/agregar/'.$publicacion->id),
-				html_Core::image('media/img/iconos/picture_edit.png', array('class'=>'icono', 'alt'=>'Editar Imagenes')) . "Editar im&aacute;genes",
+			html_Core::image('media/img/iconos/picture_edit.png', array('class'=>'icono', 'alt'=>'Editar Imagenes')) . "Editar im&aacute;genes",
 			);
 		}else{
 			$links[]=array(
 			url::site('publicacion/ofertar/'.$publicacion->id),
-				html_Core::image('media/img/iconos/cart_go.png', array('class'=>'icono', 'alt'=>'Solicitar Residencia')) . "Solicitar",
+			html_Core::image('media/img/iconos/cart_go.png', array('class'=>'icono', 'alt'=>'Solicitar Residencia')) . "Solicitar",
 			);
 		}
 		$v_opciones->links = $links;
@@ -592,7 +596,7 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function mis_publicaciones(){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_USUARIO;
 		$this->template->web_page=WEBO_P_USUARIO_PUBLICA;
@@ -640,7 +644,7 @@ class Publicacion_Controller extends Template_Controller {
 	}
 
 	public function ofertar($publicacion_id){
-		
+
 		// Estadisticas WEBOSCOPE
 		$this->template->web_zone=WEBO_Z_PUBLICA;
 		$this->template->web_page=WEBO_P_PUBLICA_OFERTA;
@@ -666,11 +670,11 @@ class Publicacion_Controller extends Template_Controller {
 		$this->template->panel_opciones = new View('plantillas/panel_opciones');
 		$links[] = array(
 		url::site('calificacion/calificar/'.$calificacion_id),
-				html_Core::image('media/img/iconos/thumb_up.png', array('class'=>'icono')) . "Calificar",
+		html_Core::image('media/img/iconos/thumb_up.png', array('class'=>'icono')) . "Calificar",
 		);
 		$links[] = array(
 		url::site('publicacion/detalles/'.$publicacion_id),
-				html_Core::image('media/img/iconos/eye.png', array('class'=>'icono')) . "Ver Original",
+		html_Core::image('media/img/iconos/eye.png', array('class'=>'icono')) . "Ver Original",
 		);
 		$this->template->panel_opciones->links = $links;
 
@@ -695,14 +699,14 @@ class Publicacion_Controller extends Template_Controller {
 		$calificacion->usuario_id = $usuario_id;
 		$calificacion->publicacion_id = $publicacion_id;
 		$calificacion->save();
-		
+
 		//Envio de Correo al cliente
 		$mail = new View('mail/ofertar');
 		$mail->publicacion = $calificacion->publicacion;
-		
+
 		Mail_Model::enviar(ORM::factory('usuario',$cliente_id)->correo,MAIL_ASNT_OFERTAR,$mail);
-		
-		
+
+
 		return $calificacion->id;
 	}
 }

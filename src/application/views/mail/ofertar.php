@@ -41,6 +41,10 @@ alquiler:</p>
 		<td><strong><?php echo $publicacion->usuario->telefono; ?></strong></td>
 	</tr>
 	<tr>
+		<td>Tel&eacute;fonos Adicionales:</td>
+		<td><strong><?php echo $publicacion->telefono; ?></strong></td>
+	</tr>
+	<tr>
 		<td>Direcci&oacute;n:</td>
 		<td><strong><?php echo $publicacion->direccion; ?></strong></td>
 	</tr>

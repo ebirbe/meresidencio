@@ -1,7 +1,7 @@
 /*** ----------------------------------------- ***/
 	/*** COLORS! (for easy updating!) ------------ ***/
 body {
-	background: #94944d; /*#59592e*/
+	background: #FFFFFF /*#94944d; /*#59592e*/
 }
 
 div {
@@ -93,8 +93,9 @@ div {
 }
 
 #main-content {
-	background: #fffced /*DBD1B9*/;
-	border: 1px solid #bfb9b2
+	background: #FFFFFF /*#fffced /*DBD1B9*/;
+	border: 1px solid #bfb9b2;
+	color: #172833;
 }
 
 #header .contact-info {
@@ -131,53 +132,35 @@ div {
 }
 
 #main-content .left {
-	background: #fffced;
+	background: #FFFFFF/*#fffced;*/
 }
 
 #main-content .right {
-	background: #f1ffd4;
+	background: #FFFFFF/*#f1ffd4;*/
 }
 
-#main-content ul {
-	color: #2e2a25;
-}
 
-#main-content .right ul {
-	color: #23201B !important
-}
 
 #main-content h2 {
-	color: #4B3D1B;
-	border-bottom: 1px solid #4B3D1B
+	text-indent: 12px;
+	font-weight: bold;
+	background: #a1c2ff;
 }
 
 #main-content .right h2 {
-	font-size: 13px;
-	font-weight: bold;
+	font-size: 11px;
 }
 
 #main-content h3 {
 	color: #4B3D1B
 }
 
-#main-content p,#main-content table {
-	color: #534C42
-}
-
-#main-content .right p {
-	color: #23201B !important
-}
-
-#main-content p.intro-text {
-	color: #23201B
-}
-
 #main-content a {
-	color: #005896 /*#2E546F*/
+	color: #005896;
 }
 
 .portfolio-entry {
-	border-top: 1px solid #DBD1B9
+	border-top: 1px solid #DBD1B9;
 }
 
 input,select,file {
@@ -229,7 +212,7 @@ textarea {
 	/* --------------------------------------------- */
 	/* Main Styles --------------------------------- */
 body {
-	font-family: Arial, Helvetica, sans-serif;
+	FONT-FAMILY: Verdana, Tahoma, Sans-Serif;
 	margin: 0;
 	padding: 0
 }
@@ -262,9 +245,7 @@ img {
 
 .img-left {
 	float: left;
-	/*width: 160px;
-	height: 120px;*/
-	margin: 0 20px 15px 0;
+	margin: 0 10px 10px 0;
 	position: relative;
 	top: 5px
 }
@@ -641,8 +622,8 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 /* --------------------------------------------- */
 	/* Main Homepage Content ----------------------- */
 #main-content {
-	width: 968px;
-	padding: 5px;
+	width: 980px;
+	padding: 0px;
 	border-bottom: none
 }
 
@@ -652,16 +633,13 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 
 #main-content .left {
 	border: 1px solid #bfb9b2;
-	border-top: 0px;
-	width: 649px;
+	width: 808px;
 	margin: 0;
 	padding: 5px;
 	float: left;
 }
 
 #main-content .right {
-	border: 1px solid #bfb9b2;
-	border-right: 0px;
 	width: 150px;
 	margin: 0;
 	padding: 5px;
@@ -670,13 +648,11 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 }
 
 #main-content .publicidad {
-	background: #f1ffd4;
-	border: 1px solid #bfb9b2;
-	border-left: 0px;
+	background: #FFFFFF; /*#f1ffd4;*/
 	margin: 0;
 	padding: 5px;
 	float: left;
-	width: 135px;
+	width: 150px;
 }
 
 #main-content ul {
@@ -687,15 +663,9 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 }
 
 #main-content h2 {
-	font-size: 18px;
-	font-weight: normal;
+	font-size: 14px;
 	margin: 0;
 	padding: 0 0 5px 0;
-	font-family: Verdana, Tahoma, Sans-Serif;
-}
-
-#main-content h2 strong,#main-content h2 b {
-	letter-spacing: -1px
 }
 
 #main-content h3 {
@@ -725,12 +695,11 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 	/* Portfolio Page ------------------------------ */
 .portfolio-entry {
 	clear: both;
-	padding: 5px 0 0 0;
-	margin: 8px 0 0 0
+	padding: 1px 0 0 0;
+	margin: 1px 0 0 0;
 }
-
 .portfolio-entry h3 a {
-	font-size: 20px
+	font-size: 12px;
 }
 
 /* --------------------------------------------- */
@@ -781,6 +750,7 @@ form {
 
 .tabla_alertas {
 	width: 100%;
+	table-layout: fixed; 
 }
 
 .tabla_alertas td {
@@ -874,12 +844,33 @@ table {
 }
 
 #cabecera_detalles td {
-	font-weight: bold;
 	font-size: 14px;
-	color: #332920;
 }
 
 .center {
 	margin: auto;
 	text-align: center;
+}
+
+#main-content .descripcion {
+	font-size: 14px;
+	color: #0a141c;
+}
+
+#pagination strong, #pagination a, #pagination a:HOVER{
+	font-weight: normal;
+	border: 1px solid #0E3B65;
+	padding: 5px;
+	color: #FFFFFF;
+	background: #336A93;
+}
+
+#pagination a{
+	background: #a1c2ff;
+	color: #000000;
+}
+
+.titulo_pub{
+	font-size: 12px;
+	font-weight: bold;
 }

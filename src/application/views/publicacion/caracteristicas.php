@@ -73,7 +73,7 @@
 </div>
 <div class="clear"></div>
 <h2>Descripci&oacute;n</h2>
-<p>
+<p class="descripcion">
 <?php
 if ($publicacion->descripcion != NULL)		echo $publicacion->descripcion; 
 else 										echo "El propietario no especific&oacute; nada.";

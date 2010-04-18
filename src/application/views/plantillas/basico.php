@@ -109,7 +109,7 @@ function dibujar_menu($m, $c){
 		    	   });
 		    });
 		</script>
-		<title><?php echo html_Core::specialchars(NOMBRE_SITIO). " - Residencias en Alquiler - ".$titulo; ?></title>
+		<title><?php echo html_Core::specialchars(NOMBRE_SITIO). " - Residencias en alquiler - ".$titulo; ?></title>
 	</head>
 	<body>
 		<!-- Centers the page -->
@@ -120,7 +120,7 @@ function dibujar_menu($m, $c){
 				<span class="logo2"> <!--<?php echo SLOGAN ?>--> </span>
 		</div>
 		<!-- END header -->
-		<!-- Navigation -->
+		<!-- Navigation 
 		<div id="navigation">
 			<ul id="nav" class="sf-menu">
 				<?php
@@ -128,7 +128,7 @@ function dibujar_menu($m, $c){
 				?>
 			</ul>
 		</div>
-		<!-- END navigation -->
+		 END navigation -->
 		<!-- Content -->
 		<div id="main-content">
 			<div class="right">
@@ -136,54 +136,17 @@ function dibujar_menu($m, $c){
 				<?php echo $panel_opciones ?> <?php echo $notificaciones ?>
 			</div>
 			<div class="left">
-				<!-- PUBLICIDAD DE GOOGLE -->
-				<table>
-					<tr>
-						<td>
-							<script type="text/javascript"><!--
-								google_ad_client = "pub-8678898357396629";
-								/* 468x60, Superior */
-								google_ad_slot = "6468585075";
-								google_ad_width = 468;
-								google_ad_height = 60;
-								//-->
-							</script>
-							<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-							</script>
-						</td>
-					</tr>
-				</table>
-				<!-- FIN PUBLICIDAD DE GOOGLE -->
 				<?php echo $contenido ?>
 			</div>
+			<!--
 			<div class="publicidad">
-				<!-- INICIO GOOGLE ADSENSE -->
-				<table>
-					<tr>
-						<td>
-							<script type="text/javascript"><!--
-								google_ad_client = "pub-8678898357396629";
-								/* 120x600, meresidencio */
-								google_ad_slot = "1700471406";
-								google_ad_width = 120;
-								google_ad_height = 600;
-								//-->
-								</script>
-								<script type="text/javascript"
-								src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-							</script>
-						</td>
-					</tr>
-				</table>
-				<!-- FIN GOOGLE ADSENSE -->
-				<!-- 
 				<div class="cuadro_pub">
 				<p class="center"><strong>Espacio disponible</strong></p>
 				<p class="center"><strong>125px X 150px</strong></p>
 				<p class="center"><strong><?php echo html::anchor(url::site('nosotros/contacto'), "Contactanos")?></strong></p>
 				</div>
-				 -->
 			</div>
+			-->
 			<div class="clear"></div>
 		</div>
 	</div>
@@ -192,7 +155,7 @@ function dibujar_menu($m, $c){
 		<p>Generada con <a href="http://kohanaphp.com">Kohana</a> en
 		{execution_time} segundos, usando {memory_usage} de memoria.</p>
 		<p>Algunos <a href="http://www.famfamfam.com/lab/icons/silk/">iconos</a>
-		utilizados en esta pagina son de licencia Creative Commons</p>
+		son de licencia Creative Commons</p>
 		<p>&copy; Copyrigth 2010, Erick Birbe.</p>
 		<!--INICIO WEBOSCOPE MeResidencio.com -->
 		<!-- SOLO MODIFICAR WEBO_ZONE Y WEBO_PAGE

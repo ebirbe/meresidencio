@@ -1,6 +1,5 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <?php echo new View('js/combo_regiones'); ?>
-<h2>Buscar Publicaci&oacute;n</h2>
 <?php echo form::open($url.$token)?>
 <div><input type='hidden' class='hidden' value='<?php echo $token ?>'/></div>
 <table class='tabla_ext'>
@@ -27,7 +26,6 @@
 </table>
 <?php echo form::close()?>
 <div class="clear"></div>
-<h2>Resultados de la Busqueda</h2>
 <?php echo $paginacion ?>
 <div class="clear"></div>
 	<?php 

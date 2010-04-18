@@ -27,7 +27,7 @@ $borrar = "";
 		</td>
 		<?php } ?>
 		<?php }else{?>
-		<td align="center"><?php echo html_Core::image('media/img/no_img.gif', 'Sin Foto')?></td>
+		<td align="center"><?php echo html_Core::image('media/img/no_img.png', 'Sin Foto')?></td>
 		<?php }?>
 	</tr>
 </table>

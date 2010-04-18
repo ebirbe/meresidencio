@@ -9,8 +9,13 @@
 		<th colspan="3"><?php echo $mensaje ?></th>
 	</tr>
 	<tr>
-		<td><?php echo form::label('telefono', 'Tel&eacute;fono:')?></td>
-		<td><?php echo form::input('telefono', $formulario['telefono'])?></td>
+		<td><b>Este es tu numero <br/>de telefono personal:</b></td>
+		<td><?php echo $usuario->telefono ?></td>
+		<td><?php echo $errores['telefono'] ?></td>
+	</tr>
+	<tr>
+		<td><?php echo form::label('telefono', 'Agregue uno o mas<br/> teléfonos adicionales:')?></td>
+		<td><?php echo form::input('telefono', $formulario['telefono'], "size='30'")?></td>
 		<td><?php echo $errores['telefono'] ?></td>
 	</tr>
 	<tr>

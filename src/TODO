@@ -1,3 +1,24 @@
+
+
+controller
+	-publicacion
+view
+	-welcome
+	/publicacion/
+		-item
+		-buscar
+	/usuario/
+		-iniciarsesionlateral
+	/plantilla/
+		-basico
+		-panelopciones
+media
+	/img/
+		-no-img
+	/css/
+		-main
+
+
 - Olvido su contraseña falta
 - Filtrar todas las entradas ya que estan aceptando <HTML>
 - Tener siempre el cuaderno de notas cerca!!!
@@ -14,7 +35,6 @@ Descripcion
 2 = Vendedor
 3 = Cliente
 
-<?php echo html_Core::image('media/img/iconos/user.png', array('class'=>'icono'))?>
+<?php echo html_Core::image('media/img/iconos/user.png', array('class'=>'icono', 'alt'=>'Registrate'))?>
 array('class'=>'button')
-array('class'=>'icono', 'alt'=>'Registrate')
 <div class='msg_exito'>

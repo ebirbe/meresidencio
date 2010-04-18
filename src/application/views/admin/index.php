@@ -9,8 +9,6 @@
 		<th>ACT</th>
 		<th>ID</th>
 		<th>LOGIN</th>
-		<th>NOMBRE</th>
-		<th>APELLIDO</th>
 		<th>CORREO</th>
 		<th>OPCION</th>
 	</tr>
