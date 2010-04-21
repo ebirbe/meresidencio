@@ -8,13 +8,20 @@
 	<tr>
 		<th colspan="3"><?php echo $mensaje ?></th>
 	</tr>
+	<?php if($editar){?>
 	<tr>
-		<td><b>Este es tu numero <br/>de telefono personal:</b></td>
-		<td><?php echo $usuario->telefono ?></td>
-		<td><?php echo $errores['telefono'] ?></td>
+		<td><?php echo form::label('activo','Publicaci&oacute;n activa:') ?></td>
+		<td><?php echo form::checkbox('activo', 1, $formulario['activo']); ?></td>
+		<td><?php echo $errores['activo'] ?></td>
+	</tr>
+	<?php }?>
+	<tr>
+		<td><b>Telefono personal:</b></td>
+		<td><?php echo $usuario->telefono ?> - <?php echo html::anchor(url::site('usuario/editar/'.$usuario->id), "editar...")?></td>
+		<td>&nbsp;</td>
 	</tr>
 	<tr>
-		<td><?php echo form::label('telefono', 'Agregue uno o mas<br/> teléfonos adicionales:')?></td>
+		<td><?php echo form::label('telefono', 'Teléfono(s) Adicionale(s):')?></td>
 		<td><?php echo form::input('telefono', $formulario['telefono'], "size='30'")?></td>
 		<td><?php echo $errores['telefono'] ?></td>
 	</tr>
@@ -98,13 +105,6 @@
 		<td><?php echo form::textarea(array('name'=>'descripcion', 'cols'=>'50', 'rows'=>'5'), $formulario['descripcion']) ?></td>
 		<td><?php echo $errores['descripcion'] ?></td>
 	</tr>
-	<?php if($editar){?>
-	<tr>
-		<td><?php echo form::label('activo','Publicaci&oacute;n activa:') ?></td>
-		<td><?php echo form::checkbox('activo', 1, $formulario['activo']); ?></td>
-		<td><?php echo $errores['activo'] ?></td>
-	</tr>
-	<?php }?>
 	<tr>
 		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Guardar') ?></td>
 	</tr>

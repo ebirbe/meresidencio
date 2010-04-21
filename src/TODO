@@ -1,27 +1,38 @@
 
-
-controller
+globales
+controller/
+	-usuario
 	-publicacion
-view
+	-imagen
+	-mail
+	-calificacion
+/models/
+	-usuario
+/view/
 	-welcome
+	/mail/
+		-oferta_nueva
+		-calificaron
 	/publicacion/
 		-item
 		-buscar
+		-agregar
 	/usuario/
 		-iniciarsesionlateral
+		-iniciarsesion
 	/plantilla/
 		-basico
 		-panelopciones
-media
+media/
 	/img/
+		*
 		-no-img
+		-logo
+		-favicon
 	/css/
 		-main
+		-superfish
 
-
-- Olvido su contraseña falta
-- Filtrar todas las entradas ya que estan aceptando <HTML>
-- Tener siempre el cuaderno de notas cerca!!!
 
 ----------------
 Zona

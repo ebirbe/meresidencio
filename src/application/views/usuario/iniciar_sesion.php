@@ -2,10 +2,9 @@
 <?php echo form::open() ?>
 <h2>Iniciar Sesi&oacute;n</h2>
 <div class="center">
-	<p><strong>Si a&uacute;n no est&aacute;s registrado</strong> hazlo totalmente gratis</p>
+	<p><strong>Si a&uacute;n no est&aacute;s registrado</strong>, hazlo totalmente gratis:</p>
 	<?php echo html_Core::anchor(url::site('usuario/suscribir'),html_Core::image('media/img/btn_registrar.png','Registrar',FALSE))?>
-	<br/>
-	<br/>
+	<p>Sino debes iniciar tu sesi&oacute;n:</p>
 </div>
 <table>
 	<?php if($mensaje) {?>

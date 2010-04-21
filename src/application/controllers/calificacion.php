@@ -35,10 +35,6 @@ class Calificacion_Controller extends Template_Controller {
 
 
 	public function calificar($calificacion_id){
-		
-		// Estadisticas WEBOSCOPE
-		$this->template->web_zone=WEBO_Z_CALIFICA;
-		$this->template->web_zone=WEBO_P_CALIFICA_VER;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE, USUARIO_COMUN), MSJ_INICIAR_SESION);
@@ -62,9 +58,6 @@ class Calificacion_Controller extends Template_Controller {
 		//Si ya se ha calificado la operacion
 		if($calificacion->razon != ''){
 			
-			// Estadisticas WEBOSCOPE
-			$this->template->web_page=WEBO_P_CALIFICA_PROPIETARIO;
-			
 			$calificar = FALSE;
 
 			//Armamos la vista de que ya califico
@@ -74,10 +67,6 @@ class Calificacion_Controller extends Template_Controller {
 			//Montamos la vista_ya_califico sobre esta
 			$vista->vista_ya_califico = $vista_ya_califico;
 		}else{
-			
-			// Estadisticas WEBOSCOPE
-			$this->template->web_zone=WEBO_Z_CALIFICA;
-			$this->template->web_zone=WEBO_P_CALIFICA_CLIENTE;
 			
 			//Si aun NO se ha calificado la operacion
 			if($_POST){
@@ -119,22 +108,27 @@ class Calificacion_Controller extends Template_Controller {
 	public function _calificar_como_cliente($calificacion_id){
 		$exito = false;
 		$datos = $_POST;
-		$estado = new Calificacion_Model($calificacion_id);
+		$calificacion = new Calificacion_Model($calificacion_id);
 		if($this->_validar()){
-			$estado->fecha_cliente = date('Y-m-d');
-			$estado->puntos = $datos['puntos'];
-			$estado->razon = htmlentities($datos['razon']);
-			$estado->save();
+			//se guardan los datos
+			$calificacion->fecha_cliente = date('Y-m-d');
+			$calificacion->puntos = $datos['puntos'];
+			$calificacion->razon = htmlentities($datos['razon']);
+			$calificacion->save();
+			
+			//se notifica al propietario que lo calificaron
+			$cliente = ORM::factory('usuario',$calificacion->cliente_id);
+			$mail = new View('mail/calificaron');
+			$mail->calificacion = $calificacion;
+			$mail->cliente = $cliente;
+			Mail_Model::enviar($calificacion->usuario->correo,MAIL_ASNT_CALIFICARON,$mail);
+			
 			$exito = true;
 		}
 		return $exito;
 	}
 
 	public function responder_calificacion($calificacion_id){
-		
-		// Estadisticas WEBOSCOPE
-		$this->template->web_zone=WEBO_Z_CALIFICA;
-		$this->template->web_zone=WEBO_P_CALIFICA_PROPIETARIO;
 
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);
@@ -187,12 +181,19 @@ class Calificacion_Controller extends Template_Controller {
 	public function _responder_como_vendedor($calificacion_id){
 		$exito = false;
 		$datos = $_POST;
-		$estado = new Calificacion_Model($calificacion_id);
+		$calificacion = new Calificacion_Model($calificacion_id);
 		if($this->_validar_respuesta()){
-			$estado->fecha_usuario = date('Y-m-d');
-			$estado->respuesta = htmlentities($datos['respuesta']);
-			$estado->activa = FALSE;
-			$estado->save();
+			$calificacion->fecha_usuario = date('Y-m-d');
+			$calificacion->respuesta = htmlentities($datos['respuesta']);
+			$calificacion->activa = FALSE;
+			$calificacion->save();
+			
+			//se notifica al cliente que le respondieron
+			$mail = new View('mail/respondieron');
+			$mail->calificacion = $calificacion;
+			$cliente = ORM::factory('usuario', $calificacion->cliente_id);
+			Mail_Model::enviar($cliente->correo,MAIL_ASNT_RESPONDIERON,$mail);
+			
 			$exito = true;
 		}
 		return $exito;
@@ -217,10 +218,6 @@ class Calificacion_Controller extends Template_Controller {
 	}
 	
 	public function mis_calificaciones(){
-		
-		// Estadisticas WEBOSCOPE
-		$this->template->web_zone=WEBO_Z_CALIFICA;
-		$this->template->web_zone=WEBO_P_CALIFICA_MIS;
 		
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE), MSJ_COMPLETAR_REGISTRO);

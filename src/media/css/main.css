@@ -1,150 +1,29 @@
 /*** ----------------------------------------- ***/
 	/*** COLORS! (for easy updating!) ------------ ***/
 body {
-	background: #FFFFFF /*#94944d; /*#59592e*/
+	background: #FFFFFF;
+	font-family: Verdana, Tahoma, Sans-Serif;
+	font-size: 11px
 }
-
-div {
-	FONT-FAMILY: Verdana, Tahoma, Sans-Serif;
-	FONT-SIZE: 11px
-}
-
-#navigation {
-	border: 1px solid #bfb9b2;
-}
-
-#navigation a:hover {
-	background: #E2F3BE;
-	color: #67920D
-}
-
-.sf-menu ul {
-	border: 2px solid #67920D
-}
-
-.sf-menu a {
-	border-left: 1px solid #FFFFD2;
-	border-right: 1px solid #A4CF47
-}
-
-.sf-menu ul a {
-	border-bottom: 1px solid #A4CF47;
-	border-top: 1px solid #FFFFD2
-}
-
-.sf-menu ul a.top {
-	border-top: none
-}
-
-.sf-menu ul a.bottom {
-	border-bottom: none
-}
-
-.sf-menu ul a:hover {
-	background: #336A93 !important;
-	color: #FFF !important;
-	border-bottom-color: #1C4563;
-	border-top-color: #84B1D3
-}
-
-/* visited pseudo selector so IE6 applies text colour*/
-.sf-menu a,.sf-menu a:visited {
-	color: #517307
-}
-
-.sf-menu li li {
-	background: #E2F3BE
-}
-
-.sf-menu li li li {
-	background: #E2F3BE
-}
-
-.sf-menu li:hover,.sf-menu li.sfHover,.sf-menu a:focus,.sf-menu a:hover,.sf-menu a:active
-	{
-	background: #E2F3BE
-}
-
-.sf-menu ul li:hover,.sf-menu ul li.sfHover a.item,.sf-menu ul a:focus,.sf-menu ul a:hover,.sf-menu ul a:active
-	{
-	background: #336A93;
-	color: #FFFFFF !important;
-	border-bottom-color: #1C4563;
-	border-top-color: #84B1D3
-}
-
-#slider-content {
-	position: relative;
-	z-index: 100;
-	border-bottom: 1px solid #000
-}
-
-.blue-block {
-	color: #FFF;
-	border-top: 1px solid #000
-}
-
-.blue-block a {
-	color: #C7E687
-}
-
-.blue-block a:hover {
-	color: #fff
-}
-
 #main-content {
-	background: #FFFFFF /*#fffced /*DBD1B9*/;
+	background: #FFFFFF;
 	border: 1px solid #bfb9b2;
 	color: #172833;
 }
 
-#header .contact-info {
-	color: #d3e6f3
-}
-
-#header .contact-info small em {
-	color: #FFF
-}
-
-#header .contact-info a {
-	color: #C7E687
-}
-
-#header .contact-info a:hover {
-	color: #d3e6f3
-}
-
-.jFlowSelected {
-	color: #FFF !important
-}
-
-.gallery-block {
-	background: #DBD1B9;
-	border: 2px solid #f3ece3
-}
-
-.gallery-block li a {
-	border: 1px solid #000
-}
-
-.gallery-block li a:hover {
-	border: 1px solid #FFF
-}
-
 #main-content .left {
-	background: #FFFFFF/*#fffced;*/
+	background: #FFFFFF
 }
 
 #main-content .right {
-	background: #FFFFFF/*#f1ffd4;*/
+	background: #FFFFFF
 }
-
-
 
 #main-content h2 {
 	text-indent: 12px;
 	font-weight: bold;
 	background: #a1c2ff;
+	text-decoration: none;
 }
 
 #main-content .right h2 {
@@ -156,7 +35,8 @@ div {
 }
 
 #main-content a {
-	color: #005896;
+	color: #245dc7;
+	/*color: #005896;*/
 }
 
 .portfolio-entry {
@@ -168,7 +48,6 @@ input,select,file {
 	color: #333;
 	padding: 3px;
 	margin: 0 0 10px 0;
-	font-family: Verdana, Tahoma, Sans-Serif;
 	font-size: 11px;
 }
 
@@ -184,7 +63,7 @@ textarea {
 }
 
 .button {
-	background: #336A93;
+	background: #245dc7;
 	color: #FFF;
 	border: 1px solid #0E3B65;
 	cursor: pointer;
@@ -192,7 +71,6 @@ textarea {
 
 #footer {
 	text-align: center;
-	border: 1px solid #bfb9b2;
 	color: #f1ffd4;
 	background: #245dc7;
 }
@@ -236,7 +114,7 @@ a:hover {
 
 .clear {
 	clear: both;
-	display: block
+	display: block;
 }
 
 img {
@@ -260,25 +138,25 @@ img {
 .img-center {
 	display: block;
 	margin: 15px auto 15px auto;
-	/*width: 160px;
-	height: 120px;*/
 	position: relative;
 	top: 0px;
 }
 
 /* --------------------------------------------- */
 	/* Header/Logo --------------------------------- */
+#header, .header-bg{
+	width: 100%;
+	height: 75px;
+	background: #245dc7;
+}
+.header-bg {
+	position: absolute;
+}
 #header {
 	position: relative;
-	width: 980px;
-	height: 100px;
-	background: #245dc7 /*#cde3fa*/;
-	border: 1px solid #bfb9b2;
 }
 
 #header h1 {
-	width: 475px;
-	height: 79px;
 	margin: 0;
 	padding: 0;
 	position: absolute;
@@ -294,331 +172,20 @@ img {
 	height: 79px
 }
 
-#header .contact-info {
-	text-align: right;
-	font-size: 20px;
-	width: 650px;
-	height: 50px;
-	position: absolute;
-	right: 30px;
-	bottom: 20px
-}
-
-#header .contact-info em {
-	font-family: Verdana, Tahoma, Sans-Serif;
-	font-style: normal
-}
-
-#header .contact-info small {
-	display: block;
-	margin: 0;
-	padding: 0;
-	font-size: 14px
-}
-
-#header .contact-info a {
-	text-decoration: underline
-}
-
-#header .contact-info a:hover {
-	text-decoration: none
-}
-
 /* --------------------------------------------- */
 	/* Navigation ---------------------------------- */
 #navigation {
-	font-family: Verdana, Tahoma, Sans-Serif;
-	position: relative;
-	z-index: 30;
-	font-size: 16px;
-	/*este 16 solo permite que los submenu aparezcan un poco mas bajo*/
-	font-weight: normal;
+	font-weight: bold;
+	border: 1px solid #bfb9b2;
+}
+.nav {
+	background: #a1c2ff;
 	width: 980px;
-	height: 46px;
-	background: url('../img/nav_bg.gif') no-repeat
+	height: 30px;
 }
-
-#navigation a.first {
-	border-left: none
-}
-
-#navigation a.last {
-	border-right: none
-}
-
 #navigation a:hover {
 	text-decoration: none
 }
-
-/* SUPERFISH STYLESHEET ---------------------------------- */
-	/*** DO NOT DELETE OR EDIT THE FOLLOWING (Unless you know what you're doing of course!) ***/
-.sf-menu,.sf-menu * {
-	margin: 0;
-	padding: 0;
-	list-style: none
-}
-
-.sf-menu {
-	line-height: 1.0
-}
-
-.sf-menu ul {
-	position: absolute;
-	top: -999em;
-	width: 12em
-}
-
-.sf-menu ul li {
-	width: 100%
-}
-
-/* fixes IE7 'sticky bug' */
-.sf-menu li:hover {
-	visibility: inherit
-}
-
-.sf-menu li {
-	float: left;
-	position: relative
-}
-
-.sf-menu a {
-	display: block;
-	position: relative
-}
-
-.sf-menu li:hover ul,.sf-menu li.sfHover ul {
-	left: 0;
-	top: 2.4em; /* match top ul list item height */
-	z-index: 99
-}
-
-ul.sf-menu li:hover li ul,ul.sf-menu li.sfHover li ul {
-	top: -999em
-}
-
-ul.sf-menu li li:hover ul,ul.sf-menu li li.sfHover ul {
-	left: 12em;
-	top: -0.1em
-}
-
-ul.sf-menu li li:hover li ul,ul.sf-menu li li.sfHover li ul {
-	top: -999em
-}
-
-ul.sf-menu li li li:hover ul,ul.sf-menu li li li.sfHover ul {
-	left: 12em;
-	top: -0.1em
-}
-
-/*** ---------------------------------------------------------------------------------- ***/
-	/* Dropdown Styling */
-.sf-menu {
-	margin: 0
-}
-
-.sf-menu a {
-	text-transform: capitalize;
-	font-size: 16px;
-	padding: 11px 20px 11px 20px;
-	text-decoration: none
-}
-
-.sf-menu ul a {
-	background: none;
-	cursor: pointer;
-	text-transform: capitalize;
-	border-left: none;
-	border-right: none;
-	font-size: 11px;
-	padding: 10px 10px 10px 10px;
-	text-decoration: none;
-	font-weight: bold;
-}
-
-.sf-menu li:hover,.sf-menu li.sfHover,.sf-menu a:focus,.sf-menu a:hover,.sf-menu a:active
-	{
-	outline: 0
-}
-
-.sf-menu a.sf-with-ul {
-	padding-right: 2.25em;
-	min-width: 1px;
-	/* trigger IE7 hasLayout so spans position accurately */
-}
-
-.sf-sub-indicator {
-	position: absolute;
-	display: block;
-	right: .75em;
-	top: 1.05em; /* IE6 only */
-	width: 10px;
-	height: 10px;
-	text-indent: -999em;
-	overflow: hidden;
-	background: url('../img/arrows.gif') no-repeat -10px -100px;
-	/* 8-bit indexed alpha png. IE6 gets solid image only */
-}
-
-a>.sf-sub-indicator { /* give all except IE6 the correct values */
-	top: .8em;
-	background-position: 0 -100px;
-	/* use translucent arrow for modern browsers*/
-}
-
-a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,li:hover>a>.sf-sub-indicator,li.sfHover>a>.sf-sub-indicator
-	{
-	background-position: -10px -100px;
-}
-
-.sf-menu ul .sf-sub-indicator {
-	background-position: -10px 0
-}
-
-.sf-menu ul a>.sf-sub-indicator {
-	background-position: 0 0
-}
-
-.sf-menu ul a:focus>.sf-sub-indicator,.sf-menu ul a:hover>.sf-sub-indicator,.sf-menu ul a:active>.sf-sub-indicator,.sf-menu ul li:hover>a>.sf-sub-indicator,.sf-menu ul li.sfHover>a>.sf-sub-indicator
-	{
-	background-position: -10px 0
-}
-
-/* --------------------------------------------- */
-	/* Slider Area (JFLOW) ------------------------- */
-#slider-content {
-	width: 980px;
-	height: 377px;
-	position: relative;
-	z-index: 100;
-	border-bottom: 1px solid #000
-}
-
-#myController {
-	display: none
-}
-
-#mySlides img {
-	display: block;
-	margin: 0
-}
-
-.blue-block {
-	display: block !important;
-	text-align: center;
-	padding: 15px 0 0 0;
-	font-size: 25px;
-	font-family: Verdana, Tahoma, Sans-Serif;
-	display: block;
-	width: 980px;
-	height: 48px;
-	background: url('../img/blue_bar_bg.gif') repeat-x
-}
-
-.blue-block a {
-	text-decoration: underline
-}
-
-.blue-block a:hover {
-	text-decoration: none
-}
-
-.blue-block.small {
-	font-size: 18px !important;
-	padding-top: 18px !important;
-	height: 45px !important
-}
-
-.jFlowPrev,.jFlowNext {
-	cursor: pointer;
-	display: block;
-	width: 73px;
-	height: 63px;
-	text-indent: -5000px;
-	position: absolute
-}
-
-.jFlowPrev {
-	bottom: 0;
-	left: 0;
-	background: url('../img/button_left.gif') no-repeat
-}
-
-.jFlowNext {
-	bottom: 0;
-	right: 0;
-	background: url('../img/button_right.gif') no-repeat
-}
-
-.jFlowControl {
-	cursor: pointer
-}
-
-.jFlowSelected {
-	text-decoration: none !important
-}
-
-.gallery .jFlowPrev {
-	top: 0 !important;
-	left: 0
-}
-
-.gallery .jFlowNext {
-	top: 0 !important;
-	right: 0
-}
-
-.gallery {
-	border-bottom: none;
-	height: 561px !important
-}
-
-.gallery-block {
-	width: 948px;
-	height: 468px;
-	padding: 14px;
-	border-bottom: none
-}
-
-.gallery-block ul {
-	list-style: none;
-	margin: 0 0 12px 0;
-	padding: 0;
-	width: 948px;
-	height: 146px;
-	display: block
-}
-
-.gallery-block ul.bottom {
-	margin: 0
-}
-
-.gallery-block li {
-	display: block;
-	margin: 0 12px 0 0;
-	padding: 0;
-	width: 148px;
-	height: 146px;
-	float: left
-}
-
-.gallery-block li.last {
-	margin: 0
-}
-
-.gallery-block li a {
-	display: block;
-	width: 146px;
-	height: 144px
-}
-
-.gallery-block li img {
-	display: block;
-	width: 146px;
-	height: 144px;
-	margin: 0
-}
-
 /* --------------------------------------------- */
 	/* Main Homepage Content ----------------------- */
 #main-content {
@@ -633,6 +200,8 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 
 #main-content .left {
 	border: 1px solid #bfb9b2;
+	border-top:0;
+	border-right:0;
 	width: 808px;
 	margin: 0;
 	padding: 5px;
@@ -665,7 +234,7 @@ a:focus>.sf-sub-indicator,a:hover>.sf-sub-indicator,a:active>.sf-sub-indicator,l
 #main-content h2 {
 	font-size: 14px;
 	margin: 0;
-	padding: 0 0 5px 0;
+	padding: 0 0 2px 0;
 }
 
 #main-content h3 {
@@ -716,7 +285,6 @@ form {
 .button {
 	font-weight: bold;
 	padding: 3px 5px;
-	font-family: Verdana, Helvetica, sans-serif;
 	font-size: 10px;
 	text-transform: uppercase;
 	display: block;
@@ -727,11 +295,9 @@ form {
 /* --------------------------------------------- */
 	/* Footer ----------------------- */
 #footer {
-	position: relative;
+	position: absolute;
 	font-size: 10px;
-	width: 938px;
-	margin: 0 auto;
-	padding: 20px
+	width: 100%;
 }
 
 #footer span {
@@ -859,10 +425,11 @@ table {
 
 #pagination strong, #pagination a, #pagination a:HOVER{
 	font-weight: normal;
+	text-decoration: none;
 	border: 1px solid #0E3B65;
 	padding: 5px;
 	color: #FFFFFF;
-	background: #336A93;
+	background: #245dc7;
 }
 
 #pagination a{
@@ -873,4 +440,10 @@ table {
 .titulo_pub{
 	font-size: 12px;
 	font-weight: bold;
+}
+.txt-btn-descrip{
+	vertical-align:top;
+	width: 200px;
+	text-align: justify;
+	padding: 0 30px 20px 30px;
 }

@@ -13,6 +13,14 @@ class Mail_Controller extends Controller {
 		$mail->publicacion = $publicacion;
 		echo $mail;
 	}
+	public function oferta_nueva(){
+		$calificacion = ORM::factory('calificacion')->orderby(NULL, 'RAND()')->find();
+		$cliente = ORM::factory('usuario',$calificacion->cliente_id);
+		$mail = new View('mail/oferta_nueva');
+		$mail->calificacion = $calificacion;
+		$mail->cliente = $cliente;
+		echo $mail;
+	}
 
 	public function bienvenida(){
 		$mail = new View('mail/bienvenida');
@@ -30,12 +38,26 @@ class Mail_Controller extends Controller {
 		$mail = new View('mail/contacto');
 		$mail->nombre = "Usuario Prueba";
 		$mail->correo = "correo@pruebas.com";
-		$mail->mensaje = "MEnsaje Cualquiera enviado desde la web";
+		$mail->mensaje = "Mensaje Cualquiera enviado desde la web";
 		echo $mail;
 	}
 	public function recuperar(){
 		$mail = new View('mail/recuperar');
 		$mail->usuario = ORM::factory('usuario')->orderby(NULL, 'RAND()')->find();
+		echo $mail;
+	}
+	public function calificaron(){
+		$calificacion = ORM::factory('calificacion')->where("razon <>", "")->orderby(NULL, 'RAND()')->find();
+		$cliente = ORM::factory('usuario',$calificacion->cliente_id);
+		$mail = new View('mail/calificaron');
+		$mail->calificacion = $calificacion;
+		$mail->cliente = $cliente;
+		echo $mail;
+	}
+	public function respondieron(){
+		$calificacion = ORM::factory('calificacion')->where("respuesta <>", "")->orderby(NULL, 'RAND()')->find();
+		$mail = new View('mail/respondieron');
+		$mail->calificacion = $calificacion;
 		echo $mail;
 	}
 }

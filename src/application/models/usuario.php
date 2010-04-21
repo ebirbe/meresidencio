@@ -60,7 +60,10 @@ class Usuario_Model extends ORM {
 			}
 		}
 
-		if(!$permitido) url::redirect('usuario/acceso_denegado/'.$mensaje_id);
+		if(!$permitido){
+			$_SESSION['ir_a'] = $_SERVER['REQUEST_URI'];
+			url::redirect('usuario/acceso_denegado/'.$mensaje_id);
+		}
 	}
 
 	public function es_propio($propietario_id){

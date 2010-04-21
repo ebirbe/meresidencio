@@ -8,13 +8,19 @@
  * que se muestran en los resultados de
  * las busquedas.
  */
-define('ITEMS_POR_PAGINA', 5);
+define('ITEMS_POR_PAGINA', 20);
 
 /**
  * La cantidad de imagenes maxima permitida para
  * las publicaciones
  */
 define('MAXIMO_IMAGENES', 6);
+
+/**
+ * Tamaño de miniaturas
+ */
+define('IMG_MINI_ANCHO', 80);
+define('IMG_MINI_ALTO', 60);
 
 /**
  * Numeros Identificadores de cada tipo de Usuario
@@ -72,8 +78,12 @@ define('MAIL_DE', NOMBRE_SITIO.' <admin@meresidencio.com>');
 define('MAIL_ASNT_BIENVENIDA', 'Registro exitoso en '. NOMBRE_SITIO);
 define('MAIL_ASNT_ALERTA', 'Han publicado una residencia para ti');
 define('MAIL_ASNT_OFERTAR', 'Datos de residencia solicitada');
+define('MAIL_ASNT_OFERTA_NUEVA', 'Se han interesado por tu publicacion en '. NOMBRE_SITIO);
 define('MAIL_ASNT_CONTACTO', 'Nuevo comentario de usuario');
 define('MAIL_ASNT_RECUPERAR', 'Datos de Acceso a '. NOMBRE_SITIO);
+define('MAIL_ASNT_CALIFICARON', 'Te calificaron en '. NOMBRE_SITIO);
+define('MAIL_ASNT_RESPONDIERON', 'Respondieron tu calificacion en '. NOMBRE_SITIO);
+
 
 /**
  * Estadisticas WEBOSCOPE

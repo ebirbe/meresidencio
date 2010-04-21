@@ -84,14 +84,14 @@ class Imagen_Controller extends Template_Controller {
 
 				// Formato Pequeño
 				$img = Image::factory($filename);
-				if($img->__get('width') > 160 || $img->__get('height') > 120){
+				if($img->__get('width') > IMG_MINI_ANCHO || $img->__get('height') > IMG_MINI_ALTO){
 					if($img->__get('height') > $img->__get('width')){
 						$relacion = Image::WIDTH;
 					}else{
 						$relacion = Image::HEIGHT;
 					}
-					$img->resize(160, 120, $relacion)
-						->quality(60);
+					$img->resize(IMG_MINI_ANCHO, IMG_MINI_ALTO, $relacion)
+						->quality(72);
 				}
 				$img->save($imagen->img_p);
 				

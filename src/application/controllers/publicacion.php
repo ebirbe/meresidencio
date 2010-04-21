@@ -602,7 +602,7 @@ class Publicacion_Controller extends Template_Controller {
 		$this->template->web_page=WEBO_P_USUARIO_PUBLICA;
 
 		//Control de acceso
-		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE));
+		Usuario_Model::otorgar_acceso($this->session->get('usuario'), array(USUARIO_ADMIN, USUARIO_VENDE),1);
 
 		$id_usuario = $this->session->get('usuario')->id;
 
@@ -705,6 +705,12 @@ class Publicacion_Controller extends Template_Controller {
 		$mail->publicacion = $calificacion->publicacion;
 
 		Mail_Model::enviar(ORM::factory('usuario',$cliente_id)->correo,MAIL_ASNT_OFERTAR,$mail);
+		
+		//Envio de Correo al propietario
+		$mail = new View('mail/oferta_nueva');
+		$mail->calificacion = $calificacion;
+		$mail->cliente = $cliente = ORM::factory('usuario',$cliente_id);
+		Mail_Model::enviar($calificacion->usuario->correo,MAIL_ASNT_OFERTA_NUEVA,$mail);
 
 
 		return $calificacion->id;

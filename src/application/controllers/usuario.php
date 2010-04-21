@@ -356,10 +356,16 @@ class Usuario_Controller extends Template_Controller {
 				);
 				$usuario = ORM::factory('usuario')->where($cond)->find();
 				$this->session->set('usuario',$usuario);
-				if($usuario->tipo == USUARIO_ADMIN){
-					header("Location: ".url::site('admin'));
+				if($this->session->get('ir_a')==""){
+					if($usuario->tipo == USUARIO_ADMIN){
+						header("Location: ".url::site('admin'));
+					}else{
+						header("Location: ".url::site('usuario/mi_cuenta'));
+					}
 				}else{
-					header("Location: ".url::site('usuario/mi_cuenta'));
+					$ir_a = $this->session->get('ir_a');
+					$this->session->set('ir_a', NULL);
+					header("Location: $ir_a");
 				}
 			}
 		}
