@@ -46,7 +46,7 @@
 		<td class="txt-btn-descrip">
 			<p>
 				Consigue la residencia que se adapta a tu gusto y necesidad revisando
-				a traves de nuestro amplio cat&aacute;ha genlogo de publicaciones.
+				a traves de nuestro amplio cat&aacute;logo de publicaciones.
 			</p>
 			<p>
 				Nuestro principal inter&eacute;s es brindarte una plataforma

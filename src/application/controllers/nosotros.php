@@ -95,7 +95,7 @@ class Nosotros_Controller extends Template_Controller {
 			$mail->nombre = htmlentities($_POST['nombre']);
 			$mail->correo = htmlentities($_POST['correo']);
 			$mail->mensaje = htmlentities($_POST['mensaje']);
-			Mail_Model::enviar(MAIL_DE, MAIL_ASNT_CONTACTO,$mail);
+			Mail_Model::enviar(MAIL_DE, MAIL_ASNT_CONTACTO,$mail, $_POST['correo']);
 
 			$exito = true;
 		}

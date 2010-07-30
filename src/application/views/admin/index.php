@@ -7,6 +7,7 @@
 <table class="tabla_alertas">
 	<tr align="left">
 		<th>ACT</th>
+		<th>CONF</th>
 		<th>ID</th>
 		<th>LOGIN</th>
 		<th>CORREO</th>
