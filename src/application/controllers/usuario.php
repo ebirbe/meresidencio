@@ -74,9 +74,11 @@ class Usuario_Controller extends Template_Controller {
 				$this->template->titulo = "Confirma tu correo";
 
 				//TODO Aqui seria mejor usar un redirect y convertir la bienvenida en un metodo
-				$vista = new View('usuario/bienvenida');
-				$vista->login = $_POST['login'];
-				$this->limpiar_formulario();
+				//$vista = new View('usuario/bienvenida');
+				//$vista->login = $_POST['login'];
+				//$this->limpiar_formulario();
+				$this->iniciar_sesion();
+				return;
 			}
 		}
 		$vista->errores = $this->errores;
@@ -167,6 +169,7 @@ class Usuario_Controller extends Template_Controller {
 			$usuario->clave = $datos['clave'];
 			$usuario->tipo = USUARIO_COMUN;
 			$usuario->activo = TRUE;
+			$usuario->confirmado = TRUE;
 			$usuario->save();
 
 			//Se envia el correo de confirmacion

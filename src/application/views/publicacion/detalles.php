@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
 <?php
-$fecha = split("-",$publicacion->fecha);
+$fecha = explode("-",$publicacion->fecha);
 ?>
 
 <br/>

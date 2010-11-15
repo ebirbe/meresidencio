@@ -4,7 +4,7 @@
 <table class="tabla_ext">
 	<tr>
 		<td align="center"><?php echo html::anchor(url::site('publicacion/agregar'), html_Core::image('media/img/publica.png', 'Publica tu Residencia', FALSE))?></td>
-		<td align="center"><?php echo html::anchor(url::site('usuario/suscribir'), html_Core::image('media/img/registrate.png', 'Registrate', FALSE))?></td>
+		<!--<td align="center"><?php echo html::anchor(url::site('usuario/suscribir'), html_Core::image('media/img/registrate.png', 'Registrate', FALSE))?></td> -->
 		<td align="center"><?php echo html::anchor(url::site('publicacion/lista'), html_Core::image('media/img/consigue.png', 'Consigue Residencia', FALSE))?></td>
 	</tr>
 	<tr>
@@ -22,7 +22,7 @@
 				<li>Tus clientes te buscan a ti.</li>
 			</ul>
 		</td>
-		<td class="txt-btn-descrip">
+		<!-- <td class="txt-btn-descrip">
 			<p>
 				Disfruta de todas las ventajas de ser un usuario registrado.
 			</p>
@@ -42,7 +42,7 @@
 					<li>Administra tus publicaciones.</li>
 					<li>Enterate cuando se interesen en tu residencia.</li>
 				</ul>
-		</td>
+		</td> -->
 		<td class="txt-btn-descrip">
 			<p>
 				Consigue la residencia que se adapta a tu gusto y necesidad revisando

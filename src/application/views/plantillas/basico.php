@@ -114,6 +114,9 @@ function dibujar_menu($m, $c){
 		<title><?php echo "MeResidencio - Residencias estudiantiles - ".$titulo; ?></title>
 	</head>
 	<body>
+	    <?php if(!IN_PRODUCTION){?>
+	    <div style="background-color: yellow;color: red; text-align: center"><h2>ESTE SITIO AUN ESTA EN DESARROLLO</h2></div>
+	    <?php }?>
 		<div class="header-bg"></div>
 		<!-- Centers the page -->
 		<div id="content">
@@ -162,7 +165,9 @@ function dibujar_menu($m, $c){
 		son de licencia Creative Commons</p>
 		<p>&copy; Copyrigth 2010, Erick Birbe.</p>
 		</div>
+		<?php if(IN_PRODUCTION){ ?>
 		<!-- GOOGLE ANALYTICS -->
+
 		<script type="text/javascript">
 			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -173,5 +178,6 @@ function dibujar_menu($m, $c){
 			pageTracker._trackPageview();
 			} catch(err) {}
 		</script>
+		<?php } ?>
 	</body>
 </html>
