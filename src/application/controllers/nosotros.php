@@ -117,3 +117,4 @@ class Nosotros_Controller extends Template_Controller {
 		return $exito;
 	}
 }
+?>

@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script');
 class Publicacion_Model extends ORM {
-	protected $has_many = array('imagenes','calificaciones');
+	protected $has_many = array('imagenes','calificaciones','comentarios');
 	protected $belongs_to = array('usuario', 'zona', 'tipoinmueble');
 	protected $has_and_belongs_to_many = array('cercanias', 'servicios');
 

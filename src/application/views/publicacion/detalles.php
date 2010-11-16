@@ -37,4 +37,8 @@ $fecha = explode("-",$publicacion->fecha);
 $imagen_lista = new View('imagen/lista');
 $imagen_lista->imagenes = $publicacion->imagenes;
 echo $imagen_lista;
+
+$comentarios = new View('comentario/formulario');
+$comentarios->publicacion = $publicacion;
+echo $comentarios;
 ?>

@@ -11,7 +11,7 @@ puedes contactar con nosotros a traves de los siguientes medios:</p>
 	<tr>
 		<td><?php echo form::label("nombre", "Nombre")?></td>
 		<td><?php echo form::input('nombre', $formulario['nombre']) ?></td>
-		<td><?php echo $errores['correo'] ?></td>
+		<td><?php echo $errores['nombre'] ?></td>
 	</tr>
 	<tr>
 		<td><?php echo form::label("nombre", "Correo")?></td>

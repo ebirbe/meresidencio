@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.'); ?>
 <?php
-$fecha = split("-",$publ->fecha);
+$fecha = explode("-",$publ->fecha);
 ?>
 <?php 
 switch ($uso){
