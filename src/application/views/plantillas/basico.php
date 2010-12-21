@@ -144,68 +144,65 @@ function dibujar_menu($m, $c)
 		</ul>
 	    </div>
 	    <!-- END navigation -->
+	    <!--
 	    <div class="center">
-		<!-- SUPERIOR CENTRAL -->
-		<script type="text/javascript"><!--
-		    google_ad_client = "ca-pub-2549541099966818";
-		    /* Superior General */
-		    google_ad_slot = "2939919556";
-		    google_ad_width = 728;
-		    google_ad_height = 90;
-		    //-->
-		</script>
-		<script type="text/javascript"
-			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-		</script>
+		<table width="980px">
+		    <tr>
+			<td><?php echo html::image("media/img/240x125.svg") ?></td>
+			<td><?php echo html::image("media/img/240x125.svg", array("width"=>"480","height"=>"125")) ?></td>
+			<td><?php echo html::image("media/img/240x125.svg") ?></td>
+		    </tr>
+		</table>
 	    </div>
-		<!-- Content -->
-		<div id="main-content" class="clear">
-		    <div class="right">
-			<?php echo $intro_lateral ?>
-			<?php echo $panel_sesion ?>
-			<?php echo $panel_opciones ?>
-			<?php echo $notificaciones ?>
-			<script type="text/javascript"><!--
-			    google_ad_client = "ca-pub-2549541099966818";
-			    /* Lateral Largo */
-			    google_ad_slot = "0489304705";
-			    google_ad_width = 120;
-			    google_ad_height = 600;
-			    //-->
-			</script>
-			<script type="text/javascript"
-				src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-			</script>
-		    </div>
-		    <div class="left">
-			<?php echo $contenido ?>
-		    </div>
-		    <div class="clear"></div>
+	    -->
+	    <!-- Content -->
+	    <div id="main-content" class="clear">
+		<div class="right">
+		    <?php echo $intro_lateral ?>
+		    <?php echo $panel_sesion ?>
+		    <?php echo $panel_opciones ?>
+		    <?php echo $notificaciones ?>
+		    <!--
+		    <table width="125px">
+			<tr>
+			    <td><?php echo html::image("media/img/125x240.svg") ?></td>
+			</tr>
+			<tr>
+			    <td><?php echo html::image("media/img/125x240.svg") ?></td>
+			</tr>
+		    </table>
+		    -->
 		</div>
+		<div class="left">
+		    <?php echo $contenido ?>
+		</div>
+		<div class="clear"></div>
 	    </div>
-	    <!-- END content -->
-	    <div id="footer">
-		<p>Generada con <a href="http://kohanaphp.com">Kohana</a> en
+	</div>
+	<!-- END content -->
+	<div id="footer">
+	    <p>Generada con <a href="http://kohanaphp.com">Kohana</a> en
     		{execution_time} segundos, usando {memory_usage} de memoria.</p>
-		<p>Algunos <a href="http://www.famfamfam.com/lab/icons/silk/">iconos</a>
+	    <p>Algunos <a href="http://www.famfamfam.com/lab/icons/silk/">iconos</a>
     		son de licencia Creative Commons</p>
-		<p>&copy; Copyrigth 2010, Erick Birbe.</p>
-	    </div>
-	    <?php if (IN_PRODUCTION)
-			{
- ?>
-			    <!-- GOOGLE ANALYTICS -->
+	    <p>&copy; Copyrigth 2010, Erick Birbe.</p>
+	</div>
+	<?php
+		    if (IN_PRODUCTION)
+		    {
+	?>
+			<!-- GOOGLE ANALYTICS -->
 
-			    <script type="text/javascript">
-				var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-				document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-			    </script>
-			    <script type="text/javascript">
-				try {
-				    var pageTracker = _gat._getTracker("UA-15595959-1");
-				    pageTracker._trackPageview();
-				} catch(err) {}
-			    </script>
-<?php } ?>
+			<script type="text/javascript">
+			    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+			</script>
+			<script type="text/javascript">
+			    try {
+				var pageTracker = _gat._getTracker("UA-15595959-1");
+				pageTracker._trackPageview();
+			    } catch(err) {}
+			</script>
+	<?php } ?>
     </body>
 </html>

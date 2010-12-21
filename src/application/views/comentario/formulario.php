@@ -1,4 +1,13 @@
 <?php defined('SYSPATH') or die('No se permite el acceso directo al script'); ?>
+<?php
+if(isset($_SESSION['usuario']->login)){
+    $nombre = $_SESSION['usuario']->login;
+    $disabled = "readonly=readonly";
+}else{
+    $nombre = NULL;
+    $disabled = NULL;
+}
+?>
 <script language="javascript">
     function contar(){
 	document.getElementById("cont").innerHTML = 250 - document.fcoment.contenido.value.length;
@@ -37,15 +46,15 @@
 </script>
 <h2>Comentarios</h2>
 <div class="clear"></div>
-<?php echo form_Core::open("comentario/subir", array("name" => "fcoment")) ?>
-<?php echo Form::hidden("ir_a", $_SERVER['PHP_SELF']) ?>
-<?php echo Form::hidden("publicacion_id", $publicacion->id) ?>
+<?php echo form::open("comentario/subir", array("name" => "fcoment")) ?>
+<?php echo form::hidden("ir_a", $_SERVER['PHP_SELF']) ?>
+<?php echo form::hidden("publicacion_id", $publicacion->id) ?>
 <table class="tabla_ext">
     <tr>
 	<td colspan="2"><?php echo form::label("nombre", "Nombre") ?></td>
     </tr>
     <tr>
-	<td><?php echo form::input('nombre') ?></td>
+	<td><?php echo form::input('nombre',$nombre, $disabled) ?></td>
 	<td><div class="msg_error" id="msj_nombre"></div></td>
     </tr>
     <tr>
