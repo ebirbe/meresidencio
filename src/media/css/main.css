@@ -461,5 +461,6 @@ table {
     padding-top: 5px;
     height: 25px;
     width: 250px;
-    background: transparent;
+    border: 1px solid #245dc7;
+    background: #A1C2FF;
 }
