@@ -381,7 +381,7 @@ label {
 }
 
 #header .logo2 {
-	z-index: 100;
+	z-index: 99;
 	float: right;
 	width: 234px;
 	height: 119px;
@@ -446,4 +446,20 @@ table {
 	width: 200px;
 	text-align: justify;
 	padding: 0 30px 20px 30px;
+}
+
+#alert-container{
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+}
+#alert-container .alerta{
+    z-index: 100;
+    margin:auto;
+    margin-right: 0px;
+    position:relative;
+    padding-top: 5px;
+    height: 25px;
+    width: 250px;
+    background: transparent;
 }

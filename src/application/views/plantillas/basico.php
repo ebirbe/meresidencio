@@ -126,6 +126,14 @@ function dibujar_menu($m, $c)
 	?>
     	<div style="background-color: yellow;color: red; text-align: center"><h2>ESTE SITIO AUN ESTA EN DESARROLLO</h2></div>
 	<?php } ?>
+		    <div id="alert-container">
+        <div class="alerta">
+    	<div align="center">
+		<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="MeResidencio" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+		<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="http://www.facebook.com/meresidencio" layout="button_count" show_faces="false" width="100"></fb:like>
+	    </div>
+    </div>
+</div>
 	<div class="header-bg"></div>
 	<!-- Centers the page -->
 	<div id="content">
