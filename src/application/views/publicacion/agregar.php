@@ -106,7 +106,7 @@
 		<td><?php echo $errores['descripcion'] ?></td>
 	</tr>
 	<tr>
-		<td colspan="3"><?php echo form::submit(array('class'=>'button'), 'Guardar') ?></td>
+		<td colspan="3"><?php echo form::submit(array('class'=>'button', "onClick"=>"this.value='Guardando... Por favor espere.'"), 'Guardar') ?></td>
 	</tr>
 </table>
 		<?php echo form::close() ?>

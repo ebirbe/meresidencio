@@ -73,7 +73,8 @@ define('INTRO_LATERAL',
  * Variables de Correos Electronicos
  */
 //CORREOS ELECTRONICOS
-define('MAIL_DE', NOMBRE_SITIO.' <admin@meresidencio.com>');
+define('MAIL_ADMIN', 'admin@meresidencio.com');
+define('MAIL_DE', NOMBRE_SITIO.' <'.MAIL_ADMIN.'>');
 //ASUNTOS
 define('MAIL_ASNT_BIENVENIDA', 'Registro exitoso en '. NOMBRE_SITIO);
 define('MAIL_ASNT_ALERTA', 'Han publicado una residencia para ti');

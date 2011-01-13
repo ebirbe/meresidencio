@@ -152,6 +152,11 @@ class Publicacion_Controller extends Template_Controller {
 
 			$mail = new View('mail/alerta');
 			$mail->publicacion = $publicacion;
+
+			// Avisa al administrador de la nueva publicacion
+			Mail_Model::enviar(MAIL_ADMIN,
+				"[".$publicacion->id."] Nueva Publicacion",
+				$mail);
 				
 			$zona = $publicacion->zona->id;
 			$ciudad = $publicacion->zona->ciudad->id;

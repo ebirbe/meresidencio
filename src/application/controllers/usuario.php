@@ -405,7 +405,7 @@ class Usuario_Controller extends Template_Controller {
 		$vista = new View('usuario/acceso_denegado');
 		switch ($mensaje_id) {
 			case MSJ_INICIAR_SESION:
-				$mensaje = "Para acceder a esta secci&oacute;n debe <a href='".url::site("usuario/iniciar_sesion")."'>Iniciar Sesi&oacute;n</a>.";
+				$mensaje = "<h3>Para acceder a esta secci&oacute;n debe <a href='".url::site("usuario/iniciar_sesion")."'>Iniciar Sesi&oacute;n</a> o sino <a href='".url::site("usuario/suscribir")."'>Reg&iacute;strese Gratis Aqu&iacute;</a>.</h3>";
 				break;
 			case MSJ_SOLO_ADMIN:
 				$mensaje = "Esta secci&oacute;n es solo para administradores de este Portal Web.";
