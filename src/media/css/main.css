@@ -73,6 +73,7 @@ textarea {
 	text-align: center;
 	color: #f1ffd4;
 	background: #245dc7;
+	height: 150px;
 }
 
 #footer a {
@@ -460,7 +461,16 @@ table {
     position:relative;
     padding-top: 5px;
     height: 25px;
-    width: 250px;
+    width: /*250px*/ 100%;
     border: 1px solid #245dc7;
     background: #A1C2FF;
+
+}
+
+#alert-container .alerta publi-txt{
+    font-size: 16px;
+}
+#alert-container .alerta a, #alert-container .alerta a:hover, #alert-container .alerta a:visited{
+    font-size: 16px;
+    color: #FF0000;
 }

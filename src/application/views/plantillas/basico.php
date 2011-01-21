@@ -126,14 +126,15 @@ function dibujar_menu($m, $c)
 	?>
     	<div style="background-color: yellow;color: red; text-align: center"><h2>ESTE SITIO AUN ESTA EN DESARROLLO</h2></div>
 	<?php } ?>
-		    <div id="alert-container">
-        <div class="alerta">
-    	<div align="center">
-		<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="MeResidencio" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-		<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="http://www.facebook.com/meresidencio" layout="button_count" show_faces="false" width="100"></fb:like>
-	    </div>
-    </div>
-</div>
+	<div id="alert-container">
+	    <table class="alerta">
+		<tr>
+		    <td><marquee style="display:block;"><?php echo html::anchor("publicidad/muestra", "Conoce nuestros Planes de Publicidad") ?></marquee></td>
+		    <td width="125px"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="MeResidencio" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></td>
+		    <td width="125px"><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="http://www.facebook.com/meresidencio" layout="button_count" show_faces="false" width="100"></fb:like></td>
+		</tr>
+	    </table>
+	</div>
 	<div class="header-bg"></div>
 	<!-- Centers the page -->
 	<div id="content">
@@ -157,15 +158,15 @@ function dibujar_menu($m, $c)
 		<table width="980px">
 		    <tr>
 			<td><?php echo html::image("media/img/240x125.svg") ?></td>
-			<td><?php echo html::image("media/img/240x125.svg", array("width"=>"480","height"=>"125")) ?></td>
-			<td><?php echo html::image("media/img/240x125.svg") ?></td>
-		    </tr>
-		</table>
-	    </div>
-	    -->
-	    <!-- Content -->
-	    <div id="main-content" class="clear">
-		<div class="right">
+				<td><?php echo html::image("media/img/240x125.svg", array("width" => "480", "height" => "125")) ?></td>
+				<td><?php echo html::image("media/img/240x125.svg") ?></td>
+			    </tr>
+			</table>
+		    </div>
+		    -->
+		    <!-- Content -->
+		    <div id="main-content" class="clear">
+			<div class="right">
 		    <?php echo $intro_lateral ?>
 		    <?php echo $panel_sesion ?>
 		    <?php echo $panel_opciones ?>
