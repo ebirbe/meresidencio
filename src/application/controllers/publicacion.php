@@ -391,14 +391,37 @@ class Publicacion_Controller extends Template_Controller {
 			$publicacion->precio = $datos['precio'];
 			$publicacion->deposito = $datos['deposito'];
 
-			if(isset($datos['activo']))		$publicacion->activo = 1;
-			else							$publicacion->activo = 0;
+			// Si se esta reactivando una publicación
+			$notificar = false;
+			if(isset($datos['activo'])){
+			    $publicacion->activo = 1;
+			    // Modifica la fecha de la publicacion para ponerla nuevamente en principio de lista
+			    $publicacion->fecha = date("Y-m-d");
+			    // Indica que se debe notificar al admin
+			    $notificar = true;
+			}else{
+			    $publicacion->activo = 0;
+			}
 			if(isset($datos['servicio']))	$publicacion->servicios = $datos['servicio'];
 			if(isset($datos['cercania']))	$publicacion->cercanias = $datos['cercania'];
 
 			//Guarda la publicacion
 			$publicacion->save();
+			
+			// Si la publicacion es reactivada se notifica al admin
+			try{
+			    if($notificar){
+			    $mail = new View('mail/alerta');
+			    $mail->publicacion = $publicacion;
+			    $mail->usuario = new Usuario_Model();
 
+			    // Avisa al administrador de la Actualizacion
+			    Mail_Model::enviar(MAIL_ADMIN,
+				    "[".$publicacion->id."] Fue reactivada",
+				    $mail);
+			    }
+			}
+			catch (Exception $e){}
 			$publicacion->clear_cache();
 
 			$exito = TRUE;
@@ -488,12 +511,10 @@ class Publicacion_Controller extends Template_Controller {
 			$publicaciones
 			->select('*')
 			->join($join_tbl, $join_cond)
-			->where($where_cond)
-			->orderby('publicaciones.id', 'DESC');
+			->where($where_cond);
 		}else{
 			$publicaciones
-			->where($where_cond)
-			->orderby('publicaciones.id', 'DESC');
+			->where($where_cond);
 		}
 
 		//Comienza a prepararse la Paginacion
@@ -514,14 +535,12 @@ class Publicacion_Controller extends Template_Controller {
 			->select('publicaciones.*, zonas.ciudad_id, ciudades.estado_id')//Necesario porque sino selecciona solo 'publicaciones.*' y no los demas campos
 			->join($join_tbl, $join_cond)
 			->where($where_cond)
-			->orderby('publicaciones.id', 'DESC')
 			->limit($limit)
 			->offset($offset)
 			->find_all();
 		}else{
 			$publicaciones = $publicaciones
 			->where($where_cond)
-			->orderby('publicaciones.id', 'DESC')
 			->limit($limit)
 			->offset($offset)
 			->find_all();

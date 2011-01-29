@@ -3,6 +3,9 @@ class Publicacion_Model extends ORM {
 	protected $has_many = array('imagenes','calificaciones','comentarios');
 	protected $belongs_to = array('usuario', 'zona', 'tipoinmueble');
 	protected $has_and_belongs_to_many = array('cercanias', 'servicios');
+	protected $sorting = array(
+		'fecha' => 'DESC',
+	);
 
 	/**
 	 * Lista de sexo disponibles para las

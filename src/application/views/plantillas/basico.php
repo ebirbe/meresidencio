@@ -28,6 +28,7 @@ if ($usr_tipo == USUARIO_ADMIN)
 	"Inicio" => url::site("admin"),
 	"Usuarios" => url::site("usuario/buscar"),
 	"Publicaciones" => url::site("publicacion/lista"),
+	"Comentarios" => url::site("comentario"),
 	"Imagenes" => url::site("imagen/todas"),
 	"Regiones" => url::site("estado"),
 	"Otros" => array(
@@ -153,17 +154,15 @@ function dibujar_menu($m, $c)
 		</ul>
 	    </div>
 	    <!-- END navigation -->
-	    <!--
-	    <div class="center">
-		<table width="980px">
+
+		<table width="980px" class="center">
 		    <tr>
-			<td><?php echo html::image("media/img/240x125.svg") ?></td>
-				<td><?php echo html::image("media/img/240x125.svg", array("width" => "480", "height" => "125")) ?></td>
-				<td><?php echo html::image("media/img/240x125.svg") ?></td>
-			    </tr>
-			</table>
-		    </div>
-		    -->
+			<td><?php echo html::image("media/img/blank.gif", array("width"=>"240","height"=>"125")) ?></td>
+			<td><?php echo html::image("publicidad/480x125.gif") ?></td>
+			<td><?php echo html::image("media/img/blank.gif", array("width"=>"240","height"=>"125")) ?></td>
+		    </tr>
+		</table>
+
 		    <!-- Content -->
 		    <div id="main-content" class="clear">
 			<div class="right">
@@ -171,16 +170,14 @@ function dibujar_menu($m, $c)
 		    <?php echo $panel_sesion ?>
 		    <?php echo $panel_opciones ?>
 		    <?php echo $notificaciones ?>
-		    <!--
 		    <table width="125px">
 			<tr>
-			    <td><?php echo html::image("media/img/125x240.svg") ?></td>
+			    <td><?php echo html::image("media/img/blank.gif", array("width"=>"125","height"=>"240")) ?></td>
 			</tr>
 			<tr>
-			    <td><?php echo html::image("media/img/125x240.svg") ?></td>
+			    <td><?php echo html::image("media/img/blank.gif", array("width"=>"125","height"=>"240")) ?></td>
 			</tr>
 		    </table>
-		    -->
 		</div>
 		<div class="left">
 		    <?php echo $contenido ?>

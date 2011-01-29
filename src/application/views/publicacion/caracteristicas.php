@@ -2,6 +2,10 @@
 <h2>Detalles</h2>
 <div class="comodidades">
 	<table class="tabla_ext">
+	    <tr>
+			<td class="columna_titulos">Tipo:</td>
+			<td><strong><?php echo $publicacion->tipoinmueble->nombre; ?></strong></td>
+		</tr>
 		<tr>
 			<td class="columna_titulos">Estado:</td>
 			<td><strong><?php echo $publicacion->zona->ciudad->estado->nombre; ?></strong></td>
@@ -13,10 +17,6 @@
 		<tr>
 			<td class="columna_titulos">Zona:</td>
 			<td><strong><?php echo $publicacion->zona->nombre; ?></strong></td>
-		</tr>
-		<tr>
-			<td class="columna_titulos">Tipo:</td>
-			<td><strong><?php echo $publicacion->tipoinmueble->nombre; ?></strong></td>
 		</tr>
 	</table>
 </div>
@@ -37,6 +37,28 @@
 		<tr>
 			<td class="columna_titulos">Dep&oacute;sito:</td>
 			<td><strong><?php echo $publicacion->deposito; ?> mes(es).</strong></td>
+		</tr>
+		<tr>
+		    <td class="columna_titulos">Tel&eacute;fono:<br/></td>
+			<td><strong>
+				<?php if($publicacion->activo){?>
+				    <?php echo html::anchor(url::site('publicacion/ofertar/'.$publicacion->id),"Solicitar Telefono")?>
+				    <br/>(Debes estar Registrado)
+				<?php }else{ ?>
+				    PUBLICACION INACTIVA
+				<?php } ?>
+			    </strong></td>
+		</tr>
+		<tr>
+		    <td class="columna_titulos">Correo:</td>
+			<td><strong>
+				<?php if($publicacion->activo){?>
+				    <?php echo html::anchor(url::site('publicacion/ofertar/'.$publicacion->id),"Solicitar Correo")?>
+				    <br/>(Debes estar Registrado)
+				<?php }else{ ?>
+				    PUBLICACION INACTIVA
+				<?php } ?>
+			    </strong></td>
 		</tr>
 	</table>
 </div>

@@ -5,7 +5,11 @@ $fecha = explode("-",$publicacion->fecha);
 
 <br/>
 <div class="center">
+    <?php if($publicacion->activo){?>
 	<?php echo html::anchor(url::site('publicacion/ofertar/'.$publicacion->id),html_Core::image('media/img/btn_solicitar.png', array('class'=>'icono', 'alt'=>'Solicitar Datos del Propietario')))?>
+    <?php }else{ ?>
+    <h3>PUBLICACION INACTIVA</h3>
+    <?php } ?>
 </div>
 <br/>
 
@@ -27,7 +31,11 @@ $fecha = explode("-",$publicacion->fecha);
 
 <br/>
 <div class="center">
+    <?php if($publicacion->activo){?>
 	<?php echo html::anchor(url::site('publicacion/ofertar/'.$publicacion->id),html_Core::image('media/img/btn_solicitar.png', array('class'=>'icono', 'alt'=>'Solicitar Datos del Propietario')))?>
+    <?php }else{ ?>
+    <h3>PUBLICACION INACTIVA</h3>
+    <?php } ?>
 </div>
 <br/>
 
