@@ -350,7 +350,7 @@ class Usuario_Controller extends Template_Controller {
 		$post = $_POST;
 		if($post){
 			if(!$this->_iniciar_sesion($post)){
-				$vista->mensaje = "Datos inv&aacute;lidos.<br/>Si ya te registraste recuerda confirmar tu correo.";
+				$vista->mensaje = "Datos inv&aacute;lidos.";
 			}else{
 				$cond = array(
 					'login' => $post['login'],
