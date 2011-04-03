@@ -1,6 +1,6 @@
 <?php
-$bannerAdsPath = __DIR__.'/ads.dat';
-require __DIR__.'/ads.inc.php';
+$bannerAdsPath = getcwd().'/publicidad/ads.dat';
+require getcwd().'/publicidad/ads.inc.php';
 ///////////////////////////////////////
 // Don't Edit Anything Below This Line!
 ///////////////////////////////////////
