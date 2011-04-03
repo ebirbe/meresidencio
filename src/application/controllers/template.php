@@ -40,6 +40,9 @@ abstract class Template_Controller extends Controller {
 		$this->session = Session::instance();
 		$usuario = $this->session->get('usuario');
 
+                // Inserta los recuadros de publicidad
+                $this->template->PUB_LARGA_H = new bannerAds (null, 1);
+
 		$this->template->historial = $this->session->get('historial');
 
 		$this->template->intro_lateral = NULL/*INTRO_LATERAL*/;

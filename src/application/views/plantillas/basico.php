@@ -84,7 +84,7 @@ function dibujar_menu($m, $c)
 	<meta name="revisit-after" content="1 day" />
 	<meta name="robots" content="all" />
 
-	<link rel="Shortcut Icon" type="image/png" href="<?php echo url::base() . "media/img/favicon.png" ?>" />
+	<link rel="Shortcut Icon" type="image/png" href="<?php echo url::base()."media/img/favicon.png" ?>" />
 
 	<!-- Pull in the JQUERY library -->
 	<?php echo html_Core::script('media/js/jquery-1.3.2.js', FALSE) ?>
@@ -128,9 +128,8 @@ function dibujar_menu($m, $c)
     	<div style="background-color: yellow;color: red; text-align: center"><h2>ESTE SITIO AUN ESTA EN DESARROLLO</h2></div>
 	<?php } ?>
 	<div id="alert-container">
-	    <table class="alerta">
+	    <table class="alerta center">
 		<tr>
-		    <td><marquee style="display:block;"><?php echo html::anchor("publicidad/muestra", "Conoce nuestros Planes de Publicidad") ?></marquee></td>
 		    <td width="125px"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="MeResidencio" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></td>
 		    <td width="125px"><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="http://www.facebook.com/meresidencio" layout="button_count" show_faces="false" width="100"></fb:like></td>
 		</tr>
