@@ -128,8 +128,9 @@ function dibujar_menu($m, $c)
     	<div style="background-color: yellow;color: red; text-align: center"><h2>ESTE SITIO AUN ESTA EN DESARROLLO</h2></div>
 	<?php } ?>
 	<div id="alert-container">
-	    <table class="alerta center">
+	    <table class="alerta">
 		<tr>
+		    <td><span style="display:block;"><?php echo html::anchor("publicidad/muestra", "Conoce nuestros Planes de Publicidad") ?></span></td>
 		    <td width="125px"><a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="MeResidencio" data-lang="es">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></td>
 		    <td width="125px"><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="http://www.facebook.com/meresidencio" layout="button_count" show_faces="false" width="100"></fb:like></td>
 		</tr>
@@ -152,16 +153,13 @@ function dibujar_menu($m, $c)
 		    ?>
 		</ul>
 	    </div>
-	    <!-- END navigation -->
-
 		<table width="980px" class="center">
 		    <tr>
-			<td><?php echo html::image("media/img/blank.gif", array("width"=>"240","height"=>"125")) ?></td>
-			<td><?php echo html::image("publicidad/480x125.gif") ?></td>
-			<td><?php echo html::image("media/img/blank.gif", array("width"=>"240","height"=>"125")) ?></td>
+			<td><?php echo html::anchor('http://telentretenido.blogspot.com/', html::image("http://publicidad.meresidencio.com/img/tele.jpg", array("width"=>"240","height"=>"125"))) ?></td>
+			<!-- <td><?php echo  html::image("media/img/blank.gif", array("width"=>"480","height"=>"125")) ?></td> -->
+			<td><?php echo html::anchor('http://xpoxstudio.com/', html::image("publicidad/img/xpoxstudio.jpg", array("width"=>"240","height"=>"125"))) ?></td>
 		    </tr>
 		</table>
-
 		    <!-- Content -->
 		    <div id="main-content" class="clear">
 			<div class="right">
@@ -169,13 +167,8 @@ function dibujar_menu($m, $c)
 		    <?php echo $panel_sesion ?>
 		    <?php echo $panel_opciones ?>
 		    <?php echo $notificaciones ?>
-		    <table width="125px">
-			<tr>
-			    <td><?php echo html::image("media/img/blank.gif", array("width"=>"125","height"=>"240")) ?></td>
-			</tr>
-			<tr>
-			    <td><?php echo html::image("media/img/blank.gif", array("width"=>"125","height"=>"240")) ?></td>
-			</tr>
+                    <table class="center" width="125px">
+			<iframe src="http://smartad.mercadolibre.com.ve/jm/SmartAd?tool=5889693&creativity=60401&new=Y&ovr=N&bgcol=FFFFFF&brdcol=000000&txtcol=006600&lnkcol=0000FF&hvrcol=FF0000&prccol=FF0000&word=Apartamento&word=Casa&word=Habitacion&site=MLV" width="120" height="600" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 		    </table>
 		</div>
 		<div class="left">

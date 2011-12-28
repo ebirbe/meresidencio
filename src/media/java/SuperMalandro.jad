@@ -1,0 +1,9 @@
+MIDlet-1: MIDlet-1,,hello.DispositivoMovil
+MIDlet-Description: Un programa de Localizacion de Malandros y telefonos perdidos
+MIDlet-Jar-Size: 151436
+MIDlet-Jar-URL: SuperMalandro.jar
+MIDlet-Name: SuperMalandro
+MIDlet-Vendor: Erick Birbe
+MIDlet-Version: 0.0.13
+MicroEdition-Configuration: CLDC-1.1
+MicroEdition-Profile: MIDP-2.0
