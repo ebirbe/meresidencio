@@ -5,11 +5,12 @@
 
 /**
 * Necesario para insertar la publicidad de PHPads
-*/
+
 if(is_file('publicidad/ads.php'))
 {
     include 'publicidad/ads.php';
 }
+*/
 
 /**
  * Numeros de publicaciones y usuarios 

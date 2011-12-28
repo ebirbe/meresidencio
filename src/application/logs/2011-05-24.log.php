@@ -1,0 +1,18 @@
+<?php defined('SYSPATH') or die('No direct script access.'); ?>
+
+2011-05-24 00:43:17 -05:00 --- error: Kohana_Database_Exception no capturada: Ocurrió un error de SQL: Incorrect information in file: './mereside_meresidencio/publicaciones.frm' - SHOW COLUMNS FROM `publicaciones` en el archivo system/libraries/drivers/Database/Mysql.php, linea 372
+2011-05-24 01:47:52 -05:00 --- error: PHP Error no capturada: mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) en el archivo system/libraries/drivers/Database/Mysql.php, linea 61
+2011-05-24 02:43:17 -05:00 --- error: PHP Error no capturada: mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) en el archivo system/libraries/drivers/Database/Mysql.php, linea 61
+2011-05-24 04:18:56 -05:00 --- error: PHP Error no capturada: mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) en el archivo system/libraries/drivers/Database/Mysql.php, linea 61
+2011-05-24 04:18:56 -05:00 --- error: PHP Error no capturada: mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) en el archivo system/libraries/drivers/Database/Mysql.php, linea 61
+2011-05-24 04:18:57 -05:00 --- error: PHP Error no capturada: mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) en el archivo system/libraries/drivers/Database/Mysql.php, linea 61
+2011-05-24 04:18:57 -05:00 --- error: PHP Error no capturada: mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) en el archivo system/libraries/drivers/Database/Mysql.php, linea 61
+2011-05-24 10:56:58 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, 500.shtml, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-05-24 11:01:59 -05:00 --- error: PHP Error no capturada: Undefined index:  combo en el archivo application/controllers/js.php, linea 23
+2011-05-24 11:55:10 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-05-24 22:40:53 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-05-24 22:42:10 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-05-24 22:42:43 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-05-24 22:44:42 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-05-24 22:45:49 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-05-24 22:47:24 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841

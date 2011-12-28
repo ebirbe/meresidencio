@@ -1,0 +1,36 @@
+<?php defined('SYSPATH') or die('No direct script access.'); ?>
+
+2011-06-23 16:00:05 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, muieblackcat, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:06 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:06 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, admin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:06 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, admin/pma/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:06 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, admin/phpmyadmin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:07 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, db/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:07 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, dbadmin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:07 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, myadmin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:07 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, mysql/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:10 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, typo3/phpmyadmin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:10 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, phpadmin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:17 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, phpmyadmin1/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:17 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, phpmyadmin2/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:17 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, pma/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:20 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, web/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:20 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, php-my-admin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:21 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, websql/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:21 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, phpmyadmin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:21 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, phpMyAdmin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:30 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, PMA2005/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:30 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, pma2005/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:31 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, phpmanager/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:31 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, php-myadmin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:31 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, phpmy-admin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:37 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, websql/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:37 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, webdb/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:40 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, mysql-admin/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 16:00:47 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, admn/scripts/setup.php, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 17:29:27 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 17:31:48 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 17:32:45 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 17:34:04 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 17:34:07 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841
+2011-06-23 17:35:11 -05:00 --- error: Kohana_404_Exception no capturada: La página que solicitase, favicon.ico, no se encuentra. en el archivo system/core/Kohana.php, linea 841

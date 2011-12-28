@@ -15,7 +15,7 @@ require_once 'globales.php';
  *
  * @see http://docs.kohanaphp.com/installation/deployment
  */
-define('IN_PRODUCTION', FALSE);
+define('IN_PRODUCTION', TRUE);
 
 /**
  * Website application directory. This directory should contain your application
@@ -54,7 +54,7 @@ version_compare(PHP_VERSION, '5.2', '<') and exit('Kohana requires PHP 5.2 or ne
  * Set the error reporting level. Unless you have a special need, E_ALL is a
  * good level for error reporting.
  */
-error_reporting(E_ALL & ~E_STRICT & ~E_DEPRECATED);
+error_reporting(E_ALL);
 
 /**
  * Turning off display_errors will effectively disable Kohana error display

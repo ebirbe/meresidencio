@@ -72,4 +72,6 @@ Somos?</a>.</p>
 <div class="clear"></div>
  -->
 <?php echo $publicaciones_aleatorias ?>
+
+
 <br/>

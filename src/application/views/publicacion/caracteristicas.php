@@ -42,8 +42,7 @@
 		    <td class="columna_titulos">Tel&eacute;fono:<br/></td>
 			<td><strong>
 				<?php if($publicacion->activo){?>
-				    <?php echo html::anchor(url::site('publicacion/ofertar/'.$publicacion->id),"Solicitar Telefono")?>
-				    <br/>(Debes estar Registrado)
+				    <?php echo $publicacion->usuario->telefono; ?>
 				<?php }else{ ?>
 				    PUBLICACION INACTIVA
 				<?php } ?>
@@ -54,7 +53,6 @@
 			<td><strong>
 				<?php if($publicacion->activo){?>
 				    <?php echo html::anchor(url::site('publicacion/ofertar/'.$publicacion->id),"Solicitar Correo")?>
-				    <br/>(Debes estar Registrado)
 				<?php }else{ ?>
 				    PUBLICACION INACTIVA
 				<?php } ?>
