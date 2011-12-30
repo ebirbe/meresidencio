@@ -31,7 +31,7 @@ $config['default'] = array
 	(
 		'type'     => 'mysql',
 		'user'     => 'mereside',
-		'pass'     => 'b7248923',
+		'pass'     => 'acer',
 		'host'     => 'localhost',
 		'port'     => FALSE,
 		'socket'   => FALSE,

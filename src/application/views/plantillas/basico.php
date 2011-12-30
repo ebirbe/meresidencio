@@ -14,11 +14,13 @@ $menu = array(
 	"Calificaciones" => url_Core::site("calificacion/mis_calificaciones"),
 	"Cambiar clave" => url_Core::site("usuario/cambiar_clave"),
     ),
+    /*
     "Nosotros" => array(
-	"&iquest;Quienes Somos?" => url::site("nosotros/quienes"),
-	"Mision" => url::site("nosotros/mision"),
-	"Vision" => url::site("nosotros/vision"),
+		"&iquest;Quienes Somos?" => url::site("nosotros/quienes"),
+		"Mision" => url::site("nosotros/mision"),
+		"Vision" => url::site("nosotros/vision"),
     ),
+    */
     "Contacto" => url::site("nosotros/contacto"),
 );
 
