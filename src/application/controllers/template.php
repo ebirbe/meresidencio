@@ -43,8 +43,6 @@ abstract class Template_Controller extends Controller {
 		//$this->template->PUB_LARGA_H = new bannerAds (null, 1);
 
 		$this->template->historial = $this->session->get('historial');
-
-		$this->template->intro_lateral = NULL/*INTRO_LATERAL*/;
 		$this->template->panel_sesion = new View('usuario/iniciar_sesion_lateral');
 		$this->template->panel_sesion->sesion_usuario = $usuario;
 
