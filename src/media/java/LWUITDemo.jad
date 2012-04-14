@@ -1,8 +1,0 @@
-MIDlet-1: LWUIT Demo,/icon.png,com.sun.lwuit.uidemo.UIDemoMIDlet
-MIDlet-Jar-Size: 442943
-MIDlet-Jar-URL: LWUITDemo.jar
-MIDlet-Name: LWUITDemo
-MIDlet-Vendor: Vendor
-MIDlet-Version: 1.4
-MicroEdition-Configuration: CLDC-1.1
-MicroEdition-Profile: MIDP-2.0

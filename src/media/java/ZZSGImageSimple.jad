@@ -1,8 +1,0 @@
-MIDlet-1: LocationEnMidlet,,SVGSimpleMidlet
-MIDlet-Jar-Size: 7993
-MIDlet-Jar-URL: ZZSGImageSimple.jar
-MIDlet-Name: LocationEnMidlet
-MIDlet-Vendor: Vendor
-MIDlet-Version: 1.0
-MicroEdition-Configuration: CLDC-1.1
-MicroEdition-Profile: MIDP-2.0
