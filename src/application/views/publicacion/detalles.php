@@ -13,7 +13,18 @@ $fecha = explode("-",$publicacion->fecha);
 </div>
 <br/>
 
-<table id="cabecera_detalles">
+<?php echo $vista_caracteristicas; ?>
+
+<br/>
+<div class="center">
+    <?php if($publicacion->activo){?>
+	<?php echo html::anchor(url::site('publicacion/ofertar/'.$publicacion->id),html_Core::image('media/img/btn_solicitar.png', array('class'=>'icono', 'alt'=>'Solicitar Datos del Propietario')))?>
+    <?php }else{ ?>
+    <h3>PUBLICACION INACTIVA</h3>
+    <?php } ?>
+</div>
+
+<table class="tabla_ext">
 	<tr>
 		<td align="left"><b>Publicaci&oacute;n</b> #<?php echo $publicacion->id ?></td>
 		<td align="right"><b>Publicada por</b> <?php echo $publicacion->usuario->login; ?></td>
@@ -27,24 +38,7 @@ $fecha = explode("-",$publicacion->fecha);
 	</tr>
 </table>
 
-<?php echo $vista_caracteristicas; ?>
-
-<br/>
-<div class="center">
-    <?php if($publicacion->activo){?>
-	<?php echo html::anchor(url::site('publicacion/ofertar/'.$publicacion->id),html_Core::image('media/img/btn_solicitar.png', array('class'=>'icono', 'alt'=>'Solicitar Datos del Propietario')))?>
-    <?php }else{ ?>
-    <h3>PUBLICACION INACTIVA</h3>
-    <?php } ?>
-</div>
-<br/>
-
-<h2>Im&aacute;genes</h2>
-<br/>
 <?php
-$imagen_lista = new View('imagen/lista');
-$imagen_lista->imagenes = $publicacion->imagenes;
-echo $imagen_lista;
 
 $comentarios = new View('comentario/formulario');
 $comentarios->publicacion = $publicacion;
