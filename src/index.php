@@ -15,7 +15,7 @@ require_once 'globales.php';
  *
  * @see http://docs.kohanaphp.com/installation/deployment
  */
-define('IN_PRODUCTION', TRUE);
+define('IN_PRODUCTION', FALSE);
 
 /**
  * Website application directory. This directory should contain your application
