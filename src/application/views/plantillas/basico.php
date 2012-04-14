@@ -15,12 +15,12 @@ $menu = array(
 	"Cambiar clave" => url_Core::site("usuario/cambiar_clave"),
     ),
     /*
-    "Nosotros" => array(
-		"&iquest;Quienes Somos?" => url::site("nosotros/quienes"),
-		"Mision" => url::site("nosotros/mision"),
-		"Vision" => url::site("nosotros/vision"),
-    ),
-    */
+      "Nosotros" => array(
+      "&iquest;Quienes Somos?" => url::site("nosotros/quienes"),
+      "Mision" => url::site("nosotros/mision"),
+      "Vision" => url::site("nosotros/vision"),
+      ),
+     */
     "Contacto" => url::site("nosotros/contacto"),
 );
 
@@ -86,7 +86,7 @@ function dibujar_menu($m, $c)
 	<meta name="revisit-after" content="1 day" />
 	<meta name="robots" content="all" />
 
-	<link rel="Shortcut Icon" type="image/png" href="<?php echo url::base()."media/img/favicon.png" ?>" />
+	<link rel="Shortcut Icon" type="image/png" href="<?php echo url::base() . "media/img/favicon.png" ?>" />
 
 	<!-- Pull in the JQUERY library -->
 	<?php echo html_Core::script('media/js/jquery-1.3.2.js', FALSE) ?>
@@ -155,13 +155,20 @@ function dibujar_menu($m, $c)
 		    ?>
 		</ul>
 	    </div>
-		<table width="980px" class="center">
-		    <tr>
-			<td><?php echo html::anchor('http://telentretenido.blogspot.com/', html::image("http://publicidad.meresidencio.com/img/tele.jpg", array("width"=>"240","height"=>"125"))) ?></td>
-			<!-- <td><?php echo  html::image("media/img/blank.gif", array("width"=>"480","height"=>"125")) ?></td> -->
-			<td><?php echo html::anchor('http://xpoxstudio.com/', html::image("publicidad/img/xpoxstudio.jpg", array("width"=>"240","height"=>"125"))) ?></td>
-		    </tr>
-		</table>
+	    <?php
+		    if (IN_PRODUCTION)
+		    {
+	    ?>
+	    	    <table width="980px" class="center">
+	    		<tr>
+	    		    <td><?php echo html::anchor('http://telentretenido.blogspot.com/', html::image("http://publicidad.meresidencio.com/img/tele.jpg", array("width" => "240", "height" => "125"))) ?></td>
+	    		    <!-- <td><?php echo html::image("media/img/blank.gif", array("width" => "480", "height" => "125")) ?></td> -->
+	    		    <td><?php echo html::anchor('http://xpoxstudio.com/', html::image("publicidad/img/xpoxstudio.jpg", array("width" => "240", "height" => "125"))) ?></td>
+	    		</tr>
+	    	    </table>
+	    <?php
+		    }
+	    ?>
 		    <!-- Content -->
 		    <div id="main-content" class="clear">
 			<div class="right">
@@ -169,9 +176,16 @@ function dibujar_menu($m, $c)
 		    <?php echo $panel_sesion ?>
 		    <?php echo $panel_opciones ?>
 		    <?php echo $notificaciones ?>
-                    <table class="center" width="125px">
-			<iframe src="http://smartad.mercadolibre.com.ve/jm/SmartAd?tool=5889693&creativity=60401&new=Y&ovr=N&bgcol=FFFFFF&brdcol=000000&txtcol=006600&lnkcol=0000FF&hvrcol=FF0000&prccol=FF0000&word=Apartamento&word=Casa&word=Habitacion&site=MLV" width="120" height="600" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-		    </table>
+		    <?php
+		    if (IN_PRODUCTION)
+		    {
+		    ?>
+    		    <table class="center" width="125px">
+    			<iframe src="http://smartad.mercadolibre.com.ve/jm/SmartAd?tool=5889693&creativity=60401&new=Y&ovr=N&bgcol=FFFFFF&brdcol=000000&txtcol=006600&lnkcol=0000FF&hvrcol=FF0000&prccol=FF0000&word=Apartamento&word=Casa&word=Habitacion&site=MLV" width="120" height="600" scrolling="no" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+    		    </table>
+		    <?php
+		    }
+		    ?>
 		</div>
 		<div class="left">
 		    <?php echo $contenido ?>
