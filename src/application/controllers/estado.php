@@ -61,7 +61,6 @@ class Estado_Controller extends Template_Controller {
 		//Control de acceso
 		Usuario_Model::otorgar_acceso($this->session->get('usuario'), USUARIO_ADMIN);
 
-		//TODO Implementar
 		$this->template->titulo = html::specialchars("Editar Estado");
 
 		$this->formulario = array(
