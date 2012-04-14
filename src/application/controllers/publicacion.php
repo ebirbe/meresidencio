@@ -165,114 +165,116 @@ class Publicacion_Controller extends Template_Controller
 	    $mail->publicacion = $publicacion;
 
 	    // Avisa al administrador de la nueva publicacion
-	    Mail_Model::enviar(MAIL_ADMIN,
-			    "[" . $publicacion->id . "] Nueva Publicacion",
-			    $mail);
-
-	    $zona = $publicacion->zona->id;
-	    $ciudad = $publicacion->zona->ciudad->id;
-	    $estado = $publicacion->zona->ciudad->estado->id;
-	    $tipoinmueble = $publicacion->tipoinmueble->id;
-
-	    //Quien busca por Tipo
-	    $where_cond = array(
-		'estado_id' => NULL,
-		'ciudad_id' => NULL,
-		'zona_id' => NULL,
-		'tipoinmueble_id' => $tipoinmueble,
-	    );
-	    $alertas = ORM::factory('alerta')
-			    ->where($where_cond)->find_all();
-	    foreach ($alertas as $fila)
-	    {
-		$mail->usuario = $fila->usuario;
-		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
-	    }
-
-	    //Quien busca por zona
-	    $where_cond = array(
-		'zona_id' => $zona,
-		'tipoinmueble_id' => NULL,
-	    );
-	    $alertas = ORM::factory('alerta')
-			    ->where($where_cond)->find_all();
-	    foreach ($alertas as $fila)
-	    {
-		$mail->usuario = $fila->usuario;
-		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
-	    }
-
-	    //Quien busca por zona y Tipo
-	    $where_cond = array(
-		'zona_id' => $zona,
-		'tipoinmueble_id' => $tipoinmueble,
-	    );
-	    $alertas = ORM::factory('alerta')
-			    ->where($where_cond)->find_all();
-
-	    foreach ($alertas as $fila)
-	    {
-		$mail->usuario = $fila->usuario;
-		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
-	    }
-
-	    //Quien busca por ciudad y Tipo
-	    $where_cond = array(
-		'ciudad_id' => $ciudad,
-		'zona_id' => NULL,
-		'tipoinmueble_id' => $tipoinmueble,
-	    );
-	    $alertas = ORM::factory('alerta')
-			    ->where($where_cond)->find_all();
-	    foreach ($alertas as $fila)
-	    {
-		$mail->usuario = $fila->usuario;
-		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
-	    }
-
-	    //Quien busca por ciudad
-	    $where_cond = array(
-		'ciudad_id' => $ciudad,
-		'zona_id' => NULL,
-		'tipoinmueble_id' => NULL,
-	    );
-	    $alertas = ORM::factory('alerta')
-			    ->where($where_cond)->find_all();
-	    foreach ($alertas as $fila)
-	    {
-		$mail->usuario = $fila->usuario;
-		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
-	    }
-
-	    //Quien busca por estado y Tipo
-	    $where_cond = array(
-		'estado_id' => $estado,
-		'ciudad_id' => NULL,
-		'zona_id' => NULL,
-		'tipoinmueble_id' => $tipoinmueble,
-	    );
-	    $alertas = ORM::factory('alerta')
-			    ->where($where_cond)->find_all();
-	    foreach ($alertas as $fila)
-	    {
-		$mail->usuario = $fila->usuario;
-		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
-	    }
-
-	    //Quien busca por estado
-	    $where_cond = array(
-		'estado_id' => $estado,
-		'ciudad_id' => NULL,
-		'zona_id' => NULL,
-		'tipoinmueble_id' => NULL,
-	    );
-	    $alertas = ORM::factory('alerta')
-			    ->where($where_cond)->find_all();
-	    foreach ($alertas as $fila)
-	    {
-		$mail->usuario = $fila->usuario;
-		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
-	    }
+//	    TODO enviar correos de confirmacion al administrador
+//	    Mail_Model::enviar(MAIL_ADMIN,
+//			    "[" . $publicacion->id . "] Nueva Publicacion",
+//			    $mail);
+	     
+// TODO Eliminar definitivamente las alertas
+//	    $zona = $publicacion->zona->id;
+//	    $ciudad = $publicacion->zona->ciudad->id;
+//	    $estado = $publicacion->zona->ciudad->estado->id;
+//	    $tipoinmueble = $publicacion->tipoinmueble->id;
+//
+//	    //Quien busca por Tipo
+//	    $where_cond = array(
+//		'estado_id' => NULL,
+//		'ciudad_id' => NULL,
+//		'zona_id' => NULL,
+//		'tipoinmueble_id' => $tipoinmueble,
+//	    );
+//	    $alertas = ORM::factory('alerta')
+//			    ->where($where_cond)->find_all();
+//	    foreach ($alertas as $fila)
+//	    {
+//		$mail->usuario = $fila->usuario;
+//		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+//	    }
+//
+//	    //Quien busca por zona
+//	    $where_cond = array(
+//		'zona_id' => $zona,
+//		'tipoinmueble_id' => NULL,
+//	    );
+//	    $alertas = ORM::factory('alerta')
+//			    ->where($where_cond)->find_all();
+//	    foreach ($alertas as $fila)
+//	    {
+//		$mail->usuario = $fila->usuario;
+//		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+//	    }
+//
+//	    //Quien busca por zona y Tipo
+//	    $where_cond = array(
+//		'zona_id' => $zona,
+//		'tipoinmueble_id' => $tipoinmueble,
+//	    );
+//	    $alertas = ORM::factory('alerta')
+//			    ->where($where_cond)->find_all();
+//
+//	    foreach ($alertas as $fila)
+//	    {
+//		$mail->usuario = $fila->usuario;
+//		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+//	    }
+//
+//	    //Quien busca por ciudad y Tipo
+//	    $where_cond = array(
+//		'ciudad_id' => $ciudad,
+//		'zona_id' => NULL,
+//		'tipoinmueble_id' => $tipoinmueble,
+//	    );
+//	    $alertas = ORM::factory('alerta')
+//			    ->where($where_cond)->find_all();
+//	    foreach ($alertas as $fila)
+//	    {
+//		$mail->usuario = $fila->usuario;
+//		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+//	    }
+//
+//	    //Quien busca por ciudad
+//	    $where_cond = array(
+//		'ciudad_id' => $ciudad,
+//		'zona_id' => NULL,
+//		'tipoinmueble_id' => NULL,
+//	    );
+//	    $alertas = ORM::factory('alerta')
+//			    ->where($where_cond)->find_all();
+//	    foreach ($alertas as $fila)
+//	    {
+//		$mail->usuario = $fila->usuario;
+//		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+//	    }
+//
+//	    //Quien busca por estado y Tipo
+//	    $where_cond = array(
+//		'estado_id' => $estado,
+//		'ciudad_id' => NULL,
+//		'zona_id' => NULL,
+//		'tipoinmueble_id' => $tipoinmueble,
+//	    );
+//	    $alertas = ORM::factory('alerta')
+//			    ->where($where_cond)->find_all();
+//	    foreach ($alertas as $fila)
+//	    {
+//		$mail->usuario = $fila->usuario;
+//		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+//	    }
+//
+//	    //Quien busca por estado
+//	    $where_cond = array(
+//		'estado_id' => $estado,
+//		'ciudad_id' => NULL,
+//		'zona_id' => NULL,
+//		'tipoinmueble_id' => NULL,
+//	    );
+//	    $alertas = ORM::factory('alerta')
+//			    ->where($where_cond)->find_all();
+//	    foreach ($alertas as $fila)
+//	    {
+//		$mail->usuario = $fila->usuario;
+//		Mail_Model::enviar($fila->usuario->correo, MAIL_ASNT_ALERTA, $mail);
+//	    }
 
 	    $exito = TRUE;
 	}
