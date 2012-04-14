@@ -91,7 +91,7 @@ function dibujar_menu($m, $c)
 	<!-- Pull in the JQUERY library -->
 	<?php echo html_Core::script('media/js/jquery-1.3.2.js', FALSE) ?>
 	<!-- CSS principal -->
-	<?php echo html_Core::stylesheet('media/css/main', 'screen', FALSE) ?>
+	<?php echo html_Core::stylesheet('media/css/principal', 'screen', FALSE) ?>
 
 
 	<!-- Pull in and set up the DROPDOWN functionality -->
@@ -129,6 +129,8 @@ function dibujar_menu($m, $c)
 	?>
     	<div style="background-color: yellow;color: red; text-align: center"><h2>ESTE SITIO AUN ESTA EN DESARROLLO</h2></div>
 	<?php } ?>
+	<!--
+	// TODO Cambiar o eliminar el link a la publicidad
 	<div id="alert-container">
 	    <table class="alerta">
 		<tr>
@@ -138,23 +140,26 @@ function dibujar_menu($m, $c)
 		</tr>
 	    </table>
 	</div>
+	-->
 	<div class="header-bg"></div>
 	<!-- Centers the page -->
 	<div id="content">
 	    <!-- Header -->
 	    <div id="header">
 		<h1><a href="<?php echo url_Core::base() ?>"><?php echo NOMBRE_SITIO ?></a></h1>
-		<span class="logo2"> <!--<?php echo SLOGAN ?>--> </span>
 	    </div>
 	    <!-- END header -->
-	    <!-- Navigation -->
-	    <div id="navigation" class="nav">
+	    <div class="sesion"><?php echo $panel_sesion ?></div>
+	    <!-- Navigation
+	    // TODO Cambiar el Modo de navegar en el sistema
+	    <div id="navigation" class="nav clear">
 		<ul id="nav" class="sf-menu">
 		    <?php
 		    dibujar_menu($menu, 0);
 		    ?>
 		</ul>
 	    </div>
+	    <!-- END navigation -->
 	    <?php
 		    if (IN_PRODUCTION)
 		    {
@@ -172,9 +177,11 @@ function dibujar_menu($m, $c)
 		    <!-- Content -->
 		    <div id="main-content" class="clear">
 			<div class="right">
-		    <?php echo $intro_lateral ?>
-		    <?php echo $panel_sesion ?>
+		    <!--
+		    // TODO Cambiar la posicion de las opciones
+		    // TODO Hacer mas visibles las opciones
 		    <?php echo $panel_opciones ?>
+		    -->
 		    <?php echo $notificaciones ?>
 		    <?php
 		    if (IN_PRODUCTION)
