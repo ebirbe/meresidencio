@@ -17,7 +17,7 @@
  * que se muestran en los resultados de
  * las busquedas.
  */
-define('ITEMS_POR_PAGINA', 20);
+define('ITEMS_POR_PAGINA', 5);
 
 /**
  * La cantidad de imagenes maxima permitida para
@@ -68,15 +68,6 @@ define('NOMBRE_SITIO', 'MeResidencio.Com');
  * Slogan de la pagina web
  */
 define('SLOGAN', "<strong>Mudate Ya!</strong>");
-
-/**
- * Primera columna que aperece en la barra lateral
- */
-define('INTRO_LATERAL',
-	"<h2><em><strong>Informaci&oacute;n</strong></em></h2>\n
-	 <p>La nueva web para la promoci&oacute;n de residencias estudiantiles te da la bienvenida a su portal. Gracias por Visitarnos!!</p>\n
-	 <div class='clear'></div>\n"
-);
 
 /**
  * Variables de Correos Electronicos

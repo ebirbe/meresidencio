@@ -1,6 +1,5 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.'); ?>
 
-<h2>Bienvenido a <?php echo NOMBRE_SITIO ?></h2>
 <table class="tabla_ext">
 	<tr>
 		<td align="center"><?php echo html::anchor(url::site('publicacion/agregar'), html_Core::image('media/img/publica.png', 'Publica tu Residencia', FALSE))?></td>
