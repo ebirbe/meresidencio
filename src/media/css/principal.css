@@ -1,0 +1,183 @@
+/* Cabecera/Logo --------------------------------- */
+
+#header, .header-bg{
+    width: 100%;
+    height: 75px;
+    background: #245DC7;
+}
+
+#header {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+#header h1 {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 10px;
+    left: 10px
+}
+
+#header h1 a {
+    text-indent: -2000px;
+    display: block;
+    background: url('../img/logo.png') no-repeat;
+    width: 475px;
+    height: 79px
+}
+
+.header-bg {
+    position: absolute;
+}
+
+/* --------------------------------------------- */
+
+/* Publicacion ---------------------------*/
+
+.titulo_pub{
+    font-weight: bold;
+}
+
+/*----------------------------------*/
+
+/* Paginacion ----------------------*/
+
+#pagination{
+    text-align: right;
+}
+
+#pagination strong, #pagination a, #pagination a:HOVER{
+    font-weight: normal;
+    text-decoration: none;
+    border: 1px solid #0E3B65;
+    padding: 5px;
+    color: #FFFFFF;
+    background: #245dc7;
+}
+
+#pagination a{
+    background: #a1c2ff;
+    color: #000000;
+}
+
+/*----------------------------------*/
+
+/* Contenido --------------------------------- */
+
+#content {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/*---------------------------------------------*/
+
+
+/* Contenido Principal ------------------------*/
+
+#main-content {
+    background: #FFFFFF;
+    border: 1px solid #bfb9b2;
+    color: #172833;
+}
+
+#main-content .comodidades {
+	width: 260px;
+	margin: 0;
+	padding: 15px;
+	float: left;
+}
+
+#main-content .cercanias {
+	width: 260px;
+	margin: 0;
+	padding: 15px;
+	float: right;
+}
+
+#main-content .precio {
+	color: #336A93;
+	font-size: 2em;
+	font-family: monospace;
+	font-weight: bolder;
+	text-align: center;
+}
+
+#main-content a {
+    color: #245dc7;
+}
+
+#main-content h2 {
+    text-indent: 12px;
+    font-weight: bold;
+    background: #a1c2ff;
+    text-decoration: none;
+}
+
+#main-content h3 {
+    color: #4B3D1B
+}
+
+/*---------------------------------------------*/
+
+.center {
+    margin: auto;
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+    display: block;
+}
+
+.columna_titulos {
+	width: 100px;
+}
+
+.tabla_ext {
+    width: 100%;
+}
+
+a {
+    text-decoration: none
+}
+
+a:active, a:focus {
+    outline: none
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+body {
+    background: #FFFFFF;
+    font-family: Verdana, Tahoma, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    margin: 0;
+    padding: 0
+}
+
+img {
+    border: none
+}
+
+input, select, file {
+    border: 1px solid #7a725d;
+    color: #333;
+    padding: 3px;
+    margin: 0 0 10px 0;
+    font-size: 11px;
+}
+
+label {
+    font-weight: bold;
+}
+
+table {
+    margin: auto;
+}
